@@ -22,24 +22,24 @@ namespace PrimeSolutions.Common
         
         private void bttn_View_Click(object sender, EventArgs e)
         {
-            int j = 1;
-            dgv_BarcodeDetail.Rows.Clear();
-            DataTable dt = _objBarcode.getBarcodeItem(dtp_Start.Value.ToString("dd/MM/yyyy"), dtp_End.Value.ToString("dd/MM/yyyy"));
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                dgv_BarcodeDetail.Rows.Add();
-                dgv_BarcodeDetail.Rows[i].Cells["SrNo"].Value = j;
-                dgv_BarcodeDetail.Rows[i].Cells["Chk"].Value = true;
-                dgv_BarcodeDetail.Rows[i].Cells["Barcode"].Value = dt.Rows[i]["Barcode"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["Category"].Value = dt.Rows[i]["category"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["SubCategory"].Value = dt.Rows[i]["sub_category"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["PurchaseAmt"].Value = dt.Rows[i]["purchase_amt"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["SellingAmt"].Value = dt.Rows[i]["sale_amt"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["Qty"].Value = dt.Rows[i]["qty"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["Size"].Value = dt.Rows[i]["size"].ToString();
-                dgv_BarcodeDetail.Rows[i].Cells["Total"].Value = dt.Rows[i]["Total"].ToString();
-                j++;
-            }
+           // int j = 1;
+           // dgv_BarcodeDetail.Rows.Clear();
+           //// DataTable dt = _objBarcode.getBarcodeItem(dtp_Start.Value.ToString("dd/MM/yyyy"), dtp_End.Value.ToString("dd/MM/yyyy"));
+           // for (int i = 0; i < dt.Rows.Count; i++)
+           // {
+           //     dgv_BarcodeDetail.Rows.Add();
+           //     dgv_BarcodeDetail.Rows[i].Cells["SrNo"].Value = j;
+           //     dgv_BarcodeDetail.Rows[i].Cells["Chk"].Value = true;
+           //     dgv_BarcodeDetail.Rows[i].Cells["Barcode"].Value = dt.Rows[i]["Barcode"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["Category"].Value = dt.Rows[i]["category"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["SubCategory"].Value = dt.Rows[i]["sub_category"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["PurchaseAmt"].Value = dt.Rows[i]["purchase_amt"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["SellingAmt"].Value = dt.Rows[i]["sale_amt"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["Qty"].Value = dt.Rows[i]["qty"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["Size"].Value = dt.Rows[i]["size"].ToString();
+           //     dgv_BarcodeDetail.Rows[i].Cells["Total"].Value = dt.Rows[i]["Total"].ToString();
+           //     j++;
+           // }
 
 
         }
@@ -67,7 +67,7 @@ namespace PrimeSolutions.Common
                     string Total = Convert.ToString(dgv_BarcodeDetail.Rows[i].Cells["Total"].Value);
                     string barcode = Convert.ToString(dgv_BarcodeDetail.Rows[i].Cells["Barcode"].Value);
                     string size = Convert.ToString(dgv_BarcodeDetail.Rows[i].Cells["size"].Value);
-                    _objBarcode.printBarcode(barcode, category, subcategory, purchaseamt, sellingamt, size, Total, i);
+                    //_p.printBarcode(barcode, category, subcategory, purchaseamt, sellingamt, size, Total, i);
                     }
 
                 }
@@ -102,7 +102,7 @@ namespace PrimeSolutions.Common
                         size2 = Convert.ToString(dgv_BarcodeDetail.Rows[i + 1].Cells["size"].Value);
                         barcode2 = Convert.ToString(dgv_BarcodeDetail.Rows[i + 1].Cells["Barcode"].Value);
                         i++;
-                        _objBarcode.printBarcode(barcode1, barcode2, category1, category2, subcategory1, subcategory2, sellingamt1, sellingamt2, size1, size2, i);
+                        //_objBarcode.printBarcode(barcode1, barcode2, category1, category2, subcategory1, subcategory2, sellingamt1, sellingamt2, size1, size2, i);
                     }
                 }
             }

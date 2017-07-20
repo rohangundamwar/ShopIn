@@ -1,1 +1,1 @@
-Data Source=ROHANLAPTOP\SQLEXPRESS;Initial catalog=Gift;user id=sa;password=8118;
+Data Source= ROHANLAPTOP\SQLEXPRESS ;Initial catalog=ShopIn;user id=sa;password=8118;

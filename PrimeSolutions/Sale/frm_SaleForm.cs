@@ -35,9 +35,8 @@ namespace PrimeSolutions
             Masterclear();
             this.BringToFront();
             Clear();
-            cmb_Category.DataSource = _a.FillCategory();
-            cmb_SubCategory.DataSource = _a.FillSubCategory();
-            txt_TaxPer.Text =Convert.ToString(_common.GetTax());
+            //cmb_Category.DataSource = _a.FillCategory();
+            //cmb_SubCategory.DataSource = _a.FillSubCategory();
             cmb_Name.Select();
 
         }
@@ -51,18 +50,13 @@ namespace PrimeSolutions
             cmb_SubCategory.ResetText();
             txt_AccNo.ResetText();
             txt_Address.ResetText();
-            txt_BalAmt.ResetText();
-            panel.ResetText();
+            txt_Amt.Text = "0";
             txt_City.ResetText();
             txt_ContactNo.ResetText();
-            txt_MobileNo.ResetText();
             txt_NetAmt.Text="0";
             txt_PaidAmt.Text="0";
             txt_Qty.Text = "1";
-            txt_Size.ResetText();
             txt_TotalAmt.Text = "0";
-            txt_Vat.Text="0";
-            lbl_Vat.Text =Convert.ToString( dtSett.Rows[0]["Tax"]);
             txt_SellingAmt.Text = "0";
             txt_BarcodeNo.ResetText();
             dgv_ItemInfo.Rows.Clear();
@@ -113,14 +107,6 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 txt_ContactNo.Focus();
-            }
-        }
-
-        private void txt_ContactNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txt_MobileNo.Focus();
             }
         }
 
@@ -176,13 +162,7 @@ namespace PrimeSolutions
             }
         }
 
-        private void txt_TotalAmt_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txt_Vat.Focus();
-            }
-        }
+        
 
         private void txt_Vat_KeyDown(object sender, KeyEventArgs e)
         {
@@ -200,13 +180,7 @@ namespace PrimeSolutions
             }
         }
 
-        private void txt_PaidAmt_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txt_BalAmt.Focus();
-            }
-        }
+       
 
         private void txt_BalAmt_KeyDown(object sender, KeyEventArgs e)
         {
@@ -223,10 +197,7 @@ namespace PrimeSolutions
 
         private void txt_PurchaseAmt_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
-            {
-                txt_BalAmt.Focus();
-            }
+            
             if (e.KeyCode == Keys.Enter)
             { 
             try
@@ -240,7 +211,6 @@ namespace PrimeSolutions
                         cmb_Category.Text = dt.Rows[0]["category"].ToString();
                         cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
                         txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
-                        txt_Size.Text = dt.Rows[0]["size"].ToString();
                         txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
                         bttn_Add_Click(sender, e);
                     }
@@ -334,11 +304,7 @@ namespace PrimeSolutions
         {
             _objSimpal.ValidationDigitWithPoint(e, txt_TotalAmt.Text);
         }
-
-        private void txt_Vat_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_Vat.Text);
-        }
+        
 
         private void txt_NetAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -348,11 +314,6 @@ namespace PrimeSolutions
         private void txt_PaidAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
             _objSimpal.ValidationDigitWithPoint(e, txt_PaidAmt.Text);
-        }
-
-        private void txt_BalAmt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_BalAmt.Text);
         }
 
         private void txt_Qty_TextChanged(object sender, EventArgs e)
@@ -383,7 +344,7 @@ namespace PrimeSolutions
             try
             {
                 
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text,cmb_Category.Text, cmb_SubCategory.Text, txt_SellingAmt.Text, txt_Qty.Text, txt_Amt.Text,txt_Size.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text,cmb_Category.Text, cmb_SubCategory.Text, txt_SellingAmt.Text, txt_Qty.Text, txt_Amt.Text);
                 Clear();
                 
                 
@@ -393,8 +354,8 @@ namespace PrimeSolutions
                 MessageBox.Show(ex.Message);
             }
             Calculate();
-            txt_Vat.Text = calculateVAT().ToString();
-            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_Vat.Text) + Convert.ToInt32(txt_TotalAmt.Text));
+            
+            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_TotalAmt.Text));
             bttn_Sale.Enabled = true;
 
         }
@@ -407,7 +368,6 @@ namespace PrimeSolutions
             txt_SellingAmt.Text = "0";
             txt_BarcodeNo.ResetText();
             txt_Amt.Text = "0";
-            txt_Size.Text = " ";
         }
 
         private void Calculate()
@@ -426,7 +386,7 @@ namespace PrimeSolutions
                 if (!_Cust.checkCustomerAccount(cmb_Name.Text))
                 {
                     txt_AccNo.Text = _objSQLHelper.gmGetMstID("C", "0");
-                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_MobileNo.Text, txt_ContactNo.Text);
+                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text);
                 }
             }
             try
@@ -454,7 +414,7 @@ namespace PrimeSolutions
                     }
 
                 }
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, txt_Vat.Text, txt_NetAmt.Text, " ", dtp_Date.Value.ToString("dd/MM/yyyy"));
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, "",txt_NetAmt.Text,"", dtp_Date.Value.ToString("dd/MM/yyyy"));
 
             }
             catch (Exception ex)
@@ -484,10 +444,9 @@ namespace PrimeSolutions
 
         private int calculateVAT()
         {
-            int varper = Convert.ToInt32(txt_TaxPer.Text);
+            
             int totalamt = Convert.ToInt32(txt_TotalAmt.Text);
-            int VAT = (totalamt) * varper / 100;
-            return VAT;
+            return 0 ;
         }
 
         private void dgv_ItemInfo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -502,7 +461,7 @@ namespace PrimeSolutions
                     cmb_Category.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value.ToString();
                     cmb_SubCategory.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value.ToString();
                     txt_SellingAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value.ToString();
-                    txt_Size.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["size"].Value.ToString();
+                    
                     txt_Qty.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value.ToString();
                     txt_Amt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value.ToString();
                 }
@@ -522,7 +481,6 @@ namespace PrimeSolutions
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value = cmb_Category.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value = txt_SellingAmt.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["size"].Value = txt_Size.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = txt_Amt.Text;
                 Calculate();
@@ -535,8 +493,8 @@ namespace PrimeSolutions
             bttn_Add.Enabled = true;
             Clear();
             Calculate();
-            txt_Vat.Text = calculateVAT().ToString();
-            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_Vat.Text) + Convert.ToInt32(txt_TotalAmt.Text));
+            
+            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_TotalAmt.Text));
         }
 
         private void bttn_Delete_Click(object sender, EventArgs e)
@@ -562,42 +520,7 @@ namespace PrimeSolutions
             txt_Amt.Text = Convert.ToString((Convert.ToInt32(txt_SellingAmt.Text)) * (Convert.ToInt32(txt_Qty.Text)));
         }
 
-        private void txt_TaxPer_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (txt_TaxPer.Text != "")
-                    if (Convert.ToInt32(txt_TaxPer.Text) > 0)
-                    {
-                        txt_Vat.Text = calculateVAT().ToString();
-                        txt_NetAmt.Text = Convert.ToString((Convert.ToInt32(txt_TotalAmt.Text)) + (Convert.ToInt32(txt_Vat.Text)));
-                    }
-
-                    else
-                    {
-                        txt_NetAmt.Text = Convert.ToString((Convert.ToInt32(txt_TotalAmt.Text)) * 1);
-                        txt_Vat.Text = "0";
-                    }
-                else if (txt_TaxPer.Text == "0" || txt_Vat.Text == null)
-                {
-                    txt_NetAmt.Text = Convert.ToString((Convert.ToInt32(txt_TotalAmt.Text)) * 1);
-                    txt_Vat.Text = "0";
-                }
-            }
-            catch(Exception ex)
-            {
-                _error.AddException(ex, "Sale");
-            }
-
-        }
-
-        private void txt_BalAmt_TextChanged(object sender, EventArgs e)
-        {
-            if(txt_BalAmt.Text!="")
-            txt_PaidAmt.Text =Convert.ToString( Convert.ToInt32(txt_NetAmt.Text) - Convert.ToInt32(txt_BalAmt.Text));
-
-        }
+        
 
         private void cmb_Category_Enter(object sender, EventArgs e)
         {
@@ -607,6 +530,26 @@ namespace PrimeSolutions
         private void cmb_SubCategory_Enter(object sender, EventArgs e)
         {
             cmb_SubCategory.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void pnl_SupplierInfo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txt_Amt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_NetAmount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
