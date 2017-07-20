@@ -152,7 +152,7 @@
             // bttn_Delete
             // 
             this.bttn_Delete.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Delete.Location = new System.Drawing.Point(281, 5);
+            this.bttn_Delete.Location = new System.Drawing.Point(291, 5);
             this.bttn_Delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Delete.Name = "bttn_Delete";
             this.bttn_Delete.Size = new System.Drawing.Size(76, 28);
@@ -164,7 +164,7 @@
             // bttn_Update
             // 
             this.bttn_Update.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.bttn_Update.Location = new System.Drawing.Point(134, 5);
+            this.bttn_Update.Location = new System.Drawing.Point(151, 5);
             this.bttn_Update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Update.Name = "bttn_Update";
             this.bttn_Update.Size = new System.Drawing.Size(76, 28);
@@ -176,7 +176,7 @@
             // bttn_Add
             // 
             this.bttn_Add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.bttn_Add.Location = new System.Drawing.Point(2, 5);
+            this.bttn_Add.Location = new System.Drawing.Point(11, 5);
             this.bttn_Add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Add.Name = "bttn_Add";
             this.bttn_Add.Size = new System.Drawing.Size(76, 28);
@@ -188,7 +188,7 @@
             // bttn_Close
             // 
             this.bttn_Close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Close.Location = new System.Drawing.Point(138, 541);
+            this.bttn_Close.Location = new System.Drawing.Point(151, 541);
             this.bttn_Close.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(76, 28);

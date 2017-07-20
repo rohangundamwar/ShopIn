@@ -73,11 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\frm_backup.cs">
+    <Compile Include="Common\Fix Rate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\frm_backup.Designer.cs">
-      <DependentUpon>frm_backup.cs</DependentUpon>
+    <Compile Include="Common\Fix Rate.Designer.cs">
+      <DependentUpon>Fix Rate.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\frm_BarcodePrint.cs">
       <SubType>Form</SubType>
@@ -91,6 +91,30 @@
     <Compile Include="Common\frm_Category.designer.cs">
       <DependentUpon>frm_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_SubCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_SubCategory.designer.cs">
+      <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Customer Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Customer Account.Designer.cs">
+      <DependentUpon>Customer Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Distributor Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Distributor Account.Designer.cs">
+      <DependentUpon>Distributor Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\frm_backup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_backup.Designer.cs">
+      <DependentUpon>frm_backup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_Error.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,12 +126,6 @@
     </Compile>
     <Compile Include="Common\frm_Setting.Designer.cs">
       <DependentUpon>frm_Setting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Common\frm_SubCategory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Common\frm_SubCategory.designer.cs">
-      <DependentUpon>frm_SubCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Dataset\BillItem1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -145,12 +163,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Purchase\frm_Stock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchase\frm_Stock.Designer.cs">
-      <DependentUpon>frm_Stock.cs</DependentUpon>
-    </Compile>
     <Compile Include="Report\Customer\frm_CustomerContact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,8 +224,8 @@
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Common\frm_backup.resx">
-      <DependentUpon>frm_backup.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Fix Rate.resx">
+      <DependentUpon>Fix Rate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_BarcodePrint.resx">
       <DependentUpon>frm_BarcodePrint.cs</DependentUpon>
@@ -221,14 +233,23 @@
     <EmbeddedResource Include="Common\frm_Category.resx">
       <DependentUpon>frm_Category.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_SubCategory.resx">
+      <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Customer Account.resx">
+      <DependentUpon>Customer Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Distributor Account.resx">
+      <DependentUpon>Distributor Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_backup.resx">
+      <DependentUpon>frm_backup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Error.resx">
       <DependentUpon>frm_Error.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Setting.resx">
       <DependentUpon>frm_Setting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Common\frm_SubCategory.resx">
-      <DependentUpon>frm_SubCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -360,17 +381,6 @@
     <None Include="Resources\delivery-cart.png" />
     <Content Include="Resources\Prime_logo.png" />
     <None Include="Resources\Prime_logo1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="BarTender">
-      <Guid>{D58562C1-E51B-11CF-8941-00A024A9083F}</Guid>
-      <VersionMajor>10</VersionMajor>
-      <VersionMinor>1</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -394,7 +394,7 @@ namespace PrimeSolutions.Library
 
                 case "P":
 
-                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From SupplierMaster Where Right(Left(AccNo,1),1)= 'P'";
+                    SQL = "Select Max(Right(SupplierNo,4))+1 As MaxID From SupplierMaster Where Right(Left(SupplierNo,1),1)= 'P'";
                     break;
 
                 case "Q":
@@ -411,7 +411,7 @@ namespace PrimeSolutions.Library
 
                 case "S":
 
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From SaleBillMaster Where Right(Left(BillNo,1),1)= 'S'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From CustomerBill Where Right(Left(BillNo,1),1)= 'S'";
 
                     break;
 
@@ -450,22 +450,12 @@ namespace PrimeSolutions.Library
                     break;
             }
 
-            if (MstType == "INV" || MstType == "KHA" || MstType == "GRV" || MstType == "SUP" || MstType == "ITM" || MstType == "VPB")
-            {
-                MCODE = MstType + Right("0000" + ExecuteScalar(SQL), 4);
-                if (Right(MCODE, 4) == "0000")
-                {
-                    MCODE = MstType + "0001";
-                }
-            }
-            else
-            {
                 MCODE = MstType + Left(MstDesc, 3) + Right("0000" + ExecuteScalar(SQL), 4);
                 if (Right(MCODE, 4) == "0000")
                 {
                     MCODE = MstType + Left(MstDesc, 3) + "0001";
                 }
-            }
+          
 
             return MCODE;
         }

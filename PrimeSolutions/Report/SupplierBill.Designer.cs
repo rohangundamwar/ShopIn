@@ -31,7 +31,6 @@
             this.dgv_BillItem = new System.Windows.Forms.DataGridView();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_BillNo = new System.Windows.Forms.ComboBox();
             this.lbl_BillNo = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@
             this.dgv_BillItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Category,
             this.SubCategory,
-            this.Size,
             this.Quantity});
             this.dgv_BillItem.Location = new System.Drawing.Point(12, 83);
             this.dgv_BillItem.Name = "dgv_BillItem";
@@ -72,9 +70,7 @@
             // 
             // Size
             // 
-            this.Size.HeaderText = "Size";
-            this.Size.Name = "Size";
-            this.Size.ReadOnly = true;
+           
             // 
             // Quantity
             // 
@@ -160,7 +156,7 @@
         private System.Windows.Forms.Label lbl_BillNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
+      
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Button bttn_Excel;

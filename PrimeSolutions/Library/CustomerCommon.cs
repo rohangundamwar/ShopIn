@@ -10,9 +10,9 @@ namespace PrimeSolutions.Library
     {
         SQLHelper _Sql = new SQLHelper();
 
-        public void AddCustomerDetails(string CustId,string Name,string Address,string Mobile,string ContactNo)
+        public void AddCustomerDetails(string CustId,string Name,string Address,string ContactNo)
         {
-            string str = "Insert into CustomerMaster(CustId,Name,Address,MobileNo,ContactNo) VALUES('"+CustId+"','"+Name+"','"+Address+"','"+Mobile+"','"+ContactNo+"') ";
+            string str = "Insert into CustomerMaster(CustId,Name,Address,MobileNo,ContactNo) VALUES('"+CustId+"','"+Name+"','"+Address+"','"+ContactNo+"') ";
             _Sql.ExecuteSql(str);
         }
 

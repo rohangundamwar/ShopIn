@@ -1,4 +1,4 @@
-﻿using BarTender;
+﻿
 using PrimeSolutions.Library;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,7 @@ namespace PrimeSolutions.ClassFile
     public class AllClassFile
     {
         SQLHelper _objsqlhelper = new SQLHelper();
-        BarTender.ApplicationClass btApp;
-        BarTender.Format btFormat;
-        BarTender.Messages btMsgs;
+        
         public void InsertCustomerInfo(string accno, string name, string add, string city, string contact, string contact1, string billno , string date)
         {
             string str = " INSERT INTO SupplierMaster (AccNo, name, address, city, contact_no, phone_no, status,SupplierBillNo,SoftDate) VALUES('"+accno+ "','" + name + "','" + add + "','" + city + "','" + contact + "','" + contact1 + "','Supplier','" + billno + "','" + date + "')";
@@ -125,12 +123,6 @@ namespace PrimeSolutions.ClassFile
             return dt1;
         }
 
-        internal DataTable getBarcodeItem(string start, string end)
-        {
-            string str = "Select  * From BillItem Where (Barcode != '') AND (CONVERT(DateTime,BillItem.SoftDate, 103) >= CONVERT(DateTime, '" + start + "', 103))  AND (CONVERT(DateTime, BillItem.SoftDate, 103) <= CONVERT(DateTime, '" + end + "', 103)) And type = 'Purchase'";
-            DataTable dt = _objsqlhelper.GetDataTable(str);
-            return dt;
-        }
 
         internal DataTable getBarcodeItemByBilNo(string PBillNo)
         {
@@ -138,6 +130,7 @@ namespace PrimeSolutions.ClassFile
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
+
 
         internal DataTable GetCategoryBySubCategory(string SubCategory)
         {
@@ -303,88 +296,7 @@ namespace PrimeSolutions.ClassFile
             _objsqlhelper.ExecuteScalar(str);
         }
 
-        public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt,string size, string total, int i)
-        {
-            btApp = new BarTender.ApplicationClass();
-            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\Barcode.btw", false, "");
-            try
-            {
-                btFormat.SetNamedSubStringValue("barcode", barcode);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("category", category);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("size", size);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("subcategory", subcategory);
-
-            }
-            catch { }
-            
-            try
-            {
-                btFormat.SetNamedSubStringValue("sellingamt", sellingamt);
-
-            }
-            catch { }
-            
-            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
-        }
-
-        public void printBarcode(string barcode1,string  barcode2, string category1, string category2, string subcategory1, string subcategory2,string sellingamt1,string sellingamt2,string size1,string size2,int i)
-        {
-            btApp = new BarTender.ApplicationClass();
-            btFormat = btApp.Formats.Open(System.Windows.Forms.Application.StartupPath + "\\Barcode2.btw", false, "");
-            try
-            {
-                btFormat.SetNamedSubStringValue("barcode1", barcode1);
-                btFormat.SetNamedSubStringValue("barcode2", barcode2);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("category1", category1);
-                btFormat.SetNamedSubStringValue("category2", category2);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("subcategory1", subcategory1);
-                btFormat.SetNamedSubStringValue("subcategory2", subcategory2);
-
-            }
-            catch { }
-            
-            try
-            {
-                btFormat.SetNamedSubStringValue("sellingamt1", sellingamt1);
-                btFormat.SetNamedSubStringValue("sellingamt2", sellingamt2);
-
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("size1", size1);
-                btFormat.SetNamedSubStringValue("size2", size2);
-
-            }
-            catch { }
-            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
-
-        }
+       
 
         public DataTable GetSupplier( string name)
         {
@@ -407,6 +319,36 @@ namespace PrimeSolutions.ClassFile
             }
         }
 
+        internal bool ItemCategory(string Category)
+        {
+            string str = "SELECT count (*) FROM  SubCategoryMaster WHERE (SubCategory = '" + Category + "') ";
+            int i = Convert.ToInt32(_objsqlhelper.ExecuteScalar(str));
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal bool SubItemCategory(string SubCategory)
+        {
+            string str = "SELECT count (*) FROM  CategoryMaster WHERE (Category = '" + SubCategory + "') ";
+            int i = Convert.ToInt32(_objsqlhelper.ExecuteScalar(str));
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
         public int getbarcode()
         {
             string str = "Select BarcodeCount from setting";
@@ -421,9 +363,9 @@ namespace PrimeSolutions.ClassFile
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string tax,string taxper)
+        public void SetAllssetting(string bar,string print,string barcode)
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', PrintCount='" + print + "', Tax='" + tax + "', TaxPer='" + taxper + "'";
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "'";
             _objsqlhelper.ExecuteScalar(str);
             
         }

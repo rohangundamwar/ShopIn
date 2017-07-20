@@ -23,14 +23,28 @@ namespace PrimeSolutions.Common
         {
             DataTable dt = _a.getallssetting();
             txt_barcode.Text = dt.Rows[0]["BarcodeCount"].ToString();
-            txt_print.Text = dt.Rows[0]["PrintCount"].ToString();
-            txt_tax.Text = dt.Rows[0]["Tax"].ToString();
-            txt_TaxPer.Text= dt.Rows[0]["TaxPer"].ToString();
+            txt_print.Text = dt.Rows[0]["BillCount"].ToString();
+            //Barcode Check
+            if (dt.Rows[0]["Barcode"].ToString() == "Yes")
+                rbt_yes1.Checked = true;
+            
+            else
+                rbt_No1.Checked = true;
+            
         }
 
         private void bttn_save_Click(object sender, EventArgs e)
         {
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text, txt_tax.Text, txt_TaxPer.Text);
+            string barcode;
+            if (rbt_yes1.Checked == true)
+            {
+                barcode = "Yes";
+            }
+            else
+            {
+                barcode = "No";
+            }
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode);
         }
     }
 }
