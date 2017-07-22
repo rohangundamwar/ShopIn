@@ -61,6 +61,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.looseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -239,7 +240,8 @@
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.categoryToolStripMenuItem,
-            this.subCategoryToolStripMenuItem});
+            this.subCategoryToolStripMenuItem,
+            this.looseItemToolStripMenuItem});
             this.masterToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.masterToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Applications;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
@@ -354,6 +356,13 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // looseItemToolStripMenuItem
+            // 
+            this.looseItemToolStripMenuItem.Name = "looseItemToolStripMenuItem";
+            this.looseItemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.looseItemToolStripMenuItem.Text = "Loose Item";
+            this.looseItemToolStripMenuItem.Click += new System.EventHandler(this.looseItemToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -415,6 +424,7 @@
         private System.Windows.Forms.ToolStripMenuItem backUpDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customerDatatabseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supplierBillDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem looseItemToolStripMenuItem;
     }
 }
 

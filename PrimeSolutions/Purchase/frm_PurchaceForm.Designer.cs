@@ -70,6 +70,7 @@
             this.txt_Barcode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnl_Button = new System.Windows.Forms.Panel();
+            this.bttn_All = new System.Windows.Forms.Button();
             this.bttn_Delete = new System.Windows.Forms.Button();
             this.bttn_Reset = new System.Windows.Forms.Button();
             this.bttn_Update = new System.Windows.Forms.Button();
@@ -124,6 +125,9 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Purchase = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -177,6 +181,7 @@
             this.dtp_Date.Name = "dtp_Date";
             this.dtp_Date.Size = new System.Drawing.Size(104, 22);
             this.dtp_Date.TabIndex = 8;
+            this.dtp_Date.Value = new System.DateTime(2017, 7, 20, 19, 6, 4, 0);
             // 
             // lbl_Date
             // 
@@ -347,6 +352,7 @@
             this.cmb_State.Size = new System.Drawing.Size(121, 24);
             this.cmb_State.TabIndex = 2;
             this.cmb_State.ValueMember = "26";
+            this.cmb_State.SelectedIndexChanged += new System.EventHandler(this.cmb_State_SelectedIndexChanged);
             this.cmb_State.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_State_KeyDown);
             // 
             // txt_GSTIN
@@ -485,6 +491,9 @@
             // pnl_ItemInfo
             // 
             this.pnl_ItemInfo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_ItemInfo.Controls.Add(this.label8);
+            this.pnl_ItemInfo.Controls.Add(this.label6);
+            this.pnl_ItemInfo.Controls.Add(this.label5);
             this.pnl_ItemInfo.Controls.Add(this.txt_HSN);
             this.pnl_ItemInfo.Controls.Add(this.lbl_HSN);
             this.pnl_ItemInfo.Controls.Add(this.lbl_AmtIGST);
@@ -546,7 +555,7 @@
             // lbl_AmtIGST
             // 
             this.lbl_AmtIGST.AutoSize = true;
-            this.lbl_AmtIGST.Location = new System.Drawing.Point(1032, 86);
+            this.lbl_AmtIGST.Location = new System.Drawing.Point(1013, 85);
             this.lbl_AmtIGST.Name = "lbl_AmtIGST";
             this.lbl_AmtIGST.Size = new System.Drawing.Size(18, 19);
             this.lbl_AmtIGST.TabIndex = 38;
@@ -555,7 +564,7 @@
             // lbl_AmtSGST
             // 
             this.lbl_AmtSGST.AutoSize = true;
-            this.lbl_AmtSGST.Location = new System.Drawing.Point(670, 86);
+            this.lbl_AmtSGST.Location = new System.Drawing.Point(670, 85);
             this.lbl_AmtSGST.Name = "lbl_AmtSGST";
             this.lbl_AmtSGST.Size = new System.Drawing.Size(18, 19);
             this.lbl_AmtSGST.TabIndex = 37;
@@ -564,7 +573,7 @@
             // lbl_AmtCGST
             // 
             this.lbl_AmtCGST.AutoSize = true;
-            this.lbl_AmtCGST.Location = new System.Drawing.Point(288, 86);
+            this.lbl_AmtCGST.Location = new System.Drawing.Point(288, 85);
             this.lbl_AmtCGST.Name = "lbl_AmtCGST";
             this.lbl_AmtCGST.Size = new System.Drawing.Size(18, 19);
             this.lbl_AmtCGST.TabIndex = 36;
@@ -575,7 +584,7 @@
             this.lbl_IGST.AutoSize = true;
             this.lbl_IGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_IGST.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_IGST.Location = new System.Drawing.Point(768, 87);
+            this.lbl_IGST.Location = new System.Drawing.Point(768, 86);
             this.lbl_IGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_IGST.Name = "lbl_IGST";
             this.lbl_IGST.Size = new System.Drawing.Size(43, 16);
@@ -584,19 +593,20 @@
             // 
             // txt_IGST
             // 
-            this.txt_IGST.Location = new System.Drawing.Point(891, 82);
+            this.txt_IGST.Location = new System.Drawing.Point(891, 81);
             this.txt_IGST.Name = "txt_IGST";
             this.txt_IGST.Size = new System.Drawing.Size(61, 26);
             this.txt_IGST.TabIndex = 20;
             this.txt_IGST.TextChanged += new System.EventHandler(this.txt_IGST_TextChanged);
             this.txt_IGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_IGST_KeyDown);
+            this.txt_IGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_IGST_KeyPress);
             // 
             // lbl_SGST
             // 
             this.lbl_SGST.AutoSize = true;
             this.lbl_SGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SGST.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SGST.Location = new System.Drawing.Point(386, 87);
+            this.lbl_SGST.Location = new System.Drawing.Point(386, 86);
             this.lbl_SGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SGST.Name = "lbl_SGST";
             this.lbl_SGST.Size = new System.Drawing.Size(49, 16);
@@ -605,18 +615,20 @@
             // 
             // txt_SGST
             // 
-            this.txt_SGST.Location = new System.Drawing.Point(515, 82);
+            this.txt_SGST.Location = new System.Drawing.Point(515, 81);
             this.txt_SGST.Name = "txt_SGST";
             this.txt_SGST.Size = new System.Drawing.Size(75, 26);
             this.txt_SGST.TabIndex = 19;
+            this.txt_SGST.TextChanged += new System.EventHandler(this.txt_SGST_TextChanged);
             this.txt_SGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SGST_KeyDown);
+            this.txt_SGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_SGST_KeyPress);
             // 
             // lbl_CGST
             // 
             this.lbl_CGST.AutoSize = true;
             this.lbl_CGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_CGST.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_CGST.Location = new System.Drawing.Point(9, 87);
+            this.lbl_CGST.Location = new System.Drawing.Point(9, 86);
             this.lbl_CGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_CGST.Name = "lbl_CGST";
             this.lbl_CGST.Size = new System.Drawing.Size(49, 16);
@@ -625,11 +637,13 @@
             // 
             // txt_CGST
             // 
-            this.txt_CGST.Location = new System.Drawing.Point(138, 82);
+            this.txt_CGST.Location = new System.Drawing.Point(138, 81);
             this.txt_CGST.Name = "txt_CGST";
             this.txt_CGST.Size = new System.Drawing.Size(70, 26);
             this.txt_CGST.TabIndex = 18;
+            this.txt_CGST.TextChanged += new System.EventHandler(this.txt_CGST_TextChanged);
             this.txt_CGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_CGST_KeyDown);
+            this.txt_CGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_CGST_KeyPress);
             // 
             // txt_BatchNo
             // 
@@ -680,6 +694,7 @@
             // pnl_Button
             // 
             this.pnl_Button.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_Button.Controls.Add(this.bttn_All);
             this.pnl_Button.Controls.Add(this.bttn_Delete);
             this.pnl_Button.Controls.Add(this.bttn_Reset);
             this.pnl_Button.Controls.Add(this.bttn_Update);
@@ -690,10 +705,22 @@
             this.pnl_Button.Size = new System.Drawing.Size(1074, 41);
             this.pnl_Button.TabIndex = 21;
             // 
+            // bttn_All
+            // 
+            this.bttn_All.ForeColor = System.Drawing.Color.Orange;
+            this.bttn_All.Location = new System.Drawing.Point(955, 7);
+            this.bttn_All.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.bttn_All.Name = "bttn_All";
+            this.bttn_All.Size = new System.Drawing.Size(76, 28);
+            this.bttn_All.TabIndex = 22;
+            this.bttn_All.Text = "Clear";
+            this.bttn_All.UseVisualStyleBackColor = true;
+            this.bttn_All.Click += new System.EventHandler(this.bttn_All_Click);
+            // 
             // bttn_Delete
             // 
             this.bttn_Delete.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Delete.Location = new System.Drawing.Point(877, 5);
+            this.bttn_Delete.Location = new System.Drawing.Point(724, 7);
             this.bttn_Delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Delete.Name = "bttn_Delete";
             this.bttn_Delete.Size = new System.Drawing.Size(76, 28);
@@ -705,18 +732,19 @@
             // bttn_Reset
             // 
             this.bttn_Reset.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Reset.Location = new System.Drawing.Point(595, 5);
+            this.bttn_Reset.Location = new System.Drawing.Point(493, 7);
             this.bttn_Reset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Reset.Name = "bttn_Reset";
             this.bttn_Reset.Size = new System.Drawing.Size(76, 28);
             this.bttn_Reset.TabIndex = 0;
             this.bttn_Reset.Text = "Reset";
             this.bttn_Reset.UseVisualStyleBackColor = true;
+            this.bttn_Reset.Click += new System.EventHandler(this.bttn_Reset_Click);
             // 
             // bttn_Update
             // 
             this.bttn_Update.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.bttn_Update.Location = new System.Drawing.Point(313, 5);
+            this.bttn_Update.Location = new System.Drawing.Point(262, 7);
             this.bttn_Update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Update.Name = "bttn_Update";
             this.bttn_Update.Size = new System.Drawing.Size(76, 28);
@@ -728,7 +756,7 @@
             // bttn_Add
             // 
             this.bttn_Add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.bttn_Add.Location = new System.Drawing.Point(31, 5);
+            this.bttn_Add.Location = new System.Drawing.Point(31, 7);
             this.bttn_Add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Add.Name = "bttn_Add";
             this.bttn_Add.Size = new System.Drawing.Size(76, 28);
@@ -747,7 +775,6 @@
             this.txt_Amt.Name = "txt_Amt";
             this.txt_Amt.Size = new System.Drawing.Size(134, 19);
             this.txt_Amt.TabIndex = 15;
-            this.txt_Amt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Amt_KeyDown);
             this.txt_Amt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Amt_KeyPress);
             // 
             // lbl_Amount
@@ -835,10 +862,8 @@
             this.cmb_SubCategory.Size = new System.Drawing.Size(182, 27);
             this.cmb_SubCategory.TabIndex = 11;
             this.cmb_SubCategory.ValueMember = "SubCategory";
-            this.cmb_SubCategory.Enter += new System.EventHandler(this.cmb_SubCategory_Enter);
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
             this.cmb_SubCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_SubCategory_KeyPress);
-            this.cmb_SubCategory.Leave += new System.EventHandler(this.cmb_SubCategory_Leave);
             // 
             // cmb_Category
             // 
@@ -852,10 +877,8 @@
             this.cmb_Category.Size = new System.Drawing.Size(200, 27);
             this.cmb_Category.TabIndex = 10;
             this.cmb_Category.ValueMember = "Category";
-            this.cmb_Category.Enter += new System.EventHandler(this.cmb_Category_Enter);
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);
             this.cmb_Category.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Category_KeyPress);
-            this.cmb_Category.Leave += new System.EventHandler(this.cmb_Category_Leave);
             // 
             // lbl_Category
             // 
@@ -1144,7 +1167,6 @@
             this.txt_CGSTValue.Name = "txt_CGSTValue";
             this.txt_CGSTValue.Size = new System.Drawing.Size(88, 19);
             this.txt_CGSTValue.TabIndex = 0;
-            this.txt_CGSTValue.TextChanged += new System.EventHandler(this.txt_VatValue_TextChanged);
             this.txt_CGSTValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_VatValue_KeyDown);
             // 
             // txt_BalAmt
@@ -1181,7 +1203,6 @@
             this.txt_PaidAmt.Name = "txt_PaidAmt";
             this.txt_PaidAmt.Size = new System.Drawing.Size(144, 19);
             this.txt_PaidAmt.TabIndex = 22;
-            this.txt_PaidAmt.TextChanged += new System.EventHandler(this.txt_PaidAmt_TextChanged);
             this.txt_PaidAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PaidAmt_KeyDown);
             this.txt_PaidAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PaidAmt_KeyPress);
             // 
@@ -1307,6 +1328,33 @@
             this.bttn_Purchase.UseVisualStyleBackColor = true;
             this.bttn_Purchase.Click += new System.EventHandler(this.bttn_Purchase_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(211, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 19);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "%";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(596, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 19);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "%";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(958, 85);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 19);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "%";
+            // 
             // frm_PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1329,7 +1377,6 @@
             this.Text = "Purchase Form";
             this.Load += new System.EventHandler(this.frm_PurchaseForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_PurchaseForm_KeyDown);
-            this.Leave += new System.EventHandler(this.frm_PurchaseForm_Leave);
             this.pnl_Main.ResumeLayout(false);
             this.pnl_Top.ResumeLayout(false);
             this.pnl_Top.PerformLayout();
@@ -1444,5 +1491,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGSTper;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
+        private System.Windows.Forms.Button bttn_All;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

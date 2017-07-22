@@ -192,5 +192,11 @@ namespace PrimeSolutions
             frm_SubCategory _form = new frm_SubCategory();
             _form.ShowDialog();
         }
+
+        private void looseItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_LooseItem _form = new frm_LooseItem();
+            _form.ShowDialog();
+        }
     }
 }

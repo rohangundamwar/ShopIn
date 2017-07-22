@@ -76,12 +76,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(95, 15);
+            this.label1.Location = new System.Drawing.Point(114, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 16);
+            this.label1.Size = new System.Drawing.Size(122, 16);
             this.label1.TabIndex = 11;
-            this.label1.Text = "CATEGORY MASTER";
+            this.label1.Text = "Category Master";
             // 
             // dgv_Category
             // 
@@ -118,7 +118,7 @@
             // 
             this.txt_Category.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Category.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Category.Location = new System.Drawing.Point(92, 54);
+            this.txt_Category.Location = new System.Drawing.Point(92, 55);
             this.txt_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Category.Name = "txt_Category";
             this.txt_Category.Size = new System.Drawing.Size(275, 20);
@@ -130,7 +130,7 @@
             this.lbl_Category.AutoSize = true;
             this.lbl_Category.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Category.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Category.Location = new System.Drawing.Point(13, 54);
+            this.lbl_Category.Location = new System.Drawing.Point(13, 57);
             this.lbl_Category.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Category.Name = "lbl_Category";
             this.lbl_Category.Size = new System.Drawing.Size(71, 16);
@@ -152,7 +152,7 @@
             // bttn_Delete
             // 
             this.bttn_Delete.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Delete.Location = new System.Drawing.Point(291, 5);
+            this.bttn_Delete.Location = new System.Drawing.Point(290, 5);
             this.bttn_Delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Delete.Name = "bttn_Delete";
             this.bttn_Delete.Size = new System.Drawing.Size(76, 28);
@@ -164,7 +164,7 @@
             // bttn_Update
             // 
             this.bttn_Update.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.bttn_Update.Location = new System.Drawing.Point(151, 5);
+            this.bttn_Update.Location = new System.Drawing.Point(153, 5);
             this.bttn_Update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Update.Name = "bttn_Update";
             this.bttn_Update.Size = new System.Drawing.Size(76, 28);
@@ -176,7 +176,7 @@
             // bttn_Add
             // 
             this.bttn_Add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.bttn_Add.Location = new System.Drawing.Point(11, 5);
+            this.bttn_Add.Location = new System.Drawing.Point(16, 5);
             this.bttn_Add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Add.Name = "bttn_Add";
             this.bttn_Add.Size = new System.Drawing.Size(76, 28);

@@ -17,6 +17,18 @@ namespace PrimeSolutions.Library
             return d1;
         }
 
+        public void InsertSupplierInfo(string accno, string name,string state,string add, string city, string contact, string PAN,string GSTIN, string date)
+        {
+            string str = " INSERT INTO SupplierMaster (SupplierNo, name,state,address, city, ContactNo,PanNo,GSTIN,Date) VALUES('" + accno + "','" + name + "','" + state + "','" + add + "','" + city + "','" + contact + "','"+PAN+"','" + GSTIN + "','" + date + "')";
+            _sql.ExecuteScalar(str);
+        }
+
+        internal void InsertItem(string barcode,string category, string subcategory, string Pbill,string type,string Qty,string CGST,string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt,string purchaseamt, string total, string BatchNo,string sellingamt,string HSN,string date)
+        {
+            string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,Softdate) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','" + date + "')";
+            _sql.ExecuteScalar(str);
+        }
+
         public DataTable GetSupplierBillNo()
         {
             DataTable dt;
