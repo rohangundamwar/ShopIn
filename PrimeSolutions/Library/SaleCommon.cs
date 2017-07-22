@@ -7,7 +7,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Drawing;
-using PrimeSolutions.ClassFile;
+using PrimeSolutions.Library;
 namespace PrimeSolutions.Library
 {
     public class SaleCommon
@@ -77,7 +77,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomer(string Name)
         {
-            string str = "Select * From CustomerMaster where name = '" + Name + "'";
+            string str = "Select * From CustomerMaster where CustomerName = '" + Name + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }

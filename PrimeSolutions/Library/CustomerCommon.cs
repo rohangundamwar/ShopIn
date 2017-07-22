@@ -18,7 +18,7 @@ namespace PrimeSolutions.Library
 
         public bool checkCustomerAccount(string CustName)
         {
-            string str = "SELECT count (*) FROM  CustomerMaster WHERE (Name = N'" + CustName + "')";
+            string str = "SELECT count (*) FROM  CustomerMaster WHERE (CustomerName = '" + CustName + "')";
             int i = Convert.ToInt32(_Sql.ExecuteScalar(str));
             if (i > 0)
             {
@@ -33,7 +33,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerDeatils()
         {
-            string str = "select * from CustomerMaster ";
+            string str = "select CustomerName from CustomerMaster ";
             DataTable dt;
             dt = _Sql.GetDataTable(str);
             return dt;

@@ -1,40 +1,41 @@
-﻿using PrimeSolutions.Library;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+using PrimeSolutions.Library;
 
 namespace PrimeSolutions.Common
 {
-    public partial class frm_Category : Form
+    public partial class frm_LooseItem: Form
     {
-        public frm_Category()
+        public frm_LooseItem()
         {
             InitializeComponent();
         }
-        
-        
-        ErrorLog _e = new ErrorLog();
-        AllClassFile _objCustomer = new AllClassFile();
-
+        AllClassFile _objCustmor = new AllClassFile();
+        PrimeSolutions.Library.ErrorLog _error = new Library.ErrorLog();
         private void frm_Category_Load(object sender, EventArgs e)
         {
-            txt_Category.Select();
+            txt_SubCategory.Select();
             FillGrid();
             bttn_Update.Enabled = false;
             bttn_Delete.Enabled = false;
             lbl_SrNo.ResetText();
-            txt_Category.ResetText();
-
+            txt_SubCategory.ResetText();
         }
 
         private void FillGrid()
         {
-            DataTable dt = _objCustomer.FillCategory();
+            DataTable dt = _objCustmor.FillLooseItem();
              for (int i =0; i < dt.Rows.Count;i++)
                 {
-                    dgv_Category.Rows.Add();
-                    dgv_Category.Rows[i].Cells["Category"].Value = dt.Rows[i]["Category"].ToString();
-                    dgv_Category.Rows[i].Cells["SrNo"].Value = dt.Rows[i]["SrNo"].ToString();
+                    dgv_SubCategory.Rows.Add();
+                    dgv_SubCategory.Rows[i].Cells["LooseItem"].Value = dt.Rows[i]["LooseItem"].ToString();
+                    dgv_SubCategory.Rows[i].Cells["SrNo"].Value = dt.Rows[i]["SrNo"].ToString();
                    
                 }
            
@@ -42,13 +43,13 @@ namespace PrimeSolutions.Common
 
         private void bttn_Add_Click(object sender, EventArgs e)
         {
-            if (txt_Category.Text != "")
+            if (txt_SubCategory.Text != "")
             {
-                _objCustomer.InsertCategory(txt_Category.Text);
-                dgv_Category.Rows.Clear();
+                _objCustmor.InsertLooseItem(txt_SubCategory.Text);
+                dgv_SubCategory.Rows.Clear();
                 FillGrid();
-                txt_Category.Select();
-                txt_Category.ResetText();
+                txt_SubCategory.Select();
+                txt_SubCategory.ResetText();
             }
             else
             {
@@ -65,41 +66,41 @@ namespace PrimeSolutions.Common
                 bttn_Add.Enabled = false;
                 if (e.RowIndex > -1 && e.ColumnIndex >= -1)
                 {
-                    lbl_SrNo.Text = dgv_Category.Rows[dgv_Category.CurrentRow.Index].Cells["SrNo"].Value.ToString();
-                    txt_Category.Text = dgv_Category.Rows[dgv_Category.CurrentRow.Index].Cells["Category"].Value.ToString();
+                    lbl_SrNo.Text = dgv_SubCategory.Rows[dgv_SubCategory.CurrentRow.Index].Cells["SrNo"].Value.ToString();
+                    txt_SubCategory.Text = dgv_SubCategory.Rows[dgv_SubCategory.CurrentRow.Index].Cells["SubCategory"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                _e.AddException(ex, "Category");
+                _error.AddException(ex,"SubCategory");
             }
         }
 
         private void bttn_Update_Click(object sender, EventArgs e)
         {
-            if (txt_Category.Text != "")
+            if (txt_SubCategory.Text != "")
             {
-                _objCustomer.updateCategory(lbl_SrNo.Text, txt_Category.Text);
-                dgv_Category.Rows.Clear();
+                _objCustmor.updateLooseItem(lbl_SrNo.Text, txt_SubCategory.Text);
+                dgv_SubCategory.Rows.Clear();
                 FillGrid();
-                txt_Category.ResetText();
+                txt_SubCategory.ResetText();
                 lbl_SrNo.ResetText();
                 MessageBox.Show("Update SuccessFully");
+                bttn_Add.Enabled = true;
             }
         }
 
         private void bttn_Delete_Click(object sender, EventArgs e)
         {
-            if (txt_Category.Text != "")
+            if (txt_SubCategory.Text != "")
             {
 
-                _objCustomer.DeleteCategory(lbl_SrNo.Text);
-            dgv_Category.Rows.Clear();
+                _objCustmor.DeleteLooseItem(lbl_SrNo.Text);
+            dgv_SubCategory.Rows.Clear();
             FillGrid();
-            txt_Category.ResetText();
+            txt_SubCategory.ResetText();
             lbl_SrNo.ResetText();
             MessageBox.Show("Deleted SuccessFully");
-                bttn_Add.Enabled = true;
             }
         }
 
@@ -116,7 +117,7 @@ namespace PrimeSolutions.Common
             this.Close();
         }
 
-        private void txt_Category_KeyDown(object sender, KeyEventArgs e)
+        private void txt_SubCategory_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

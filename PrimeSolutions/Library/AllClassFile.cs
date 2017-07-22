@@ -1,24 +1,17 @@
-﻿
-using PrimeSolutions.Library;
+﻿using PrimeSolutions.Library;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Data;
+using BarTender;
 
-namespace PrimeSolutions.ClassFile
+namespace PrimeSolutions.Library
 {
-   
+
     public class AllClassFile
     {
         SQLHelper _objsqlhelper = new SQLHelper();
-        
-        public void InsertCustomerInfo(string accno, string name, string add, string city, string contact, string contact1, string billno , string date)
-        {
-            string str = " INSERT INTO SupplierMaster (AccNo, name, address, city, contact_no, phone_no, status,SupplierBillNo,SoftDate) VALUES('"+accno+ "','" + name + "','" + add + "','" + city + "','" + contact + "','" + contact1 + "','Supplier','" + billno + "','" + date + "')";
-            _objsqlhelper.ExecuteScalar(str);
-        }
+        BarTender.ApplicationClass btApp;
+        BarTender.Format btFormat;
+        BarTender.Messages btMsgs;
 
         public DataTable getStock()
         {
@@ -28,7 +21,95 @@ namespace PrimeSolutions.ClassFile
             return dt;
         }
 
-        
+        public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt, string size, string total, int i)
+        {
+            btApp = new BarTender.ApplicationClass();
+            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\Barcode.btw", false, "");
+            try
+            {
+                btFormat.SetNamedSubStringValue("barcode", barcode);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("category", category);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("size", size);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("subcategory", subcategory);
+
+            }
+            catch { }
+
+            try
+            {
+                btFormat.SetNamedSubStringValue("sellingamt", sellingamt);
+
+            }
+            catch { }
+
+            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+        }
+
+        public void printBarcode(string barcode1, string barcode2, string category1, string category2, string subcategory1, string subcategory2, string sellingamt1, string sellingamt2, string size1, string size2, int i)
+        {
+            btApp = new BarTender.ApplicationClass();
+            btFormat = btApp.Formats.Open(System.Windows.Forms.Application.StartupPath + "\\Barcode2.btw", false, "");
+            try
+            {
+                btFormat.SetNamedSubStringValue("barcode1", barcode1);
+                btFormat.SetNamedSubStringValue("barcode2", barcode2);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("category1", category1);
+                btFormat.SetNamedSubStringValue("category2", category2);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("subcategory1", subcategory1);
+                btFormat.SetNamedSubStringValue("subcategory2", subcategory2);
+
+            }
+            catch { }
+
+            try
+            {
+                btFormat.SetNamedSubStringValue("sellingamt1", sellingamt1);
+                btFormat.SetNamedSubStringValue("sellingamt2", sellingamt2);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("size1", size1);
+                btFormat.SetNamedSubStringValue("size2", size2);
+
+            }
+            catch { }
+            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+
+        }
+
+        internal string GetState()
+        {
+            string str = "select state from companymaster";
+            string state = _objsqlhelper.ExecuteScalar(str);
+            return state;
+        }
 
         internal object GetSubCategoryStock(string  category)
         {
@@ -38,9 +119,9 @@ namespace PrimeSolutions.ClassFile
             return  dt1.Rows[0]["sub_category"];
         }
 
-        internal int getQty(string category, string subcategory,string size,string BillNo)
+        internal int getQty(string category, string subcategory,string size)
         {
-            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' AND PurchaseBill='"+BillNo+"' ";
+            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' ";
             DataTable dt1 = _objsqlhelper.GetDataTable(str1);
             int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
             return Qty;
@@ -54,12 +135,18 @@ namespace PrimeSolutions.ClassFile
             return Qty;
         }
 
-        internal int getQty(string category, string subcategory, string size)
+        internal bool GetalooseItem(string looseItem)
         {
-            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' ";
-            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
-            int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
-            return Qty;
+            string str = "SELECT count (*) FROM  LooseItem WHERE (LooseItem = '" + looseItem + "') ";
+            int i = Convert.ToInt32(_objsqlhelper.ExecuteScalar(str));
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         internal object getQty(string subcategory)
@@ -139,6 +226,9 @@ namespace PrimeSolutions.ClassFile
             return dt;
         }
 
+        //For Printing Barcode
+        
+
         internal DataTable GetCategory(string subcategory)
         {
             string str1 = "select distinct category from BillItem where type='purchase'";
@@ -195,19 +285,11 @@ namespace PrimeSolutions.ClassFile
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct sub_category FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct subcategory FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
 
             return dt;
         }
-
-        internal void InsertItem(string barcode,string accno, string category, string subcategory, string purchaseamt,string size, string qty, string sellingamt, string total, string date,string Pbill)
-        {
-            string str = "INSERT INTO BillItem (Barcode,AccNo, category, sub_category, purchase_amt,sale_amt,size, qty, Total, type, SoftDate,PurchaseBill) VALUES ('" + barcode +"','"+accno+ "','" + category + "','" + subcategory + "','" + purchaseamt + "','" + sellingamt + "','"+size+"','" + qty + "','" + total + "','Purchase','" + date + "','"+Pbill+"')";
-            _objsqlhelper.ExecuteScalar(str);
-        }
-
-        
 
         // GEtStock
         internal DataTable GetStockAll(string category)
@@ -250,6 +332,8 @@ namespace PrimeSolutions.ClassFile
             return dt;
         }
 
+
+        //Insert Into Master
         public void InsertCategory(string category)
         {
             string str = "Insert Into CategoryMaster (Category) values ('"+ category +"')";
@@ -261,16 +345,17 @@ namespace PrimeSolutions.ClassFile
             string str = "Insert Into SubCategoryMaster (SubCategory) values ('" + Subcategory + "')";
             _objsqlhelper.ExecuteScalar(str);
         }
-        public object getCustomerName()
+
+        public void InsertLooseItem(string LooseItem)
         {
-            string str = "SELECT * From SupplierMaster";
-            DataTable dt = _objsqlhelper.GetDataTable(str);
-            return dt;
+            string str = "Insert Into LooseItem(LooseItem) values ('" + LooseItem + "')";
+            _objsqlhelper.ExecuteScalar(str);
         }
 
-        internal void updateCategory(string SrNo,string name)
+        //Update Master
+        internal void updateCategory(string SrNo, string name)
         {
-            string str = "Update CategoryMaster Set Category = '"+name+"' Where SrNo = '"+ SrNo + "' ";
+            string str = "Update CategoryMaster Set Category = '" + name + "' Where SrNo = '" + SrNo + "' ";
             _objsqlhelper.ExecuteScalar(str);
         }
         internal void updateSubCategory(string SrNo, string name)
@@ -278,25 +363,49 @@ namespace PrimeSolutions.ClassFile
             string str = "Update SubCategoryMaster Set SubCategory = '" + name + "' Where SrNo = '" + SrNo + "' ";
             _objsqlhelper.ExecuteScalar(str);
         }
+        internal void updateLooseItem(string SrNo, string name)
+        {
+            string str = "Update LooseItem Set LooseItem = '" + name + "' Where SrNo = '" + SrNo + "' ";
+            _objsqlhelper.ExecuteScalar(str);
+        }
 
+        //Delete Master
         internal void DeleteCategory(string srno)
         {
             string str = "Delete  From CategoryMaster Where SrNo = '" + srno + "' ";
             _objsqlhelper.ExecuteScalar(str);
         }
+
         internal void DeleteSubCategory(string srno)
         {
             string str = "Delete  From SubCategoryMaster Where SrNo = '" + srno + "' ";
             _objsqlhelper.ExecuteScalar(str);
         }
 
-        internal void InsertBillDetail(string billamt, string vatper, string vat, string totalamt, string paid, string bal, string accno,string date,string BillNo)
+        internal void DeleteLooseItem(string srno)
         {
-            string str = "INSERT INTO PurchaseBillMaster (BillAmt, Vatper, VAT, TotalAmt, PaidAmt, BalanceAmt, AccNo,SoftDate,BillNo) VALUES('" + billamt + "','" + vatper + "','" + vat + "','" + totalamt + "','" + paid + "','" + bal + "','" + accno + "','" + date + "','"+BillNo+"')";
+            string str = "Delete  From LooseItem Where SrNo = '" + srno + "' ";
             _objsqlhelper.ExecuteScalar(str);
         }
 
-       
+        public object getSupplierName()
+        {
+            string str = "SELECT * From SupplierMaster";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        internal void InsertBillDetail(string accno, string BillNo, string date, string billamt, string CGST, string SGST, string IGST, string Total, string State )
+        {
+            string str = "INSERT INTO SupplierBill (SupplierNo, BillNo, Date, Amount, CGST, SGST, IGST,GrandTotal,State) VALUES('" + accno + "','" + BillNo + "','" + date + "','" + billamt + "','" + CGST + "','" + SGST + "','" + IGST + "','" + Total + "','"+State+"')";
+            _objsqlhelper.ExecuteScalar(str);
+        }
+
+        internal void InsertPaymentDetails(string type,string Amt,string paymode,string id,string date,string BillNo)
+        {
+            string str = "Insert Into PaymentDetails(Type,Amt,PayMode,Id,Date,BillNo) VALUES('"+type+"','"+Amt+"','"+paymode+"','"+id+"','"+date+"','"+BillNo+"') ";
+            _objsqlhelper.ExecuteScalar(str);
+        }
 
         public DataTable GetSupplier( string name)
         {
@@ -321,7 +430,7 @@ namespace PrimeSolutions.ClassFile
 
         internal bool ItemCategory(string Category)
         {
-            string str = "SELECT count (*) FROM  SubCategoryMaster WHERE (SubCategory = '" + Category + "') ";
+            string str = "SELECT count (*) FROM  CategoryMaster WHERE (Category = '" + Category + "') ";
             int i = Convert.ToInt32(_objsqlhelper.ExecuteScalar(str));
             if (i > 0)
             {
@@ -333,9 +442,9 @@ namespace PrimeSolutions.ClassFile
             }
         }
 
-        internal bool SubItemCategory(string SubCategory)
+        internal bool ItemSubCategory(string SubCategory)
         {
-            string str = "SELECT count (*) FROM  CategoryMaster WHERE (Category = '" + SubCategory + "') ";
+            string str = "SELECT count (*) FROM  SubCategoryMaster WHERE (SubCategory = '" + SubCategory + "') ";
             int i = Convert.ToInt32(_objsqlhelper.ExecuteScalar(str));
             if (i > 0)
             {
@@ -377,6 +486,8 @@ namespace PrimeSolutions.ClassFile
             return BillNo;
         }
 
+
+        //Fill Master
         public DataTable FillCategory()
         {
             string str = "select * from CategoryMaster";
@@ -387,6 +498,13 @@ namespace PrimeSolutions.ClassFile
         public DataTable FillSubCategory()
         {
             string str = "select * from SubCategoryMaster";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable FillLooseItem()
+        {
+            string str = "select * from LooseItem";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

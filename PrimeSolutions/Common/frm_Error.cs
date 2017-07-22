@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Library;
-using PrimeSolutions.ClassFile;
 
 namespace PrimeSolutions.Common
 {
@@ -19,7 +18,7 @@ namespace PrimeSolutions.Common
         }
 
         ExportToExcel _e = new ExportToExcel();
-        AllClassFile _a = new AllClassFile();
+        AllClassFile _a = new  AllClassFile();
 
         private void bttn_Excel_Click(object sender, EventArgs e)
         {

@@ -1,6 +1,6 @@
 ﻿namespace PrimeSolutions.Common
 {
-    partial class frm_SubCategory
+    partial class frm_LooseItem
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,17 @@
         {
             this.pnl_Top = new System.Windows.Forms.Panel();
             this.lbl_SrNo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_FormName = new System.Windows.Forms.Label();
             this.dgv_SubCategory = new System.Windows.Forms.DataGridView();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_SubCategory = new System.Windows.Forms.TextBox();
-            this.lbl_SubCategory = new System.Windows.Forms.Label();
+            this.lbl_LooseItem = new System.Windows.Forms.Label();
             this.pnl_Button = new System.Windows.Forms.Panel();
             this.bttn_Delete = new System.Windows.Forms.Button();
             this.bttn_Update = new System.Windows.Forms.Button();
             this.bttn_Add = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LooseItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SubCategory)).BeginInit();
             this.pnl_Button.SuspendLayout();
@@ -50,7 +50,7 @@
             // 
             this.pnl_Top.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnl_Top.Controls.Add(this.lbl_SrNo);
-            this.pnl_Top.Controls.Add(this.label1);
+            this.pnl_Top.Controls.Add(this.lbl_FormName);
             this.pnl_Top.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Top.Location = new System.Drawing.Point(0, 0);
             this.pnl_Top.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -62,26 +62,23 @@
             // 
             this.lbl_SrNo.AutoSize = true;
             this.lbl_SrNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SrNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SrNo.Location = new System.Drawing.Point(296, 18);
-            this.lbl_SrNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_SrNo.Location = new System.Drawing.Point(318, 21);
             this.lbl_SrNo.Name = "lbl_SrNo";
-            this.lbl_SrNo.Size = new System.Drawing.Size(79, 13);
+            this.lbl_SrNo.Size = new System.Drawing.Size(41, 13);
             this.lbl_SrNo.TabIndex = 12;
-            this.lbl_SrNo.Text = "SubCategory";
-            this.lbl_SrNo.Visible = false;
+            this.lbl_SrNo.Text = "Loose";
             // 
-            // label1
+            // lbl_FormName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(126, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 16);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Sub Category";
+            this.lbl_FormName.AutoSize = true;
+            this.lbl_FormName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_FormName.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_FormName.Location = new System.Drawing.Point(117, 19);
+            this.lbl_FormName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_FormName.Name = "lbl_FormName";
+            this.lbl_FormName.Size = new System.Drawing.Size(135, 16);
+            this.lbl_FormName.TabIndex = 11;
+            this.lbl_FormName.Text = "Loose Item Master";
             // 
             // dgv_SubCategory
             // 
@@ -92,7 +89,7 @@
             this.dgv_SubCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_SubCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SrNo,
-            this.SubCategory});
+            this.LooseItem});
             this.dgv_SubCategory.Location = new System.Drawing.Point(0, 124);
             this.dgv_SubCategory.Name = "dgv_SubCategory";
             this.dgv_SubCategory.ReadOnly = true;
@@ -100,42 +97,28 @@
             this.dgv_SubCategory.TabIndex = 3;
             this.dgv_SubCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Category_CellClick);
             // 
-            // SrNo
-            // 
-            this.SrNo.FillWeight = 86.29442F;
-            this.SrNo.HeaderText = "SrNo";
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.FillWeight = 113.7056F;
-            this.SubCategory.HeaderText = "Category";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            // 
             // txt_SubCategory
             // 
             this.txt_SubCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_SubCategory.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_SubCategory.Location = new System.Drawing.Point(100, 55);
+            this.txt_SubCategory.Location = new System.Drawing.Point(100, 54);
             this.txt_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SubCategory.Name = "txt_SubCategory";
             this.txt_SubCategory.Size = new System.Drawing.Size(275, 20);
             this.txt_SubCategory.TabIndex = 11;
             this.txt_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SubCategory_KeyDown);
             // 
-            // lbl_SubCategory
+            // lbl_LooseItem
             // 
-            this.lbl_SubCategory.AutoSize = true;
-            this.lbl_SubCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_SubCategory.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SubCategory.Location = new System.Drawing.Point(-1, 57);
-            this.lbl_SubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_SubCategory.Name = "lbl_SubCategory";
-            this.lbl_SubCategory.Size = new System.Drawing.Size(98, 16);
-            this.lbl_SubCategory.TabIndex = 10;
-            this.lbl_SubCategory.Text = "SubCategory";
+            this.lbl_LooseItem.AutoSize = true;
+            this.lbl_LooseItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_LooseItem.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_LooseItem.Location = new System.Drawing.Point(-1, 54);
+            this.lbl_LooseItem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_LooseItem.Name = "lbl_LooseItem";
+            this.lbl_LooseItem.Size = new System.Drawing.Size(84, 16);
+            this.lbl_LooseItem.TabIndex = 10;
+            this.lbl_LooseItem.Text = "Loose Item";
             // 
             // pnl_Button
             // 
@@ -197,7 +180,21 @@
             this.bttn_Close.UseVisualStyleBackColor = true;
             this.bttn_Close.Click += new System.EventHandler(this.bttn_Close_Click);
             // 
-            // frm_SubCategory
+            // SrNo
+            // 
+            this.SrNo.FillWeight = 86.29442F;
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            // 
+            // LooseItem
+            // 
+            this.LooseItem.FillWeight = 113.7056F;
+            this.LooseItem.HeaderText = "LooseItem";
+            this.LooseItem.Name = "LooseItem";
+            this.LooseItem.ReadOnly = true;
+            // 
+            // frm_LooseItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,12 +203,12 @@
             this.Controls.Add(this.bttn_Close);
             this.Controls.Add(this.pnl_Button);
             this.Controls.Add(this.txt_SubCategory);
-            this.Controls.Add(this.lbl_SubCategory);
+            this.Controls.Add(this.lbl_LooseItem);
             this.Controls.Add(this.dgv_SubCategory);
             this.Controls.Add(this.pnl_Top);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "frm_SubCategory";
+            this.Name = "frm_LooseItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frm_Category";
             this.Load += new System.EventHandler(this.frm_Category_Load);
@@ -230,15 +227,15 @@
         private System.Windows.Forms.Panel pnl_Top;
         private System.Windows.Forms.DataGridView dgv_SubCategory;
         private System.Windows.Forms.TextBox txt_SubCategory;
-        private System.Windows.Forms.Label lbl_SubCategory;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_LooseItem;
+        private System.Windows.Forms.Label lbl_FormName;
         private System.Windows.Forms.Panel pnl_Button;
         private System.Windows.Forms.Button bttn_Delete;
         private System.Windows.Forms.Button bttn_Update;
         private System.Windows.Forms.Button bttn_Add;
-        private System.Windows.Forms.Label lbl_SrNo;
         private System.Windows.Forms.Button bttn_Close;
+        private System.Windows.Forms.Label lbl_SrNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LooseItem;
     }
 }
