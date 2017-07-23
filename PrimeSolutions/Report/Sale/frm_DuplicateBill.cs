@@ -27,7 +27,7 @@ namespace PrimeSolutions.Report.Sale
 
         private void bttn_print_Click(object sender, EventArgs e)
         {
-            _s.PrintBill(cmb_BillNo.Text);
+            _s.PrintBillThermal(cmb_BillNo.Text);
         }
     }
 }

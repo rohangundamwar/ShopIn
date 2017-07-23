@@ -21,6 +21,7 @@ namespace PrimeSolutions
         ErrorLog _error = new ErrorLog();
         AllClassFile _a = new AllClassFile();
         DataTable dtSett = new DataTable();
+        string Customerexs = "No";
 
         public frm_SaleForm()
         {
@@ -28,23 +29,22 @@ namespace PrimeSolutions
             dtSett = _a.getallssetting();
         }
 
-        
- 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
-            Masterclear();
             this.BringToFront();
-            Clear();
             cmb_Category.DataSource = _a.FillCategory();
             cmb_SubCategory.DataSource = _a.FillSubCategory();
+            cmb_Name.DataSource = _Cust.GetCustomerDeatils();
             cmb_Name.Select();
-
+            Masterclear();
+            Clear();
         }
 
         private void Masterclear()
         {
             txt_BillNo.Text = _objSQLHelper.gmGetMstID("S", "0");
             txt_AccNo.Text = _objSQLHelper.gmGetMstID("C", "0");
+            cmb_Name.SelectedIndex = -1;
             cmb_Name.ResetText();
             cmb_State.SelectedIndex = 26;
             txt_Address.ResetText();
@@ -65,7 +65,7 @@ namespace PrimeSolutions
             if (e.KeyCode ==  Keys.Enter)
             {   
                 findCustomer();
-                if (findCustomer() == 1)
+                if (Customerexs=="Yes")
                     cmb_Category.Focus();
                 else
                 cmb_State.Focus();
@@ -78,11 +78,12 @@ namespace PrimeSolutions
 
         }
 
-        private int findCustomer()
+        private void findCustomer()
         {
             DataTable dt = _Sale.GetCustomer(cmb_Name.Text);
             if (dt.Rows.Count > 0)
             {
+                Customerexs = "Yes";
                 txt_AccNo.Text = dt.Rows[0]["CustId"].ToString();
                 txt_Address.Text = dt.Rows[0]["Address"].ToString();
                 cmb_State.Text = dt.Rows[0]["State"].ToString();
@@ -90,10 +91,9 @@ namespace PrimeSolutions
                 txt_ContactNo.Text = dt.Rows[0]["ContactNo"].ToString();
                 lbl_AccNo.Text = dt.Rows[0]["PanNo"].ToString();
                 lbl_AccNo.Text = dt.Rows[0]["GSTIN"].ToString();
-                return 1;
+               
             }
-            else
-                return 0;
+            
         }
 
         private void txt_Address_KeyDown(object sender, KeyEventArgs e)
@@ -286,7 +286,7 @@ namespace PrimeSolutions
 
         private void cmb_SubCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationCharOnly(e);
+            _objSimpal.ValidationCharDigitOnly(e);
         }
 
         private void txt_PurchaseAmt_KeyPress(object sender, KeyPressEventArgs e)
@@ -417,11 +417,13 @@ namespace PrimeSolutions
         {
             string BillNo = txt_BillNo.Text;
              MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
+            
             if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
             {
-                if (!_Cust.checkCustomerAccount(cmb_Name.Text))
+                //if (!_Cust.checkCustomerAccount(cmb_Name.Text))
+                if(Customerexs=="Yes")
                 {
-                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text);
+                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text,txt_PanNo.Text,txt_GSTIN.Text,cmb_State.Text,txt_City.Text);
                 }
             }
             try
@@ -429,34 +431,54 @@ namespace PrimeSolutions
 
                 for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
                 {
-                        string Category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                        string SubCategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                        string Amount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                        //string narration = Convert.ToString(dgv_ItemInfo.Rows[i].Cells[" "].Value);
-                        BillNo = Convert.ToString(txt_BillNo.Text);
-                        string AccNo = Convert.ToString(txt_AccNo.Text);
-                        string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["size"].Value);
+                    string barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value);
+                    string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                    string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                    string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
+                    string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
+                    string Qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                    string price = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Rate"].Value);
+                    string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
+                    string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
+                    string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
+                    string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
+                    string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
+                    string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
+                    string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                    string PBillNo = txt_BillNo.Text;
                     if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
                         
                     {
-                        _Sale.AddItemDetails(Category, SubCategory, Amount, size, " ", BillNo, AccNo, dtp_Date.Value.ToString("dd/MM/yyyy"), "Sale");
+                        _Sale.AddItemDetails(category,subcategory,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN);
                     }
 
                     else
                     {
-                        _Sale.UpdateItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value), txt_BillNo.Text);
+                        _Sale.UpdateItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value), txt_BillNo.Text,dtp_Date.Value.ToString("dd/MM/yyyy"));
                     }
 
                 }
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, "",txt_NetAmt.Text,"", dtp_Date.Value.ToString("dd/MM/yyyy"));
+            }
+        
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "Sale");
+            }
+            try { 
+            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text);
 
+            if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
+            {
+                _a.InsertPaymentDetails("Sale", txt_PaidAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+            }
             }
             catch (Exception ex)
             {
                 _error.AddException(ex, "Sale");
             }
-
-            _Sale.PrintBill(BillNo);
+            _Sale.PrintBillLaser(BillNo);
+            //_Sale.PrintBillThermal(BillNo);
+            
             MessageBox.Show("Sale Successfully Done");
             Masterclear();
             this.BringToFront();
@@ -665,6 +687,39 @@ namespace PrimeSolutions
             {
                 Add();
             }
+        }
+
+        private void txt_PaidAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
+                    bttn_Sale.Focus();
+                else
+                    cmb_PayMode.Focus();
+            }
+            
+        }
+
+        private void txt_ContactNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_PanNo.Focus();
+            }
+        }
+
+        private void txt_PanNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_GSTIN.Focus();
+            }
+        }
+
+        private void txt_PanNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

@@ -54,6 +54,9 @@
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txt_HSN = new System.Windows.Forms.TextBox();
             this.lbl_HSN = new System.Windows.Forms.Label();
             this.lbl_AmtIGST = new System.Windows.Forms.Label();
@@ -88,22 +91,6 @@
             this.lbl_Rate = new System.Windows.Forms.Label();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.dgv_ItemInfo = new System.Windows.Forms.DataGridView();
-            this.Chk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PurchaseAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
             this.cmb_PayMode = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -125,9 +112,22 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Purchase = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PurchaseAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Chk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -528,6 +528,33 @@
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1074, 155);
             this.pnl_ItemInfo.TabIndex = 8;
             this.pnl_ItemInfo.Tag = "Item";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(958, 85);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 19);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "%";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(596, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 19);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "%";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(211, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 19);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "%";
             // 
             // txt_HSN
             // 
@@ -950,120 +977,6 @@
             this.dgv_ItemInfo.TabIndex = 9;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
             // 
-            // Chk
-            // 
-            this.Chk.FillWeight = 35.27931F;
-            this.Chk.HeaderText = "Chk";
-            this.Chk.Name = "Chk";
-            this.Chk.ReadOnly = true;
-            this.Chk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Chk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Barcode
-            // 
-            this.Barcode.FillWeight = 70.55862F;
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.Name = "Barcode";
-            this.Barcode.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.FillWeight = 67.81409F;
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.FillWeight = 67.81409F;
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            // 
-            // HSN
-            // 
-            this.HSN.FillWeight = 50F;
-            this.HSN.HeaderText = "HSN";
-            this.HSN.Name = "HSN";
-            this.HSN.ReadOnly = true;
-            // 
-            // PurchaseAmt
-            // 
-            this.PurchaseAmt.FillWeight = 67.81409F;
-            this.PurchaseAmt.HeaderText = "PurchaseAmt";
-            this.PurchaseAmt.Name = "PurchaseAmt";
-            this.PurchaseAmt.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.FillWeight = 27.94537F;
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // TotalAmt
-            // 
-            this.TotalAmt.FillWeight = 67.81409F;
-            this.TotalAmt.HeaderText = "TotalAmt";
-            this.TotalAmt.Name = "TotalAmt";
-            this.TotalAmt.ReadOnly = true;
-            // 
-            // BatchNo
-            // 
-            this.BatchNo.FillWeight = 70.55862F;
-            this.BatchNo.HeaderText = "BatchNo";
-            this.BatchNo.Name = "BatchNo";
-            this.BatchNo.ReadOnly = true;
-            // 
-            // SellingAmt
-            // 
-            this.SellingAmt.FillWeight = 67.81409F;
-            this.SellingAmt.HeaderText = "SellingAmt";
-            this.SellingAmt.Name = "SellingAmt";
-            this.SellingAmt.ReadOnly = true;
-            // 
-            // CGSTper
-            // 
-            this.CGSTper.FillWeight = 40.0407F;
-            this.CGSTper.HeaderText = "CGSTper";
-            this.CGSTper.Name = "CGSTper";
-            this.CGSTper.ReadOnly = true;
-            // 
-            // CGST
-            // 
-            this.CGST.FillWeight = 70.55862F;
-            this.CGST.HeaderText = "CGST";
-            this.CGST.Name = "CGST";
-            this.CGST.ReadOnly = true;
-            // 
-            // SGSTper
-            // 
-            this.SGSTper.FillWeight = 40.0407F;
-            this.SGSTper.HeaderText = "SGSTper";
-            this.SGSTper.Name = "SGSTper";
-            this.SGSTper.ReadOnly = true;
-            // 
-            // SGST
-            // 
-            this.SGST.FillWeight = 70.55862F;
-            this.SGST.HeaderText = "SGST";
-            this.SGST.Name = "SGST";
-            this.SGST.ReadOnly = true;
-            // 
-            // IGSTper
-            // 
-            this.IGSTper.FillWeight = 40.0407F;
-            this.IGSTper.HeaderText = "IGSTper";
-            this.IGSTper.Name = "IGSTper";
-            this.IGSTper.ReadOnly = true;
-            // 
-            // IGST
-            // 
-            this.IGST.FillWeight = 70.55862F;
-            this.IGST.HeaderText = "IGST";
-            this.IGST.Name = "IGST";
-            this.IGST.ReadOnly = true;
-            // 
             // pnl_PaymentOpt
             // 
             this.pnl_PaymentOpt.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -1328,32 +1241,119 @@
             this.bttn_Purchase.UseVisualStyleBackColor = true;
             this.bttn_Purchase.Click += new System.EventHandler(this.bttn_Purchase_Click);
             // 
-            // label5
+            // IGST
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(211, 85);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 19);
-            this.label5.TabIndex = 40;
-            this.label5.Text = "%";
+            this.IGST.FillWeight = 70.55862F;
+            this.IGST.HeaderText = "IGST";
+            this.IGST.Name = "IGST";
+            this.IGST.ReadOnly = true;
             // 
-            // label6
+            // IGSTper
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(596, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(25, 19);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "%";
+            this.IGSTper.FillWeight = 40.0407F;
+            this.IGSTper.HeaderText = "IGSTper";
+            this.IGSTper.Name = "IGSTper";
+            this.IGSTper.ReadOnly = true;
             // 
-            // label8
+            // SGST
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(958, 85);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 19);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "%";
+            this.SGST.FillWeight = 70.55862F;
+            this.SGST.HeaderText = "SGST";
+            this.SGST.Name = "SGST";
+            this.SGST.ReadOnly = true;
+            // 
+            // SGSTper
+            // 
+            this.SGSTper.FillWeight = 40.0407F;
+            this.SGSTper.HeaderText = "SGSTper";
+            this.SGSTper.Name = "SGSTper";
+            this.SGSTper.ReadOnly = true;
+            // 
+            // CGST
+            // 
+            this.CGST.FillWeight = 70.55862F;
+            this.CGST.HeaderText = "CGST";
+            this.CGST.Name = "CGST";
+            this.CGST.ReadOnly = true;
+            // 
+            // CGSTper
+            // 
+            this.CGSTper.FillWeight = 40.0407F;
+            this.CGSTper.HeaderText = "CGSTper";
+            this.CGSTper.Name = "CGSTper";
+            this.CGSTper.ReadOnly = true;
+            // 
+            // SellingAmt
+            // 
+            this.SellingAmt.FillWeight = 67.81409F;
+            this.SellingAmt.HeaderText = "SellingAmt";
+            this.SellingAmt.Name = "SellingAmt";
+            this.SellingAmt.ReadOnly = true;
+            // 
+            // BatchNo
+            // 
+            this.BatchNo.FillWeight = 70.55862F;
+            this.BatchNo.HeaderText = "BatchNo";
+            this.BatchNo.Name = "BatchNo";
+            this.BatchNo.ReadOnly = true;
+            // 
+            // TotalAmt
+            // 
+            this.TotalAmt.FillWeight = 67.81409F;
+            this.TotalAmt.HeaderText = "TotalAmt";
+            this.TotalAmt.Name = "TotalAmt";
+            this.TotalAmt.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.FillWeight = 27.94537F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // PurchaseAmt
+            // 
+            this.PurchaseAmt.FillWeight = 67.81409F;
+            this.PurchaseAmt.HeaderText = "PurchaseAmt";
+            this.PurchaseAmt.Name = "PurchaseAmt";
+            this.PurchaseAmt.ReadOnly = true;
+            // 
+            // HSN
+            // 
+            this.HSN.FillWeight = 50F;
+            this.HSN.HeaderText = "HSN";
+            this.HSN.Name = "HSN";
+            this.HSN.ReadOnly = true;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.FillWeight = 67.81409F;
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.FillWeight = 67.81409F;
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // Barcode
+            // 
+            this.Barcode.FillWeight = 70.55862F;
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
+            // 
+            // Chk
+            // 
+            this.Chk.FillWeight = 35.27931F;
+            this.Chk.HeaderText = "Chk";
+            this.Chk.Name = "Chk";
+            this.Chk.ReadOnly = true;
+            this.Chk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Chk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // frm_PurchaseForm
             // 
@@ -1475,6 +1475,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmb_State;
         private System.Windows.Forms.Label lbl_Address;
+        private System.Windows.Forms.Button bttn_All;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Chk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
@@ -1491,9 +1495,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGSTper;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
-        private System.Windows.Forms.Button bttn_All;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
     }
 }
