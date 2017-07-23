@@ -279,9 +279,11 @@ namespace PrimeSolutions.Dataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PaymentDataTable : global::System.Data.TypedTableBase<PaymentRow> {
             
-            private global::System.Data.DataColumn columnPaymentType;
+            private global::System.Data.DataColumn columnType;
             
-            private global::System.Data.DataColumn columnAmount;
+            private global::System.Data.DataColumn columnAmt;
+            
+            private global::System.Data.DataColumn columnPayMode;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -318,17 +320,25 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PaymentTypeColumn {
+            public global::System.Data.DataColumn TypeColumn {
                 get {
-                    return this.columnPaymentType;
+                    return this.columnType;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AmountColumn {
+            public global::System.Data.DataColumn AmtColumn {
                 get {
-                    return this.columnAmount;
+                    return this.columnAmt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PayModeColumn {
+                get {
+                    return this.columnPayMode;
                 }
             }
             
@@ -369,11 +379,12 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PaymentRow AddPaymentRow(string PaymentType, string Amount) {
+            public PaymentRow AddPaymentRow(string Type, string Amt, string PayMode) {
                 PaymentRow rowPaymentRow = ((PaymentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        PaymentType,
-                        Amount};
+                        Type,
+                        Amt,
+                        PayMode};
                 rowPaymentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPaymentRow);
                 return rowPaymentRow;
@@ -396,17 +407,20 @@ namespace PrimeSolutions.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnPaymentType = base.Columns["PaymentType"];
-                this.columnAmount = base.Columns["Amount"];
+                this.columnType = base.Columns["Type"];
+                this.columnAmt = base.Columns["Amt"];
+                this.columnPayMode = base.Columns["PayMode"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnPaymentType = new global::System.Data.DataColumn("PaymentType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaymentType);
-                this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAmount);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
+                this.columnAmt = new global::System.Data.DataColumn("Amt", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAmt);
+                this.columnPayMode = new global::System.Data.DataColumn("PayMode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPayMode);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_Payment");
                 this.ExtendedProperties.Add("Generator_UserTableName", "Payment");
             }
@@ -551,58 +565,86 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string PaymentType {
+            public string Type {
                 get {
                     try {
-                        return ((string)(this[this.tablePayment.PaymentTypeColumn]));
+                        return ((string)(this[this.tablePayment.TypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PaymentType\' in table \'Payment\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'Payment\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePayment.PaymentTypeColumn] = value;
+                    this[this.tablePayment.TypeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Amount {
+            public string Amt {
                 get {
                     try {
-                        return ((string)(this[this.tablePayment.AmountColumn]));
+                        return ((string)(this[this.tablePayment.AmtColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Amount\' in table \'Payment\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Amt\' in table \'Payment\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePayment.AmountColumn] = value;
+                    this[this.tablePayment.AmtColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPaymentTypeNull() {
-                return this.IsNull(this.tablePayment.PaymentTypeColumn);
+            public string PayMode {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayment.PayModeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PayMode\' in table \'Payment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayment.PayModeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPaymentTypeNull() {
-                this[this.tablePayment.PaymentTypeColumn] = global::System.Convert.DBNull;
+            public bool IsTypeNull() {
+                return this.IsNull(this.tablePayment.TypeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAmountNull() {
-                return this.IsNull(this.tablePayment.AmountColumn);
+            public void SetTypeNull() {
+                this[this.tablePayment.TypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAmountNull() {
-                this[this.tablePayment.AmountColumn] = global::System.Convert.DBNull;
+            public bool IsAmtNull() {
+                return this.IsNull(this.tablePayment.AmtColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAmtNull() {
+                this[this.tablePayment.AmtColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPayModeNull() {
+                return this.IsNull(this.tablePayment.PayModeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPayModeNull() {
+                this[this.tablePayment.PayModeColumn] = global::System.Convert.DBNull;
             }
         }
         

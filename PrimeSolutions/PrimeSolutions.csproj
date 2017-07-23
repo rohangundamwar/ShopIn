@@ -61,6 +61,7 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -103,6 +104,20 @@
     <Compile Include="Common\frm_SubCategory.designer.cs">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\CompanyMaster.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyMaster.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Customer.cs">
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\CustomerBill.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerBill.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Library\ReportViewer.cs" />
     <Compile Include="Payment\Customer Account.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +202,12 @@
     <Compile Include="Report\frm_Stock.Designer.cs">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\PrinterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\PrinterSetting.designer.cs">
+      <DependentUpon>PrinterSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Purchase\frm_SupplierBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +257,9 @@
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="bin\Debug\Bill.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Fix Rate.resx">
       <DependentUpon>Fix Rate.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +306,9 @@
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\PrinterSetting.resx">
+      <DependentUpon>PrinterSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_SupplierBill.resx">
       <DependentUpon>frm_SupplierBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +351,17 @@
     <None Include="Dataset\BillItem.xss">
       <DependentUpon>BillItem.xsd</DependentUpon>
     </None>
+    <None Include="Dataset\CompanyMaster.xsc">
+      <DependentUpon>CompanyMaster.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\CompanyMaster.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompanyMaster.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\CompanyMaster.xss">
+      <DependentUpon>CompanyMaster.xsd</DependentUpon>
+    </None>
     <None Include="Dataset\Customer.xsc">
       <DependentUpon>Customer.xsd</DependentUpon>
     </None>
@@ -334,6 +372,17 @@
     </None>
     <None Include="Dataset\Customer.xss">
       <DependentUpon>Customer.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\CustomerBill.xsc">
+      <DependentUpon>CustomerBill.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\CustomerBill.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerBill.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\CustomerBill.xss">
+      <DependentUpon>CustomerBill.xsd</DependentUpon>
     </None>
     <None Include="Dataset\Payment.xsc">
       <DependentUpon>Payment.xsd</DependentUpon>

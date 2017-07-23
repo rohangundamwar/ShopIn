@@ -119,9 +119,9 @@ namespace PrimeSolutions.Library
             return  dt1.Rows[0]["sub_category"];
         }
 
-        internal int getQty(string category, string subcategory,string size)
+        internal int getQty(string category, string subcategory)
         {
-            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' ";
+            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
             DataTable dt1 = _objsqlhelper.GetDataTable(str1);
             int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
             return Qty;
@@ -285,7 +285,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct subcategory FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct SubCategory FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
 
             return dt;
@@ -403,8 +403,15 @@ namespace PrimeSolutions.Library
 
         internal void InsertPaymentDetails(string type,string Amt,string paymode,string id,string date,string BillNo)
         {
-            string str = "Insert Into PaymentDetails(Type,Amt,PayMode,Id,Date,BillNo) VALUES('"+type+"','"+Amt+"','"+paymode+"','"+id+"','"+date+"','"+BillNo+"') ";
+            string str = "Insert Into PaymentDetails(Type,Amt,Paymode,Id,Date,BillNo) VALUES('"+type+"','"+Amt+"','"+paymode+"','"+id+"','"+date+"','"+BillNo+"') ";
             _objsqlhelper.ExecuteScalar(str);
+        }
+
+        internal DataTable getpaymentdetails(string id, string date)
+        {
+            string str = "select * from PaymentDetails where id='"+id+ "' and Date='"+date+"'";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
         }
 
         public DataTable GetSupplier( string name)
