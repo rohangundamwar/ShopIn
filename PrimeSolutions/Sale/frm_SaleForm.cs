@@ -1,5 +1,4 @@
-﻿
-using PrimeSolutions.Library;
+﻿using PrimeSolutions.Library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +11,7 @@ namespace PrimeSolutions
 {
     public partial class frm_SaleForm : Form
     {
-
+        public delegate void SendData(string BillNO);
         Simplevalidations _objSimpal = new Simplevalidations();
         SQLHelper _objSQLHelper = new SQLHelper();
         clsCommon _common = new clsCommon();
@@ -476,9 +475,18 @@ namespace PrimeSolutions
             {
                 _error.AddException(ex, "Sale");
             }
-            _Sale.PrintBillLaser(BillNo);
+            try
+            {
+                Report.CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new Report.CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
+                _obj(txt_BillNo.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             //_Sale.PrintBillThermal(BillNo);
-            
+
             MessageBox.Show("Sale Successfully Done");
             Masterclear();
             this.BringToFront();
@@ -720,6 +728,11 @@ namespace PrimeSolutions
         private void txt_PanNo_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void cmb_Name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            findCustomer();
         }
     }
 }

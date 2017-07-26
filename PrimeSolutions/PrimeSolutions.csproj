@@ -11,6 +11,9 @@
     <AssemblyName>PrimeSolutions</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,13 +58,36 @@
       <HintPath>..\packages\ClosedXML.0.87.1\lib\net40\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Enterprise.Viewing.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,6 +98,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bin\Debug\Bill.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bill.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\Fix Rate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +147,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerBill.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Library\ReportViewer.cs" />
+    <Compile Include="Dataset\CustomerSale.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerSale.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Payment\Customer Account.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +224,18 @@
     <Compile Include="Purchase\frm_Stock.Designer.cs">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\CrystalReoprt\frm_ReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\CrystalReoprt\frm_ReportViewer.designer.cs">
+      <DependentUpon>frm_ReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CrystalReoprt\PrinterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\CrystalReoprt\PrinterSetting.designer.cs">
+      <DependentUpon>PrinterSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Customer\frm_CustomerContact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +306,10 @@
     <EmbeddedResource Include="bin\Debug\Bill.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\Bill.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Bill.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Fix Rate.resx">
       <DependentUpon>Fix Rate.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +349,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\CrystalReoprt\frm_ReportViewer.resx">
+      <DependentUpon>frm_ReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\CrystalReoprt\PrinterSetting.resx">
+      <DependentUpon>PrinterSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Customer\frm_CustomerContact.resx">
       <DependentUpon>frm_CustomerContact.cs</DependentUpon>
@@ -384,6 +440,17 @@
     <None Include="Dataset\CustomerBill.xss">
       <DependentUpon>CustomerBill.xsd</DependentUpon>
     </None>
+    <None Include="Dataset\CustomerSale.xsc">
+      <DependentUpon>CustomerSale.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\CustomerSale.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustomerSale.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\CustomerSale.xss">
+      <DependentUpon>CustomerSale.xsd</DependentUpon>
+    </None>
     <None Include="Dataset\Payment.xsc">
       <DependentUpon>Payment.xsd</DependentUpon>
     </None>
@@ -399,7 +466,9 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\PrimeSolutions.csproj.GenerateResource.Cache" />
     <None Include="obj\Debug\PrimeSolutions.csprojResolveAssemblyReference.cache" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -475,6 +544,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
