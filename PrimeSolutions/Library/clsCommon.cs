@@ -784,7 +784,7 @@ namespace PrimeSolutions.Library
 
         public DataTable getCompanyDetails()
         {
-            string str = "SELECT companyid, CompanyName, Addressline1, Addressline2, city, phoneNo, MobNo, MobNo2 FROM CompanyMaster";
+            string str = "SELECT * from CompanyMaster";
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }

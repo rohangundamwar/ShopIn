@@ -18,6 +18,7 @@ namespace PrimeSolutions.Report.Sale
         }
 
         SaleCommon _s = new SaleCommon();
+        public delegate void SendData(string BillNO);
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {
@@ -27,7 +28,17 @@ namespace PrimeSolutions.Report.Sale
 
         private void bttn_print_Click(object sender, EventArgs e)
         {
-            _s.PrintBillThermal(cmb_BillNo.Text);
+            try
+            {
+                Report.CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new Report.CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
+                _obj(cmb_BillNo.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //_s.PrintBillThermal(cmb_BillNo.Text);
         }
     }
 }

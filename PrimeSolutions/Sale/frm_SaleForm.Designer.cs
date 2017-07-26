@@ -493,6 +493,7 @@
             this.cmb_Name.Size = new System.Drawing.Size(261, 27);
             this.cmb_Name.TabIndex = 1;
             this.cmb_Name.ValueMember = "CustomerName";
+            this.cmb_Name.SelectedIndexChanged += new System.EventHandler(this.cmb_Name_SelectedIndexChanged);
             this.cmb_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Name_KeyDown);
             this.cmb_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Name_KeyPress);
             // 
@@ -1026,7 +1027,7 @@
             // CGSTper
             // 
             this.CGSTper.FillWeight = 50F;
-            this.CGSTper.HeaderText = "CGSTper";
+            this.CGSTper.HeaderText = "CGST%";
             this.CGSTper.Name = "CGSTper";
             this.CGSTper.ReadOnly = true;
             // 
@@ -1039,7 +1040,7 @@
             // SGSTper
             // 
             this.SGSTper.FillWeight = 50F;
-            this.SGSTper.HeaderText = "SGSTper";
+            this.SGSTper.HeaderText = "SGST%";
             this.SGSTper.Name = "SGSTper";
             this.SGSTper.ReadOnly = true;
             // 
@@ -1052,7 +1053,7 @@
             // IGSTper
             // 
             this.IGSTper.FillWeight = 50F;
-            this.IGSTper.HeaderText = "IGSTper";
+            this.IGSTper.HeaderText = "IGST%";
             this.IGSTper.Name = "IGSTper";
             this.IGSTper.ReadOnly = true;
             // 
@@ -1453,6 +1454,10 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txt_IGSTper;
+        private System.Windows.Forms.TextBox txt_SGSTper;
+        private System.Windows.Forms.TextBox txt_CGSTper;
+        private System.Windows.Forms.Button bttn_All;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
@@ -1467,9 +1472,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IGSTper;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
-        private System.Windows.Forms.TextBox txt_IGSTper;
-        private System.Windows.Forms.TextBox txt_SGSTper;
-        private System.Windows.Forms.TextBox txt_CGSTper;
-        private System.Windows.Forms.Button bttn_All;
     }
 }

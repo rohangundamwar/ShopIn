@@ -24,7 +24,7 @@ namespace PrimeSolutions.Dataset {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class CompanyMaster : global::System.Data.DataSet {
         
-        private CompanyDataTable tableCompany;
+        private CompanyInfoDataTable tableCompanyInfo;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace PrimeSolutions.Dataset {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Company"] != null)) {
-                    base.Tables.Add(new CompanyDataTable(ds.Tables["Company"]));
+                if ((ds.Tables["CompanyInfo"] != null)) {
+                    base.Tables.Add(new CompanyInfoDataTable(ds.Tables["CompanyInfo"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace PrimeSolutions.Dataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CompanyDataTable Company {
+        public CompanyInfoDataTable CompanyInfo {
             get {
-                return this.tableCompany;
+                return this.tableCompanyInfo;
             }
         }
         
@@ -152,8 +152,8 @@ namespace PrimeSolutions.Dataset {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Company"] != null)) {
-                    base.Tables.Add(new CompanyDataTable(ds.Tables["Company"]));
+                if ((ds.Tables["CompanyInfo"] != null)) {
+                    base.Tables.Add(new CompanyInfoDataTable(ds.Tables["CompanyInfo"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace PrimeSolutions.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableCompany = ((CompanyDataTable)(base.Tables["Company"]));
+            this.tableCompanyInfo = ((CompanyInfoDataTable)(base.Tables["CompanyInfo"]));
             if ((initTable == true)) {
-                if ((this.tableCompany != null)) {
-                    this.tableCompany.InitVars();
+                if ((this.tableCompanyInfo != null)) {
+                    this.tableCompanyInfo.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace PrimeSolutions.Dataset {
             this.Namespace = "http://tempuri.org/CompanyMaster.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableCompany = new CompanyDataTable();
-            base.Tables.Add(this.tableCompany);
+            this.tableCompanyInfo = new CompanyInfoDataTable();
+            base.Tables.Add(this.tableCompanyInfo);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeCompany() {
+        private bool ShouldSerializeCompanyInfo() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace PrimeSolutions.Dataset {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void CompanyRowChangeEventHandler(object sender, CompanyRowChangeEvent e);
+        public delegate void CompanyInfoRowChangeEventHandler(object sender, CompanyInfoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CompanyDataTable : global::System.Data.TypedTableBase<CompanyRow> {
+        public partial class CompanyInfoDataTable : global::System.Data.TypedTableBase<CompanyInfoRow> {
             
             private global::System.Data.DataColumn columnName;
             
@@ -285,9 +285,13 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnCity;
             
+            private global::System.Data.DataColumn columnDistrict;
+            
             private global::System.Data.DataColumn columnState;
             
             private global::System.Data.DataColumn columnContact1;
+            
+            private global::System.Data.DataColumn columnContact2;
             
             private global::System.Data.DataColumn columnGSTIN;
             
@@ -295,8 +299,8 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyDataTable() {
-                this.TableName = "Company";
+            public CompanyInfoDataTable() {
+                this.TableName = "CompanyInfo";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -304,7 +308,7 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal CompanyDataTable(global::System.Data.DataTable table) {
+            internal CompanyInfoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -321,7 +325,7 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected CompanyDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected CompanyInfoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -352,6 +356,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DistrictColumn {
+                get {
+                    return this.columnDistrict;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn StateColumn {
                 get {
                     return this.columnState;
@@ -363,6 +375,14 @@ namespace PrimeSolutions.Dataset {
             public global::System.Data.DataColumn Contact1Column {
                 get {
                     return this.columnContact1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Contact2Column {
+                get {
+                    return this.columnContact2;
                 }
             }
             
@@ -393,51 +413,53 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRow this[int index] {
+            public CompanyInfoRow this[int index] {
                 get {
-                    return ((CompanyRow)(this.Rows[index]));
+                    return ((CompanyInfoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event CompanyRowChangeEventHandler CompanyRowChanging;
+            public event CompanyInfoRowChangeEventHandler CompanyInfoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event CompanyRowChangeEventHandler CompanyRowChanged;
+            public event CompanyInfoRowChangeEventHandler CompanyInfoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event CompanyRowChangeEventHandler CompanyRowDeleting;
+            public event CompanyInfoRowChangeEventHandler CompanyInfoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event CompanyRowChangeEventHandler CompanyRowDeleted;
+            public event CompanyInfoRowChangeEventHandler CompanyInfoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddCompanyRow(CompanyRow row) {
+            public void AddCompanyInfoRow(CompanyInfoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRow AddCompanyRow(string Name, string Address, string City, string State, string Contact1, string GSTIN, string PANNo) {
-                CompanyRow rowCompanyRow = ((CompanyRow)(this.NewRow()));
+            public CompanyInfoRow AddCompanyInfoRow(string Name, string Address, string City, string District, string State, string Contact1, string Contact2, string GSTIN, string PANNo) {
+                CompanyInfoRow rowCompanyInfoRow = ((CompanyInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Name,
                         Address,
                         City,
+                        District,
                         State,
                         Contact1,
+                        Contact2,
                         GSTIN,
                         PANNo};
-                rowCompanyRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCompanyRow);
-                return rowCompanyRow;
+                rowCompanyInfoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowCompanyInfoRow);
+                return rowCompanyInfoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                CompanyDataTable cln = ((CompanyDataTable)(base.Clone()));
+                CompanyInfoDataTable cln = ((CompanyInfoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -445,7 +467,7 @@ namespace PrimeSolutions.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new CompanyDataTable();
+                return new CompanyInfoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -454,8 +476,10 @@ namespace PrimeSolutions.Dataset {
                 this.columnName = base.Columns["Name"];
                 this.columnAddress = base.Columns["Address"];
                 this.columnCity = base.Columns["City"];
+                this.columnDistrict = base.Columns["District"];
                 this.columnState = base.Columns["State"];
                 this.columnContact1 = base.Columns["Contact1"];
+                this.columnContact2 = base.Columns["Contact2"];
                 this.columnGSTIN = base.Columns["GSTIN"];
                 this.columnPANNo = base.Columns["PANNo"];
             }
@@ -469,10 +493,14 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnAddress);
                 this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCity);
+                this.columnDistrict = new global::System.Data.DataColumn("District", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDistrict);
                 this.columnState = new global::System.Data.DataColumn("State", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnState);
                 this.columnContact1 = new global::System.Data.DataColumn("Contact1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnContact1);
+                this.columnContact2 = new global::System.Data.DataColumn("Contact2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContact2);
                 this.columnGSTIN = new global::System.Data.DataColumn("GSTIN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGSTIN);
                 this.columnPANNo = new global::System.Data.DataColumn("PANNo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -481,28 +509,28 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRow NewCompanyRow() {
-                return ((CompanyRow)(this.NewRow()));
+            public CompanyInfoRow NewCompanyInfoRow() {
+                return ((CompanyInfoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new CompanyRow(builder);
+                return new CompanyInfoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(CompanyRow);
+                return typeof(CompanyInfoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.CompanyRowChanged != null)) {
-                    this.CompanyRowChanged(this, new CompanyRowChangeEvent(((CompanyRow)(e.Row)), e.Action));
+                if ((this.CompanyInfoRowChanged != null)) {
+                    this.CompanyInfoRowChanged(this, new CompanyInfoRowChangeEvent(((CompanyInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -510,8 +538,8 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.CompanyRowChanging != null)) {
-                    this.CompanyRowChanging(this, new CompanyRowChangeEvent(((CompanyRow)(e.Row)), e.Action));
+                if ((this.CompanyInfoRowChanging != null)) {
+                    this.CompanyInfoRowChanging(this, new CompanyInfoRowChangeEvent(((CompanyInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -519,8 +547,8 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.CompanyRowDeleted != null)) {
-                    this.CompanyRowDeleted(this, new CompanyRowChangeEvent(((CompanyRow)(e.Row)), e.Action));
+                if ((this.CompanyInfoRowDeleted != null)) {
+                    this.CompanyInfoRowDeleted(this, new CompanyInfoRowChangeEvent(((CompanyInfoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -528,14 +556,14 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.CompanyRowDeleting != null)) {
-                    this.CompanyRowDeleting(this, new CompanyRowChangeEvent(((CompanyRow)(e.Row)), e.Action));
+                if ((this.CompanyInfoRowDeleting != null)) {
+                    this.CompanyInfoRowDeleting(this, new CompanyInfoRowChangeEvent(((CompanyInfoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveCompanyRow(CompanyRow row) {
+            public void RemoveCompanyInfoRow(CompanyInfoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -562,7 +590,7 @@ namespace PrimeSolutions.Dataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "CompanyDataTable";
+                attribute2.FixedValue = "CompanyInfoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -606,15 +634,15 @@ namespace PrimeSolutions.Dataset {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class CompanyRow : global::System.Data.DataRow {
+        public partial class CompanyInfoRow : global::System.Data.DataRow {
             
-            private CompanyDataTable tableCompany;
+            private CompanyInfoDataTable tableCompanyInfo;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal CompanyRow(global::System.Data.DataRowBuilder rb) : 
+            internal CompanyInfoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableCompany = ((CompanyDataTable)(this.Table));
+                this.tableCompanyInfo = ((CompanyInfoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -622,14 +650,14 @@ namespace PrimeSolutions.Dataset {
             public string Name {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.NameColumn]));
+                        return ((string)(this[this.tableCompanyInfo.NameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.NameColumn] = value;
+                    this[this.tableCompanyInfo.NameColumn] = value;
                 }
             }
             
@@ -638,14 +666,14 @@ namespace PrimeSolutions.Dataset {
             public string Address {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.AddressColumn]));
+                        return ((string)(this[this.tableCompanyInfo.AddressColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.AddressColumn] = value;
+                    this[this.tableCompanyInfo.AddressColumn] = value;
                 }
             }
             
@@ -654,14 +682,30 @@ namespace PrimeSolutions.Dataset {
             public string City {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.CityColumn]));
+                        return ((string)(this[this.tableCompanyInfo.CityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.CityColumn] = value;
+                    this[this.tableCompanyInfo.CityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string District {
+                get {
+                    try {
+                        return ((string)(this[this.tableCompanyInfo.DistrictColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'District\' in table \'CompanyInfo\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCompanyInfo.DistrictColumn] = value;
                 }
             }
             
@@ -670,14 +714,14 @@ namespace PrimeSolutions.Dataset {
             public string State {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.StateColumn]));
+                        return ((string)(this[this.tableCompanyInfo.StateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'State\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'State\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.StateColumn] = value;
+                    this[this.tableCompanyInfo.StateColumn] = value;
                 }
             }
             
@@ -686,14 +730,30 @@ namespace PrimeSolutions.Dataset {
             public string Contact1 {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.Contact1Column]));
+                        return ((string)(this[this.tableCompanyInfo.Contact1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Contact1\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Contact1\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.Contact1Column] = value;
+                    this[this.tableCompanyInfo.Contact1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Contact2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableCompanyInfo.Contact2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Contact2\' in table \'CompanyInfo\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCompanyInfo.Contact2Column] = value;
                 }
             }
             
@@ -702,14 +762,14 @@ namespace PrimeSolutions.Dataset {
             public string GSTIN {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.GSTINColumn]));
+                        return ((string)(this[this.tableCompanyInfo.GSTINColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GSTIN\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GSTIN\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.GSTINColumn] = value;
+                    this[this.tableCompanyInfo.GSTINColumn] = value;
                 }
             }
             
@@ -718,99 +778,123 @@ namespace PrimeSolutions.Dataset {
             public string PANNo {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.PANNoColumn]));
+                        return ((string)(this[this.tableCompanyInfo.PANNoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PANNo\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PANNo\' in table \'CompanyInfo\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.PANNoColumn] = value;
+                    this[this.tableCompanyInfo.PANNoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNameNull() {
-                return this.IsNull(this.tableCompany.NameColumn);
+                return this.IsNull(this.tableCompanyInfo.NameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNameNull() {
-                this[this.tableCompany.NameColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAddressNull() {
-                return this.IsNull(this.tableCompany.AddressColumn);
+                return this.IsNull(this.tableCompanyInfo.AddressColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAddressNull() {
-                this[this.tableCompany.AddressColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.AddressColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCityNull() {
-                return this.IsNull(this.tableCompany.CityColumn);
+                return this.IsNull(this.tableCompanyInfo.CityColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCityNull() {
-                this[this.tableCompany.CityColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.CityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDistrictNull() {
+                return this.IsNull(this.tableCompanyInfo.DistrictColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDistrictNull() {
+                this[this.tableCompanyInfo.DistrictColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsStateNull() {
-                return this.IsNull(this.tableCompany.StateColumn);
+                return this.IsNull(this.tableCompanyInfo.StateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetStateNull() {
-                this[this.tableCompany.StateColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.StateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsContact1Null() {
-                return this.IsNull(this.tableCompany.Contact1Column);
+                return this.IsNull(this.tableCompanyInfo.Contact1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetContact1Null() {
-                this[this.tableCompany.Contact1Column] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.Contact1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsContact2Null() {
+                return this.IsNull(this.tableCompanyInfo.Contact2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetContact2Null() {
+                this[this.tableCompanyInfo.Contact2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGSTINNull() {
-                return this.IsNull(this.tableCompany.GSTINColumn);
+                return this.IsNull(this.tableCompanyInfo.GSTINColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGSTINNull() {
-                this[this.tableCompany.GSTINColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.GSTINColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPANNoNull() {
-                return this.IsNull(this.tableCompany.PANNoColumn);
+                return this.IsNull(this.tableCompanyInfo.PANNoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPANNoNull() {
-                this[this.tableCompany.PANNoColumn] = global::System.Convert.DBNull;
+                this[this.tableCompanyInfo.PANNoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -818,22 +902,22 @@ namespace PrimeSolutions.Dataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class CompanyRowChangeEvent : global::System.EventArgs {
+        public class CompanyInfoRowChangeEvent : global::System.EventArgs {
             
-            private CompanyRow eventRow;
+            private CompanyInfoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRowChangeEvent(CompanyRow row, global::System.Data.DataRowAction action) {
+            public CompanyInfoRowChangeEvent(CompanyInfoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRow Row {
+            public CompanyInfoRow Row {
                 get {
                     return this.eventRow;
                 }

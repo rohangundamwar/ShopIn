@@ -51,6 +51,7 @@
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.looseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prefrencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,14 +59,13 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.looseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbl_developer = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -263,6 +263,13 @@
             this.subCategoryToolStripMenuItem.Text = "Sub Category";
             this.subCategoryToolStripMenuItem.Click += new System.EventHandler(this.subCategoryToolStripMenuItem_Click);
             // 
+            // looseItemToolStripMenuItem
+            // 
+            this.looseItemToolStripMenuItem.Name = "looseItemToolStripMenuItem";
+            this.looseItemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.looseItemToolStripMenuItem.Text = "Loose Item";
+            this.looseItemToolStripMenuItem.Click += new System.EventHandler(this.looseItemToolStripMenuItem_Click);
+            // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -325,25 +332,6 @@
             this.panel2.Size = new System.Drawing.Size(610, 271);
             this.panel2.TabIndex = 7;
             // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.lbl_developer);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(257, 283);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(274, 62);
-            this.panel3.TabIndex = 6;
-            // 
-            // lbl_developer
-            // 
-            this.lbl_developer.AutoSize = true;
-            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
-            this.lbl_developer.Name = "lbl_developer";
-            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
-            this.lbl_developer.TabIndex = 6;
-            this.lbl_developer.Text = "Developed and \r\nMaintained by";
-            // 
             // pictureBox2
             // 
             this.pictureBox2.ErrorImage = null;
@@ -356,12 +344,24 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
-            // looseItemToolStripMenuItem
+            // lbl_developer
             // 
-            this.looseItemToolStripMenuItem.Name = "looseItemToolStripMenuItem";
-            this.looseItemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.looseItemToolStripMenuItem.Text = "Loose Item";
-            this.looseItemToolStripMenuItem.Click += new System.EventHandler(this.looseItemToolStripMenuItem_Click);
+            this.lbl_developer.AutoSize = true;
+            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
+            this.lbl_developer.Name = "lbl_developer";
+            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
+            this.lbl_developer.TabIndex = 6;
+            this.lbl_developer.Text = "Developed and \r\nMaintained by";
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.lbl_developer);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(257, 283);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(274, 62);
+            this.panel3.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -382,9 +382,9 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,9 +415,6 @@
         private System.Windows.Forms.ToolStripMenuItem prefrencesToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lbl_developer;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripMenuItem stockCheckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subCategoryToolStripMenuItem;
@@ -425,6 +422,9 @@
         private System.Windows.Forms.ToolStripMenuItem customerDatatabseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supplierBillDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem looseItemToolStripMenuItem;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lbl_developer;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
