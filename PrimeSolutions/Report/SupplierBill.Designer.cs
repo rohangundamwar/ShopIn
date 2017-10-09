@@ -68,10 +68,6 @@
             this.SubCategory.ReadOnly = true;
             this.SubCategory.Width = 120;
             // 
-            // Size
-            // 
-           
-            // 
             // Quantity
             // 
             this.Quantity.HeaderText = "Quantity";
@@ -86,6 +82,7 @@
             this.cmb_BillNo.Name = "cmb_BillNo";
             this.cmb_BillNo.Size = new System.Drawing.Size(121, 21);
             this.cmb_BillNo.TabIndex = 1;
+            this.cmb_BillNo.ValueMember = "BillNo";
             this.cmb_BillNo.SelectedIndexChanged += new System.EventHandler(this.cmb_BillNo_SelectedIndexChanged);
             // 
             // lbl_BillNo

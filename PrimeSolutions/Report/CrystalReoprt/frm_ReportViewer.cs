@@ -21,7 +21,8 @@ namespace PrimeSolutions.Report.CrystalReport
         clsCommon _common = new clsCommon();
         SaleCommon _sales = new SaleCommon();
         AllClassFile _a = new AllClassFile();
-        
+        ErrorLog _error = new ErrorLog();
+
         //
         public frm_ReportViewer()
         {
@@ -43,71 +44,126 @@ namespace PrimeSolutions.Report.CrystalReport
             return 0;
         }
         /// <summary>
-        
 
-   
-        public void CustomerBill(string BillNo)
+
+
+        public void CustomerBill(string BillNo, string Type)
         {
+            int Copies = _objPrinterSetting.copies; 
             string crname;
             crname = "Select SaleBill from CrystalReport Where srno='1'";
             DataTable dt_crname = _objsqlhelper.GetDataTable(crname);
             ReportDocument _objReport = new ReportDocument();
 
             _objReport.Load(Environment.CurrentDirectory + "\\" + dt_crname.Rows[0]["SaleBill"].ToString());
-            
-            string BillDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "'";
-            
+
             string company = "SELECT * from CompanyMaster";
-
-            DataTable dt_ItemsDetails = _sales.GetBillItem(BillNo);
-            _objReport.Database.Tables[0].SetDataSource(dt_ItemsDetails);
-
             DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
             _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
 
-            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillDetails);
+            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "'";
+            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
             _objReport.Database.Tables["CustomerBill"].SetDataSource(dt_BillingDetails);
 
             DataTable dt_CustomerInfo = _sales.GetCustomerByBill(BillNo);
             _objReport.Database.Tables["CustomerDetails"].SetDataSource(dt_CustomerInfo);
 
-            DataTable dt_PayDetails = _a.getpaymentdetails(dt_CustomerInfo.Rows[0]["CustId"].ToString(), dt_ItemsDetails.Rows[0]["SaleDate"].ToString());
-            _objReport.Database.Tables["Payment"].SetDataSource(dt_PayDetails);
+            DataTable dt_ItemsDetails = _sales.GetBillItem(BillNo);
+            _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
 
 
-            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            DataTable dt_Payment = _a.getpaymentByBill(BillNo);
+            _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
+
+            try
             {
-                try
-                { 
-                    //string inwordsString = _objCommon.NumberToWords(Convert.ToInt32(dt_BillingDetails.Rows[0]["Amount"].ToString())).ToUpper();
-                    //_objReport.SetParameterValue("inwords", inwordsString);
+                string Balance = Convert.ToString(_sales.GetBalance(dt_CustomerInfo.Rows[0]["CustomerName"].ToString()));
+                _objReport.SetParameterValue("Balance", Balance);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
 
-                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
-                   
-                    _objReport.PrintToPrinter(1, true, 0, 0);
-                    printresult = true;
-                }
-                catch (Exception ex)
+            try
+            {
+                double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["GrandAmt"].ToString());
+                inword = Math.Round(inword);
+                int number = Convert.ToInt32(inword);
+                string inwordsString = _objCommon.NumberToWords(number);
+                _objReport.SetParameterValue("inwords", inwordsString);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+            if (Type == "Print")
+            {
+                if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show(ex.ToString());
+                    try
+                    {
+                        _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                        _objReport.PrintToPrinter(Copies, true, 0, 0);
+                        printresult = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    if (printresult == true)
+                    {
+                        printresult = false;
+                    }
                 }
-                if (printresult == true)
+                else
                 {
-                    printresult = false;
+                    crReportViewer.ReportSource = _objReport;
+                    crReportViewer.Show();
+                    return;
                 }
+
             }
             else
             {
                 crReportViewer.ReportSource = _objReport;
+                crReportViewer.Show();
                 return;
             }
         }
-        
-       
-        private void frm_ReportViewer_Load(object sender, EventArgs e)
+
+        public void PrintBarcode(string BillNo, int i)
+        {
+
+            _objsqlhelper.ExecuteScalar("Update PrintQue SET PrintQue = '" + BillNo + "' Where SrNo='1'");
+            BarTender.Application btApp;
+            BarTender.Messages btMsgs;
+            BarTender.Database btDb;
+            // Declare a BarTender document variable
+            BarTender.Format btFormat;
+            // Declare a BarTender query prompt variable
+            BarTender.QueryPrompt btQueryPrompt;
+            // Create a new instance of BarTender
+            btApp = new BarTender.Application();
+            // Set the BarTender application visible
+            btApp.Visible = true;
+            // Open a BarTender document
+            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "BarcodeA4");
+            btDb = btFormat.Databases.GetDatabase(1);
+            // Select the query prompt
+            btQueryPrompt = btFormat.Databases.QueryPrompts.GetQueryPrompt("Item");
+            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+            // End the BarTender process
+            btApp.Quit(BarTender.BtSaveOptions.btDoNotSaveChanges);
+        } 
+            private void frm_ReportViewer_Load(object sender, EventArgs e)
         {
 
         }
     }
-}
+    }
+
 

@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using PrimeSolutions.Report;
+using PrimeSolutions.Library;
+using PrimeSolutions.Common;
 
 namespace PrimeSolutions.Report
 {
@@ -19,12 +21,19 @@ namespace PrimeSolutions.Report
         }
 
         public string PrinterName { get; set; }
-
+        SettingValue dtsett;
         PrinterSettings _setting = new PrinterSettings();
+        Simplevalidations _objSimpal = new Simplevalidations();
+        clsCommon _common = new clsCommon();
+        public int copies { get; set;} 
+
         int i = 0;
 
         private void PrinterSetting_Load(object sender, EventArgs e)
         {
+            dtsett = _common.getSettingValue();
+            copies = Convert.ToInt32(dtsett.BillCount);
+            txt_copy.Text = dtsett.BillCount ;
             try
             {
                 if (PrinterSettings.InstalledPrinters.Count <= 0)
@@ -73,6 +82,11 @@ namespace PrimeSolutions.Report
         {
             i = 1;return i;
             
+        }
+
+        private void txt_index_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitOnly(e);
         }
     }
 }

@@ -51,7 +51,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\T Shirt.ico</ApplicationIcon>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
@@ -98,12 +98,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bin\Debug\Bill.cs">
+    <Compile Include="Accounting\frmAccountLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmAccountLedger.designer.cs">
+      <DependentUpon>frmAccountLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmBalanceSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmBalanceSheet.designer.cs">
+      <DependentUpon>frmBalanceSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmPaymentVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmPaymentVoucher.designer.cs">
+      <DependentUpon>frmPaymentVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmReceiptVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmReceiptVoucher.designer.cs">
+      <DependentUpon>frmReceiptVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Frm_AccountLedgerReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Frm_AccountLedgerReport.designer.cs">
+      <DependentUpon>Frm_AccountLedgerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Frm_Credit DebitEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Frm_Credit DebitEntry.designer.cs">
+      <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bin\Debug\BarcodeRPT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Bill.rpt</DependentUpon>
+      <DependentUpon>BarcodeRPT.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\BillA4.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillA4.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\BillA5.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\SaleLedger.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleLedger.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Cls_Enums.cs" />
     <Compile Include="Common\Fix Rate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,29 +183,46 @@
     <Compile Include="Common\frm_LooseItem.designer.cs">
       <DependentUpon>frm_LooseItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_Openning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_Openning.designer.cs">
+      <DependentUpon>frm_Openning.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_SubCategory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\frm_SubCategory.designer.cs">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\CompanyMaster.Designer.cs">
+    <Compile Include="Common\Messages.cs" />
+    <Compile Include="Common\SettingValue.cs" />
+    <Compile Include="Dataset\Barcode.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyMaster.xsd</DependentUpon>
+      <DependentUpon>Barcode.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\Customer.cs">
-      <DependentUpon>Customer.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\CustomerBill.Designer.cs">
+    <Compile Include="Dataset\Bill1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CustomerBill.xsd</DependentUpon>
+      <DependentUpon>Bill.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\CustomerSale.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CustomerSale.xsd</DependentUpon>
+    <Compile Include="Library\ClsFinancialYear.cs" />
+    <Compile Include="Library\Cls_BalanceSheet.cs" />
+    <Compile Include="Library\Cls_paymentoption.cs" />
+    <Compile Include="Library\CreditDebit.cs" />
+    <Compile Include="Library\FinancialStatementSP.cs" />
+    <Compile Include="PaymentOption\frm_PaymentOptionForPaymentVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentOption\frm_PaymentOptionForPaymentVoucher.designer.cs">
+      <DependentUpon>frm_PaymentOptionForPaymentVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentOption\frm_PaymentOptionForReceiptVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentOption\frm_PaymentOptionForReceiptVoucher.designer.cs">
+      <DependentUpon>frm_PaymentOptionForReceiptVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="Payment\Customer Account.cs">
       <SubType>Form</SubType>
@@ -182,21 +254,6 @@
     <Compile Include="Common\frm_Setting.Designer.cs">
       <DependentUpon>frm_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\BillItem1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BillItem.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\Customer.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Customer.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\Payment.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Payment.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Library\AllClassFile.cs" />
     <Compile Include="Library\clsCommon.cs" />
     <Compile Include="Library\clsVariable.cs" />
@@ -205,7 +262,6 @@
     <Compile Include="Library\ExportExcel.cs" />
     <Compile Include="Library\PurchaseCommon.cs" />
     <Compile Include="Library\SaleCommon.cs" />
-    <Compile Include="Library\Setting.cs" />
     <Compile Include="Library\Simplevalidations.cs" />
     <Compile Include="Library\SQLHelper.cs" />
     <Compile Include="Library\Stock.cs" />
@@ -230,11 +286,11 @@
     <Compile Include="Report\CrystalReoprt\frm_ReportViewer.designer.cs">
       <DependentUpon>frm_ReportViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\CrystalReoprt\PrinterSetting.cs">
+    <Compile Include="Report\Customer\frm_CustomerBalance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report\CrystalReoprt\PrinterSetting.designer.cs">
-      <DependentUpon>PrinterSetting.cs</DependentUpon>
+    <Compile Include="Report\Customer\frm_CustomerBalance.designer.cs">
+      <DependentUpon>frm_CustomerBalance.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Customer\frm_CustomerContact.cs">
       <SubType>Form</SubType>
@@ -303,12 +359,42 @@
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Accounting\frmAccountLedger.resx">
+      <DependentUpon>frmAccountLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmBalanceSheet.resx">
+      <DependentUpon>frmBalanceSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmPaymentVoucher.resx">
+      <DependentUpon>frmPaymentVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmReceiptVoucher.resx">
+      <DependentUpon>frmReceiptVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Frm_AccountLedgerReport.resx">
+      <DependentUpon>Frm_AccountLedgerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Frm_Credit DebitEntry.resx">
+      <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BarcodeRPT.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BarcodeRPT.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\Bill.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\Bill.rpt">
+    <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Bill.cs</LastGenOutput>
+      <LastGenOutput>BillA4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\SaleLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SaleLedger.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Fix Rate.resx">
       <DependentUpon>Fix Rate.cs</DependentUpon>
@@ -322,8 +408,17 @@
     <EmbeddedResource Include="Common\frm_LooseItem.resx">
       <DependentUpon>frm_LooseItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Openning.resx">
+      <DependentUpon>frm_Openning.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_SubCategory.resx">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentOption\frm_PaymentOptionForPaymentVoucher.resx">
+      <DependentUpon>frm_PaymentOptionForPaymentVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentOption\frm_PaymentOptionForReceiptVoucher.resx">
+      <DependentUpon>frm_PaymentOptionForReceiptVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\Customer Account.resx">
       <DependentUpon>Customer Account.cs</DependentUpon>
@@ -353,8 +448,8 @@
     <EmbeddedResource Include="Report\CrystalReoprt\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\CrystalReoprt\PrinterSetting.resx">
-      <DependentUpon>PrinterSetting.cs</DependentUpon>
+    <EmbeddedResource Include="Report\Customer\frm_CustomerBalance.resx">
+      <DependentUpon>frm_CustomerBalance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Customer\frm_CustomerContact.resx">
       <DependentUpon>frm_CustomerContact.cs</DependentUpon>
@@ -396,71 +491,27 @@
     <None Include="bin\Debug\PrimeSolutions.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />
-    <None Include="Dataset\BillItem.xsc">
-      <DependentUpon>BillItem.xsd</DependentUpon>
+    <None Include="Dataset\Barcode.xsc">
+      <DependentUpon>Barcode.xsd</DependentUpon>
     </None>
-    <None Include="Dataset\BillItem.xsd">
+    <None Include="Dataset\Barcode.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BillItem1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Barcode.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Dataset\BillItem.xss">
-      <DependentUpon>BillItem.xsd</DependentUpon>
+    <None Include="Dataset\Barcode.xss">
+      <DependentUpon>Barcode.xsd</DependentUpon>
     </None>
-    <None Include="Dataset\CompanyMaster.xsc">
-      <DependentUpon>CompanyMaster.xsd</DependentUpon>
+    <None Include="Dataset\Bill.xsc">
+      <DependentUpon>Bill.xsd</DependentUpon>
     </None>
-    <None Include="Dataset\CompanyMaster.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Dataset\Bill.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CompanyMaster.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\CompanyMaster.xss">
-      <DependentUpon>CompanyMaster.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\Customer.xsc">
-      <DependentUpon>Customer.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\Customer.xsd">
+      <LastGenOutput>Bill1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Customer.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Dataset\Customer.xss">
-      <DependentUpon>Customer.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\CustomerBill.xsc">
-      <DependentUpon>CustomerBill.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\CustomerBill.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CustomerBill.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\CustomerBill.xss">
-      <DependentUpon>CustomerBill.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\CustomerSale.xsc">
-      <DependentUpon>CustomerSale.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\CustomerSale.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CustomerSale.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\CustomerSale.xss">
-      <DependentUpon>CustomerSale.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\Payment.xsc">
-      <DependentUpon>Payment.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\Payment.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Payment.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\Payment.xss">
-      <DependentUpon>Payment.xsd</DependentUpon>
+    <None Include="Dataset\Bill.xss">
+      <DependentUpon>Bill.xsd</DependentUpon>
     </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -495,6 +546,7 @@
     <Content Include="bin\Debug\PrimeSolutions.exe" />
     <Content Include="bin\Debug\PrimeSolutions.pdb" />
     <Content Include="bin\Debug\PrimeSolutions.vshost.exe" />
+    <Content Include="favicon.ico" />
     <Content Include="obj\Debug\PrimeSolutions.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\PrimeSolutions.exe" />
     <Content Include="obj\Debug\PrimeSolutions.pdb" />

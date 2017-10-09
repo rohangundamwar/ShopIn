@@ -12,6 +12,7 @@ using PrimeSolutions.Report;
 using PrimeSolutions.Report.Customer;
 using PrimeSolutions.Report.Sale;
 using PrimeSolutions.Report.Purchase;
+using PrimeSolutions.Accounting;
 
 namespace PrimeSolutions
 {
@@ -196,6 +197,78 @@ namespace PrimeSolutions
         private void looseItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_LooseItem _form = new frm_LooseItem();
+            _form.ShowDialog();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void openingBalanceToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frm_Openning _form = new frm_Openning();
+            _form.ShowDialog();
+        }
+
+        private void customerBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_CustomerBalance _form = new frm_CustomerBalance();
+            _form.ShowDialog();
+        }
+
+        private void barcodeEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_BarcodePrint _form = new frm_BarcodePrint();
+            _form.ShowDialog();
+        }
+
+        private void balanceSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAccountLedger form = new frmAccountLedger();
+                frmAccountLedger open = Application.OpenForms["frmAccountLedger"] as frmAccountLedger;
+                if (open == null)
+                {
+                    form.Show();
+                }
+                else
+                {
+                    open.Activate();
+                    if (open.WindowState == FormWindowState.Minimized)
+                    {
+                        open.WindowState = FormWindowState.Normal;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("MDI 80 : " + ex.Message, "ShopIn", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void creditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPaymentVoucher _form = new frmPaymentVoucher();
+            _form.ShowDialog();
+        }
+
+        private void debitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReceiptVoucher _form = new frmReceiptVoucher();
+            _form.ShowDialog();
+        }
+
+        private void accountLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_AccountLedgerReport form = new Frm_AccountLedgerReport();
+            form.Show();
+        }
+
+        private void balanceSheetToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmBalanceSheet _form = new frmBalanceSheet();
             _form.ShowDialog();
         }
     }

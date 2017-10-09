@@ -19,6 +19,8 @@ namespace PrimeSolutions.Library
         PrinterSetting _objPrinterSetting = new PrinterSetting();
         private int m_currentPageIndex;
         private IList<Stream> m_streams;
+        Cls_BalanceSheet _objCeditDebit = new Cls_BalanceSheet();
+
 
 
         string BillNo;
@@ -34,20 +36,79 @@ namespace PrimeSolutions.Library
             _sql.ExecuteSql(str);
         }
 
-        public void AddItemDetails(string Category, string SubCategory, string BillNo, string type, string date, string price, string Qty, string CGST, string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt, string totalAmt, string batch, string HSN)
+        public void AddItemDetails(string Category, string SubCategory, string BillNo, string type, string date, string price, string Qty, string CGST, string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt, string totalAmt, string batch, string HSN,string TotalPrice)
         {
-            string str = "Insert into BillItem(Category,SubCategory,SaleBillNo,Type,SaleDate,Price,Qty,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,TotalPrice,BatchNo,HSN) Values('" + Category + "','" + SubCategory + "','" + BillNo + "','" + type + "','" + date + "','" + price + "','" + Qty + "','" + CGST + "','" + CGSTAmt + "','" + SGSTAmt + "','" + SGSTAmt + "','" + IGSTAmt + "','" + IGSTAmt + "','" + totalAmt + "','" + batch + "','" + HSN + "') ";
+            string str = "Insert into BillItem(Category,SubCategory,SaleBillNo,Type,SaleDate,Price,Qty,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,TotalPrice,BatchNo,HSN,SellingPrice) Values('" + Category + "','" + SubCategory + "','" + BillNo + "','" + type + "','" + date + "','" + price + "','" + Qty + "','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','" + IGSTAmt + "','" + IGSTAmt + "','" + totalAmt + "','" + batch + "','" + HSN + "','"+TotalPrice+"') ";
             _sql.ExecuteSql(str);
         }
 
-        public DataTable GetItemDetails(string Barcode)
+        public DataTable GetItemDetailsByBarcode(string Barcode)
         {
             string str = "Select * from BillItem where Barcode = '" + Barcode + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
+        public void insertcreditDebitWithPayment(string customerLedgerID, string VouchertypeID, string sbillno, string transactionLedgerID, string AmountPaid, string Narration, string Date, string name)
+        {
+            _objCeditDebit.insertCreditDebitDetails(legderid: customerLedgerID, debit: "0", credit: AmountPaid, ChequeNo: null, chequeDate: null, date: Date, type: "Cr", FromAccount: "Cash/Bank", Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+            _objCeditDebit.insertCreditDebitDetails(legderid: transactionLedgerID, debit: AmountPaid, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+        }
 
+        public DataTable selectAccountLedgerDetail(string StartDate, string EndDate, string GroupID, string LedgerID)
+        {
+            string str = "";
+            if (GroupID == "All" && LedgerID == "All") { str = "SELECT * from AccountLedger  where (CONVERT(DateTime, AccountLedger.Date, 103) >= CONVERT(DateTime, '" + StartDate + "', 103))  AND (CONVERT(DateTime, AccountLedger.Date, 103) <= CONVERT(DateTime, '" + EndDate + "', 103))  and AccountLedger.PermanentDelete= 0"; }
+            else if (GroupID != "All" && LedgerID == "All") { str = "SELECT * from AccountLedger  where (CONVERT(DateTime, AccountLedger.Date, 103) >= CONVERT(DateTime, '" + StartDate + "', 103))  AND (CONVERT(DateTime, AccountLedger.Date, 103) <= CONVERT(DateTime, '" + EndDate + "', 103)) and AccountLedger.accGroupId='" + GroupID + "' and AccountLedger.PermanentDelete= 0"; }
+            else if (GroupID != "All" && LedgerID != "All") { str = "SELECT * from AccountLedger  where (CONVERT(DateTime, AccountLedger.Date, 103) >= CONVERT(DateTime, '" + StartDate + "', 103))  AND (CONVERT(DateTime, AccountLedger.Date, 103) <= CONVERT(DateTime, '" + EndDate + "', 103)) and AccountLedger.accGroupId='" + GroupID + "' and AccountLedger.Name='" + LedgerID + "'  and AccountLedger.PermanentDelete= 0"; }
+            else { str = "SELECT * from AccountLedger  where (CONVERT(DateTime, AccountLedger.Date, 103) >= CONVERT(DateTime, '" + StartDate + "', 103))  AND (CONVERT(DateTime, AccountLedger.Date, 103) <= CONVERT(DateTime, '" + EndDate + "', 103)) and  AccountLedger.Name='" + LedgerID + "'  and AccountLedger.PermanentDelete= 0"; }
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetItemDetailsByCategoySubCategory(string category, string subcategory)
+        {
+            string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='"+subcategory+"'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public double GetBalance(string Name)
+        {
+            string str = "Select CustId From CustomerMaster where CustomerName = '" + Name + "'";
+            string CustId = _sql.ExecuteScalar(str);
+            double BillAmt = GetTotalPurchase(CustId);
+            double PaidAmt = GetTotalPaid(CustId);
+            double opening = GetOpening(CustId);
+            double bal = (opening + BillAmt) - PaidAmt;
+            return bal;
+        }
+
+        public Double GetTotalPurchase(string CustId)
+        {
+            string str1 = "Select GrandAmt From CustomerBill where CustId = '" + CustId + "'";
+            DataTable dt = _sql.GetDataTable(str1);
+            double BillAmt = _a.sumDataTableColumn(dt, "GrandAmt");
+            return (BillAmt);
+        }
+
+        public double GetTotalPaid(string CustId)
+        {
+            string str2 = "Select Amt From Payment where Id = '" + CustId + "'";
+            DataTable dt1 = _sql.GetDataTable(str2);
+            double PaidAmt = _a.sumDataTableColumn(dt1, "Amt");
+            return (PaidAmt);
+        }
+
+        public double GetOpening(string CustId)
+        {
+            string str1 = "Select Opening From CustomerMaster where CustId = '" + CustId + "'";
+            string open = _sql.ExecuteScalar(str1);
+            if (open == "" || open == "0" || open == string.Empty)
+                return 0;
+            else
+                return Convert.ToDouble(open);
+        }
 
         private DataTable GetBillDetails(string BillNo)
         {
@@ -60,6 +121,11 @@ namespace PrimeSolutions.Library
         {
             string str = "Select * from BillItem where SaleBillNo = '" + BillNo + "'";
             DataTable dt = _sql.GetDataTable(str);
+            dt.Columns.Add("Amount");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2)) ;
+            }
             return dt;
         }
 
@@ -80,13 +146,28 @@ namespace PrimeSolutions.Library
 
         }
 
-        public DataTable GetCustomer(string Name)
+        public DataTable GetCustomerDetails(string Name)
         {
             string str = "Select * From CustomerMaster where CustomerName = '" + Name + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
-        //Print Laser Bill
+
+        public DataTable GetCustomer()
+        {
+            string str = "Select * From CustomerMaster ";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetCustomerBill(string id)
+        {
+            string str = "select BillNo,GrandAmt,Date from CustomerBill where CustId='" + id + "'";
+            DataTable dt1 = _sql.GetDataTable(str);
+            return dt1;
+        }
+
+        //Print Thermal
 
         public void PrintBillThermal(string BillNO)
         {
@@ -190,35 +271,14 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerReport(string from, string to)
         {
-            string From = "";
-            string To = "";
-            DateTime date1 = Convert.ToDateTime(from);
-            DateTime date2 = Convert.ToDateTime(to);
-
-            while (From == "")
-            {
-                from = date1.ToString("dd/MM/yyyy");
-                string str1 = "select SrNo from SaleBillMaster where date = '" + from + "'";
-                From = _sql.ExecuteScalar(str1);
-                date1 = date1.AddDays(1);
-
-            }
-            while (To == "")
-            {
-                to = date2.ToString("dd/MM/yyyy");
-                string str1 = "select Max(SrNo) from SaleBillMaster where date = '" + to + "'";
-                To = _sql.ExecuteScalar(str1);
-                date2 = date2.AddDays(-1);
-            }
-
-            string str = "Select * From SaleBillMaster where SrNo between '"+From+"' AND '"+ To +"'";
+            string str = "Select* From CustomerBill Where (CONVERT(DateTime, CustomerBill.date, 103) >= CONVERT(DateTime, '" + from + "', 103))  AND(CONVERT(DateTime, CustomerBill.date, 103) <= CONVERT(DateTime, '" + to + "', 103))";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
         public string GetCustomerByCustid(string custid)
         {
-            string str = "select Name from customermaster where CustId='"+custid+"'";
+            string str = "select CustomerName from customermaster where CustId='" + custid+"'";
             string cust = _sql.ExecuteScalar(str);
             return cust;
         }

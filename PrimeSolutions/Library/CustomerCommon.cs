@@ -10,9 +10,9 @@ namespace PrimeSolutions.Library
     {
         SQLHelper _Sql = new SQLHelper();
 
-        public void AddCustomerDetails(string CustId,string Name,string Address,string ContactNo,string Pan,string Gstin, string state,string city)
+        public void AddCustomerDetails(string CustId,string Name,string Address,string ContactNo,string Pan,string Gstin, string state,string city,string Opening)
         {
-            string str = "Insert into CustomerMaster(CustId,CustomerName,Address,ContactNo,PanNo,GSTIN,State,City) VALUES('" + CustId+"','"+Name+"','"+Address+"','"+ContactNo+"','"+Pan+"','"+Gstin+"','"+state+"','"+city+"') ";
+            string str = "Insert into CustomerMaster(CustId,CustomerName,Address,ContactNo,PanNo,GSTIN,State,City,Opening) VALUES('" + CustId+"','"+Name+"','"+Address+"','"+ContactNo+"','"+Pan+"','"+Gstin+"','"+state+"','"+city+"','"+Opening+"') ";
             _Sql.ExecuteSql(str);
         }
 
@@ -33,10 +33,23 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerDeatils()
         {
-            string str = "select CustomerName from CustomerMaster ";
+            string str = "select * from CustomerMaster ";
             DataTable dt;
             dt = _Sql.GetDataTable(str);
             return dt;
+        }
+
+        public string GetCustomerId(string Custname)
+        {
+            string str = "select CustId from CustomerMaster where CustomerName='" + Custname + "'";
+            string name = _Sql.ExecuteScalar(str);
+            return name;
+        }
+
+        public void SetOpening(string CustId, string Opening)
+        {
+            string str = "Update CustomerMaster set Opening='" + Opening + "'where CustId='" + CustId + "'";
+            _Sql.ExecuteScalar(str);
         }
 
         public DataTable GetCustomerItemDeatils(string CustId)

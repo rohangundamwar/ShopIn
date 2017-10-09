@@ -275,7 +275,7 @@ namespace PrimeSolutions.Library
 
 
         #region gmGetMstID Function
-        public string gmGetMstID(string MstType, string MstDesc)
+        public string GetMaxID(string MstType, string MstDesc)
         {
             string SQL = "";
 
