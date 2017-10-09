@@ -69,6 +69,9 @@ namespace PrimeSolutions.Library
                 e.Handled = true;
             }
         }
+
+        
+
         public void ValidationCharOnly(KeyPressEventArgs e)
         {
             if (char.IsLetter(e.KeyChar) || e.KeyChar.ToString() == "\b" || e.KeyChar.ToString() == " " || e.KeyChar.ToString() == "(" || e.KeyChar.ToString() == ")" || e.KeyChar.ToString() == "!" || e.KeyChar.ToString() == "@" || e.KeyChar.ToString() == "#" || e.KeyChar.ToString() == "%" || e.KeyChar.ToString() == "&" || e.KeyChar.ToString() == "*" || e.KeyChar.ToString() == "." || !char.IsDigit(e.KeyChar))

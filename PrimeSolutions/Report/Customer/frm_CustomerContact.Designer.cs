@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.dgv_Customer = new System.Windows.Forms.DataGridView();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.dtp1 = new System.Windows.Forms.DateTimePicker();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PANNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Customer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,42 +47,18 @@
             this.dgv_Customer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomerName,
             this.ContactNo,
-            this.Item,
-            this.Address});
+            this.Address,
+            this.GSTIN,
+            this.PANNo});
             this.dgv_Customer.Location = new System.Drawing.Point(12, 82);
             this.dgv_Customer.Name = "dgv_Customer";
             this.dgv_Customer.ReadOnly = true;
-            this.dgv_Customer.Size = new System.Drawing.Size(493, 326);
+            this.dgv_Customer.Size = new System.Drawing.Size(596, 326);
             this.dgv_Customer.TabIndex = 0;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.HeaderText = "CustomerName";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 150;
-            // 
-            // ContactNo
-            // 
-            this.ContactNo.HeaderText = "ContactNo";
-            this.ContactNo.Name = "ContactNo";
-            this.ContactNo.ReadOnly = true;
-            // 
-            // Item
-            // 
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
             // 
             // bttn_Excel
             // 
-            this.bttn_Excel.Location = new System.Drawing.Point(326, 37);
+            this.bttn_Excel.Location = new System.Drawing.Point(429, 39);
             this.bttn_Excel.Name = "bttn_Excel";
             this.bttn_Excel.Size = new System.Drawing.Size(92, 23);
             this.bttn_Excel.TabIndex = 1;
@@ -94,7 +71,7 @@
             this.bttn_Close.BackColor = System.Drawing.Color.LightCoral;
             this.bttn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_Close.ForeColor = System.Drawing.Color.White;
-            this.bttn_Close.Location = new System.Drawing.Point(430, 37);
+            this.bttn_Close.Location = new System.Drawing.Point(533, 39);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(75, 23);
             this.bttn_Close.TabIndex = 2;
@@ -109,11 +86,42 @@
             this.dtp1.Size = new System.Drawing.Size(106, 20);
             this.dtp1.TabIndex = 3;
             // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "CustomerName";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 150;
+            // 
+            // ContactNo
+            // 
+            this.ContactNo.HeaderText = "ContactNo";
+            this.ContactNo.Name = "ContactNo";
+            this.ContactNo.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // GSTIN
+            // 
+            this.GSTIN.HeaderText = "GSTIN";
+            this.GSTIN.Name = "GSTIN";
+            this.GSTIN.ReadOnly = true;
+            // 
+            // PANNo
+            // 
+            this.PANNo.HeaderText = "PAN No.";
+            this.PANNo.Name = "PANNo";
+            this.PANNo.ReadOnly = true;
+            // 
             // frm_CustomerContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 429);
+            this.ClientSize = new System.Drawing.Size(619, 429);
             this.Controls.Add(this.dtp1);
             this.Controls.Add(this.bttn_Close);
             this.Controls.Add(this.bttn_Excel);
@@ -131,12 +139,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_Customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.Button bttn_Excel;
         private System.Windows.Forms.Button bttn_Close;
         private System.Windows.Forms.DateTimePicker dtp1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GSTIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PANNo;
     }
 }

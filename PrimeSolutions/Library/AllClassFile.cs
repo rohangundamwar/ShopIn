@@ -119,17 +119,33 @@ namespace PrimeSolutions.Library
             return  dt1.Rows[0]["sub_category"];
         }
 
-        internal int getQty(string category, string subcategory)
+        internal string getQty(string category, string subcategory)
         {
-            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
-            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
-            int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
-            return Qty;
+            string Qty;
+            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
+            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
+            DataTable DtPurchase = _objsqlhelper.GetDataTable(purchase);
+            DataTable DtSale = _objsqlhelper.GetDataTable(sale);
+            if (GetalooseItem(category))
+            {
+                double PurchaseQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtPurchase, "qty")), 3);
+                double SaleQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtSale, "qty")), 3);
+                Qty =Convert.ToString(PurchaseQty - SaleQty);
+                Qty = Qty + "  Kg";
+            }
+            else
+            {
+                double PurchaseQty =Convert.ToInt32 (sumDataTableColumn(DtPurchase, "qty"));
+                double SaleQty = Convert.ToInt32(sumDataTableColumn(DtSale, "qty"));
+                Qty = Convert.ToString(PurchaseQty - SaleQty);
+                Qty = Qty + "  nos.";
+            }
+            return (Qty);
         }
 
-        internal int getQtySupplier(string category, string subcategory, string size, string BillNo)
+        internal int getQtySupplier(string category, string subcategory, string BillNo)
         {
-            string str1 = "SELECT  qty FROM BillItem Where category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' AND PurchaseBill='" + BillNo + "' ";
+            string str1 = "SELECT  qty FROM BillItem Where category = '" + category + "' AND SubCategory = '" + subcategory + "' AND PurchaseBillNo='" + BillNo + "' ";
             DataTable dt1 = _objsqlhelper.GetDataTable(str1);
             int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
             return Qty;
@@ -213,7 +229,7 @@ namespace PrimeSolutions.Library
 
         internal DataTable getBarcodeItemByBilNo(string PBillNo)
         {
-            string str = "Select  * From BillItem Where (Barcode != '') AND PurchaseBill = '" + PBillNo + "' And type = 'Purchase'";
+            string str = "Select  * From BillItem Where (Barcode != '') AND PurchaseBillNo = '" + PBillNo + "' And type = 'Purchase'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -285,7 +301,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct SubCategory FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct SubCategory,SellingPrice FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
 
             return dt;
@@ -403,13 +419,20 @@ namespace PrimeSolutions.Library
 
         internal void InsertPaymentDetails(string type,string Amt,string paymode,string id,string date,string BillNo)
         {
-            string str = "Insert Into PaymentDetails(Type,Amt,Paymode,Id,Date,BillNo) VALUES('"+type+"','"+Amt+"','"+paymode+"','"+id+"','"+date+"','"+BillNo+"') ";
+            string str = "Insert Into Payment(Type,Amt,Paymode,Id,Date,BillNo) VALUES('"+type+"','"+Amt+"','"+paymode+"','"+id+"','"+date+"','"+BillNo+"') ";
             _objsqlhelper.ExecuteScalar(str);
         }
 
         internal DataTable getpaymentdetails(string id, string date)
         {
-            string str = "select * from PaymentDetails where id='"+id+ "' and Date='"+date+"'";
+            string str = "select * from Payment where id='"+id+ "' and Date='"+date+"'";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        internal DataTable getpaymentByBill(string BillNo)
+        {
+            string str = "select * from Payment where BillNo='" + BillNo + "'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

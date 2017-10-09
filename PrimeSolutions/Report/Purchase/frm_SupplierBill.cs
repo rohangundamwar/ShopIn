@@ -24,18 +24,18 @@ namespace PrimeSolutions.Report.Purchase
         {
             DataTable dt = _p.GetPurchaseBill();
             if(dt.Rows.Count>0)
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
                     dgv_SupplierBill.Rows.Add();
                     dgv_SupplierBill.Rows[i].Cells["SrNo"].Value = dt.Rows[i]["SrNo"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["BillAmt"].Value = dt.Rows[i]["BillAmt"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["Vatper"].Value = dt.Rows[i]["Vatper"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["VAT"].Value = dt.Rows[i]["VAT"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["TotalAmt"].Value = dt.Rows[i]["TotalAmt"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["PaidAmt"].Value = dt.Rows[i]["PaidAmt"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["BalanceAmt"].Value = dt.Rows[i]["BalanceAmt"].ToString();
-                    dgv_SupplierBill.Rows[i].Cells["Date"].Value = dt.Rows[i]["SoftDate"].ToString();
                     dgv_SupplierBill.Rows[i].Cells["BillNo"].Value = dt.Rows[i]["BillNo"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["Date"].Value = dt.Rows[i]["Date"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["BillAmt"].Value = dt.Rows[i]["Amount"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["CGST"].Value = dt.Rows[i]["CGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["SGST"].Value = dt.Rows[i]["SGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["IGST"].Value = dt.Rows[i]["IGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["TotalAmt"].Value = dt.Rows[i]["GrandTotal"].ToString();
+
                 }
         }
 

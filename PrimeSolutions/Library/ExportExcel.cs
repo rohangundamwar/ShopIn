@@ -53,7 +53,6 @@ namespace PrimeSolutions.Library
                 DataTable dt = _objCommon.DataGridView2DataTable(dgv,"",0);
                 Name = Name + date;
                 ClosedXML.Excel.XLWorkbook wbook = new ClosedXML.Excel.XLWorkbook();
-                wbook.Worksheets.Add(dt);
                 wbook.Worksheets.Add(dt, Name);
                 try
                 {

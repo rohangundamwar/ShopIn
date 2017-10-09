@@ -36,24 +36,23 @@
             this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vatper = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BalanceAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SupplierBill)).BeginInit();
             this.SuspendLayout();
             // 
             // dtp1
             // 
-            this.dtp1.Location = new System.Drawing.Point(22, 21);
+            this.dtp1.Location = new System.Drawing.Point(12, 42);
             this.dtp1.Name = "dtp1";
             this.dtp1.Size = new System.Drawing.Size(172, 20);
             this.dtp1.TabIndex = 0;
             // 
             // bttn_excel
             // 
-            this.bttn_excel.Location = new System.Drawing.Point(331, 22);
+            this.bttn_excel.Location = new System.Drawing.Point(532, 43);
             this.bttn_excel.Name = "bttn_excel";
             this.bttn_excel.Size = new System.Drawing.Size(107, 23);
             this.bttn_excel.TabIndex = 1;
@@ -66,7 +65,7 @@
             this.bttn_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.bttn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_close.ForeColor = System.Drawing.Color.White;
-            this.bttn_close.Location = new System.Drawing.Point(575, 22);
+            this.bttn_close.Location = new System.Drawing.Point(776, 43);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 2;
@@ -83,15 +82,14 @@
             this.BillNo,
             this.Date,
             this.BillAmt,
-            this.Vatper,
-            this.VAT,
-            this.TotalAmt,
-            this.PaidAmt,
-            this.BalanceAmt});
+            this.CGST,
+            this.SGST,
+            this.IGST,
+            this.TotalAmt});
             this.dgv_SupplierBill.Location = new System.Drawing.Point(11, 87);
             this.dgv_SupplierBill.Name = "dgv_SupplierBill";
             this.dgv_SupplierBill.ReadOnly = true;
-            this.dgv_SupplierBill.Size = new System.Drawing.Size(944, 279);
+            this.dgv_SupplierBill.Size = new System.Drawing.Size(843, 279);
             this.dgv_SupplierBill.TabIndex = 3;
             // 
             // SrNo
@@ -118,17 +116,23 @@
             this.BillAmt.Name = "BillAmt";
             this.BillAmt.ReadOnly = true;
             // 
-            // Vatper
+            // CGST
             // 
-            this.Vatper.HeaderText = "Vatper";
-            this.Vatper.Name = "Vatper";
-            this.Vatper.ReadOnly = true;
+            this.CGST.HeaderText = "CGST";
+            this.CGST.Name = "CGST";
+            this.CGST.ReadOnly = true;
             // 
-            // VAT
+            // SGST
             // 
-            this.VAT.HeaderText = "VAT";
-            this.VAT.Name = "VAT";
-            this.VAT.ReadOnly = true;
+            this.SGST.HeaderText = "SGST";
+            this.SGST.Name = "SGST";
+            this.SGST.ReadOnly = true;
+            // 
+            // IGST
+            // 
+            this.IGST.HeaderText = "IGST";
+            this.IGST.Name = "IGST";
+            this.IGST.ReadOnly = true;
             // 
             // TotalAmt
             // 
@@ -136,23 +140,11 @@
             this.TotalAmt.Name = "TotalAmt";
             this.TotalAmt.ReadOnly = true;
             // 
-            // PaidAmt
-            // 
-            this.PaidAmt.HeaderText = "PaidAmt";
-            this.PaidAmt.Name = "PaidAmt";
-            this.PaidAmt.ReadOnly = true;
-            // 
-            // BalanceAmt
-            // 
-            this.BalanceAmt.HeaderText = "BalanceAmt";
-            this.BalanceAmt.Name = "BalanceAmt";
-            this.BalanceAmt.ReadOnly = true;
-            // 
             // frm_SupplierBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 378);
+            this.ClientSize = new System.Drawing.Size(864, 378);
             this.Controls.Add(this.dgv_SupplierBill);
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_excel);
@@ -177,10 +169,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillAmt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Vatper;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VAT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BalanceAmt;
     }
 }

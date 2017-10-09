@@ -10,7 +10,6 @@ namespace PrimeSolutions.Report.CrystalReport
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crReportViewer;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>

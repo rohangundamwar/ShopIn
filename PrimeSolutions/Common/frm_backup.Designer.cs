@@ -55,6 +55,7 @@
             this.bttn_cancel.TabIndex = 1;
             this.bttn_cancel.Text = "Cancel";
             this.bttn_cancel.UseVisualStyleBackColor = false;
+            this.bttn_cancel.Click += new System.EventHandler(this.bttn_cancel_Click_1);
             // 
             // txt_DatabaseName
             // 

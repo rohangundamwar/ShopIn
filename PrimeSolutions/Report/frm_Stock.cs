@@ -44,6 +44,7 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
                     dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
                     dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
+                    dgv_stock.Rows[gcount].Cells["SellingPrice"].Value = dt1.Rows[j]["SellingPrice"].ToString();
                     a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString()));
                     dgv_stock.Rows[gcount].Cells["Quantity"].Value = a.ToString();
                     gcount = gcount + 1;

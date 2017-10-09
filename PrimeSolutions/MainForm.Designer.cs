@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barcodeEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openingBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.balanceSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openingBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDatatabseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,13 +60,14 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lbl_developer = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_developer = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.balanceSheetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -113,7 +115,7 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -121,16 +123,19 @@
             // 
             this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.barcodeEntryToolStripMenuItem.Text = "Barcode Reprint";
+            this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // accountingToolStripMenuItem
             // 
             this.accountingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openingBalanceToolStripMenuItem,
+            this.balanceSheetToolStripMenuItem,
             this.creditToolStripMenuItem,
             this.debitToolStripMenuItem,
-            this.balanceSheetToolStripMenuItem});
+            this.accountLedgerToolStripMenuItem,
+            this.balanceSheetToolStripMenuItem1,
+            this.openingBalanceToolStripMenuItem});
             this.accountingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.accountingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.rich;
             this.accountingToolStripMenuItem.Name = "accountingToolStripMenuItem";
@@ -138,29 +143,40 @@
             this.accountingToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
             this.accountingToolStripMenuItem.Text = " Accounting";
             // 
-            // openingBalanceToolStripMenuItem
+            // balanceSheetToolStripMenuItem
             // 
-            this.openingBalanceToolStripMenuItem.Name = "openingBalanceToolStripMenuItem";
-            this.openingBalanceToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.openingBalanceToolStripMenuItem.Text = "Opening Balance";
+            this.balanceSheetToolStripMenuItem.Name = "balanceSheetToolStripMenuItem";
+            this.balanceSheetToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
+            this.balanceSheetToolStripMenuItem.Text = "Opening Account";
+            this.balanceSheetToolStripMenuItem.Click += new System.EventHandler(this.balanceSheetToolStripMenuItem_Click);
             // 
             // creditToolStripMenuItem
             // 
             this.creditToolStripMenuItem.Name = "creditToolStripMenuItem";
-            this.creditToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.creditToolStripMenuItem.Text = "Credit";
+            this.creditToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
+            this.creditToolStripMenuItem.Text = "Payment Voucher";
+            this.creditToolStripMenuItem.Click += new System.EventHandler(this.creditToolStripMenuItem_Click);
             // 
             // debitToolStripMenuItem
             // 
             this.debitToolStripMenuItem.Name = "debitToolStripMenuItem";
-            this.debitToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.debitToolStripMenuItem.Text = "Debit";
+            this.debitToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
+            this.debitToolStripMenuItem.Text = "Receipt Voucher";
+            this.debitToolStripMenuItem.Click += new System.EventHandler(this.debitToolStripMenuItem_Click);
             // 
-            // balanceSheetToolStripMenuItem
+            // accountLedgerToolStripMenuItem
             // 
-            this.balanceSheetToolStripMenuItem.Name = "balanceSheetToolStripMenuItem";
-            this.balanceSheetToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
-            this.balanceSheetToolStripMenuItem.Text = "Balance Sheet";
+            this.accountLedgerToolStripMenuItem.Name = "accountLedgerToolStripMenuItem";
+            this.accountLedgerToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
+            this.accountLedgerToolStripMenuItem.Text = "Account Ledger";
+            this.accountLedgerToolStripMenuItem.Click += new System.EventHandler(this.accountLedgerToolStripMenuItem_Click);
+            // 
+            // openingBalanceToolStripMenuItem
+            // 
+            this.openingBalanceToolStripMenuItem.Name = "openingBalanceToolStripMenuItem";
+            this.openingBalanceToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
+            this.openingBalanceToolStripMenuItem.Text = "Customer Opening Balance";
+            this.openingBalanceToolStripMenuItem.Click += new System.EventHandler(this.openingBalanceToolStripMenuItem_Click_1);
             // 
             // reportToolStripMenuItem
             // 
@@ -180,7 +196,8 @@
             // 
             this.saleToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customerDailyReportToolStripMenuItem,
-            this.customerDatatabseToolStripMenuItem});
+            this.customerDatatabseToolStripMenuItem,
+            this.customerBalanceToolStripMenuItem});
             this.saleToolStripMenuItem1.Name = "saleToolStripMenuItem1";
             this.saleToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.saleToolStripMenuItem1.Text = "Sale";
@@ -198,6 +215,13 @@
             this.customerDatatabseToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
             this.customerDatatabseToolStripMenuItem.Text = "Customer Datatabse";
             this.customerDatatabseToolStripMenuItem.Click += new System.EventHandler(this.customerDatatabseToolStripMenuItem_Click);
+            // 
+            // customerBalanceToolStripMenuItem
+            // 
+            this.customerBalanceToolStripMenuItem.Name = "customerBalanceToolStripMenuItem";
+            this.customerBalanceToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+            this.customerBalanceToolStripMenuItem.Text = "Customer Balance";
+            this.customerBalanceToolStripMenuItem.Click += new System.EventHandler(this.customerBalanceToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem1
             // 
@@ -332,27 +356,6 @@
             this.panel2.Size = new System.Drawing.Size(610, 271);
             this.panel2.TabIndex = 7;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Image = global::PrimeSolutions.Properties.Resources.Prime_logo;
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(92, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(174, 50);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
-            // lbl_developer
-            // 
-            this.lbl_developer.AutoSize = true;
-            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
-            this.lbl_developer.Name = "lbl_developer";
-            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
-            this.lbl_developer.TabIndex = 6;
-            this.lbl_developer.Text = "Developed and \r\nMaintained by";
-            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -363,6 +366,34 @@
             this.panel3.Size = new System.Drawing.Size(274, 62);
             this.panel3.TabIndex = 6;
             // 
+            // lbl_developer
+            // 
+            this.lbl_developer.AutoSize = true;
+            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
+            this.lbl_developer.Name = "lbl_developer";
+            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
+            this.lbl_developer.TabIndex = 6;
+            this.lbl_developer.Text = "Developed and \r\nMaintained by";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.ErrorImage = null;
+            this.pictureBox2.Image = global::PrimeSolutions.Properties.Resources.Prime_logo;
+            this.pictureBox2.InitialImage = null;
+            this.pictureBox2.Location = new System.Drawing.Point(92, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(174, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // balanceSheetToolStripMenuItem1
+            // 
+            this.balanceSheetToolStripMenuItem1.Name = "balanceSheetToolStripMenuItem1";
+            this.balanceSheetToolStripMenuItem1.Size = new System.Drawing.Size(259, 24);
+            this.balanceSheetToolStripMenuItem1.Text = "Balance Sheet";
+            this.balanceSheetToolStripMenuItem1.Click += new System.EventHandler(this.balanceSheetToolStripMenuItem1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -371,6 +402,7 @@
             this.ClientSize = new System.Drawing.Size(669, 351);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -382,9 +414,9 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,6 +457,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbl_developer;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem customerBalanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accountLedgerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceSheetToolStripMenuItem1;
     }
 }
 

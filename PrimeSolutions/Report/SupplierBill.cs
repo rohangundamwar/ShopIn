@@ -25,6 +25,7 @@ namespace PrimeSolutions.Report
         private void SupplierBill_Load(object sender, EventArgs e)
         {
             cmb_BillNo.DataSource = _p.GetSupplierBillNo();
+            cmb_BillNo.SelectedIndex = 1;
         }
 
         private void cmb_BillNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,10 +35,9 @@ namespace PrimeSolutions.Report
             for (int i = 0; i < SupplierItem.Rows.Count; i++)
             {
                 dgv_BillItem.Rows.Add();
-                dgv_BillItem.Rows[i].Cells["Category"].Value = SupplierItem.Rows[i]["category"].ToString();
-                dgv_BillItem.Rows[i].Cells["SubCategory"].Value = SupplierItem.Rows[i]["sub_category"].ToString();
-                dgv_BillItem.Rows[i].Cells["Size"].Value = SupplierItem.Rows[i]["size"].ToString();
-                int qty = _C.getQtySupplier(SupplierItem.Rows[i]["category"].ToString(), SupplierItem.Rows[i]["sub_category"].ToString(), SupplierItem.Rows[i]["size"].ToString(),cmb_BillNo.Text);
+                dgv_BillItem.Rows[i].Cells["Category"].Value = SupplierItem.Rows[i]["Category"].ToString();
+                dgv_BillItem.Rows[i].Cells["SubCategory"].Value = SupplierItem.Rows[i]["SubCategory"].ToString();
+                int qty = _C.getQtySupplier(SupplierItem.Rows[i]["category"].ToString(), SupplierItem.Rows[i]["SubCategory"].ToString(),cmb_BillNo.Text);
                 dgv_BillItem.Rows[i].Cells["Quantity"].Value = qty.ToString();
 
             } 

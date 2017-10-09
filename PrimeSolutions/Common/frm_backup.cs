@@ -15,9 +15,6 @@ namespace PrimeSolutions.Common
     public partial class frm_backup : Form
     {
         SQLHelper _objSqlHelper = new SQLHelper();
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataReader dr;
 
         public frm_backup()
         {
@@ -60,6 +57,11 @@ namespace PrimeSolutions.Common
         private void bttn_backup_Click(object sender, EventArgs e)
         {
             blank("backup");
+        }
+
+        private void bttn_cancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

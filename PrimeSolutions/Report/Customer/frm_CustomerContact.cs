@@ -26,12 +26,11 @@ namespace PrimeSolutions.Report.Customer
             for (int i=0;i<dt.Rows.Count;i++)
             {
                 dgv_Customer.Rows.Add();
-                dgv_Customer.Rows[i].Cells["CustomerName"].Value = dt.Rows[i]["Name"].ToString();
+                dgv_Customer.Rows[i].Cells["CustomerName"].Value = dt.Rows[i]["CustomerName"].ToString();
                 dgv_Customer.Rows[i].Cells["ContactNo"].Value = dt.Rows[i]["ContactNo"].ToString();
                 dgv_Customer.Rows[i].Cells["Address"].Value = dt.Rows[i]["Address"].ToString();
-                DataTable dt1 = _C.GetCustomerItemDeatils(dt.Rows[i]["CustId"].ToString());
-                //get from Bill iTem
-                dgv_Customer.Rows[i].Cells["Item"].Value = dt1.Rows[0]["category"].ToString();
+                dgv_Customer.Rows[i].Cells["GSTIN"].Value = dt.Rows[i]["GSTIN"].ToString();
+                dgv_Customer.Rows[i].Cells["PANNo"].Value = dt.Rows[i]["PanNo"].ToString();
 
             }
             

@@ -23,16 +23,16 @@ namespace PrimeSolutions.Library
             _sql.ExecuteScalar(str);
         }
 
-        internal void InsertItem(string barcode,string category, string subcategory, string Pbill,string type,string Qty,string CGST,string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt,string purchaseamt, string total, string BatchNo,string sellingamt,string HSN,string date)
+        internal void InsertItem(string barcode,string category, string subcategory, string Pbill,string type,string Qty,string CGST,string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt,string purchaseamt, string total, string BatchNo,string sellingamt,string HSN,string date, string BarcodePrint)
         {
-            string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,Softdate,Qty) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','" + date + "')";
+            string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,BarcodePrint) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','"+BarcodePrint+"')";
             _sql.ExecuteScalar(str);
         }
 
         public DataTable GetSupplierBillNo()
         {
             DataTable dt;
-            string str = "select distinct BillNo from PurchaseBillMaster";
+            string str = "select distinct BillNo from SupplierBill";
             dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -40,7 +40,7 @@ namespace PrimeSolutions.Library
         public DataTable GetPurchaseBillItem(string BillNo)
         {
             DataTable dt;
-            string str = "select distinct Category,Sub_Category,Size from BillItem where PurchaseBill = '"+BillNo+"'";
+            string str = "select distinct Category,SubCategory from BillItem where PurchaseBillNo = '" + BillNo+"'";
             dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -48,7 +48,7 @@ namespace PrimeSolutions.Library
         public DataTable GetPurchaseBill()
         {
             DataTable dt;
-            string str = "select * from PurchaseBillMaster ";
+            string str = "select * from SupplierBill ";
             dt = _sql.GetDataTable(str);
             return dt;
         }
