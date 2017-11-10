@@ -41,7 +41,6 @@ namespace PrimeSolutions.Report.Purchase
 
         private void bttn_excel_Click(object sender, EventArgs e)
         {
-            DataTable dt = _p.GetSupplierFromBillNo(dgv_SupplierBill.Rows[0].Cells["BillNo"].Value.ToString());
             _e.exporttoexcel(dgv_SupplierBill, "SupplierBillList", dtp1.Value.ToString("dd_MM_yyyy"));
         }
 

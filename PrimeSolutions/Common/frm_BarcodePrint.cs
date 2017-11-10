@@ -21,6 +21,7 @@ namespace PrimeSolutions.Common
         AllClassFile _objBarcode = new AllClassFile();
         PurchaseCommon _p = new PurchaseCommon();
         frm_ReportViewer _crt = new frm_ReportViewer();
+        cls_Barcode _barcode = new cls_Barcode();
 
         
         private void bttn_View_Click(object sender, EventArgs e)
@@ -113,9 +114,10 @@ namespace PrimeSolutions.Common
                     }
                 }
             }
+
             else if (dtsett.Rows[0]["BarcodeType"].ToString() == "Laser")
             {
-                _crt.PrintBarcode(txt_PBillNo.Text,p);
+                _barcode.PrintBarcodeA4(txt_PBillNo.Text, p);
             }
                 
 

@@ -87,14 +87,14 @@ namespace PrimeSolutions.Library
    
     
     string pat;
-    public bool authontic()
+    public bool authentic()
     {
         bool returnValue = false;
         string ts;
         string dtl;
         DateTime de;
         DateTime dbl;
-        pat = "C:\\WINDOWS" + "\\WinNTService.txt";
+        pat = "C:\\Windows\\WinNTService.txt";
         try
         {
             if (System.IO.File.Exists(pat))

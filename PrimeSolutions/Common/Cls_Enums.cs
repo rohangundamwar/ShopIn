@@ -64,7 +64,7 @@
         VyapariApproval
 
     }
-
+    
     public enum TableNames
     {
         BarcodeMaster = 1,

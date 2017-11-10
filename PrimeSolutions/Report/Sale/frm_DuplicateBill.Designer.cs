@@ -39,11 +39,14 @@
             this.bttn_view = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
             this.bill = new System.Windows.Forms.Label();
+            this.txt_type = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_customer
             // 
+            this.cmb_customer.BackColor = System.Drawing.Color.Cornsilk;
             this.cmb_customer.DisplayMember = "CustomerName";
             this.cmb_customer.FormattingEnabled = true;
             this.cmb_customer.Location = new System.Drawing.Point(105, 32);
@@ -66,6 +69,7 @@
             // 
             this.dgv_Bill.AllowUserToAddRows = false;
             this.dgv_Bill.AllowUserToDeleteRows = false;
+            this.dgv_Bill.BackgroundColor = System.Drawing.Color.Bisque;
             this.dgv_Bill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Bill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -148,11 +152,32 @@
             this.bill.Size = new System.Drawing.Size(0, 13);
             this.bill.TabIndex = 7;
             // 
+            // txt_type
+            // 
+            this.txt_type.AutoSize = true;
+            this.txt_type.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.txt_type.Location = new System.Drawing.Point(259, 66);
+            this.txt_type.Name = "txt_type";
+            this.txt_type.Size = new System.Drawing.Size(0, 13);
+            this.txt_type.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(209, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Type";
+            // 
             // frm_DuplicateBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(349, 283);
+            this.Controls.Add(this.txt_type);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.bill);
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_view);
@@ -183,5 +208,7 @@
         private System.Windows.Forms.Button bttn_view;
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Label bill;
+        private System.Windows.Forms.Label txt_type;
+        private System.Windows.Forms.Label label2;
     }
 }

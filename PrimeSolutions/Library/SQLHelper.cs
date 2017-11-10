@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PrimeSolutions.Library
 {
-   
+
     public class SQLHelper
     {
 
@@ -17,7 +17,7 @@ namespace PrimeSolutions.Library
         {
             ConStingfinder();
         }
-  
+
         public static SqlConnection con;
         public static SqlCommand cmd;
         public static SqlDataAdapter da;
@@ -28,7 +28,6 @@ namespace PrimeSolutions.Library
         {
 
             string line;
-            
 
             // Read the file and display it line by line.
             try
@@ -36,10 +35,14 @@ namespace PrimeSolutions.Library
                 System.IO.StreamReader file = new System.IO.StreamReader(Environment.CurrentDirectory + "\\ConnectionString.txt");
                 while ((line = file.ReadLine()) != null)
                 {
+                    //string Path= Environment.CurrentDirectory;
+                    //clsVariable.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename="+Environment.CurrentDirectory+"\\JewelleryData.mdf;Integrated Security=True;User Instance=True";
+                    // string[] txtsplit = line.Split('=');
+                    // clsVariable.ConnectionString = txtsplit[0] + "=" + txtsplit[1] + "=" + Environment.CurrentDirectory + txtsplit[2] + "=" + txtsplit[3];
                     clsVariable.ConnectionString = line;
-                    con = new SqlConnection(line);
-                    clsVariable.DatabaseName = con.Database;
-                    clsVariable.ConnectionDatabase = con.Database;
+                    //   "+Environment.CurrentDirectory+"
+
+
                 }
 
                 file.Close();
@@ -51,26 +54,6 @@ namespace PrimeSolutions.Library
         }
 
 
-        public string GetConSting()
-        {
-
-            string line="";
-
-            // Read the file and display it line by line.
-            try
-            {
-                System.IO.StreamReader file = new System.IO.StreamReader(Environment.CurrentDirectory + "\\ConnectionString.txt");
-                while ((line = file.ReadLine()) != null)
-                {
-                    clsVariable.DatabaseName = line;
-                }
-                
-                file.Close();
-            }
-            catch { }
-            return line;
-            
-        }
         #region new Connection
         #region Class Level Variable
 
@@ -98,7 +81,7 @@ namespace PrimeSolutions.Library
                 cmd = new SqlCommand();
                 cmd.Connection = con;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Application.Exit();
             }
@@ -151,15 +134,14 @@ namespace PrimeSolutions.Library
             OpenConnection();
             da = new SqlDataAdapter(strsql, con);
             DataTable dt = new DataTable();
-
             da.Fill(dt);
-           
+
             da.Dispose();
             CloseConnection();
             DisposeConnection();
             return dt;
         }
-       
+
         #endregion
 
         #region GetDataSet Method
@@ -274,7 +256,7 @@ namespace PrimeSolutions.Library
         }
 
 
-        #region gmGetMstID Function
+        #region GetMaxID Function
         public string GetMaxID(string MstType, string MstDesc)
         {
             string SQL = "";
@@ -289,9 +271,14 @@ namespace PrimeSolutions.Library
 
             switch (MstType)
             {
-                case "A":
+                case "PR":
 
-                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From vypariMaster Where Right(Left(AccNo,1),1)= 'A'";
+                    SQL = "Select Max(Right(RefrenceNo,5))+1 As MaxID From SupplierBill Where Right(Left(RefrenceNo,2),2)= 'PR'";
+                    break;
+
+                case "PE":
+
+                    SQL = "Select Max(Right(RefrenceNo,5))+1 As MaxID From SupplierBill Where Right(Left(RefrenceNo,2),2)= 'PE'";
                     break;
 
                 case "B":
@@ -303,7 +290,7 @@ namespace PrimeSolutions.Library
 
                     SQL = "Select Max(Right(CustId,4))+1 As MaxID From CustomerMaster Where Right(Left(CustId,1),1)= 'C'";
                     break;
-              
+
 
                 case "D":
 
@@ -399,7 +386,7 @@ namespace PrimeSolutions.Library
 
                 case "Q":
 
-                    SQL = "Select Max(Right(SupplierId,4))+1 As MaxID From SupplierBookingMaster Where Right(Left(SupplierId,1),1)= 'Q'";
+                    SQL = "Select Max(Right(SupplierNo,4))+1 As MaxID From SupplierMaster Where Right(Left(SupplierNo,1),1)= 'Q'";
                     break;
 
 
@@ -419,7 +406,7 @@ namespace PrimeSolutions.Library
 
                 case "T":
 
-                    SQL = "Select Max(Right(ItemCode,4))+1 As MaxID From DiomondBarcodeEntry Where Right(Left(ItemCode,1),1)= 'T'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From CustomerBill Where Right(Left(BillNo,1),1)= 'T'";
                     break;
 
                 case "L":
@@ -427,12 +414,12 @@ namespace PrimeSolutions.Library
                     SQL = "Select Max(Right(BillNo,4))+1 As MaxID From SalesBBillMaster Where Right(Left(BillNo,1),1)= 'L'";
 
                     break;
-               
-               
+
+
                 case "V":
-                   
-                   SQL = "Select Max(Right(BillNo,4))+1 As MaxID From vyapariBillMaster Where Right(Left(BillNo,1),1)= 'V'";
-              
+
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From vyapariBillMaster Where Right(Left(BillNo,1),1)= 'V'";
+
                     break;
 
 
@@ -450,148 +437,12 @@ namespace PrimeSolutions.Library
                     break;
             }
 
-                MCODE = MstType + Left(MstDesc, 3) + Right("0000" + ExecuteScalar(SQL), 4);
-                if (Right(MCODE, 4) == "0000")
-                {
-                    MCODE = MstType + Left(MstDesc, 3) + "0001";
-                }
-          
-
-            return MCODE;
-        }
-
-        public string gmGetMstIDForBooking(string MstType, string MstDesc)
-        {
-            string SQL = "";
-
-            string MCODE = "";
-
-
-            //MstDesc = MstDesc.Trim() + "00";
-            MstDesc = MstDesc.Trim() + "00";
-
-
-
-            switch (MstType)
+            MCODE = MstType + Left(MstDesc, 3) + Right("0000" + ExecuteScalar(SQL), 4);
+            if (Right(MCODE, 4) == "0000")
             {
-                case "J":
-
-                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From vypariBookingMaster Where Right(Left(AccNo,1),1)= 'J'";
-                    break;
-
-                case "B":
-
-                    SQL = "Select Max(Right(BarcodeId,4))+1 As MaxID From tblImitationItemMaster Where Right(Left(BarcodeId,1),1)= 'B'";
-                    break;
-
-                case "C":
-
-                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From SalesBMaster Where Right(Left(AccNo,1),1)= 'C'";
-                    break;
-
-
-                case "D":
-
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From tblImitationBillMaster Where Right(Left(BillNo,1),1)= 'D'";
-                    break;
-
-                case "E":
-
-                    SQL = "Select Max(Right(ItemCode,4))+1 As MaxID From ItemMaster Where Right(Left(ItemCode,1),1)= 'E'";
-                    break;
-
-                case "F":
-
-                    SQL = "Select Max(Right(SupplierId,4))+1 As MaxID From ImitationSupplierMaster Where Right(Left(SupplierId,1),1)= 'F'";
-                    break;
-                case "G":
-
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From tblImitationBillMaster Where Right(Left(BillNo,1),1)= 'G'";
-                    break;
-
-                case "H":
-                    //    SQL = "Select Max(Right(SupplierId,4))+1 As MaxID From SupplierMaster Where Right(Left(SupplierId,6),3)= '" + Left(MstDesc, 3) + "'";
-                    SQL = "Select Max(Right(orderno,4))+1 As MaxID From VyapariOrder Where Right(Left(orderno,1),1)= 'H'";
-                    break;
-
-
-                case "I":
-
-                    SQL = "Select Max(Right(InvoiceNo,4))+1 As MaxID From SupplierBookingBillMaster Where Right(Left(InvoiceNo,1),1)= 'I'";
-                    break;
-
-                case "M":
-
-                    SQL = "Select Max(Right(Mod_ID,4))+1 As MaxID From Mod_Entries Where Right(Left(Mod_ID,1),1)= 'M'";
-                    break;
-
-                case "N":
-
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From tblImitationBillMaster Where Right(Left(BillNo,1),1)= 'N'";
-                    break;
-
-                case "O":
-
-                    SQL = "Select Max(Right(OrderNo,4))+1 As MaxID From OrderMaster Where Right(Left(OrderNo,1),1)= 'O'";
-                    break;
-
-                case "P":
-
-                    SQL = "Select Max(Right(SupplierId,4))+1 As MaxID From SupplierBookingMaster Where Right(Left(SupplierId,1),1)= 'P'";
-                    break;
-
-
-
-                case "R":
-
-                    SQL = "Select Max(Right(RefineID,4))+1 As MaxID From Refinery_Items Where Right(Left(RefineID,1),1)= 'R'";
-                    break;
-
-                case "S":
-
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From SalesBBillMaster Where Right(Left(BillNo,1),1)= 'S'";
-
-                    break;
-
-
-                case "W":
-
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From vyapariBookingBillMaster Where Right(Left(BillNo,1),1)= 'W'";
-
-                    break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-                default:
-                    break;
+                MCODE = MstType + Left(MstDesc, 3) + "0001";
             }
 
-            if (MstType == "INV" || MstType == "KHA" || MstType == "GRV" || MstType == "SUP" || MstType == "ITM" || MstType == "VPB")
-            {
-                MCODE = MstType + Right("0000" + ExecuteScalar(SQL), 4);
-                if (Right(MCODE, 4) == "0000")
-                {
-                    MCODE = MstType + "0001";
-                }
-            }
-            else
-            {
-                MCODE = MstType + Left(MstDesc, 3) + Right("0000" + ExecuteScalar(SQL), 4);
-                if (Right(MCODE, 4) == "0000")
-                {
-                    MCODE = MstType + Left(MstDesc, 3) + "0001";
-                }
-            }
 
             return MCODE;
         }

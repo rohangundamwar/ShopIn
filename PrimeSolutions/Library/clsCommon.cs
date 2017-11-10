@@ -13,6 +13,7 @@ namespace PrimeSolutions.Library
         SQLHelper _objSqlhelper = new SQLHelper();
         //clsCommon _objCommon = new clsCommon();
         Simplevalidations _objSimplevalidations = new Simplevalidations();
+        AllClassFile _objCustmor = new AllClassFile();
 
         public DataTable GetCategory()
         {
@@ -26,6 +27,85 @@ namespace PrimeSolutions.Library
             string str = "SELECT SubCategory from SubCategoryMaster ";
             DataTable dt1 = _objSqlhelper.GetDataTable(str);
             return dt1;
+        }
+
+        public DataTable GetBillItem(string BillNo, string Type)
+        {
+            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "'";
+            DataTable dt = _objSqlhelper.GetDataTable(str);
+            dt.Columns.Add("Amount");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+            }
+            return dt;
+        }
+
+        public void InsertIntoTemp(string BillNo)
+        {
+            DataTable dt = GetBillItem(BillNo, "Purchase");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (!_objCustmor.GetalooseItem(Convert.ToString(dt.Rows[i]["Category"])))
+                {
+                    if (Convert.ToBoolean(dt.Rows[i]["BarcodePrint"]))
+                    {
+                        string barcode;
+                        if (Convert.ToString(dt.Rows[i]["Barcode"]) == "" || Convert.ToString(dt.Rows[i]["Barcode"]) == string.Empty)
+                        {
+                            barcode = _objSqlhelper.GetMaxID("B", "0");
+                        }
+                        else
+                        {
+                            barcode = Convert.ToString(dt.Rows[i]["Barcode"]);
+                        }
+                        int Qty = Convert.ToInt32(dt.Rows[i]["Qty"]);
+                        string Category = Convert.ToString(dt.Rows[i]["Category"]);
+                        string subcategory = Convert.ToString(dt.Rows[i]["SubCategory"]);
+                        string SellingAmt = Convert.ToString(dt.Rows[i]["SellingAmt"]);
+                        for (int j = 0; j < Qty; j++)
+                        {
+                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "') ";
+                            _objSqlhelper.ExecuteScalar(str);
+                        }
+                    }
+                }
+            }
+            //DeleteTemp();
+
+        }
+
+
+        public void DeleteTemp()
+        {
+            string str = "delete from temp";
+            _objSqlhelper.ExecuteScalar(str);
+        }
+        public void setBillNo(string Change)
+        {
+            string str = "update PrintQue set PrintQue='" + Change + "'";
+            _objSqlhelper.ExecuteScalar(str);
+        }
+
+        public string GetChangeBillNo()
+        {
+            string str = "select PrintQue from PrintQue where SrNo='2'";
+            return _objSqlhelper.ExecuteScalar(str);
+        }
+
+        public bool CheckValidity()
+        {
+            string str = "SELECT * from Activation";
+            DataTable dt = _objSqlhelper.GetDataTable(str);
+            DateTime start = Convert.ToDateTime(dt.Rows[0]["StartDate"]);
+            int ValidDays = Convert.ToInt32(dt.Rows[0]["Validity"]);
+            DateTime ValidTo = start.AddDays(ValidDays);
+            DateTime CurrentDate = DateTime.Now;
+            if (CurrentDate > ValidTo)
+                return false;
+            else
+                return true;
         }
 
         public void UpdatePaymentDetailsToPermanentDelete(string VoucherTypeId, string VoucherId)
@@ -73,6 +153,7 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.GetDataTable(str);
         }
 
+
         public void insertServerData( string user, string password)
         {
             string str = "Insert InTo ServerUpload (userId , password) Values ('" + user + "','" + password + "')";
@@ -95,6 +176,7 @@ namespace PrimeSolutions.Library
             _objsetvalue.BarcodeCount = dt.Rows[0]["BarcodeCount"].ToString();
             _objsetvalue.BarcodeType = dt.Rows[0]["BarcodeType"].ToString();
             _objsetvalue.PaymentForm = dt.Rows[0]["PaymentForm"].ToString();
+            _objsetvalue.EstimatePayment = dt.Rows[0]["EstimatePayment"].ToString();
 
             return _objsetvalue;
         }

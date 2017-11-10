@@ -27,8 +27,8 @@ namespace PrimeSolutions.Report.Sale
             dgv_CustomerItem.Rows.Clear();
             DateTime from = dtp_date.Value;
             DateTime to = dtp_ToDate.Value;
-            string frmdate = dtp_date.Value.ToString();
-            string Todate = dtp_ToDate.Value.ToString();
+            string frmdate = dtp_date.Value.ToString("dd/MM/yyyy");
+            string Todate = dtp_ToDate.Value.ToString("dd/MM/yyyy");
             DataTable dt= _s.GetCustomerReport(frmdate,Todate);
             if(dt.Rows.Count>0)
             for (i = 0; i < dt.Rows.Count; i++)
@@ -39,7 +39,7 @@ namespace PrimeSolutions.Report.Sale
                     dgv_CustomerItem.Rows[i].Cells["BillNo"].Value = dt.Rows[i]["BillNo"].ToString();
                     //dgv_CustomerItem.Rows[i].Cells["Name"].Value = dt.Rows[i]["Name"].ToString();
                     dgv_CustomerItem.Rows[i].Cells["Amount"].Value = dt.Rows[i]["GrandAmt"].ToString();
-                    DataTable item = _s.GetBillItem(dt.Rows[i]["BillNo"].ToString());
+                    DataTable item = _s.GetBillItem(dt.Rows[i]["BillNo"].ToString(),"Sale");
                     if(item.Rows.Count>0)
                     dgv_CustomerItem.Rows[i].Cells["Item"].Value = item.Rows[0]["Category"].ToString();
                     string name = _s.GetCustomerByCustid(dt.Rows[i]["CustId"].ToString());

@@ -89,6 +89,8 @@
             this.txt_copy.Name = "txt_copy";
             this.txt_copy.Size = new System.Drawing.Size(100, 20);
             this.txt_copy.TabIndex = 5;
+            this.txt_copy.TextChanged += new System.EventHandler(this.txt_copy_TextChanged);
+            this.txt_copy.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_copy_KeyPress);
             // 
             // PrinterSetting
             // 

@@ -33,6 +33,7 @@ namespace PrimeSolutions.Report
         {
             dtsett = _common.getSettingValue();
             copies = Convert.ToInt32(dtsett.BillCount);
+
             txt_copy.Text = dtsett.BillCount ;
             try
             {
@@ -84,7 +85,13 @@ namespace PrimeSolutions.Report
             
         }
 
-        private void txt_index_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_copy_TextChanged(object sender, EventArgs e)
+        {
+            copies = Convert.ToInt32(txt_copy.Text); 
+                
+        }
+
+        private void txt_copy_KeyPress(object sender, KeyPressEventArgs e)
         {
             _objSimpal.ValidationDigitOnly(e);
         }
