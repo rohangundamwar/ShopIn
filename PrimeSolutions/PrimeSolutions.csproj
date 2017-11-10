@@ -51,7 +51,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
@@ -146,10 +146,52 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\PreetyLooksEstimate.cs">
+      <DependentUpon>PreetyLooksEstimate.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\SupplierPurchase.cs">
+      <DependentUpon>SupplierPurchase.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\PreetyLooksGST.cs">
+      <DependentUpon>PreetyLooksGST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="bin\Debug\BillA5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BillA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PayLedger.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayLedger.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PurchaseBillLedger.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseBillLedger.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PurchaseLedger.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseLedger.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\SaleBillLedger.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleBillLedger.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\SaleLedger.cs">
@@ -207,8 +249,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bill.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\Ledger.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ledger.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Library\ClsFinancialYear.cs" />
     <Compile Include="Library\Cls_BalanceSheet.cs" />
+    <Compile Include="Library\cls_Barcode.cs" />
     <Compile Include="Library\Cls_paymentoption.cs" />
     <Compile Include="Library\CreditDebit.cs" />
     <Compile Include="Library\FinancialStatementSP.cs" />
@@ -274,6 +322,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\frm_EstimatePurchace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frm_EstimatePurchace.Designer.cs">
+      <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchase\frm_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +352,12 @@
     <Compile Include="Report\Customer\frm_CustomerContact.Designer.cs">
       <DependentUpon>frm_CustomerContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Customer\frm_SaleLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Customer\frm_SaleLedger.Designer.cs">
+      <DependentUpon>frm_SaleLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\frm_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +369,24 @@
     </Compile>
     <Compile Include="Report\PrinterSetting.designer.cs">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_PurchaseDuplicateBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_PurchaseDuplicateBill.Designer.cs">
+      <DependentUpon>frm_PurchaseDuplicateBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_PurchaseLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_PurchaseLedger.Designer.cs">
+      <DependentUpon>frm_PurchaseLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_SupplierGSTReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_SupplierGSTReport.Designer.cs">
+      <DependentUpon>frm_SupplierGSTReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Purchase\frm_SupplierBill.cs">
       <SubType>Form</SubType>
@@ -346,6 +424,24 @@
     <Compile Include="Resources\Supplier_Item.Designer.cs">
       <DependentUpon>Supplier_Item.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sale\frm_ChangeBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_ChangeBill.Designer.cs">
+      <DependentUpon>frm_ChangeBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sale\frm_SaleEstimate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_SaleEstimate.Designer.cs">
+      <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sale\frm_SaleUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_SaleUpdate.Designer.cs">
+      <DependentUpon>frm_SaleUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sale\frm_SaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,6 +453,12 @@
     </Compile>
     <Compile Include="Purchase\frm_PurchaceForm.Designer.cs">
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sale\frm_UpdateBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_UpdateBill.Designer.cs">
+      <DependentUpon>frm_UpdateBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Accounting\frmAccountLedger.resx">
@@ -381,16 +483,41 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeRPT.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\Bill.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PreetyLooksEstimate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PreetyLooksEstimate.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\SupplierPurchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SupplierPurchase.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PreetyLooksGST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PreetyLooksGST.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PayLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PurchaseBillLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseBillLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PurchaseLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\SaleBillLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SaleBillLedger.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\SaleLedger.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -445,6 +572,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frm_EstimatePurchace.resx">
+      <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\CrystalReoprt\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -454,11 +584,23 @@
     <EmbeddedResource Include="Report\Customer\frm_CustomerContact.resx">
       <DependentUpon>frm_CustomerContact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Customer\frm_SaleLedger.resx">
+      <DependentUpon>frm_SaleLedger.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrinterSetting.resx">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\frm_PurchaseDuplicateBill.resx">
+      <DependentUpon>frm_PurchaseDuplicateBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\frm_PurchaseLedger.resx">
+      <DependentUpon>frm_PurchaseLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\frm_SupplierGSTReport.resx">
+      <DependentUpon>frm_SupplierGSTReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_SupplierBill.resx">
       <DependentUpon>frm_SupplierBill.cs</DependentUpon>
@@ -472,18 +614,29 @@
     <EmbeddedResource Include="Report\Sale\frm_SaleReport.resx">
       <DependentUpon>frm_SaleReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Stock.rdlc" />
     <EmbeddedResource Include="Report\SupplierBill.resx">
       <DependentUpon>SupplierBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Supplier_Item.resx">
       <DependentUpon>Supplier_Item.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_ChangeBill.resx">
+      <DependentUpon>frm_ChangeBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_SaleEstimate.resx">
+      <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_SaleUpdate.resx">
+      <DependentUpon>frm_SaleUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_SaleForm.resx">
       <DependentUpon>frm_SaleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchase\frm_PurchaceForm.resx">
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_UpdateBill.resx">
+      <DependentUpon>frm_UpdateBill.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="bin\Debug\Barcode.btw" />
@@ -512,6 +665,17 @@
     </None>
     <None Include="Dataset\Bill.xss">
       <DependentUpon>Bill.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Ledger.xsc">
+      <DependentUpon>Ledger.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Ledger.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ledger.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\Ledger.xss">
+      <DependentUpon>Ledger.xsd</DependentUpon>
     </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -546,17 +710,18 @@
     <Content Include="bin\Debug\PrimeSolutions.exe" />
     <Content Include="bin\Debug\PrimeSolutions.pdb" />
     <Content Include="bin\Debug\PrimeSolutions.vshost.exe" />
-    <Content Include="favicon.ico" />
+    <Content Include="icon.ico" />
     <Content Include="obj\Debug\PrimeSolutions.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\PrimeSolutions.exe" />
     <Content Include="obj\Debug\PrimeSolutions.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\icon.ico" />
+    <None Include="Resources\check.png" />
     <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />
     <None Include="Resources\Add.png" />
     <None Include="Resources\Canada-Leaf-PNG-Image.png" />
-    <Content Include="Resources\favicon.ico" />
     <None Include="Resources\New Doc 22.jpg" />
     <Content Include="Resources\Settings.png" />
     <None Include="Resources\Settings1.png" />

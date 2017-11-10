@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.pnl_Date = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.bttn_Print = new System.Windows.Forms.Button();
             this.txt_PBillNo = new System.Windows.Forms.ComboBox();
             this.bttn_BillNoView = new System.Windows.Forms.Button();
             this.bttn_View = new System.Windows.Forms.Button();
@@ -49,8 +51,6 @@
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bttn_Print = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnl_Date.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BarcodeDetail)).BeginInit();
             this.SuspendLayout();
@@ -73,6 +73,30 @@
             this.pnl_Date.Name = "pnl_Date";
             this.pnl_Date.Size = new System.Drawing.Size(846, 511);
             this.pnl_Date.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(465, 475);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.TabIndex = 356;
+            this.button1.Text = "Close";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // bttn_Print
+            // 
+            this.bttn_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttn_Print.ForeColor = System.Drawing.Color.Green;
+            this.bttn_Print.Location = new System.Drawing.Point(302, 475);
+            this.bttn_Print.Name = "bttn_Print";
+            this.bttn_Print.Size = new System.Drawing.Size(75, 25);
+            this.bttn_Print.TabIndex = 355;
+            this.bttn_Print.Text = "Print";
+            this.bttn_Print.UseVisualStyleBackColor = true;
+            this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
             // 
             // txt_PBillNo
             // 
@@ -112,11 +136,13 @@
             // 
             this.rbt_SellectAll.AutoSize = true;
             this.rbt_SellectAll.BackColor = System.Drawing.SystemColors.Control;
+            this.rbt_SellectAll.Checked = true;
             this.rbt_SellectAll.ForeColor = System.Drawing.Color.Black;
             this.rbt_SellectAll.Location = new System.Drawing.Point(190, 11);
             this.rbt_SellectAll.Name = "rbt_SellectAll";
             this.rbt_SellectAll.Size = new System.Drawing.Size(69, 17);
             this.rbt_SellectAll.TabIndex = 350;
+            this.rbt_SellectAll.TabStop = true;
             this.rbt_SellectAll.Text = "Select All";
             this.rbt_SellectAll.UseVisualStyleBackColor = false;
             // 
@@ -249,30 +275,6 @@
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
-            // 
-            // bttn_Print
-            // 
-            this.bttn_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttn_Print.ForeColor = System.Drawing.Color.Green;
-            this.bttn_Print.Location = new System.Drawing.Point(302, 475);
-            this.bttn_Print.Name = "bttn_Print";
-            this.bttn_Print.Size = new System.Drawing.Size(75, 25);
-            this.bttn_Print.TabIndex = 355;
-            this.bttn_Print.Text = "Print";
-            this.bttn_Print.UseVisualStyleBackColor = true;
-            this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(465, 475);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
-            this.button1.TabIndex = 356;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // frm_BarcodePrint
             // 

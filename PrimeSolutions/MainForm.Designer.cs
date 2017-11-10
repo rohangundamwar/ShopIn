@@ -28,25 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gSTSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barcodeEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.balanceSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceSheetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openingBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseBilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDatatabseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,12 +72,17 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pnl_ActivateMsg = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.balanceSheetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleBillToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.pnl_ActivateMsg.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -79,18 +96,22 @@
             this.saleToolStripMenuItem,
             this.purchaseToolStripMenuItem,
             this.accountingToolStripMenuItem,
+            this.updateToolStripMenuItem,
             this.reportToolStripMenuItem,
             this.masterToolStripMenuItem,
             this.settingToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(138, 351);
+            this.menuStrip1.Size = new System.Drawing.Size(138, 439);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // saleToolStripMenuItem
             // 
+            this.saleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gSTSaleToolStripMenuItem,
+            this.estimateToolStripMenuItem});
             this.saleToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.saleToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.cart_5;
             this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
@@ -99,23 +120,39 @@
             this.saleToolStripMenuItem.Text = "  Sale";
             this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
             // 
+            // gSTSaleToolStripMenuItem
+            // 
+            this.gSTSaleToolStripMenuItem.Name = "gSTSaleToolStripMenuItem";
+            this.gSTSaleToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.gSTSaleToolStripMenuItem.Text = "GST Sale";
+            this.gSTSaleToolStripMenuItem.Click += new System.EventHandler(this.gSTSaleToolStripMenuItem_Click);
+            // 
+            // estimateToolStripMenuItem
+            // 
+            this.estimateToolStripMenuItem.Name = "estimateToolStripMenuItem";
+            this.estimateToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.estimateToolStripMenuItem.Text = "Estimate";
+            this.estimateToolStripMenuItem.Click += new System.EventHandler(this.estimateToolStripMenuItem_Click);
+            // 
             // purchaseToolStripMenuItem
             // 
             this.purchaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplierToolStripMenuItem,
-            this.barcodeEntryToolStripMenuItem});
+            this.barcodeEntryToolStripMenuItem,
+            this.purchaseItemToolStripMenuItem});
             this.purchaseToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.purchaseToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.cart_13;
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
             this.purchaseToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
             this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
             this.purchaseToolStripMenuItem.Text = "  Purchase";
+            this.purchaseToolStripMenuItem.Click += new System.EventHandler(this.purchaseToolStripMenuItem_Click);
             // 
             // supplierToolStripMenuItem
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -123,9 +160,16 @@
             // 
             this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.barcodeEntryToolStripMenuItem.Text = "Barcode Reprint";
             this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
+            // 
+            // purchaseItemToolStripMenuItem
+            // 
+            this.purchaseItemToolStripMenuItem.Name = "purchaseItemToolStripMenuItem";
+            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.purchaseItemToolStripMenuItem.Text = "Purchase Item";
+            this.purchaseItemToolStripMenuItem.Click += new System.EventHandler(this.purchaseItemToolStripMenuItem_Click);
             // 
             // accountingToolStripMenuItem
             // 
@@ -171,6 +215,13 @@
             this.accountLedgerToolStripMenuItem.Text = "Account Ledger";
             this.accountLedgerToolStripMenuItem.Click += new System.EventHandler(this.accountLedgerToolStripMenuItem_Click);
             // 
+            // balanceSheetToolStripMenuItem1
+            // 
+            this.balanceSheetToolStripMenuItem1.Name = "balanceSheetToolStripMenuItem1";
+            this.balanceSheetToolStripMenuItem1.Size = new System.Drawing.Size(259, 24);
+            this.balanceSheetToolStripMenuItem1.Text = "Balance Sheet";
+            this.balanceSheetToolStripMenuItem1.Click += new System.EventHandler(this.balanceSheetToolStripMenuItem1_Click);
+            // 
             // openingBalanceToolStripMenuItem
             // 
             this.openingBalanceToolStripMenuItem.Name = "openingBalanceToolStripMenuItem";
@@ -178,8 +229,36 @@
             this.openingBalanceToolStripMenuItem.Text = "Customer Opening Balance";
             this.openingBalanceToolStripMenuItem.Click += new System.EventHandler(this.openingBalanceToolStripMenuItem_Click_1);
             // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saleBillToolStripMenuItem,
+            this.purchaseBilToolStripMenuItem});
+            this.updateToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.updateToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.check;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
+            this.updateToolStripMenuItem.Text = "Update";
+            // 
+            // saleBillToolStripMenuItem
+            // 
+            this.saleBillToolStripMenuItem.Name = "saleBillToolStripMenuItem";
+            this.saleBillToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+            this.saleBillToolStripMenuItem.Text = "Sale Bill";
+            this.saleBillToolStripMenuItem.Click += new System.EventHandler(this.saleBillToolStripMenuItem_Click);
+            // 
+            // purchaseBilToolStripMenuItem
+            // 
+            this.purchaseBilToolStripMenuItem.Name = "purchaseBilToolStripMenuItem";
+            this.purchaseBilToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+            this.purchaseBilToolStripMenuItem.Text = "Purchase Bill";
+            this.purchaseBilToolStripMenuItem.Click += new System.EventHandler(this.purchaseBilToolStripMenuItem_Click);
+            // 
             // reportToolStripMenuItem
             // 
+            this.reportToolStripMenuItem.Checked = true;
+            this.reportToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saleToolStripMenuItem1,
             this.purchaseToolStripMenuItem1,
@@ -197,7 +276,9 @@
             this.saleToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customerDailyReportToolStripMenuItem,
             this.customerDatatabseToolStripMenuItem,
-            this.customerBalanceToolStripMenuItem});
+            this.customerBalanceToolStripMenuItem,
+            this.saleLedgerToolStripMenuItem,
+            this.customerGSTReportToolStripMenuItem});
             this.saleToolStripMenuItem1.Name = "saleToolStripMenuItem1";
             this.saleToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.saleToolStripMenuItem1.Text = "Sale";
@@ -223,11 +304,26 @@
             this.customerBalanceToolStripMenuItem.Text = "Customer Balance";
             this.customerBalanceToolStripMenuItem.Click += new System.EventHandler(this.customerBalanceToolStripMenuItem_Click);
             // 
+            // saleLedgerToolStripMenuItem
+            // 
+            this.saleLedgerToolStripMenuItem.Name = "saleLedgerToolStripMenuItem";
+            this.saleLedgerToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+            this.saleLedgerToolStripMenuItem.Text = "Sale Ledger";
+            this.saleLedgerToolStripMenuItem.Click += new System.EventHandler(this.saleLedgerToolStripMenuItem_Click);
+            // 
+            // customerGSTReportToolStripMenuItem
+            // 
+            this.customerGSTReportToolStripMenuItem.Name = "customerGSTReportToolStripMenuItem";
+            this.customerGSTReportToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+            this.customerGSTReportToolStripMenuItem.Text = "Customer GST Report";
+            // 
             // purchaseToolStripMenuItem1
             // 
             this.purchaseToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplierDailyReportToolStripMenuItem,
-            this.supplierBillDetailsToolStripMenuItem});
+            this.supplierBillDetailsToolStripMenuItem,
+            this.purchaseLedgerToolStripMenuItem,
+            this.supplierGSTReportToolStripMenuItem});
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
             this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.purchaseToolStripMenuItem1.Text = "Purchase";
@@ -246,8 +342,25 @@
             this.supplierBillDetailsToolStripMenuItem.Text = "Supplier Bill Details";
             this.supplierBillDetailsToolStripMenuItem.Click += new System.EventHandler(this.supplierBillDetailsToolStripMenuItem_Click);
             // 
+            // purchaseLedgerToolStripMenuItem
+            // 
+            this.purchaseLedgerToolStripMenuItem.Name = "purchaseLedgerToolStripMenuItem";
+            this.purchaseLedgerToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
+            this.purchaseLedgerToolStripMenuItem.Text = "Purchase Ledger";
+            this.purchaseLedgerToolStripMenuItem.Click += new System.EventHandler(this.purchaseLedgerToolStripMenuItem_Click);
+            // 
+            // supplierGSTReportToolStripMenuItem
+            // 
+            this.supplierGSTReportToolStripMenuItem.Name = "supplierGSTReportToolStripMenuItem";
+            this.supplierGSTReportToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
+            this.supplierGSTReportToolStripMenuItem.Text = "Supplier GST Report";
+            this.supplierGSTReportToolStripMenuItem.Click += new System.EventHandler(this.supplierGSTReportToolStripMenuItem_Click);
+            // 
             // duplicateBillToolStripMenuItem
             // 
+            this.duplicateBillToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saleBillToolStripMenuItem1,
+            this.purchaseToolStripMenuItem2});
             this.duplicateBillToolStripMenuItem.Name = "duplicateBillToolStripMenuItem";
             this.duplicateBillToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
             this.duplicateBillToolStripMenuItem.Text = "Duplicate Bill";
@@ -345,23 +458,44 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(138, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(531, 351);
+            this.panel1.Size = new System.Drawing.Size(580, 439);
             this.panel1.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.AutoSize = true;
-            this.panel2.Location = new System.Drawing.Point(7, 6);
+            this.panel2.Controls.Add(this.pnl_ActivateMsg);
+            this.panel2.Location = new System.Drawing.Point(7, 9);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(610, 271);
+            this.panel2.Size = new System.Drawing.Size(565, 359);
             this.panel2.TabIndex = 7;
+            // 
+            // pnl_ActivateMsg
+            // 
+            this.pnl_ActivateMsg.Controls.Add(this.label1);
+            this.pnl_ActivateMsg.Location = new System.Drawing.Point(132, 86);
+            this.pnl_ActivateMsg.Name = "pnl_ActivateMsg";
+            this.pnl_ActivateMsg.Size = new System.Drawing.Size(312, 156);
+            this.pnl_ActivateMsg.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(21, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 60);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "For Activation Please Contact \r\n         +91-9766918326\r\n         +91-8983151118\r" +
+    "\n";
             // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.lbl_developer);
             this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(257, 283);
+            this.panel3.Location = new System.Drawing.Point(306, 371);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(274, 62);
             this.panel3.TabIndex = 6;
@@ -380,40 +514,52 @@
             this.pictureBox2.ErrorImage = null;
             this.pictureBox2.Image = global::PrimeSolutions.Properties.Resources.Prime_logo;
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(92, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(95, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(174, 50);
+            this.pictureBox2.Size = new System.Drawing.Size(170, 54);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
-            // balanceSheetToolStripMenuItem1
+            // saleBillToolStripMenuItem1
             // 
-            this.balanceSheetToolStripMenuItem1.Name = "balanceSheetToolStripMenuItem1";
-            this.balanceSheetToolStripMenuItem1.Size = new System.Drawing.Size(259, 24);
-            this.balanceSheetToolStripMenuItem1.Text = "Balance Sheet";
-            this.balanceSheetToolStripMenuItem1.Click += new System.EventHandler(this.balanceSheetToolStripMenuItem1_Click);
+            this.saleBillToolStripMenuItem1.Name = "saleBillToolStripMenuItem1";
+            this.saleBillToolStripMenuItem1.Size = new System.Drawing.Size(163, 24);
+            this.saleBillToolStripMenuItem1.Text = "Sale Bill";
+            this.saleBillToolStripMenuItem1.Click += new System.EventHandler(this.saleBillToolStripMenuItem1_Click);
+            // 
+            // purchaseToolStripMenuItem2
+            // 
+            this.purchaseToolStripMenuItem2.Name = "purchaseToolStripMenuItem2";
+            this.purchaseToolStripMenuItem2.Size = new System.Drawing.Size(163, 24);
+            this.purchaseToolStripMenuItem2.Text = "Purchase Bill";
+            this.purchaseToolStripMenuItem2.Click += new System.EventHandler(this.purchaseToolStripMenuItem2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(669, 351);
+            this.ClientSize = new System.Drawing.Size(718, 439);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "ShopIn...........By-Prime Solution";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.pnl_ActivateMsg.ResumeLayout(false);
+            this.pnl_ActivateMsg.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -460,6 +606,20 @@
         private System.Windows.Forms.ToolStripMenuItem customerBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountLedgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem balanceSheetToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem purchaseLedgerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saleLedgerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gSTSaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem estimateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerGSTReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierGSTReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saleBillToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseBilToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_ActivateMsg;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem saleBillToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem2;
     }
 }
 

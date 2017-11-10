@@ -3,11 +3,9 @@ using System.Data;
 using System.Drawing.Printing;
 using System.Drawing;
 using PrimeSolutions.Report;
-using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing.Imaging;
+using PrimeSolutions.Common;
 
 namespace PrimeSolutions.Library
 {
@@ -16,17 +14,14 @@ namespace PrimeSolutions.Library
         SQLHelper _sql = new SQLHelper();
         AllClassFile _a = new AllClassFile();
         DataTable dtSett;
-        PrinterSetting _objPrinterSetting = new PrinterSetting();
-        private int m_currentPageIndex;
-        private IList<Stream> m_streams;
+        clsCommon _common = new clsCommon();
+
         Cls_BalanceSheet _objCeditDebit = new Cls_BalanceSheet();
-
-
-
         string BillNo;
-        public void AddBillDetails(string BillNo, string CustomerId, string date, string amount, string CGST, string SGST, string IGST, string GrandAmt, string State)
+
+        public void AddBillDetails(string BillNo, string CustomerId, string date, string amount, string CGST, string SGST, string IGST, string GrandAmt, string State,string BillAmt,string Dissount,string Type)
         {
-            string str = "Insert into CustomerBill(BillNo,CustId,Date,Amount,CGST,SGST,IGST,GrandAmt,State)Values('" + BillNo + "','" + CustomerId + "','" + date + "','" + amount + "','" + CGST + "','" + SGST + "','" + IGST + "','" + GrandAmt + "','" + State + "')";
+            string str = "Insert into CustomerBill(BillNo,CustId,Date,Amount,CGST,SGST,IGST,GrandAmt,State,BillAmount,Discount,Type)Values('" + BillNo + "','" + CustomerId + "','" + date + "','" + amount + "','" + CGST + "','" + SGST + "','" + IGST + "','" + GrandAmt + "','" + State + "','"+BillAmt+"','"+Dissount+"','"+Type+"')";
             _sql.ExecuteSql(str);
         }
 
@@ -55,6 +50,49 @@ namespace PrimeSolutions.Library
             _objCeditDebit.insertCreditDebitDetails(legderid: transactionLedgerID, debit: AmountPaid, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
         }
 
+        public void insertcreditDebitWithPaymentForReceiptVoucher(string customerLedgerID, string VouchertypeID, string sbillno, string transactionLedgerID, string AmountPaid, string Narration, string Date, string name)
+        {
+            _objCeditDebit.insertCreditDebitDetails(legderid: customerLedgerID, debit: "0", credit: AmountPaid, ChequeNo: null, chequeDate: null, date: Date, type: "Cr", FromAccount: "Cash/Bank", Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+            _objCeditDebit.insertCreditDebitDetails(legderid: transactionLedgerID, debit: AmountPaid, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+        }
+
+
+        public void insertcreditDebitWithPaymentForPaymentVoucher(string customerLedgerID, string VouchertypeID, string sbillno, string transactionLedgerID, string AmountPaid, string Narration, string Date, string name)
+        {
+            _objCeditDebit.insertCreditDebitDetails(legderid: customerLedgerID, debit: AmountPaid, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: "Cash/Bank", Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+            _objCeditDebit.insertCreditDebitDetails(legderid: transactionLedgerID, debit: "0", credit: AmountPaid, ChequeNo: null, chequeDate: null, date: Date, type: "Cr", FromAccount: name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+        }
+
+        public void InsertCreditDebitInSalesAccount(string customerLedgerID, string VouchertypeID, string sbillno, string Name, string Amount, string Narration, string Date)
+        {
+            string TransactionSalesAccount = _common.getALLTableDetails(sTableName: TableNames.AccountLedger, sColomnName: "Name", sColumnValue: "Sales Account").Rows[0]["ledgerId"].ToString();
+            _objCeditDebit.insertCreditDebitDetails(legderid: TransactionSalesAccount, debit: "0", credit: Amount, ChequeNo: null, chequeDate: null, date: Date, type: "Cr", FromAccount: Name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+            _objCeditDebit.insertCreditDebitDetails(legderid: customerLedgerID, debit: Amount, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: "Sales Account", Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+        }
+
+        public void InsertCreditDebitInSalesAccountForPaymentVoucher(string customerLedgerID, string VouchertypeID, string sbillno, string Name, string Amount, string Narration, string Date)
+        {
+            string TransactionSalesAccount = _common.getALLTableDetails(sTableName: TableNames.AccountLedger, sColomnName: "Name", sColumnValue: "Sales Account").Rows[0]["ledgerId"].ToString();
+            _objCeditDebit.insertCreditDebitDetails(legderid: TransactionSalesAccount, debit: Amount, credit: "0", ChequeNo: null, chequeDate: null, date: Date, type: "Dr", FromAccount: Name, Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+            _objCeditDebit.insertCreditDebitDetails(legderid: customerLedgerID, debit: "0", credit: Amount, ChequeNo: null, chequeDate: null, date: Date, type: "Cr", FromAccount: "Sales Account", Narration: Narration, VoucherTypeID: VouchertypeID, VoucherNo: sbillno);
+        }
+
+        public string insertAcountLedgerDetail(string Vouchertypeid, string AccNo, string Name, string Narration, string Date, string openingBalance = "0")
+        {
+            string CustomerLedgerID = "";
+            DataTable dtAcountLedger = _common.getALLTableDetails(sTableName: TableNames.AccountLedger, sColomnName: "Name", sColumnValue: Name.Trim());
+            string sundrydebitor = _common.getALLTableDetails(sTableName: TableNames.AccountNature, sColomnName: "Under", sColumnValue: "Sundry Debtors").Rows[0]["accountGroupId"].ToString();
+            if (dtAcountLedger.Rows.Count == 0)
+            {
+                CustomerLedgerID = _objCeditDebit.insertAccountLedger(name: Name, account_groupId: sundrydebitor, opning_bal: openingBalance, transaction_type: "Dr", narration: Narration, BankAccNo: null, NameOfBranch: null, BranchCode: null, AccNo: AccNo, Date: Date, financialYearId: 1, VoucherTypeID: Vouchertypeid);
+            }
+            else
+            {
+                CustomerLedgerID = dtAcountLedger.Rows[0]["ledgerid"].ToString();
+            }
+            return CustomerLedgerID;
+        }
+
         public DataTable selectAccountLedgerDetail(string StartDate, string EndDate, string GroupID, string LedgerID)
         {
             string str = "";
@@ -68,27 +106,60 @@ namespace PrimeSolutions.Library
 
         public DataTable GetItemDetailsByCategoySubCategory(string category, string subcategory)
         {
-            string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='"+subcategory+"'";
+            string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='" + subcategory + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
-        public double GetBalance(string Name)
+        public DataTable GetItemDetailsByCategoySubCategorySize(string category, string subcategory,string size)
         {
-            string str = "Select CustId From CustomerMaster where CustomerName = '" + Name + "'";
+            string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='"+subcategory+ "' and Size = '" + size + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public double GetBalance(string Name,string Type)
+        {
+            string str = "";
+            double BillAmt = 0.0;
+            if (Type == "Sale")
+            {
+                str = "Select CustId From CustomerMaster where CustomerName = '" + Name + "'";
+            }
+            else if (Type == "Purchase")
+            {
+                str = "Select SupplierNo From SupplierMaster where Name = '" + Name + "'";
+            }
             string CustId = _sql.ExecuteScalar(str);
-            double BillAmt = GetTotalPurchase(CustId);
+            if (Type == "Sale")
+            {
+               BillAmt = GetTotalPurchase(CustId, Type);
+            }
+            else if (Type == "Purchase")
+            {
+               BillAmt = GetTotalSupplierPurchase(CustId, Type);
+            }
+
             double PaidAmt = GetTotalPaid(CustId);
             double opening = GetOpening(CustId);
             double bal = (opening + BillAmt) - PaidAmt;
             return bal;
         }
 
-        public Double GetTotalPurchase(string CustId)
+
+        public Double GetTotalPurchase(string CustId, string type)
         {
-            string str1 = "Select GrandAmt From CustomerBill where CustId = '" + CustId + "'";
+            string str1 = "Select BillAmount From CustomerBill where CustId = '" + CustId + "'";
             DataTable dt = _sql.GetDataTable(str1);
-            double BillAmt = _a.sumDataTableColumn(dt, "GrandAmt");
+            double BillAmt = _a.sumDataTableColumn(dt, "BillAmount");
+            return (BillAmt);
+        }
+
+        public Double GetTotalSupplierPurchase(string CustId,string type)
+        {
+            string str1 = "Select Amount From SupplierBill where SupplierNo = '" + CustId + "'";
+            DataTable dt = _sql.GetDataTable(str1);
+            double BillAmt = _a.sumDataTableColumn(dt, "Amount");
             return (BillAmt);
         }
 
@@ -117,14 +188,14 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public DataTable GetBillItem(string BillNo)
+        public DataTable GetBillItem(string BillNo, string Type)
         {
-            string str = "Select * from BillItem where SaleBillNo = '" + BillNo + "'";
+            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "'";
             DataTable dt = _sql.GetDataTable(str);
             dt.Columns.Add("Amount");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2)) ;
+                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
             }
             return dt;
         }
@@ -143,7 +214,13 @@ namespace PrimeSolutions.Library
             string str2 = "select * from CustomerMaster where CustId = '" + CustId + "'";
             DataTable dt = _sql.GetDataTable(str2);
             return dt;
+        }
 
+        public DataTable GetSupplierByBill(string BillNo)
+        {
+            string str = "SELECT  dbo.SupplierMaster.SupplierNo, dbo.SupplierMaster.Name, dbo.SupplierMaster.state, dbo.SupplierMaster.Address, dbo.SupplierMaster.ContactNo, dbo.SupplierMaster.PanNo,dbo.SupplierMaster.GSTIN, dbo.SupplierMaster.City FROM dbo.SupplierBill INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE(dbo.SupplierBill.RefrenceNo = '" + BillNo+"')";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
         }
 
         public DataTable GetCustomerDetails(string Name)
@@ -160,9 +237,23 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public DataTable GetAllCustomer()
+        {
+            string str = "Select CustId,CustomerName From CustomerMaster ";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
         public DataTable GetCustomerBill(string id)
         {
-            string str = "select BillNo,GrandAmt,Date from CustomerBill where CustId='" + id + "'";
+            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "'";
+            DataTable dt1 = _sql.GetDataTable(str);
+            return dt1;
+        }
+
+        public DataTable GetCustomerPayment(string id)
+        {
+            string str = "Select * from Payment where Type='Sale'and Id='"+id+"'";
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
@@ -184,7 +275,7 @@ namespace PrimeSolutions.Library
             string CustName="" ;
             string CustCont="";
             DataTable BillDetail = GetBillDetails(Billx);
-            DataTable BillItem = GetBillItem(Billx);
+            DataTable BillItem = GetBillItem(Billx,"Sale");
             DataTable company = GetCompanydetails();
             DataTable Customer = GetCustomerByBill(Billx);
             dtSett = _a.getallssetting();

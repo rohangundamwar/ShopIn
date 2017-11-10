@@ -13,6 +13,7 @@ using PrimeSolutions.Report.Customer;
 using PrimeSolutions.Report.Sale;
 using PrimeSolutions.Report.Purchase;
 using PrimeSolutions.Accounting;
+using PrimeSolutions.Sale;
 
 namespace PrimeSolutions
 {
@@ -22,6 +23,9 @@ namespace PrimeSolutions
         {
             InitializeComponent();
         }
+
+        clsCommon _common = new clsCommon();
+
 
         private void supplierDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -45,15 +49,7 @@ namespace PrimeSolutions
 
         private void saleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frm_SaleForm _form = new frm_SaleForm();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
-            _form.Dock = DockStyle.Fill;
-            _form.Show();
+            
         }
 
         private void stockCheckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,21 +107,13 @@ namespace PrimeSolutions
         
         private void duplicateBillToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frm_DuplicateBill _d = new frm_DuplicateBill();
-            _d.ShowDialog();
+            
         }
 
         private void supplierBillDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_SupplierBill _form = new frm_SupplierBill();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
-            _form.Dock = DockStyle.Fill;
-            _form.Show();
+            _form.ShowDialog();
         }
 
         private void prefrencesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -140,11 +128,11 @@ namespace PrimeSolutions
             {
                 frm_PurchaseForm _form = new frm_PurchaseForm();
                 this.IsMdiContainer = true;
-                _form.TopLevel = false;
-                panel2.Controls.Add(_form);
-                _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                panel2.Height = _form.Height;
-                panel2.Width = _form.Width;
+                //_form.TopLevel = false;
+                //panel2.Controls.Add(_form);
+                //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                //panel2.Height = _form.Height;
+                //panel2.Width = _form.Width;
                 _form.Dock = DockStyle.Fill;
                 _form.Show();
             }
@@ -153,11 +141,11 @@ namespace PrimeSolutions
             {
                 frm_SaleForm _form = new frm_SaleForm();
                 this.IsMdiContainer = true;
-                _form.TopLevel = false;
-                panel2.Controls.Add(_form);
-                _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                panel2.Height = _form.Height;
-                panel2.Width = _form.Width;
+                //_form.TopLevel = false;
+                //panel2.Controls.Add(_form);
+                //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                //panel2.Height = _form.Height;
+                //panel2.Width = _form.Width;
                 _form.Dock = DockStyle.Fill;
                 _form.Show();
             }
@@ -172,12 +160,11 @@ namespace PrimeSolutions
         private void supplierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_PurchaseForm _form = new frm_PurchaseForm();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
+            //_form.TopLevel = false;
+            //panel2.Controls.Add(_form);
+            //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //panel2.Height = _form.Height;
+            //panel2.Width = _form.Width;
             _form.Dock = DockStyle.Fill;
             _form.Show();
         }
@@ -269,6 +256,87 @@ namespace PrimeSolutions
         private void balanceSheetToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmBalanceSheet _form = new frmBalanceSheet();
+            _form.ShowDialog();
+        }
+
+        private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void purchaseLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_PurchaseLedger _form = new frm_PurchaseLedger();
+            //_form.MdiParent = this;
+            //_form.TopMost = true;
+            _form.ShowDialog();
+        }
+
+        private void saleLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SaleLedger _form = new frm_SaleLedger();
+            _form.ShowDialog();
+        }
+
+        private void purchaseItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_EstimatePurchace _form = new frm_EstimatePurchace();
+            _form.ShowDialog();
+        }
+
+        private void gSTSaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SaleForm _form = new frm_SaleForm();
+            _form.MdiParent = this;
+            _form.ShowDialog();
+        }
+
+        private void estimateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SaleEstimate _form = new frm_SaleEstimate();
+            _form.ShowDialog();
+        }
+
+        private void supplierGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SupplierGSTReport _form = new frm_SupplierGSTReport();
+            _form.ShowDialog();
+        }
+
+        private void purchaseBilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }  
+
+        private void saleBillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_ChangeBill _form = new frm_ChangeBill();
+            _form.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            bool Valid = _common.CheckValidity();
+            if (Valid)
+            {
+                pnl_ActivateMsg.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Validity Expired \n Please Contact Service Provider\n +91-9766918326 \n +91-8983151118");
+                menuStrip1.Visible = false;
+            }
+        }
+
+        private void saleBillToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frm_DuplicateBill _d = new frm_DuplicateBill();
+            _d.ShowDialog();
+        }
+
+        private void purchaseToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frm_PurchaseDuplicateBill _form = new frm_PurchaseDuplicateBill();
             _form.ShowDialog();
         }
     }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Library;
 using PrimeSolutions.Report.CrystalReport;
@@ -22,6 +17,7 @@ namespace PrimeSolutions.Report.Sale
         public delegate void SendData(string BillNO,string Type);
         frm_ReportViewer _r = new frm_ReportViewer();
         DataTable dt;
+        DataTable dt1;
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {
@@ -33,7 +29,18 @@ namespace PrimeSolutions.Report.Sale
         {
             try
             {
-                _r.CustomerBill(bill.Text,"Print");
+                if (txt_type.Text == "GST")
+                {
+                    CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
+                    _obj(bill.Text, "Print");
+                }
+                else if (txt_type.Text == "Estimate")
+                {
+                    CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
+                    _obj(bill.Text, "Print");
+                }
             }
             catch (Exception ex)
             {
@@ -50,14 +57,14 @@ namespace PrimeSolutions.Report.Sale
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = cmb_customer.SelectedIndex.ToString();
-            DataTable dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
+            dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
             dgv_Bill.Rows.Clear();
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 dgv_Bill.Rows.Add();
                 dgv_Bill.Rows[i].Cells["Date"].Value = dt1.Rows[i]["Date"].ToString();
                 dgv_Bill.Rows[i].Cells["BillNo"].Value = dt1.Rows[i]["BillNo"].ToString();
-                dgv_Bill.Rows[i].Cells["Amount"].Value = dt1.Rows[i]["GrandAmt"].ToString();
+                dgv_Bill.Rows[i].Cells["Amount"].Value = dt1.Rows[i]["BillAmount"].ToString();
             }
 
         }
@@ -65,14 +72,28 @@ namespace PrimeSolutions.Report.Sale
         private void dgv_Bill_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             bill.Text= dgv_Bill.Rows[e.RowIndex].Cells["BillNo"].Value.ToString();
+            txt_type.Text = dt1.Rows[e.RowIndex]["Type"].ToString();
+
         }
 
         private void bttn_view_Click(object sender, EventArgs e)
         {
-            CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
-            SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
-            _obj(bill.Text,"View");
-            _objfrm_ReportViewer.Show();
+            if (txt_type.Text == "GST")
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
+                _obj(bill.Text, "View");
+                _objfrm_ReportViewer.Show();
+            }
+            else if (txt_type.Text == "Estimate")
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
+                _obj(bill.Text, "View");
+                _objfrm_ReportViewer.Show();
+            }
+
+
         }
     }
 }

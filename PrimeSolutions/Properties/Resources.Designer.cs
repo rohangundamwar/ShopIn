@@ -95,7 +95,7 @@ namespace PrimeSolutions.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Canada_Leaf_PNG_Image {
             get {
-                object obj = ResourceManager.GetObject("Canada-Leaf-PNG-Image", resourceCulture);
+                object obj = ResourceManager.GetObject("Canada_Leaf_PNG_Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace PrimeSolutions.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap cart_13 {
             get {
-                object obj = ResourceManager.GetObject("cart-13", resourceCulture);
+                object obj = ResourceManager.GetObject("cart_13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,17 @@ namespace PrimeSolutions.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap cart_5 {
             get {
-                object obj = ResourceManager.GetObject("cart-5", resourceCulture);
+                object obj = ResourceManager.GetObject("cart_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check {
+            get {
+                object obj = ResourceManager.GetObject("check", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,8 +145,18 @@ namespace PrimeSolutions.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap delivery_cart {
             get {
-                object obj = ResourceManager.GetObject("delivery-cart", resourceCulture);
+                object obj = ResourceManager.GetObject("delivery_cart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -145,7 +165,7 @@ namespace PrimeSolutions.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap New_Doc_22 {
             get {
-                object obj = ResourceManager.GetObject("New Doc 22", resourceCulture);
+                object obj = ResourceManager.GetObject("New_Doc_22", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_PurchaseForm));
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
+            this.txt_PurchaseRef = new System.Windows.Forms.Label();
+            this.lbl_PRef = new System.Windows.Forms.Label();
             this.lbl_AccNo1 = new System.Windows.Forms.Label();
             this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             this.lbl_Date = new System.Windows.Forms.Label();
@@ -54,6 +59,8 @@
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
+            this.cmb_size = new System.Windows.Forms.ComboBox();
+            this.lbl_size = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -95,6 +102,7 @@
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -145,12 +153,14 @@
             this.pnl_Main.Location = new System.Drawing.Point(0, 0);
             this.pnl_Main.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Main.Name = "pnl_Main";
-            this.pnl_Main.Size = new System.Drawing.Size(1092, 47);
+            this.pnl_Main.Size = new System.Drawing.Size(1085, 47);
             this.pnl_Main.TabIndex = 0;
             // 
             // pnl_Top
             // 
-            this.pnl_Top.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_Top.BackColor = System.Drawing.Color.Salmon;
+            this.pnl_Top.Controls.Add(this.txt_PurchaseRef);
+            this.pnl_Top.Controls.Add(this.lbl_PRef);
             this.pnl_Top.Controls.Add(this.lbl_AccNo1);
             this.pnl_Top.Controls.Add(this.dtp_Date);
             this.pnl_Top.Controls.Add(this.lbl_Date);
@@ -160,37 +170,59 @@
             this.pnl_Top.Location = new System.Drawing.Point(0, 0);
             this.pnl_Top.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Top.Name = "pnl_Top";
-            this.pnl_Top.Size = new System.Drawing.Size(1092, 46);
+            this.pnl_Top.Size = new System.Drawing.Size(1085, 46);
             this.pnl_Top.TabIndex = 0;
+            // 
+            // txt_PurchaseRef
+            // 
+            this.txt_PurchaseRef.AutoSize = true;
+            this.txt_PurchaseRef.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_PurchaseRef.Location = new System.Drawing.Point(256, 15);
+            this.txt_PurchaseRef.Name = "txt_PurchaseRef";
+            this.txt_PurchaseRef.Size = new System.Drawing.Size(50, 16);
+            this.txt_PurchaseRef.TabIndex = 11;
+            this.txt_PurchaseRef.Text = "label1";
+            // 
+            // lbl_PRef
+            // 
+            this.lbl_PRef.AutoSize = true;
+            this.lbl_PRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_PRef.ForeColor = System.Drawing.Color.White;
+            this.lbl_PRef.Location = new System.Drawing.Point(181, 16);
+            this.lbl_PRef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PRef.Name = "lbl_PRef";
+            this.lbl_PRef.Size = new System.Drawing.Size(64, 16);
+            this.lbl_PRef.TabIndex = 10;
+            this.lbl_PRef.Text = "Ref No: ";
             // 
             // lbl_AccNo1
             // 
             this.lbl_AccNo1.AutoSize = true;
             this.lbl_AccNo1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl_AccNo1.Location = new System.Drawing.Point(83, 12);
+            this.lbl_AccNo1.Location = new System.Drawing.Point(83, 15);
             this.lbl_AccNo1.Name = "lbl_AccNo1";
-            this.lbl_AccNo1.Size = new System.Drawing.Size(54, 19);
+            this.lbl_AccNo1.Size = new System.Drawing.Size(50, 16);
             this.lbl_AccNo1.TabIndex = 9;
             this.lbl_AccNo1.Text = "label1";
             // 
             // dtp_Date
             // 
             this.dtp_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_Date.Location = new System.Drawing.Point(861, 10);
+            this.dtp_Date.Location = new System.Drawing.Point(954, 13);
             this.dtp_Date.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtp_Date.Name = "dtp_Date";
             this.dtp_Date.Size = new System.Drawing.Size(104, 22);
             this.dtp_Date.TabIndex = 8;
-            this.dtp_Date.Value = new System.DateTime(2017, 7, 20, 19, 6, 4, 0);
+            this.dtp_Date.Value = new System.DateTime(2017, 11, 8, 20, 37, 48, 0);
             // 
             // lbl_Date
             // 
             this.lbl_Date.AutoSize = true;
-            this.lbl_Date.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbl_Date.Location = new System.Drawing.Point(807, 12);
+            this.lbl_Date.ForeColor = System.Drawing.Color.White;
+            this.lbl_Date.Location = new System.Drawing.Point(900, 15);
             this.lbl_Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Date.Name = "lbl_Date";
-            this.lbl_Date.Size = new System.Drawing.Size(44, 19);
+            this.lbl_Date.Size = new System.Drawing.Size(40, 16);
             this.lbl_Date.TabIndex = 2;
             this.lbl_Date.Text = "Date";
             // 
@@ -199,7 +231,7 @@
             this.lbl_Purchase.AutoSize = true;
             this.lbl_Purchase.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_Purchase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_Purchase.Location = new System.Drawing.Point(449, 10);
+            this.lbl_Purchase.Location = new System.Drawing.Point(449, 13);
             this.lbl_Purchase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Purchase.Name = "lbl_Purchase";
             this.lbl_Purchase.Size = new System.Drawing.Size(94, 23);
@@ -210,8 +242,8 @@
             // 
             this.lbl_AccNo.AutoSize = true;
             this.lbl_AccNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_AccNo.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_AccNo.Location = new System.Drawing.Point(8, 13);
+            this.lbl_AccNo.ForeColor = System.Drawing.Color.White;
+            this.lbl_AccNo.Location = new System.Drawing.Point(8, 16);
             this.lbl_AccNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_AccNo.Name = "lbl_AccNo";
             this.lbl_AccNo.Size = new System.Drawing.Size(54, 16);
@@ -223,7 +255,7 @@
             this.lbl_PurchaseFrom.AutoSize = true;
             this.lbl_PurchaseFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PurchaseFrom.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_PurchaseFrom.Location = new System.Drawing.Point(6, 18);
+            this.lbl_PurchaseFrom.Location = new System.Drawing.Point(6, 17);
             this.lbl_PurchaseFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PurchaseFrom.Name = "lbl_PurchaseFrom";
             this.lbl_PurchaseFrom.Size = new System.Drawing.Size(112, 16);
@@ -235,7 +267,7 @@
             this.lbl_State.AutoSize = true;
             this.lbl_State.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_State.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_State.Location = new System.Drawing.Point(466, 18);
+            this.lbl_State.Location = new System.Drawing.Point(394, 17);
             this.lbl_State.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_State.Name = "lbl_State";
             this.lbl_State.Size = new System.Drawing.Size(44, 16);
@@ -268,7 +300,7 @@
             // 
             // pnl_SupplierInfo
             // 
-            this.pnl_SupplierInfo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_SupplierInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.pnl_SupplierInfo.Controls.Add(this.lbl_Address);
             this.pnl_SupplierInfo.Controls.Add(this.cmb_State);
             this.pnl_SupplierInfo.Controls.Add(this.txt_GSTIN);
@@ -286,7 +318,7 @@
             this.pnl_SupplierInfo.Controls.Add(this.lbl_PurchaseFrom);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_ContactNo);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_State);
-            this.pnl_SupplierInfo.Location = new System.Drawing.Point(9, 51);
+            this.pnl_SupplierInfo.Location = new System.Drawing.Point(6, 51);
             this.pnl_SupplierInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_SupplierInfo.Name = "pnl_SupplierInfo";
             this.pnl_SupplierInfo.Size = new System.Drawing.Size(1074, 84);
@@ -297,7 +329,7 @@
             this.lbl_Address.AutoSize = true;
             this.lbl_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Address.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Address.Location = new System.Drawing.Point(647, 18);
+            this.lbl_Address.Location = new System.Drawing.Point(599, 17);
             this.lbl_Address.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Address.Name = "lbl_Address";
             this.lbl_Address.Size = new System.Drawing.Size(66, 16);
@@ -347,9 +379,9 @@
             "34-Pondicherry",
             "35-Andaman&Nicobar Islands",
             "32-"});
-            this.cmb_State.Location = new System.Drawing.Point(518, 14);
+            this.cmb_State.Location = new System.Drawing.Point(446, 13);
             this.cmb_State.Name = "cmb_State";
-            this.cmb_State.Size = new System.Drawing.Size(121, 24);
+            this.cmb_State.Size = new System.Drawing.Size(146, 24);
             this.cmb_State.TabIndex = 2;
             this.cmb_State.ValueMember = "26";
             this.cmb_State.SelectedIndexChanged += new System.EventHandler(this.cmb_State_SelectedIndexChanged);
@@ -362,7 +394,7 @@
             this.txt_GSTIN.Location = new System.Drawing.Point(935, 52);
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
-            this.txt_GSTIN.Size = new System.Drawing.Size(117, 19);
+            this.txt_GSTIN.Size = new System.Drawing.Size(117, 16);
             this.txt_GSTIN.TabIndex = 8;
             this.txt_GSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_GSTIN_KeyDown);
             // 
@@ -383,7 +415,7 @@
             this.txt_PAN.AccessibleName = "txt_Pan";
             this.txt_PAN.Location = new System.Drawing.Point(691, 48);
             this.txt_PAN.Name = "txt_PAN";
-            this.txt_PAN.Size = new System.Drawing.Size(132, 26);
+            this.txt_PAN.Size = new System.Drawing.Size(132, 23);
             this.txt_PAN.TabIndex = 7;
             this.txt_PAN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PAN_KeyDown);
             // 
@@ -419,7 +451,7 @@
             this.txt_BillNo.Location = new System.Drawing.Point(474, 52);
             this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BillNo.Name = "txt_BillNo";
-            this.txt_BillNo.Size = new System.Drawing.Size(100, 19);
+            this.txt_BillNo.Size = new System.Drawing.Size(100, 16);
             this.txt_BillNo.TabIndex = 6;
             this.txt_BillNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BillNo_KeyDown);
             this.txt_BillNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BillNo_KeyPress);
@@ -431,7 +463,7 @@
             this.txt_ContactNo.Location = new System.Drawing.Point(119, 52);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
-            this.txt_ContactNo.Size = new System.Drawing.Size(164, 19);
+            this.txt_ContactNo.Size = new System.Drawing.Size(164, 16);
             this.txt_ContactNo.TabIndex = 5;
             this.txt_ContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ContactNo_KeyDown);
             this.txt_ContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ContactNo_KeyPress);
@@ -443,7 +475,7 @@
             this.txt_City.Location = new System.Drawing.Point(938, 17);
             this.txt_City.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_City.Name = "txt_City";
-            this.txt_City.Size = new System.Drawing.Size(112, 19);
+            this.txt_City.Size = new System.Drawing.Size(112, 16);
             this.txt_City.TabIndex = 4;
             this.txt_City.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_City_KeyDown);
             this.txt_City.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_City_KeyPress);
@@ -453,7 +485,7 @@
             this.lbl_City.AutoSize = true;
             this.lbl_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_City.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_City.Location = new System.Drawing.Point(896, 18);
+            this.lbl_City.Location = new System.Drawing.Point(896, 17);
             this.lbl_City.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_City.Name = "lbl_City";
             this.lbl_City.Size = new System.Drawing.Size(34, 16);
@@ -464,10 +496,10 @@
             // 
             this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Address.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Address.Location = new System.Drawing.Point(721, 17);
+            this.txt_Address.Location = new System.Drawing.Point(673, 17);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(167, 19);
+            this.txt_Address.Size = new System.Drawing.Size(215, 16);
             this.txt_Address.TabIndex = 3;
             this.txt_Address.TextChanged += new System.EventHandler(this.txt_Address_TextChanged);
             this.txt_Address.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Address_KeyDown);
@@ -482,7 +514,7 @@
             this.cmb_Name.Location = new System.Drawing.Point(126, 13);
             this.cmb_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Name.Name = "cmb_Name";
-            this.cmb_Name.Size = new System.Drawing.Size(332, 27);
+            this.cmb_Name.Size = new System.Drawing.Size(260, 24);
             this.cmb_Name.TabIndex = 1;
             this.cmb_Name.ValueMember = "name";
             this.cmb_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Name_KeyDown);
@@ -490,7 +522,9 @@
             // 
             // pnl_ItemInfo
             // 
-            this.pnl_ItemInfo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_ItemInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pnl_ItemInfo.Controls.Add(this.cmb_size);
+            this.pnl_ItemInfo.Controls.Add(this.lbl_size);
             this.pnl_ItemInfo.Controls.Add(this.label8);
             this.pnl_ItemInfo.Controls.Add(this.label6);
             this.pnl_ItemInfo.Controls.Add(this.label5);
@@ -522,19 +556,43 @@
             this.pnl_ItemInfo.Controls.Add(this.lbl_Category);
             this.pnl_ItemInfo.Controls.Add(this.lbl_Rate);
             this.pnl_ItemInfo.Controls.Add(this.lbl_SubCategory);
-            this.pnl_ItemInfo.Location = new System.Drawing.Point(9, 141);
+            this.pnl_ItemInfo.Location = new System.Drawing.Point(6, 141);
             this.pnl_ItemInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_ItemInfo.Name = "pnl_ItemInfo";
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1074, 155);
             this.pnl_ItemInfo.TabIndex = 8;
             this.pnl_ItemInfo.Tag = "Item";
             // 
+            // cmb_size
+            // 
+            this.cmb_size.DisplayMember = "SubCategory";
+            this.cmb_size.FormattingEnabled = true;
+            this.cmb_size.Location = new System.Drawing.Point(781, 9);
+            this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmb_size.Name = "cmb_size";
+            this.cmb_size.Size = new System.Drawing.Size(86, 24);
+            this.cmb_size.TabIndex = 44;
+            this.cmb_size.ValueMember = "SubCategory";
+            this.cmb_size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_size_KeyDown);
+            // 
+            // lbl_size
+            // 
+            this.lbl_size.AutoSize = true;
+            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_size.Location = new System.Drawing.Point(743, 14);
+            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_size.Name = "lbl_size";
+            this.lbl_size.Size = new System.Drawing.Size(38, 16);
+            this.lbl_size.TabIndex = 43;
+            this.lbl_size.Text = "Size";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(958, 85);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 19);
+            this.label8.Size = new System.Drawing.Size(18, 16);
             this.label8.TabIndex = 42;
             this.label8.Text = "%";
             // 
@@ -543,7 +601,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(596, 85);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(25, 19);
+            this.label6.Size = new System.Drawing.Size(18, 16);
             this.label6.TabIndex = 41;
             this.label6.Text = "%";
             // 
@@ -552,7 +610,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(211, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 19);
+            this.label5.Size = new System.Drawing.Size(18, 16);
             this.label5.TabIndex = 40;
             this.label5.Text = "%";
             // 
@@ -563,7 +621,7 @@
             this.txt_HSN.Location = new System.Drawing.Point(935, 13);
             this.txt_HSN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_HSN.Name = "txt_HSN";
-            this.txt_HSN.Size = new System.Drawing.Size(117, 19);
+            this.txt_HSN.Size = new System.Drawing.Size(117, 16);
             this.txt_HSN.TabIndex = 12;
             this.txt_HSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_HSN_KeyDown);
             // 
@@ -584,7 +642,7 @@
             this.lbl_AmtIGST.AutoSize = true;
             this.lbl_AmtIGST.Location = new System.Drawing.Point(1013, 85);
             this.lbl_AmtIGST.Name = "lbl_AmtIGST";
-            this.lbl_AmtIGST.Size = new System.Drawing.Size(18, 19);
+            this.lbl_AmtIGST.Size = new System.Drawing.Size(16, 16);
             this.lbl_AmtIGST.TabIndex = 38;
             this.lbl_AmtIGST.Text = "0";
             // 
@@ -593,7 +651,7 @@
             this.lbl_AmtSGST.AutoSize = true;
             this.lbl_AmtSGST.Location = new System.Drawing.Point(670, 85);
             this.lbl_AmtSGST.Name = "lbl_AmtSGST";
-            this.lbl_AmtSGST.Size = new System.Drawing.Size(18, 19);
+            this.lbl_AmtSGST.Size = new System.Drawing.Size(16, 16);
             this.lbl_AmtSGST.TabIndex = 37;
             this.lbl_AmtSGST.Text = "0";
             // 
@@ -602,7 +660,7 @@
             this.lbl_AmtCGST.AutoSize = true;
             this.lbl_AmtCGST.Location = new System.Drawing.Point(288, 85);
             this.lbl_AmtCGST.Name = "lbl_AmtCGST";
-            this.lbl_AmtCGST.Size = new System.Drawing.Size(18, 19);
+            this.lbl_AmtCGST.Size = new System.Drawing.Size(16, 16);
             this.lbl_AmtCGST.TabIndex = 36;
             this.lbl_AmtCGST.Text = "0";
             // 
@@ -622,7 +680,7 @@
             // 
             this.txt_IGST.Location = new System.Drawing.Point(891, 81);
             this.txt_IGST.Name = "txt_IGST";
-            this.txt_IGST.Size = new System.Drawing.Size(61, 26);
+            this.txt_IGST.Size = new System.Drawing.Size(61, 23);
             this.txt_IGST.TabIndex = 20;
             this.txt_IGST.TextChanged += new System.EventHandler(this.txt_IGST_TextChanged);
             this.txt_IGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_IGST_KeyDown);
@@ -644,7 +702,7 @@
             // 
             this.txt_SGST.Location = new System.Drawing.Point(515, 81);
             this.txt_SGST.Name = "txt_SGST";
-            this.txt_SGST.Size = new System.Drawing.Size(75, 26);
+            this.txt_SGST.Size = new System.Drawing.Size(75, 23);
             this.txt_SGST.TabIndex = 19;
             this.txt_SGST.TextChanged += new System.EventHandler(this.txt_SGST_TextChanged);
             this.txt_SGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SGST_KeyDown);
@@ -666,7 +724,7 @@
             // 
             this.txt_CGST.Location = new System.Drawing.Point(138, 81);
             this.txt_CGST.Name = "txt_CGST";
-            this.txt_CGST.Size = new System.Drawing.Size(70, 26);
+            this.txt_CGST.Size = new System.Drawing.Size(70, 23);
             this.txt_CGST.TabIndex = 18;
             this.txt_CGST.TextChanged += new System.EventHandler(this.txt_CGST_TextChanged);
             this.txt_CGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_CGST_KeyDown);
@@ -679,7 +737,7 @@
             this.txt_BatchNo.Location = new System.Drawing.Point(714, 49);
             this.txt_BatchNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BatchNo.Name = "txt_BatchNo";
-            this.txt_BatchNo.Size = new System.Drawing.Size(97, 19);
+            this.txt_BatchNo.Size = new System.Drawing.Size(97, 16);
             this.txt_BatchNo.TabIndex = 16;
             this.txt_BatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BatchNo_KeyDown);
             // 
@@ -699,10 +757,10 @@
             // 
             this.txt_Barcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Barcode.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Barcode.Location = new System.Drawing.Point(119, 13);
+            this.txt_Barcode.Location = new System.Drawing.Point(86, 13);
             this.txt_Barcode.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Barcode.Name = "txt_Barcode";
-            this.txt_Barcode.Size = new System.Drawing.Size(117, 19);
+            this.txt_Barcode.Size = new System.Drawing.Size(117, 16);
             this.txt_Barcode.TabIndex = 9;
             this.txt_Barcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Barcode_KeyDown);
             // 
@@ -720,7 +778,7 @@
             // 
             // pnl_Button
             // 
-            this.pnl_Button.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.pnl_Button.Controls.Add(this.bttn_All);
             this.pnl_Button.Controls.Add(this.bttn_Delete);
             this.pnl_Button.Controls.Add(this.bttn_Reset);
@@ -800,7 +858,7 @@
             this.txt_Amt.Location = new System.Drawing.Point(477, 49);
             this.txt_Amt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Amt.Name = "txt_Amt";
-            this.txt_Amt.Size = new System.Drawing.Size(134, 19);
+            this.txt_Amt.Size = new System.Drawing.Size(134, 16);
             this.txt_Amt.TabIndex = 15;
             this.txt_Amt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Amt_KeyPress);
             // 
@@ -823,7 +881,7 @@
             this.txt_Qty.Location = new System.Drawing.Point(342, 49);
             this.txt_Qty.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Qty.Name = "txt_Qty";
-            this.txt_Qty.Size = new System.Drawing.Size(44, 19);
+            this.txt_Qty.Size = new System.Drawing.Size(44, 16);
             this.txt_Qty.TabIndex = 14;
             this.txt_Qty.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
             this.txt_Qty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Qty_KeyDown);
@@ -849,7 +907,7 @@
             this.txt_SellingAmt.Location = new System.Drawing.Point(935, 49);
             this.txt_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SellingAmt.Name = "txt_SellingAmt";
-            this.txt_SellingAmt.Size = new System.Drawing.Size(117, 19);
+            this.txt_SellingAmt.Size = new System.Drawing.Size(117, 16);
             this.txt_SellingAmt.TabIndex = 17;
             this.txt_SellingAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SellingAmt_KeyDown);
             this.txt_SellingAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_SellingAmt_KeyPress);
@@ -873,7 +931,7 @@
             this.txt_PurchaseAmt.Location = new System.Drawing.Point(119, 49);
             this.txt_PurchaseAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PurchaseAmt.Name = "txt_PurchaseAmt";
-            this.txt_PurchaseAmt.Size = new System.Drawing.Size(119, 19);
+            this.txt_PurchaseAmt.Size = new System.Drawing.Size(119, 16);
             this.txt_PurchaseAmt.TabIndex = 13;
             this.txt_PurchaseAmt.TextChanged += new System.EventHandler(this.txt_PurchaseAmt_TextChanged);
             this.txt_PurchaseAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PurchaseAmt_KeyDown);
@@ -883,10 +941,10 @@
             // 
             this.cmb_SubCategory.DisplayMember = "SubCategory";
             this.cmb_SubCategory.FormattingEnabled = true;
-            this.cmb_SubCategory.Location = new System.Drawing.Point(668, 9);
+            this.cmb_SubCategory.Location = new System.Drawing.Point(582, 9);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
-            this.cmb_SubCategory.Size = new System.Drawing.Size(182, 27);
+            this.cmb_SubCategory.Size = new System.Drawing.Size(156, 24);
             this.cmb_SubCategory.TabIndex = 11;
             this.cmb_SubCategory.ValueMember = "SubCategory";
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
@@ -898,12 +956,13 @@
             this.cmb_Category.BackColor = System.Drawing.Color.White;
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
-            this.cmb_Category.Location = new System.Drawing.Point(328, 9);
+            this.cmb_Category.Location = new System.Drawing.Point(286, 9);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Category.Name = "cmb_Category";
-            this.cmb_Category.Size = new System.Drawing.Size(200, 27);
+            this.cmb_Category.Size = new System.Drawing.Size(183, 24);
             this.cmb_Category.TabIndex = 10;
             this.cmb_Category.ValueMember = "Category";
+            this.cmb_Category.SelectedIndexChanged += new System.EventHandler(this.cmb_Category_SelectedIndexChanged);
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);
             this.cmb_Category.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Category_KeyPress);
             // 
@@ -912,7 +971,7 @@
             this.lbl_Category.AutoSize = true;
             this.lbl_Category.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Category.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Category.Location = new System.Drawing.Point(246, 14);
+            this.lbl_Category.Location = new System.Drawing.Point(207, 14);
             this.lbl_Category.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Category.Name = "lbl_Category";
             this.lbl_Category.Size = new System.Drawing.Size(71, 16);
@@ -936,7 +995,7 @@
             this.lbl_SubCategory.AutoSize = true;
             this.lbl_SubCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SubCategory.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SubCategory.Location = new System.Drawing.Point(549, 14);
+            this.lbl_SubCategory.Location = new System.Drawing.Point(475, 14);
             this.lbl_SubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SubCategory.Name = "lbl_SubCategory";
             this.lbl_SubCategory.Size = new System.Drawing.Size(98, 16);
@@ -947,8 +1006,10 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_ItemInfo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_ItemInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv_ItemInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -957,6 +1018,7 @@
             this.Barcode,
             this.Category,
             this.SubCategory,
+            this.Size,
             this.HSN,
             this.PurchaseAmt,
             this.Qty,
@@ -969,17 +1031,19 @@
             this.SGST,
             this.IGSTper,
             this.IGST});
-            this.dgv_ItemInfo.Location = new System.Drawing.Point(9, 297);
+            this.dgv_ItemInfo.Location = new System.Drawing.Point(6, 297);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.RowHeadersWidth = 30;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1074, 160);
             this.dgv_ItemInfo.TabIndex = 9;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
             // 
             // Chk
             // 
-            this.Chk.FillWeight = 35.27931F;
+            this.Chk.FillWeight = 24.492F;
             this.Chk.HeaderText = "Chk";
             this.Chk.Name = "Chk";
             this.Chk.ReadOnly = true;
@@ -988,112 +1052,119 @@
             // 
             // Barcode
             // 
-            this.Barcode.FillWeight = 70.55862F;
+            this.Barcode.FillWeight = 48.984F;
             this.Barcode.HeaderText = "Barcode";
             this.Barcode.Name = "Barcode";
             this.Barcode.ReadOnly = true;
             // 
             // Category
             // 
-            this.Category.FillWeight = 67.81409F;
+            this.Category.FillWeight = 47.07866F;
             this.Category.HeaderText = "Category";
             this.Category.Name = "Category";
             this.Category.ReadOnly = true;
             // 
             // SubCategory
             // 
-            this.SubCategory.FillWeight = 67.81409F;
+            this.SubCategory.FillWeight = 47.07866F;
             this.SubCategory.HeaderText = "SubCategory";
             this.SubCategory.Name = "SubCategory";
             this.SubCategory.ReadOnly = true;
             // 
+            // Size
+            // 
+            this.Size.FillWeight = 30F;
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            this.Size.ReadOnly = true;
+            // 
             // HSN
             // 
-            this.HSN.FillWeight = 50F;
+            this.HSN.FillWeight = 34.71157F;
             this.HSN.HeaderText = "HSN";
             this.HSN.Name = "HSN";
             this.HSN.ReadOnly = true;
             // 
             // PurchaseAmt
             // 
-            this.PurchaseAmt.FillWeight = 67.81409F;
+            this.PurchaseAmt.FillWeight = 47.07866F;
             this.PurchaseAmt.HeaderText = "PurchaseAmt";
             this.PurchaseAmt.Name = "PurchaseAmt";
             this.PurchaseAmt.ReadOnly = true;
             // 
             // Qty
             // 
-            this.Qty.FillWeight = 27.94537F;
+            this.Qty.FillWeight = 19.40055F;
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
             // 
             // TotalAmt
             // 
-            this.TotalAmt.FillWeight = 67.81409F;
+            this.TotalAmt.FillWeight = 47.07866F;
             this.TotalAmt.HeaderText = "TotalAmt";
             this.TotalAmt.Name = "TotalAmt";
             this.TotalAmt.ReadOnly = true;
             // 
             // BatchNo
             // 
-            this.BatchNo.FillWeight = 70.55862F;
+            this.BatchNo.FillWeight = 48.984F;
             this.BatchNo.HeaderText = "BatchNo";
             this.BatchNo.Name = "BatchNo";
             this.BatchNo.ReadOnly = true;
             // 
             // SellingAmt
             // 
-            this.SellingAmt.FillWeight = 67.81409F;
+            this.SellingAmt.FillWeight = 47.07866F;
             this.SellingAmt.HeaderText = "SellingAmt";
             this.SellingAmt.Name = "SellingAmt";
             this.SellingAmt.ReadOnly = true;
             // 
             // CGSTper
             // 
-            this.CGSTper.FillWeight = 40.0407F;
+            this.CGSTper.FillWeight = 27.79751F;
             this.CGSTper.HeaderText = "CGSTper";
             this.CGSTper.Name = "CGSTper";
             this.CGSTper.ReadOnly = true;
             // 
             // CGST
             // 
-            this.CGST.FillWeight = 70.55862F;
+            this.CGST.FillWeight = 48.984F;
             this.CGST.HeaderText = "CGST";
             this.CGST.Name = "CGST";
             this.CGST.ReadOnly = true;
             // 
             // SGSTper
             // 
-            this.SGSTper.FillWeight = 40.0407F;
+            this.SGSTper.FillWeight = 27.79751F;
             this.SGSTper.HeaderText = "SGSTper";
             this.SGSTper.Name = "SGSTper";
             this.SGSTper.ReadOnly = true;
             // 
             // SGST
             // 
-            this.SGST.FillWeight = 70.55862F;
+            this.SGST.FillWeight = 48.984F;
             this.SGST.HeaderText = "SGST";
             this.SGST.Name = "SGST";
             this.SGST.ReadOnly = true;
             // 
             // IGSTper
             // 
-            this.IGSTper.FillWeight = 40.0407F;
+            this.IGSTper.FillWeight = 27.79751F;
             this.IGSTper.HeaderText = "IGSTper";
             this.IGSTper.Name = "IGSTper";
             this.IGSTper.ReadOnly = true;
             // 
             // IGST
             // 
-            this.IGST.FillWeight = 70.55862F;
+            this.IGST.FillWeight = 48.984F;
             this.IGST.HeaderText = "IGST";
             this.IGST.Name = "IGST";
             this.IGST.ReadOnly = true;
             // 
             // pnl_PaymentOpt
             // 
-            this.pnl_PaymentOpt.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.pnl_PaymentOpt.Controls.Add(this.cmb_PayMode);
             this.pnl_PaymentOpt.Controls.Add(this.label2);
             this.pnl_PaymentOpt.Controls.Add(this.txt_IGSTValue);
@@ -1110,7 +1181,7 @@
             this.pnl_PaymentOpt.Controls.Add(this.lbl_CSGT1);
             this.pnl_PaymentOpt.Controls.Add(this.txt_TotalAmt);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_TotalAmt);
-            this.pnl_PaymentOpt.Location = new System.Drawing.Point(9, 463);
+            this.pnl_PaymentOpt.Location = new System.Drawing.Point(6, 461);
             this.pnl_PaymentOpt.Name = "pnl_PaymentOpt";
             this.pnl_PaymentOpt.Size = new System.Drawing.Size(1074, 88);
             this.pnl_PaymentOpt.TabIndex = 10;
@@ -1124,9 +1195,9 @@
             "RTGS",
             "DD",
             "Card"});
-            this.cmb_PayMode.Location = new System.Drawing.Point(807, 47);
+            this.cmb_PayMode.Location = new System.Drawing.Point(854, 47);
             this.cmb_PayMode.Name = "cmb_PayMode";
-            this.cmb_PayMode.Size = new System.Drawing.Size(151, 27);
+            this.cmb_PayMode.Size = new System.Drawing.Size(151, 24);
             this.cmb_PayMode.TabIndex = 23;
             // 
             // label2
@@ -1134,7 +1205,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(677, 52);
+            this.label2.Location = new System.Drawing.Point(724, 52);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 16);
@@ -1145,10 +1216,10 @@
             // 
             this.txt_IGSTValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_IGSTValue.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_IGSTValue.Location = new System.Drawing.Point(646, 15);
+            this.txt_IGSTValue.Location = new System.Drawing.Point(693, 15);
             this.txt_IGSTValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_IGSTValue.Name = "txt_IGSTValue";
-            this.txt_IGSTValue.Size = new System.Drawing.Size(88, 19);
+            this.txt_IGSTValue.Size = new System.Drawing.Size(88, 16);
             this.txt_IGSTValue.TabIndex = 0;
             // 
             // lblIGST1
@@ -1156,7 +1227,7 @@
             this.lblIGST1.AutoSize = true;
             this.lblIGST1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIGST1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblIGST1.Location = new System.Drawing.Point(586, 16);
+            this.lblIGST1.Location = new System.Drawing.Point(633, 16);
             this.lblIGST1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIGST1.Name = "lblIGST1";
             this.lblIGST1.Size = new System.Drawing.Size(43, 16);
@@ -1167,10 +1238,10 @@
             // 
             this.txt_SGSTValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_SGSTValue.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_SGSTValue.Location = new System.Drawing.Point(490, 15);
+            this.txt_SGSTValue.Location = new System.Drawing.Point(537, 15);
             this.txt_SGSTValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SGSTValue.Name = "txt_SGSTValue";
-            this.txt_SGSTValue.Size = new System.Drawing.Size(88, 19);
+            this.txt_SGSTValue.Size = new System.Drawing.Size(88, 16);
             this.txt_SGSTValue.TabIndex = 0;
             // 
             // lbl_SGST1
@@ -1178,7 +1249,7 @@
             this.lbl_SGST1.AutoSize = true;
             this.lbl_SGST1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SGST1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SGST1.Location = new System.Drawing.Point(430, 16);
+            this.lbl_SGST1.Location = new System.Drawing.Point(477, 16);
             this.lbl_SGST1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SGST1.Name = "lbl_SGST1";
             this.lbl_SGST1.Size = new System.Drawing.Size(49, 16);
@@ -1189,10 +1260,10 @@
             // 
             this.txt_CGSTValue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_CGSTValue.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_CGSTValue.Location = new System.Drawing.Point(334, 15);
+            this.txt_CGSTValue.Location = new System.Drawing.Point(381, 15);
             this.txt_CGSTValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_CGSTValue.Name = "txt_CGSTValue";
-            this.txt_CGSTValue.Size = new System.Drawing.Size(88, 19);
+            this.txt_CGSTValue.Size = new System.Drawing.Size(88, 16);
             this.txt_CGSTValue.TabIndex = 0;
             this.txt_CGSTValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_VatValue_KeyDown);
             // 
@@ -1200,10 +1271,10 @@
             // 
             this.txt_BalAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_BalAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BalAmt.Location = new System.Drawing.Point(481, 51);
+            this.txt_BalAmt.Location = new System.Drawing.Point(528, 51);
             this.txt_BalAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BalAmt.Name = "txt_BalAmt";
-            this.txt_BalAmt.Size = new System.Drawing.Size(144, 19);
+            this.txt_BalAmt.Size = new System.Drawing.Size(144, 16);
             this.txt_BalAmt.TabIndex = 30;
             this.txt_BalAmt.TextChanged += new System.EventHandler(this.txt_BalAmt_TextChanged);
             this.txt_BalAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BalAmt_KeyDown);
@@ -1214,7 +1285,7 @@
             this.lbl_BalanceAmt.AutoSize = true;
             this.lbl_BalanceAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BalanceAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_BalanceAmt.Location = new System.Drawing.Point(334, 52);
+            this.lbl_BalanceAmt.Location = new System.Drawing.Point(381, 52);
             this.lbl_BalanceAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_BalanceAmt.Name = "lbl_BalanceAmt";
             this.lbl_BalanceAmt.Size = new System.Drawing.Size(95, 16);
@@ -1225,10 +1296,10 @@
             // 
             this.txt_PaidAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PaidAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PaidAmt.Location = new System.Drawing.Point(138, 51);
+            this.txt_PaidAmt.Location = new System.Drawing.Point(185, 51);
             this.txt_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PaidAmt.Name = "txt_PaidAmt";
-            this.txt_PaidAmt.Size = new System.Drawing.Size(144, 19);
+            this.txt_PaidAmt.Size = new System.Drawing.Size(144, 16);
             this.txt_PaidAmt.TabIndex = 22;
             this.txt_PaidAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PaidAmt_KeyDown);
             this.txt_PaidAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PaidAmt_KeyPress);
@@ -1238,7 +1309,7 @@
             this.lbl_PaidAmt.AutoSize = true;
             this.lbl_PaidAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PaidAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_PaidAmt.Location = new System.Drawing.Point(12, 52);
+            this.lbl_PaidAmt.Location = new System.Drawing.Point(59, 52);
             this.lbl_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PaidAmt.Name = "lbl_PaidAmt";
             this.lbl_PaidAmt.Size = new System.Drawing.Size(74, 16);
@@ -1250,10 +1321,10 @@
             this.txt_NetAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_NetAmt.Enabled = false;
             this.txt_NetAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_NetAmt.Location = new System.Drawing.Point(839, 15);
+            this.txt_NetAmt.Location = new System.Drawing.Point(886, 15);
             this.txt_NetAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_NetAmt.Name = "txt_NetAmt";
-            this.txt_NetAmt.Size = new System.Drawing.Size(117, 19);
+            this.txt_NetAmt.Size = new System.Drawing.Size(117, 16);
             this.txt_NetAmt.TabIndex = 0;
             this.txt_NetAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NetAmt_KeyDown);
             this.txt_NetAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_NetAmt_KeyPress);
@@ -1263,7 +1334,7 @@
             this.lbl_NetAmount.AutoSize = true;
             this.lbl_NetAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_NetAmount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_NetAmount.Location = new System.Drawing.Point(748, 16);
+            this.lbl_NetAmount.Location = new System.Drawing.Point(795, 16);
             this.lbl_NetAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_NetAmount.Name = "lbl_NetAmount";
             this.lbl_NetAmount.Size = new System.Drawing.Size(62, 16);
@@ -1275,7 +1346,7 @@
             this.lbl_CSGT1.AutoSize = true;
             this.lbl_CSGT1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_CSGT1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_CSGT1.Location = new System.Drawing.Point(274, 16);
+            this.lbl_CSGT1.Location = new System.Drawing.Point(321, 16);
             this.lbl_CSGT1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_CSGT1.Name = "lbl_CSGT1";
             this.lbl_CSGT1.Size = new System.Drawing.Size(49, 16);
@@ -1287,10 +1358,10 @@
             this.txt_TotalAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_TotalAmt.Enabled = false;
             this.txt_TotalAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_TotalAmt.Location = new System.Drawing.Point(120, 15);
+            this.txt_TotalAmt.Location = new System.Drawing.Point(167, 15);
             this.txt_TotalAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_TotalAmt.Name = "txt_TotalAmt";
-            this.txt_TotalAmt.Size = new System.Drawing.Size(137, 19);
+            this.txt_TotalAmt.Size = new System.Drawing.Size(137, 16);
             this.txt_TotalAmt.TabIndex = 0;
             this.txt_TotalAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_TotalAmt_KeyDown);
             this.txt_TotalAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_TotalAmt_KeyPress);
@@ -1300,7 +1371,7 @@
             this.lbl_TotalAmt.AutoSize = true;
             this.lbl_TotalAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_TotalAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_TotalAmt.Location = new System.Drawing.Point(12, 16);
+            this.lbl_TotalAmt.Location = new System.Drawing.Point(59, 16);
             this.lbl_TotalAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_TotalAmt.Name = "lbl_TotalAmt";
             this.lbl_TotalAmt.Size = new System.Drawing.Size(74, 16);
@@ -1309,31 +1380,32 @@
             // 
             // pnl_Bottom
             // 
-            this.pnl_Bottom.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_Bottom.BackColor = System.Drawing.Color.Tomato;
             this.pnl_Bottom.Controls.Add(this.bttn_Clear);
             this.pnl_Bottom.Controls.Add(this.bttn_Close);
             this.pnl_Bottom.Controls.Add(this.bttn_Purchase);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 548);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 552);
             this.pnl_Bottom.Name = "pnl_Bottom";
-            this.pnl_Bottom.Size = new System.Drawing.Size(1092, 44);
+            this.pnl_Bottom.Size = new System.Drawing.Size(1085, 44);
             this.pnl_Bottom.TabIndex = 11;
             // 
             // bttn_Clear
             // 
             this.bttn_Clear.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Clear.Location = new System.Drawing.Point(662, 8);
+            this.bttn_Clear.Location = new System.Drawing.Point(697, 9);
             this.bttn_Clear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Clear.Name = "bttn_Clear";
             this.bttn_Clear.Size = new System.Drawing.Size(82, 28);
             this.bttn_Clear.TabIndex = 19;
             this.bttn_Clear.Text = "Clear";
             this.bttn_Clear.UseVisualStyleBackColor = true;
+            this.bttn_Clear.Click += new System.EventHandler(this.bttn_Clear_Click);
             // 
             // bttn_Close
             // 
             this.bttn_Close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Close.Location = new System.Drawing.Point(894, 8);
+            this.bttn_Close.Location = new System.Drawing.Point(929, 9);
             this.bttn_Close.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(82, 28);
@@ -1346,7 +1418,7 @@
             // 
             this.bttn_Purchase.Enabled = false;
             this.bttn_Purchase.ForeColor = System.Drawing.Color.OliveDrab;
-            this.bttn_Purchase.Location = new System.Drawing.Point(771, 8);
+            this.bttn_Purchase.Location = new System.Drawing.Point(806, 9);
             this.bttn_Purchase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Purchase.Name = "bttn_Purchase";
             this.bttn_Purchase.Size = new System.Drawing.Size(96, 28);
@@ -1357,18 +1429,19 @@
             // 
             // frm_PurchaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1092, 592);
+            this.ClientSize = new System.Drawing.Size(1085, 596);
             this.Controls.Add(this.pnl_Bottom);
             this.Controls.Add(this.pnl_PaymentOpt);
             this.Controls.Add(this.dgv_ItemInfo);
             this.Controls.Add(this.pnl_ItemInfo);
             this.Controls.Add(this.pnl_SupplierInfo);
             this.Controls.Add(this.pnl_Main);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frm_PurchaseForm";
@@ -1479,10 +1552,15 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txt_PurchaseRef;
+        private System.Windows.Forms.Label lbl_PRef;
+        private System.Windows.Forms.ComboBox cmb_size;
+        private System.Windows.Forms.Label lbl_size;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Chk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn HSN;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;

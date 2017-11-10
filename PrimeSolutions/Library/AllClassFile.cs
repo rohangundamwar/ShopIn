@@ -143,6 +143,30 @@ namespace PrimeSolutions.Library
             return (Qty);
         }
 
+        internal string getQty(string category, string subcategory,string price)
+        {
+            string Qty;
+            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'AND sellingprice='"+price+"' ";
+            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'AND sellingprice='" + price + "' ";
+            DataTable DtPurchase = _objsqlhelper.GetDataTable(purchase);
+            DataTable DtSale = _objsqlhelper.GetDataTable(sale);
+            if (GetalooseItem(category))
+            {
+                double PurchaseQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtPurchase, "qty")), 3);
+                double SaleQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtSale, "qty")), 3);
+                Qty = Convert.ToString(PurchaseQty - SaleQty);
+                Qty = Qty + "  Kg";
+            }
+            else
+            {
+                double PurchaseQty = Convert.ToInt32(sumDataTableColumn(DtPurchase, "qty"));
+                double SaleQty = Convert.ToInt32(sumDataTableColumn(DtSale, "qty"));
+                Qty = Convert.ToString(PurchaseQty - SaleQty);
+                Qty = Qty + "  nos.";
+            }
+            return (Qty);
+        }
+
         internal int getQtySupplier(string category, string subcategory, string BillNo)
         {
             string str1 = "SELECT  qty FROM BillItem Where category = '" + category + "' AND SubCategory = '" + subcategory + "' AND PurchaseBillNo='" + BillNo + "' ";
@@ -237,7 +261,7 @@ namespace PrimeSolutions.Library
 
         internal DataTable GetCategoryBySubCategory(string SubCategory)
         {
-            string str = "select Distinct Category,Sub_category from BillItem where type='purchase' and sub_category = '" + SubCategory + "' ";
+            string str = "select Distinct Category,SellingPrice from BillItem where type='purchase' and SubCategory = '" + SubCategory + "' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -270,7 +294,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSubCategory(string category)
         {
-            string str = "SELECT  Distinct sub_category FROM BillItem Where type = 'Purchase'and category='"+category+"'" ;
+            string str = "SELECT  Distinct SubCategory FROM BillItem Where type = 'Purchase'" ;
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -278,7 +302,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSizeByCatAndSubCat(string category,string SubCategory)
         {
-            string str = "SELECT  Distinct size FROM BillItem Where type = 'Purchase'and category='" + category + "' and sub_category ='" + SubCategory + "' ";
+            string str = "SELECT  Distinct size FROM BillItem Where type = 'Purchase'and category='" + category + "' and subcategory ='" + SubCategory + "' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -303,7 +327,13 @@ namespace PrimeSolutions.Library
         {
             string str = "SELECT  Distinct SubCategory,SellingPrice FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
 
+        public DataTable GetSubCategoryByCategoryNotStock(string category)
+        {
+            string str = "SELECT  Distinct SubCategory FROM BillItem Where category = '" + category + "' ";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
 
@@ -342,7 +372,7 @@ namespace PrimeSolutions.Library
         //GetStockByCategory
         internal DataTable getStockBySubCategory(string subcategory)
         {
-            string str = "SELECT * FROM BillItem Where type = 'Purchase' AND sub_category = '" + subcategory + "' ";
+            string str = "SELECT Category,SellingPrice,Qty FROM BillItem Where type = 'Purchase' AND SubCategory = '" + subcategory + "' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
 
             return dt;
@@ -404,16 +434,16 @@ namespace PrimeSolutions.Library
             _objsqlhelper.ExecuteScalar(str);
         }
 
-        public object getSupplierName()
+        public DataTable getSupplierName()
         {
             string str = "SELECT * From SupplierMaster";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
 
-        internal void InsertBillDetail(string accno, string BillNo, string date, string billamt, string CGST, string SGST, string IGST, string Total, string State )
+        internal void InsertBillDetail(string accno, string BillNo, string date, string billamt, string CGST, string SGST, string IGST, string Total, string State,string Type,string RefNo)
         {
-            string str = "INSERT INTO SupplierBill (SupplierNo, BillNo, Date, Amount, CGST, SGST, IGST,GrandTotal,State) VALUES('" + accno + "','" + BillNo + "','" + date + "','" + billamt + "','" + CGST + "','" + SGST + "','" + IGST + "','" + Total + "','"+State+"')";
+            string str = "INSERT INTO SupplierBill (SupplierNo, BillNo, Date, Amount, CGST, SGST, IGST,GrandTotal,State,Type,RefrenceNo) VALUES('" + accno + "','" + BillNo + "','" + date + "','" + billamt + "','" + CGST + "','" + SGST + "','" + IGST + "','" + Total + "','"+State+"','"+Type+"','"+ RefNo + "')";
             _objsqlhelper.ExecuteScalar(str);
         }
 
@@ -430,9 +460,9 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        internal DataTable getpaymentByBill(string BillNo)
+        internal DataTable getpaymentByBill(string BillNo,string type)
         {
-            string str = "select * from Payment where BillNo='" + BillNo + "'";
+            string str = "select * from Payment where BillNo='" + BillNo + "' and type='"+type+"'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -440,6 +470,13 @@ namespace PrimeSolutions.Library
         public DataTable GetSupplier( string name)
         {
             string str = "Select * From SupplierMaster where name = '"+name+"'";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetAllSupplier()
+        {
+            string str = "Select * From SupplierMaster";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -502,11 +539,26 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode)
+        public string GetSaleBillName()
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "'";
+            string str = "SELECT SaleBill FROM CrystalReport where SrNo='1'";
+            string crt = _objsqlhelper.ExecuteScalar(str);
+            return crt;
+        }
+
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string start,string end)
+        {
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "'";
             _objsqlhelper.ExecuteScalar(str);
-            
+
+            string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "'";
+            _objsqlhelper.ExecuteScalar(str);
+
+            string str3 = "Update FinancialYearMaster set startyear= '" + start + "', endyear= '" + end + "', ";
+            _objsqlhelper.ExecuteScalar(str);
+
+
+
         }
 
         public DataTable GetSaleBill()
