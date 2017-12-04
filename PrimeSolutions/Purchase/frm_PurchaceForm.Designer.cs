@@ -36,7 +36,6 @@
             this.txt_PurchaseRef = new System.Windows.Forms.Label();
             this.lbl_PRef = new System.Windows.Forms.Label();
             this.lbl_AccNo1 = new System.Windows.Forms.Label();
-            this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             this.lbl_Date = new System.Windows.Forms.Label();
             this.lbl_Purchase = new System.Windows.Forms.Label();
             this.lbl_AccNo = new System.Windows.Forms.Label();
@@ -136,6 +135,7 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Purchase = new System.Windows.Forms.Button();
+            this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -159,10 +159,10 @@
             // pnl_Top
             // 
             this.pnl_Top.BackColor = System.Drawing.Color.Salmon;
+            this.pnl_Top.Controls.Add(this.dtp_Date);
             this.pnl_Top.Controls.Add(this.txt_PurchaseRef);
             this.pnl_Top.Controls.Add(this.lbl_PRef);
             this.pnl_Top.Controls.Add(this.lbl_AccNo1);
-            this.pnl_Top.Controls.Add(this.dtp_Date);
             this.pnl_Top.Controls.Add(this.lbl_Date);
             this.pnl_Top.Controls.Add(this.lbl_Purchase);
             this.pnl_Top.Controls.Add(this.lbl_AccNo);
@@ -204,16 +204,6 @@
             this.lbl_AccNo1.Size = new System.Drawing.Size(50, 16);
             this.lbl_AccNo1.TabIndex = 9;
             this.lbl_AccNo1.Text = "label1";
-            // 
-            // dtp_Date
-            // 
-            this.dtp_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_Date.Location = new System.Drawing.Point(954, 13);
-            this.dtp_Date.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dtp_Date.Name = "dtp_Date";
-            this.dtp_Date.Size = new System.Drawing.Size(104, 22);
-            this.dtp_Date.TabIndex = 8;
-            this.dtp_Date.Value = new System.DateTime(2017, 11, 8, 20, 37, 48, 0);
             // 
             // lbl_Date
             // 
@@ -1427,6 +1417,13 @@
             this.bttn_Purchase.UseVisualStyleBackColor = true;
             this.bttn_Purchase.Click += new System.EventHandler(this.bttn_Purchase_Click);
             // 
+            // dtp_Date
+            // 
+            this.dtp_Date.Location = new System.Drawing.Point(948, 12);
+            this.dtp_Date.Name = "dtp_Date";
+            this.dtp_Date.Size = new System.Drawing.Size(125, 23);
+            this.dtp_Date.TabIndex = 12;
+            // 
             // frm_PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1470,7 +1467,6 @@
 
         private System.Windows.Forms.Panel pnl_Main;
         private System.Windows.Forms.Panel pnl_Top;
-        private System.Windows.Forms.DateTimePicker dtp_Date;
         private System.Windows.Forms.Label lbl_Date;
         private System.Windows.Forms.Label lbl_Purchase;
         private System.Windows.Forms.Label lbl_AccNo;
@@ -1573,5 +1569,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGSTper;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
+        private System.Windows.Forms.DateTimePicker dtp_Date;
     }
 }

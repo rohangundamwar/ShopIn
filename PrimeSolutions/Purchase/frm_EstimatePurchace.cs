@@ -547,7 +547,7 @@ namespace PrimeSolutions
                             string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string PBillNo = txt_BillNo.Text;
 
-                            _purchase.InsertItem("", category, subcategory, Size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null);
+                            _purchase.InsertItem("", category, subcategory, Size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null,"");
 
                         }
                         else if (!_objCustmor.GetalooseItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value)))
@@ -574,7 +574,7 @@ namespace PrimeSolutions
                                     string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                                     string PBillNo = txt_BillNo.Text;
                                     string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                    _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint);
+                                    _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
                                     if (dtsett.BarcodeType == "Thermal")
                                     {
                                         if (dtsett.Barcode == "Yes")
@@ -616,7 +616,7 @@ namespace PrimeSolutions
                                         string subcategory2 = "";
                                         string SellingAmt2 = "";
                                         string PBillNo = txt_BillNo.Text;
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint);
+                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
                                         if (dtsett.BarcodeType == "Thermal")
                                         {
                                             if (dtsett.Barcode == "Yes")
@@ -660,7 +660,7 @@ namespace PrimeSolutions
                                         string PBillNo = txt_BillNo.Text;
                                         string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
 
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGST, SGSTper, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint);
+                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGST, SGSTper, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
                                         if (dtsett.BarcodeType == "Thermal")
                                         {
                                             if (dtsett.Barcode == "Yes")
@@ -701,7 +701,7 @@ namespace PrimeSolutions
                                         string subcategory2 = "";
                                         string SellingAmt2 = "";
                                         string PBillNo = txt_BillNo.Text;
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint);
+                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
                                         if (Qty - j >= 2)
                                         {
                                             barcode2 = _objSQLHelper.GetMaxID("B", "0");
@@ -721,7 +721,7 @@ namespace PrimeSolutions
                                             string IGSTper2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
                                             string IGST2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                                             string BarcodePrint2 = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                            _purchase.InsertItem(barcode2, category2, subcategory2, Size2, PBillNo, "Purchase", "1", CGSTper2, CGST2, SGSTper2, SGST2, IGSTper2, IGST2, purchaseamt2, TotalAmt2, BatchNo2, SellingAmt2, HSN2, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint2);
+                                            _purchase.InsertItem(barcode2, category2, subcategory2, Size2, PBillNo, "Purchase", "1", CGSTper2, CGST2, SGSTper2, SGST2, IGSTper2, IGST2, purchaseamt2, TotalAmt2, BatchNo2, SellingAmt2, HSN2, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint2,"");
                                         }
                                         if (dtsett.BarcodeType == "Thermal")
                                         {

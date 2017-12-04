@@ -48,6 +48,7 @@
             // 
             this.dgv_Balance.AllowUserToAddRows = false;
             this.dgv_Balance.AllowUserToDeleteRows = false;
+            this.dgv_Balance.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgv_Balance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Balance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomerName,

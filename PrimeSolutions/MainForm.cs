@@ -14,6 +14,7 @@ using PrimeSolutions.Report.Sale;
 using PrimeSolutions.Report.Purchase;
 using PrimeSolutions.Accounting;
 using PrimeSolutions.Sale;
+using PrimeSolutions.Service;
 
 namespace PrimeSolutions
 {
@@ -30,14 +31,14 @@ namespace PrimeSolutions
         private void supplierDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SupplierBill  _form = new SupplierBill();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
-            _form.Dock = DockStyle.Fill;
-            _form.Show();
+            //this.IsMdiContainer = true;
+            //_form.TopLevel = false;
+            //panel2.Controls.Add(_form);
+            //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //panel2.Height = _form.Height;
+            //panel2.Width = _form.Width;
+            //_form.Dock = DockStyle.Fill;
+            _form.ShowDialog();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,14 +56,8 @@ namespace PrimeSolutions
         private void stockCheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_Stock _form = new frm_Stock();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
             _form.Dock = DockStyle.Fill;
-            _form.Show();
+            _form.ShowDialog();
 
         }
 
@@ -82,27 +77,27 @@ namespace PrimeSolutions
         private void customerDatatabseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_CustomerContact _form = new frm_CustomerContact();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
-            _form.Dock = DockStyle.Fill;
-            _form.Show();
+            //this.IsMdiContainer = true;
+            //_form.TopLevel = false;
+            //panel2.Controls.Add(_form);
+            //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //panel2.Height = _form.Height;
+            //panel2.Width = _form.Width;
+            //_form.Dock = DockStyle.Fill;
+            _form.ShowDialog();
         }
 
         private void customerDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_SaleReport _form = new frm_SaleReport();
-            this.IsMdiContainer = true;
-            _form.TopLevel = false;
-            panel2.Controls.Add(_form);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            panel2.Height = _form.Height;
-            panel2.Width = _form.Width;
-            _form.Dock = DockStyle.Fill;
-            _form.Show();
+            //this.IsMdiContainer = true;
+            //_form.TopLevel = false;
+            //panel2.Controls.Add(_form);
+            //_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //panel2.Height = _form.Height;
+            //panel2.Width = _form.Width;
+            //_form.Dock = DockStyle.Fill;
+            _form.ShowDialog();
         }
         
         private void duplicateBillToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,7 +129,7 @@ namespace PrimeSolutions
                 //panel2.Height = _form.Height;
                 //panel2.Width = _form.Width;
                 _form.Dock = DockStyle.Fill;
-                _form.Show();
+                _form.ShowDialog();
             }
 
             if (e.KeyCode == Keys.S && Control.ModifierKeys == Keys.Control)
@@ -147,7 +142,7 @@ namespace PrimeSolutions
                 //panel2.Height = _form.Height;
                 //panel2.Width = _form.Width;
                 _form.Dock = DockStyle.Fill;
-                _form.Show();
+                _form.ShowDialog();
             }
         }
 
@@ -166,7 +161,7 @@ namespace PrimeSolutions
             //panel2.Height = _form.Height;
             //panel2.Width = _form.Width;
             _form.Dock = DockStyle.Fill;
-            _form.Show();
+            _form.ShowDialog();
         }
 
         private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -218,7 +213,7 @@ namespace PrimeSolutions
                 frmAccountLedger open = Application.OpenForms["frmAccountLedger"] as frmAccountLedger;
                 if (open == null)
                 {
-                    form.Show();
+                    form.ShowDialog();
                 }
                 else
                 {
@@ -287,7 +282,6 @@ namespace PrimeSolutions
         private void gSTSaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_SaleForm _form = new frm_SaleForm();
-            _form.MdiParent = this;
             _form.ShowDialog();
         }
 
@@ -316,15 +310,20 @@ namespace PrimeSolutions
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            bool Valid = _common.CheckValidity();
-            if (Valid)
+            string Valid = _common.CheckValidity();
+            if (Valid == "Valid")
             {
                 pnl_ActivateMsg.Visible = false;
             }
-            else
+            else if (Valid == "Invalid")
             {
                 MessageBox.Show("Validity Expired \n Please Contact Service Provider\n +91-9766918326 \n +91-8983151118");
                 menuStrip1.Visible = false;
+            }
+            else
+            {
+                lbl_ValidDays.Text = Valid + " Days left for Trial";
+                lbl_ValidDays.Visible = true; 
             }
         }
 
@@ -338,6 +337,59 @@ namespace PrimeSolutions
         {
             frm_PurchaseDuplicateBill _form = new frm_PurchaseDuplicateBill();
             _form.ShowDialog();
+        }
+
+        private void updateDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DeveloperLogin _objAccess = new Frm_DeveloperLogin();
+            _objAccess.ShowDialog();
+            if (_objAccess.Developer_login_Result == true)
+            {
+                frm_UpdateQuery _form = new frm_UpdateQuery();
+                _form.ShowDialog();
+            }
+            
+        }
+
+        private void customerGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_CustomerGSTReport _form = new frm_CustomerGSTReport();
+            _form.ShowDialog();
+        }
+
+        private void wholeSaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_WholeSale _form = new frm_WholeSale();
+            _form.ShowDialog();
+        }
+
+        private void customerPaymentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_CustomerPayment _form = new frm_CustomerPayment();
+            _form.ShowDialog();
+        }
+
+        private void newJobToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_JobCard _form = new frm_JobCard();
+            _form.ShowDialog();
+        }
+
+        private void deleteDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DeveloperLogin _objAccess = new Frm_DeveloperLogin();
+            _objAccess.ShowDialog();
+            if (_objAccess.Developer_login_Result == true)
+            {
+                frm_DeleteData  _form = new frm_DeleteData();
+                _form.ShowDialog();
+            }
+        }
+
+        private void serviceInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_ServiceInvoice _from = new frm_ServiceInvoice();
+            _from.ShowDialog();
         }
     }
 }

@@ -33,18 +33,78 @@ namespace PrimeSolutions
         string VouchertypeIDPayment = "0";
         string VouchertypeIDMod = "0";
         string VouchertypeIDModPayment = "0";
+        string billno;
 
-
-        public frm_SaleUpdate()
-        {   
-            
+        public frm_SaleUpdate(string BillNo)
+        {
+            billno = BillNo;
             dtSett = new SettingValue();
             dtSett = _Common.getSettingValue();
             InitializeComponent();
-            state = _a.GetState();
             VouchertypeID = _Common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Invoice GST").Rows[0]["VoucherTypeID"].ToString();
             VouchertypeIDPayment = _Common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Receipt Voucher").Rows[0]["VoucherTypeID"].ToString();
+            getBillDetails(BillNo);
             
+        }
+
+        private void getBillDetails(string billNo)
+        {
+            txt_BillNo.Text = billNo.ToString(); 
+            //CustomerDetsils
+            DataTable Cust = _Sale.GetCustomerByBill(billNo);
+            cmb_Name.Text = Cust.Rows[0]["CustomerName"].ToString();
+            cmb_Name.Enabled = false;
+            txt_AccNo.Text= Cust.Rows[0]["CustId"].ToString();
+            cmb_State.Text= Cust.Rows[0]["State"].ToString();
+            txt_PanNo.Text = Cust.Rows[0]["PanNo"].ToString();
+            txt_GSTIN.Text = Cust.Rows[0]["GSTIN"].ToString();
+            txt_ContactNo.Text = Cust.Rows[0]["ContactNo"].ToString();
+            txt_Address.Text = Cust.Rows[0]["Address"].ToString();
+            txt_City.Text = Cust.Rows[0]["City"].ToString();
+
+            //CustomerBill
+            DataTable CustomerBill = _Sale.GetBillDetails(billNo);
+            txt_TotalAmt.Text = CustomerBill.Rows[0]["Amount"].ToString();
+            lbl_CGSTValue.Text= CustomerBill.Rows[0]["CGST"].ToString();
+            lbl_CGSTValue.Text = CustomerBill.Rows[0]["SGST"].ToString();
+            lbl_CGSTValue.Text = CustomerBill.Rows[0]["IGST"].ToString();
+            txt_NetAmt.Text = CustomerBill.Rows[0]["GrandAmt"].ToString();
+            txt_Discount.Text= CustomerBill.Rows[0]["Discount"].ToString();
+            txt_BillAmt.Text= CustomerBill.Rows[0]["BillAmount"].ToString();
+
+            //PaymentDetails
+            DataTable Payment = _a.getpaymentByBill(billno, "Sale");
+            cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
+            txt_PaidAmt.Text = Payment.Rows[0]["Amt"].ToString();
+
+            //BillItem
+            DataTable BillItem = _Sale.GetBillItem(billno,"Sale");
+            for (int i = 0; i < BillItem.Rows.Count; i++)
+            {
+                string barcode = BillItem.Rows[i]["Barcode"].ToString();
+                string category= BillItem.Rows[i]["Category"].ToString();
+                string SubCategory = BillItem.Rows[i]["SubCategory"].ToString();
+                string HSN = BillItem.Rows[i]["HSN"].ToString();
+                string BatchNo= BillItem.Rows[i]["BatchNo"].ToString();
+                string Rate = BillItem.Rows[i]["Price"].ToString();
+                string qty = BillItem.Rows[i]["Qty"].ToString();
+                string Total = BillItem.Rows[i]["TotalPrice"].ToString();
+                string CSGT = BillItem.Rows[i]["CGST"].ToString();
+                string CGSTAmt = BillItem.Rows[i]["CGSTAmt"].ToString();
+                string SGST = BillItem.Rows[i]["SGST"].ToString();
+                string SGSTAmt = BillItem.Rows[i]["SGSTAmt"].ToString();
+                string IGST = BillItem.Rows[i]["IGST"].ToString();
+                string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
+                dgv_ItemInfo.Rows.Add(barcode,category,SubCategory,HSN, BatchNo, Rate,qty,Total,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt);
+
+            }
+            
+            txt_BalanceAmt.Text = "0";
+            txt_Balance.Text = "0";
+            txt_BillAmt.Text = "0";
+            txt_NetAmt.Text = "0";
+            bttn_Sale.Enabled = false;
+
         }
 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
@@ -60,26 +120,7 @@ namespace PrimeSolutions
 
         private void Masterclear()
         {
-            txt_BillNo.Text = _Common.GetChangeBillNo();
-            txt_AccNo.Text = _objSQLHelper.GetMaxID("C", "0");
-            cmb_Name.SelectedIndex = -1;
-            cmb_PayMode.SelectedIndex = 0;
-            cmb_Name.ResetText();
-            cmb_State.Text = state;
-            txt_PanNo.Text = "";
-            txt_GSTIN.Text = "";
-            txt_BalanceAmt.Text="0";
-            txt_Balance.Text = "0";
-            txt_BillAmt.Text = "0";
-            txt_Address.ResetText();
-            txt_City.ResetText();
-            txt_ContactNo.ResetText();
-            txt_NetAmt.Text="0";
-            txt_TotalAmt.Text = "0";
-            txt_PaidAmt.Text = "0";
-            dgv_ItemInfo.Rows.Clear();
-            bttn_Sale.Enabled = false;
-            cmb_Name.Select();
+            
             
         }
 
@@ -620,10 +661,13 @@ namespace PrimeSolutions
                     string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
                     string PBillNo = txt_BillNo.Text;
+                    string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
+                    string Maintain = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value);
+
                     if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
                         
                     {
-                        _Sale.AddItemDetails(category,subcategory,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice);
+                        _Sale.AddItemDetails(category,subcategory,"Size",txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
                     }
 
                     else

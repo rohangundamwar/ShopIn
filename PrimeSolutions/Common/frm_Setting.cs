@@ -27,21 +27,16 @@ namespace PrimeSolutions.Common
             DataTable dt = _a.getallssetting();
 
             // Get crystal report list
-            string Dpath = Environment.CurrentDirectory;
-            DataTable d = new DataTable();
-            d.Columns.Add("FileName");
-            d.Columns.Add("FilePath");
-            DirectoryInfo DirInfo = new DirectoryInfo(Dpath);
-            DataRow dtCRT = d.NewRow();
-            foreach (FileInfo fi in DirInfo.GetFiles("*.rpt", SearchOption.AllDirectories))
+
+            DirectoryInfo DirInfo = new DirectoryInfo(Environment.CurrentDirectory);
+
+            foreach (FileInfo fi in DirInfo.GetFiles("*.rpt"))
             {
-                dtCRT = d.NewRow();
-                dtCRT["FileName"] = fi.FullName;
-                dtCRT["FilePath"] = fi.Name;
-                d.Rows.Add(dtCRT);
+                cmb_SaleBill.Items.Add(fi.Name);
+                cmb_estimate.Items.Add(fi.Name);
+                cmb_PurchaseBill.Items.Add(fi.Name);
+                cmb_ServiceInc.Items.Add(fi.Name);
             }
-            if(d.Rows.Count>0)
-            cmb_CRT.DataSource = d;
 
             //2 Barcode
             txt_barcode.Text = dt.Rows[0]["BarcodeCount"].ToString();
@@ -55,10 +50,17 @@ namespace PrimeSolutions.Common
             //3 Barcode Type
             cmb_BarcodeType.Text = dt.Rows[0]["BarcodeType"].ToString();
 
+            //4 maintain
+            cmb_maintain.Text = dt.Rows[0]["Maintenance"].ToString();
+
             //5 Set Crystal Report
-            cmb_CRT.Text = _a.GetSaleBillName();
+            cmb_SaleBill.Text = _a.GetSaleBillName().Rows[0]["SaleBill"].ToString();
+            cmb_PurchaseBill.Text = _a.GetSaleBillName().Rows[1]["SaleBill"].ToString();
+            cmb_estimate.Text = _a.GetSaleBillName().Rows[2]["SaleBill"].ToString();
+            cmb_estimate.Text = _a.GetSaleBillName().Rows[3]["SaleBill"].ToString();
 
             //6 payment form
+
             if (dt.Rows[0]["PaymentForm"].ToString() == "1")
                 rbt_PaymentYes.Checked = true;
             else
@@ -118,10 +120,13 @@ namespace PrimeSolutions.Common
                 Estpayment = "0";
             }
 
+            
             StartDate = dtp_start.Value.ToString("dd/MM/yyyy");
             EndDate = dtp_end.Value.ToString("dd/MM/yyyy");
 
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_CRT.Text, StartDate, EndDate);
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text);
+
+            MessageBox.Show("Setting Saved");
         }
     }
 }

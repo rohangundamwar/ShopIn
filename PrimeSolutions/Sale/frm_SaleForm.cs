@@ -25,6 +25,7 @@ namespace PrimeSolutions
         CustomerCommon _Cust = new CustomerCommon();
         ErrorLog _error = new ErrorLog();
         AllClassFile _a = new AllClassFile();
+        cls_ServiceCommon _Service = new cls_ServiceCommon();
         SettingValue dtSett;
         string Customerexs = "No";
         string state ;
@@ -33,7 +34,8 @@ namespace PrimeSolutions
         string VouchertypeIDPayment = "0";
         string VouchertypeIDMod = "0";
         string VouchertypeIDModPayment = "0";
-
+        DataTable dt_cust;
+        DataView dw;
 
         public frm_SaleForm()
         {
@@ -43,15 +45,18 @@ namespace PrimeSolutions
             state = _a.GetState();
             VouchertypeID = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Invoice GST").Rows[0]["VoucherTypeID"].ToString();
             VouchertypeIDPayment = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Receipt Voucher").Rows[0]["VoucherTypeID"].ToString();
-            
+
         }
 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
+            dt_cust = _Cust.GetCustomerDeatils();
             this.BringToFront();
             cmb_Category.DataSource = _a.FillCategory();
             cmb_SubCategory.DataSource = _a.FillSubCategory();
-            cmb_Name.DataSource = _Cust.GetCustomerDeatils();
+            dw = new DataView(dt_cust);
+            cmb_Name.DataSource = dt_cust;
+            cmb_SalesPerson.DataSource = _common.GetSalesPerson();
             cmb_Name.Select();
             Clear();
             Masterclear();
@@ -61,9 +66,9 @@ namespace PrimeSolutions
         {
             txt_BillNo.Text = _objSQLHelper.GetMaxID("S", "0");
             txt_AccNo.Text = _objSQLHelper.GetMaxID("C", "0");
+            dw = new DataView(dt_cust);
             cmb_Name.SelectedIndex = -1;
             cmb_PayMode.SelectedIndex = 0;
-            cmb_Name.ResetText();
             cmb_State.Text = state;
             txt_PanNo.Text = "";
             txt_GSTIN.Text = "";
@@ -79,12 +84,19 @@ namespace PrimeSolutions
             dgv_ItemInfo.Rows.Clear();
             bttn_Sale.Enabled = false;
             cmb_Name.Select();
+            txt_maintain.Text = "0";
+            if (dtSett.Maintenance == "Yes")
+            {
+                lbl_maintain.Visible = true;
+                txt_maintain.Visible = true;
+            }
             
         }
 
         private void Clear()
         {
             txt_BarcodeNo.ResetText();
+            cmb_size.ResetText();
             txt_HSN.ResetText();
             txt_BatchNo.ResetText();
             txt_Qty.Text = "1";
@@ -98,6 +110,7 @@ namespace PrimeSolutions
 
         private void cmb_Name_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
                 new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Name.Text, @"\s+", " ").Trim() as String);
@@ -137,6 +150,18 @@ namespace PrimeSolutions
             
         }
 
+        private void SearchCustomer()
+        {
+            DataView DwNew = dw;
+            DwNew.RowFilter = string.Format("CustomerName LIKE '%{0}%'", cmb_Name.Text);
+            dt_cust = DwNew.ToTable();
+            cmb_Name.DataSource = DwNew;
+            if (dt_cust.Rows.Count > 0)
+            {
+                cmb_Name.DroppedDown = true;
+            }
+        }
+
         private int findCustomer()
         {
             DataTable dt = _Sale.GetCustomerDetails(cmb_Name.Text);
@@ -169,6 +194,7 @@ namespace PrimeSolutions
                     {
                         cmb_Category.Text = GST.Rows[0]["Category"].ToString();
                         cmb_SubCategory.Text = GST.Rows[0]["SubCategory"].ToString();
+                        cmb_size.Text = GST.Rows[0]["size"].ToString();
                         txt_HSN.Text = GST.Rows[0]["HSN"].ToString();
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
                         txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
@@ -184,6 +210,7 @@ namespace PrimeSolutions
                         }
                     }
                     catch { }
+                    txt_Qty.Focus();
                     
                 }
             }
@@ -255,6 +282,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Category.Text, @"\s+", " ").Trim() as String);
                 cmb_SubCategory.Focus();
             }
             if (e.KeyCode == Keys.End)
@@ -268,6 +296,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_SubCategory.Text, @"\s+", " ").Trim() as String);
                 cmb_size.Select();
             }
         }
@@ -366,7 +395,6 @@ namespace PrimeSolutions
         private void cmb_Name_KeyPress(object sender, KeyPressEventArgs e)
         {
             _objSimpal.ValidationCharOnly(e);
-
         }
 
         private void txt_Address_KeyPress(object sender, KeyPressEventArgs e)
@@ -468,7 +496,8 @@ namespace PrimeSolutions
         {
             try
             {
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text, txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text);
+                string sales = Convert.ToString(cmb_SalesPerson.Text[0]) ;
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text,sales,txt_maintain.Text);
                 Clear();
             }
             catch (Exception ex)
@@ -564,13 +593,13 @@ namespace PrimeSolutions
             }
             catch (Exception ex)
             {
-                _error.AddException(ex, "Purchase");
+                _error.AddException(ex, "Sale");
             }
         }
 
         private void calculateDiscount()
         {
-            if (txt_Discount.Text != "" || txt_Discount.Text != string.Empty || txt_Discount.Text != " ")
+            if ((txt_Discount.Text != "" || txt_Discount.Text != string.Empty) || txt_Discount.Text != " ")
             {
                 double NetAmt = Convert.ToDouble(txt_NetAmt.Text);
                 double Discount = Convert.ToDouble(txt_Discount.Text);
@@ -614,16 +643,25 @@ namespace PrimeSolutions
                     string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                     string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
+                    string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string PBillNo = txt_BillNo.Text;
-                    if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
+                    string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
+                    string Maintain = dtp_Date.Value.AddMonths(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value)).ToString("dd/MM/yyyy");
+
+                     if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
                         
                     {
-                        _Sale.AddItemDetails(category,subcategory,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice);
+                        _Sale.AddItemDetails(category,subcategory,Size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
                     }
 
                     else
                     {
                         _Sale.UpdateItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value), txt_BillNo.Text,dtp_Date.Value.ToString("dd/MM/yyyy"));
+                    }
+
+                    if (dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString() != "0")
+                    {
+                        _Service.AddMaintain(dtp_Date.Value.ToString("dd/MM/yyyy"), category+" "+ subcategory, Maintain, txt_AccNo.Text);
                     }
 
                 }
@@ -640,7 +678,7 @@ namespace PrimeSolutions
 
             if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
             {
-                _a.InsertPaymentDetails("Sale", txt_BillAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                _a.InsertPaymentDetails("Sale", txt_PaidAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
             }
                 //create account ledger
                 string ledgerId;
@@ -774,6 +812,17 @@ namespace PrimeSolutions
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Rate"].Value = txt_SellingAmt.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Size"].Value = cmb_size.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["HSN"].Value = txt_HSN.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["BatchNo"].Value = txt_BatchNo.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGSTper"].Value = txt_CGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGST"].Value = lbl_CGSTAmt.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGSTper"].Value = txt_SGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGST"].Value = lbl_SGSTAmt.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGSTper"].Value = txt_IGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGST"].Value = lbl_IGSTAmt.Text;
+
+
                 Calculate();
             }
             catch (Exception ex)
@@ -870,7 +919,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Add();
+                cmb_SalesPerson.Focus();
             }
         }
 
@@ -893,7 +942,7 @@ namespace PrimeSolutions
 
         private void cmb_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmb_SubCategory.DataSource=_a.GetSubCategoryByCategory(cmb_Category.Text);
+            cmb_SubCategory.DataSource = _a.GetSubCategoryByCategory(cmb_Category.Text);
         }
 
         private void txt_CGSTper_TextChanged(object sender, EventArgs e)
@@ -975,6 +1024,7 @@ namespace PrimeSolutions
 
         private void cmb_Name_SelectedIndexChanged(object sender, EventArgs e)
         {
+
         }
 
         private void lbl_BasePrice_TextChanged(object sender, EventArgs e)
@@ -1052,6 +1102,40 @@ namespace PrimeSolutions
                 {
                     fillitem();
                 }
+            }
+        }
+
+        private void cmb_size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmb_Name_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cmb_SalesPerson_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txt_maintain.Visible == true)
+                    txt_maintain.Focus();
+                else
+                    Add();
+            }
+        }
+
+        private void txt_maintain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitWithPoint(e, txt_maintain.Text);
+        }
+
+        private void txt_maintain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Add();
             }
         }
     }

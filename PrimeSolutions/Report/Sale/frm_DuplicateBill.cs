@@ -41,6 +41,13 @@ namespace PrimeSolutions.Report.Sale
                     SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
                     _obj(bill.Text, "Print");
                 }
+
+                if (txt_type.Text == "Service Invoice")
+                {
+                    CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.ServiceInvoice);
+                    _obj(bill.Text, "Print");
+                }
             }
             catch (Exception ex)
             {
@@ -93,6 +100,13 @@ namespace PrimeSolutions.Report.Sale
                 _objfrm_ReportViewer.Show();
             }
 
+            if (txt_type.Text == "Service Invoice")
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.ServiceInvoice);
+                _obj(bill.Text, "View");
+                _objfrm_ReportViewer.Show();
+            }
 
         }
     }

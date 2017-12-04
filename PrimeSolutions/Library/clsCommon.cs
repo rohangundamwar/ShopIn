@@ -41,9 +41,50 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public DataTable GetBillItemByRefrence(string BillNo, string Type)
+        {
+            string str = "Select * from BillItem where PurchaseRef = '" + BillNo + "'";
+            DataTable dt = _objSqlhelper.GetDataTable(str);
+            return dt;
+        }
+
         public void InsertIntoTemp(string BillNo)
         {
-            DataTable dt = GetBillItem(BillNo, "Purchase");
+            DataTable dt = GetBillItemByRefrence(BillNo, "Purchase");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (!_objCustmor.GetalooseItem(Convert.ToString(dt.Rows[i]["Category"])))
+                {
+                    if (Convert.ToBoolean(dt.Rows[i]["BarcodePrint"]))
+                    {
+                        string barcode;
+                        if (Convert.ToString(dt.Rows[i]["Barcode"]) == "" || Convert.ToString(dt.Rows[i]["Barcode"]) == string.Empty)
+                        {
+                            barcode = _objSqlhelper.GetMaxID("B", "0");
+                        }
+                        else
+                        {
+                            barcode = Convert.ToString(dt.Rows[i]["Barcode"]);
+                        }
+                        int Qty = Convert.ToInt32(dt.Rows[i]["Qty"]);
+                        string Category = Convert.ToString(dt.Rows[i]["Category"]);
+                        string subcategory = Convert.ToString(dt.Rows[i]["SubCategory"]);
+                        string SellingAmt = Convert.ToString(dt.Rows[i]["SellingPrice"]);
+                        for (int j = 0; j < Qty; j++)
+                        {
+                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "') ";
+                            _objSqlhelper.ExecuteScalar(str);
+                        }
+                    }
+                }
+            }
+            //DeleteTemp();
+
+        }
+
+        public void InsertIntoTemp(DataTable dt)
+        {
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -94,7 +135,7 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.ExecuteScalar(str);
         }
 
-        public bool CheckValidity()
+        public string CheckValidity()
         {
             string str = "SELECT * from Activation";
             DataTable dt = _objSqlhelper.GetDataTable(str);
@@ -102,12 +143,28 @@ namespace PrimeSolutions.Library
             int ValidDays = Convert.ToInt32(dt.Rows[0]["Validity"]);
             DateTime ValidTo = start.AddDays(ValidDays);
             DateTime CurrentDate = DateTime.Now;
-            if (CurrentDate > ValidTo)
-                return false;
+            if (CurrentDate < ValidTo)
+            {
+                if (ValidTo.AddDays(-15) < CurrentDate)
+                {
+                    string days = Convert.ToString((ValidTo.Date - CurrentDate.Date).Days);
+                    return days ;
+                }
+                else
+                return "Valid";
+            }
+            
             else
-                return true;
+                return "Invalid";
+
         }
 
+        public DataTable GetSalesPerson()
+        {
+            string sql = "select id+name as SalesPerson from SalesmanMaster";
+            return _objSqlhelper.GetDataTable(sql);
+
+        }
         public void UpdatePaymentDetailsToPermanentDelete(string VoucherTypeId, string VoucherId)
         {
             string str = "UPDATE " + TableNames.PaymentDetail + " SET PermanentDelete= 1 WHERE VoucherTypeId='" + VoucherTypeId + "' and  VoucherId='" + VoucherId + "' AND (PermanentDelete=0)";
@@ -177,6 +234,7 @@ namespace PrimeSolutions.Library
             _objsetvalue.BarcodeType = dt.Rows[0]["BarcodeType"].ToString();
             _objsetvalue.PaymentForm = dt.Rows[0]["PaymentForm"].ToString();
             _objsetvalue.EstimatePayment = dt.Rows[0]["EstimatePayment"].ToString();
+            _objsetvalue.Maintenance = dt.Rows[0]["Maintenance"].ToString();
 
             return _objsetvalue;
         }
@@ -503,13 +561,13 @@ namespace PrimeSolutions.Library
 
             if ((number / 1000) > 0)
             {
-                words += NumberToWords(number / 1000) + " thousand ";
+                words += NumberToWords(number / 1000) + " Thousand ";
                 number %= 1000;
             }
 
             if ((number / 100) > 0)
             {
-                words += NumberToWords(number / 100) + " hundred ";
+                words += NumberToWords(number / 100) + " Hundred ";
                 number %= 100;
             }
 
@@ -518,8 +576,8 @@ namespace PrimeSolutions.Library
                 if (words != "")
                     words += "and ";
 
-                var unitsMap = new[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-                var tensMap = new[] { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+                var unitsMap = new[] { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+                var tensMap = new[] { "Zero", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
                 if (number < 20)
                     words += unitsMap[number];

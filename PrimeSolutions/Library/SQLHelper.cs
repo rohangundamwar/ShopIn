@@ -402,7 +402,10 @@ namespace PrimeSolutions.Library
 
                     break;
 
+                case "SR":
 
+                    SQL = "Select Max(Right(ServiceID,5))+1 As MaxID From Maintenance Where Right(Left(ServiceID,2),2)= 'SR'";
+                    break;
 
                 case "T":
 
@@ -425,7 +428,7 @@ namespace PrimeSolutions.Library
 
                 case "W":
 
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From vyapariBookingBillMaster Where Right(Left(BillNo,1),1)= 'W'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From CustomerBill Where Right(Left(BillNo,1),1)= 'W'";
 
                     break;
 
