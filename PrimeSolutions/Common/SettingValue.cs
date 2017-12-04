@@ -9,5 +9,7 @@ namespace PrimeSolutions.Common
         public string BarcodeType { get; set; }
         public string PaymentForm { get; set; }
         public string EstimatePayment { get; set; }
+        public string Maintenance { get; set; }
+
     }
 }

@@ -130,7 +130,7 @@
             this.bttn_close.TabIndex = 6;
             this.bttn_close.Text = "CLOSE";
             this.bttn_close.UseVisualStyleBackColor = true;
-            this.bttn_close.Click += new System.EventHandler(this.button2_Click);
+            this.bttn_close.Click += new System.EventHandler(this.bttn_Close_Click);
             // 
             // bill
             // 
@@ -175,7 +175,7 @@
             this.Controls.Add(this.lbl_customer);
             this.Controls.Add(this.cmb_customer);
             this.Name = "frm_ChangeBill";
-            this.Text = "Duplicate Bill";
+            this.Text = "Change Sale Bill";
             this.Load += new System.EventHandler(this.frm_DuplicateBill_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).EndInit();
             this.ResumeLayout(false);

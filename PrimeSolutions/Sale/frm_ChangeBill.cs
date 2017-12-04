@@ -28,8 +28,7 @@ namespace PrimeSolutions.Report.Sale
         {
             try
             {
-                _common.setBillNo(bill.Text);
-                frm_SaleUpdate _form = new frm_SaleUpdate();
+                frm_SaleUpdate _form = new frm_SaleUpdate(bill.Text);
                 _form.ShowDialog();
             }
             catch (Exception ex)
@@ -39,7 +38,7 @@ namespace PrimeSolutions.Report.Sale
             //_s.PrintBillThermal(cmb_BillNo.Text);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void bttn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -25,7 +25,7 @@ namespace PrimeSolutions.Report
         private void SupplierBill_Load(object sender, EventArgs e)
         {
             cmb_BillNo.DataSource = _p.GetSupplierBillNo();
-            cmb_BillNo.SelectedIndex = 1;
+            cmb_BillNo.SelectedIndex = -1;
         }
 
         private void cmb_BillNo_SelectedIndexChanged(object sender, EventArgs e)

@@ -63,16 +63,16 @@ namespace PrimeSolutions.Library
             _sql.ExecuteScalar(str);
         }
 
-        internal void InsertItem(string barcode,string category, string subcategory,string size, string Pbill,string type,string Qty,string CGST,string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt,string purchaseamt, string total, string BatchNo,string sellingamt,string HSN,string date, string BarcodePrint)
+        internal void InsertItem(string barcode,string category, string subcategory,string size, string Pbill,string type,string Qty,string CGST,string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt,string purchaseamt, string total, string BatchNo,string sellingamt,string HSN,string date, string BarcodePrint,string PurchaseRef)
         {
-            string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,size,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,BarcodePrint) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','"+size+"','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','"+BarcodePrint+"')";
+            string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,size,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,BarcodePrint,PurchaseRef) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','"+size+"','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','"+BarcodePrint+"','"+ PurchaseRef + "')";
             _sql.ExecuteScalar(str);
         }
 
         public DataTable GetSupplierBillNo()
         {
             DataTable dt;
-            string str = "select distinct BillNo from SupplierBill";
+            string str = "select distinct BillNo,RefrenceNo from SupplierBill";
             dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -105,18 +105,23 @@ namespace PrimeSolutions.Library
         {
             string AllHSN = "";
             string str = "Select  distinct HSN from BillItem where "+type+"BillNo = '" + BillNo + "'";
-            DataTable dt = _sql.GetDataTable(str);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            DataTable dt = new DataTable();
+            int i = 0;
+
+            while (dt.Rows.Count > i)
             {
-                AllHSN = AllHSN + "," + dt.Rows[i]["HSN"].ToString();
+                AllHSN = dt.Rows[i]["HSN"].ToString();
+                AllHSN = AllHSN + ",";
+                i++;
             }
+
             return AllHSN;
         }
 
         public DataTable GetSupplierDetailsFromBill(string BillNo)
         {
             DataTable dt;
-            string str = "SELECT dbo.SupplierBill.BillNo, dbo.SupplierBill.Date, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierMaster.Name, dbo.SupplierMaster.state, dbo.SupplierMaster.ContactNo, dbo.SupplierMaster.Address, dbo.SupplierMaster.PanNo, dbo.SupplierMaster.GSTIN, dbo.SupplierMaster.City, dbo.SupplierBill.IGST, dbo.SupplierBill.State AS Expr1, dbo.SupplierBill.GrandTotal FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(dbo.SupplierBill.BillNo = '"+ BillNo + "')";
+            string str = "SELECT dbo.SupplierBill.BillNo, dbo.SupplierBill.Date, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierMaster.Name, dbo.SupplierMaster.state, dbo.SupplierMaster.ContactNo, dbo.SupplierMaster.Address, dbo.SupplierMaster.PanNo, dbo.SupplierMaster.GSTIN, dbo.SupplierMaster.City, dbo.SupplierBill.IGST, dbo.SupplierBill.State AS Expr1, dbo.SupplierBill.GrandTotal FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(dbo.SupplierBill.RefrenceNo = '" + BillNo + "')";
             dt = _sql.GetDataTable(str);
             return dt; 
         }

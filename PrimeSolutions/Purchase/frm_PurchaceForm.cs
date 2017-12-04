@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace PrimeSolutions
 {
@@ -115,6 +117,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode ==  Keys.Enter)
             {
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Name.Text, @"\s+", " ").Trim() as String);
                 fillSupplier();
             }
 
@@ -197,6 +200,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Category.Text, @"\s+", " ").Trim() as String);
                 cmb_SubCategory.Focus();
             }
             if (e.KeyCode == Keys.End)
@@ -210,6 +214,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_SubCategory.Text, @"\s+", " ").Trim() as String);
                 cmb_size.Focus();
             }
         }
@@ -560,14 +565,22 @@ namespace PrimeSolutions
                             string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string PBillNo = txt_BillNo.Text;
 
-                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null);
+                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null,"");
 
                         }
 
                         else if (!_objCustmor.GetalooseItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value)))
                         {
-
-                            string barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Barcode"].Value);
+                            string barcode;
+                            if (dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == "" || dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == string.Empty)
+                            {
+                                barcode = _objSQLHelper.GetMaxID("B", "0");
+                            }
+                            else
+                            {
+                                barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Barcode"].Value);
+                            }
+                            
                             string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
                             string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
                             string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
@@ -585,7 +598,7 @@ namespace PrimeSolutions
                             string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
                             string PBillNo = txt_BillNo.Text;
-                            _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint);
+                            _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,txt_PurchaseRef.Text);
 
 
                         }
@@ -601,7 +614,7 @@ namespace PrimeSolutions
                     
                     if (dtsett.Barcode == "Yes")
                     {
-                        _Common.InsertIntoTemp(txt_BillNo.Text);
+                        _Common.InsertIntoTemp(txt_PurchaseRef.Text);
 
                         if (dtsett.BarcodeType == "Thermal")
                         {

@@ -82,7 +82,7 @@ namespace PrimeSolutions.Report
                 for (int i = 0; i < SubCat.Rows.Count; i++)
                 {
                     dgv_stock.Rows.Add();
-                    dgv_stock.Rows[i].Cells["SrNo"].Value = i + 1.ToString();
+                    dgv_stock.Rows[i].Cells["SrNo"].Value = (i + 1).ToString();
                     dgv_stock.Rows[i].Cells["Category"].Value = cmb_category.Text;
                     dgv_stock.Rows[i].Cells["SubCategory"].Value = SubCat.Rows[i]["SubCategory"].ToString();
                     dgv_stock.Rows[i].Cells["SellingPrice"].Value = SubCat.Rows[i]["SellingPrice"].ToString();

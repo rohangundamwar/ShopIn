@@ -35,7 +35,7 @@
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Details = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_generate = new System.Windows.Forms.Button();
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
@@ -55,7 +55,9 @@
             // 
             // dgv_CustomerItem
             // 
+            this.dgv_CustomerItem.AllowUserToAddRows = false;
             this.dgv_CustomerItem.AllowUserToDeleteRows = false;
+            this.dgv_CustomerItem.BackgroundColor = System.Drawing.Color.Moccasin;
             this.dgv_CustomerItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_CustomerItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -63,11 +65,11 @@
             this.Name,
             this.Item,
             this.Amount,
-            this.Details});
+            this.Discount});
             this.dgv_CustomerItem.Location = new System.Drawing.Point(12, 82);
             this.dgv_CustomerItem.Name = "dgv_CustomerItem";
             this.dgv_CustomerItem.ReadOnly = true;
-            this.dgv_CustomerItem.Size = new System.Drawing.Size(736, 291);
+            this.dgv_CustomerItem.Size = new System.Drawing.Size(733, 291);
             this.dgv_CustomerItem.TabIndex = 1;
             // 
             // Date
@@ -102,12 +104,12 @@
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
             // 
-            // Details
+            // Discount
             // 
-            this.Details.HeaderText = "Details";
-            this.Details.Name = "Details";
-            this.Details.ReadOnly = true;
-            this.Details.Width = 120;
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            this.Discount.Width = 120;
             // 
             // bttn_generate
             // 
@@ -175,6 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Bisque;
             this.ClientSize = new System.Drawing.Size(761, 388);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -185,6 +188,7 @@
             this.Controls.Add(this.dgv_CustomerItem);
             this.Controls.Add(this.dtp_date);
             this.KeyPreview = true;
+            this.Text = "Daily Sale Report";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_SaleReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerItem)).EndInit();
             this.ResumeLayout(false);
@@ -207,6 +211,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Details;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
     }
 }

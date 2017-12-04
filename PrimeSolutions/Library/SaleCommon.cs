@@ -31,9 +31,9 @@ namespace PrimeSolutions.Library
             _sql.ExecuteSql(str);
         }
 
-        public void AddItemDetails(string Category, string SubCategory, string BillNo, string type, string date, string price, string Qty, string CGST, string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt, string totalAmt, string batch, string HSN,string TotalPrice)
+        public void AddItemDetails(string Category, string SubCategory,string size, string BillNo, string type, string date, string price, string Qty, string CGST, string CGSTAmt, string SGST, string SGSTAmt, string IGST, string IGSTAmt, string totalAmt, string batch, string HSN,string TotalPrice,string SalesPerson,string maintain)
         {
-            string str = "Insert into BillItem(Category,SubCategory,SaleBillNo,Type,SaleDate,Price,Qty,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,TotalPrice,BatchNo,HSN,SellingPrice) Values('" + Category + "','" + SubCategory + "','" + BillNo + "','" + type + "','" + date + "','" + price + "','" + Qty + "','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','" + IGSTAmt + "','" + IGSTAmt + "','" + totalAmt + "','" + batch + "','" + HSN + "','"+TotalPrice+"') ";
+            string str = "Insert into BillItem(Category,SubCategory,Size,SaleBillNo,Type,SaleDate,Price,Qty,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,TotalPrice,BatchNo,HSN,SellingPrice,SalesPerson,Maintain) Values('" + Category + "','" + SubCategory + "','"+size+"','" + BillNo + "','" + type + "','" + date + "','" + price + "','" + Qty + "','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','" + IGSTAmt + "','" + IGSTAmt + "','" + totalAmt + "','" + batch + "','" + HSN + "','"+TotalPrice+"','"+SalesPerson+"','"+maintain+"') ";
             _sql.ExecuteSql(str);
         }
 
@@ -181,9 +181,9 @@ namespace PrimeSolutions.Library
                 return Convert.ToDouble(open);
         }
 
-        private DataTable GetBillDetails(string BillNo)
+        public DataTable GetBillDetails(string BillNo)
         {
-            string str = "Select * from CustomerBill where BillNo = '" + BillNo + "'";
+            string str = "Select * from CustomerBill where BillNo = '" + BillNo + "'" ;
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -209,9 +209,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerByBill(string BillNo)
         {
-            string str1 = "select CustId from CustomerBill where BillNo = '" + BillNo + "'";
-            string CustId = _sql.ExecuteScalar(str1);
-            string str2 = "select * from CustomerMaster where CustId = '" + CustId + "'";
+            string str2 = "select * from CustomerMaster where CustId = (select CustId from CustomerBill where BillNo = '"+BillNo+"') ";
             DataTable dt = _sql.GetDataTable(str2);
             return dt;
         }
@@ -250,10 +248,10 @@ namespace PrimeSolutions.Library
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
-
+        
         public DataTable GetCustomerPayment(string id)
         {
-            string str = "Select * from Payment where Type='Sale'and Id='"+id+"'";
+            string str = "Select * from Payment where Id='"+id+"'";
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
@@ -362,7 +360,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerReport(string from, string to)
         {
-            string str = "Select* From CustomerBill Where (CONVERT(DateTime, CustomerBill.date, 103) >= CONVERT(DateTime, '" + from + "', 103))  AND(CONVERT(DateTime, CustomerBill.date, 103) <= CONVERT(DateTime, '" + to + "', 103))";
+            string str = "SELECT dbo.CustomerBill.BillNo, dbo.CustomerBill.Date, dbo.CustomerBill.Amount, dbo.CustomerBill.CGST, dbo.CustomerBill.SGST, dbo.CustomerBill.IGST, dbo.CustomerBill.GrandAmt,  dbo.CustomerBill.State, dbo.CustomerBill.BillAmount, dbo.CustomerMaster.CustomerName, dbo.CustomerMaster.Address, dbo.CustomerMaster.PanNo, dbo.CustomerMaster.GSTIN,  dbo.CustomerMaster.City FROM dbo.CustomerBill INNER JOIN dbo.CustomerMaster ON dbo.CustomerBill.CustId = dbo.CustomerMaster.CustId WHERE(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103))";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }

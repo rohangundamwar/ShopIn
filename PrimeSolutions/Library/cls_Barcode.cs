@@ -45,10 +45,8 @@ namespace PrimeSolutions.Library
             // Set the BarTender application visible
             btApp.Visible = true;
             // Open a BarTender document
-            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "Barcode2Test");
+            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "Barcode1Test");
             btDb = btFormat.Databases.GetDatabase(1);
-            // Select the query prompt
-            btQueryPrompt = btFormat.Databases.QueryPrompts.GetQueryPrompt("Item");
             btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
             // End the BarTender process
             btApp.Quit(BarTender.BtSaveOptions.btDoNotSaveChanges);
@@ -70,8 +68,6 @@ namespace PrimeSolutions.Library
             // Open a BarTender document
             btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "Barcode2Test");
             btDb = btFormat.Databases.GetDatabase(1);
-            // Select the query prompt
-            btQueryPrompt = btFormat.Databases.QueryPrompts.GetQueryPrompt("Item");
             btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
             // End the BarTender process
             btApp.Quit(BarTender.BtSaveOptions.btDoNotSaveChanges);

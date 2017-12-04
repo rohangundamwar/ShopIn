@@ -146,6 +146,18 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\BillEstA5.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillEstA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\crt_ServiceList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_ServiceList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="bin\Debug\PreetyLooksEstimate.cs">
       <DependentUpon>PreetyLooksEstimate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -219,6 +231,18 @@
     <Compile Include="Common\frm_Category.designer.cs">
       <DependentUpon>frm_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_DeleteData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_DeleteData.Designer.cs">
+      <DependentUpon>frm_DeleteData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Frm_DeveloperLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Frm_DeveloperLogin.designer.cs">
+      <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_LooseItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,8 +261,20 @@
     <Compile Include="Common\frm_SubCategory.designer.cs">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_UpdateQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_UpdateQuery.designer.cs">
+      <DependentUpon>frm_UpdateQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Messages.cs" />
     <Compile Include="Common\SettingValue.cs" />
+    <Compile Include="Common\Uc_MultiItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Uc_MultiItem.Designer.cs">
+      <DependentUpon>Uc_MultiItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\Barcode.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,6 +294,7 @@
     <Compile Include="Library\Cls_BalanceSheet.cs" />
     <Compile Include="Library\cls_Barcode.cs" />
     <Compile Include="Library\Cls_paymentoption.cs" />
+    <Compile Include="Library\cls_ServiceCommon.cs" />
     <Compile Include="Library\CreditDebit.cs" />
     <Compile Include="Library\FinancialStatementSP.cs" />
     <Compile Include="PaymentOption\frm_PaymentOptionForPaymentVoucher.cs">
@@ -358,6 +395,12 @@
     <Compile Include="Report\Customer\frm_SaleLedger.Designer.cs">
       <DependentUpon>frm_SaleLedger.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Customer\frm_CustomerGSTReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Customer\frm_CustomerGSTReport.Designer.cs">
+      <DependentUpon>frm_CustomerGSTReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\frm_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -430,11 +473,23 @@
     <Compile Include="Sale\frm_ChangeBill.Designer.cs">
       <DependentUpon>frm_ChangeBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sale\frm_CustomerPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_CustomerPayment.Designer.cs">
+      <DependentUpon>frm_CustomerPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sale\frm_SaleEstimate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sale\frm_SaleEstimate.Designer.cs">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sale\frm_WholeSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_WholeSale.Designer.cs">
+      <DependentUpon>frm_WholeSale.cs</DependentUpon>
     </Compile>
     <Compile Include="Sale\frm_SaleUpdate.cs">
       <SubType>Form</SubType>
@@ -459,6 +514,18 @@
     </Compile>
     <Compile Include="Sale\frm_UpdateBill.Designer.cs">
       <DependentUpon>frm_UpdateBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\frm_JobCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\frm_JobCard.Designer.cs">
+      <DependentUpon>frm_JobCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\frm_ServiceInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service\frm_ServiceInvoice.Designer.cs">
+      <DependentUpon>frm_ServiceInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Accounting\frmAccountLedger.resx">
@@ -486,6 +553,14 @@
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillEstA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillEstA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\crt_ServiceList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_ServiceList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\PreetyLooksEstimate.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -532,6 +607,12 @@
     <EmbeddedResource Include="Common\frm_Category.resx">
       <DependentUpon>frm_Category.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_DeleteData.resx">
+      <DependentUpon>frm_DeleteData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Frm_DeveloperLogin.resx">
+      <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_LooseItem.resx">
       <DependentUpon>frm_LooseItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -540,6 +621,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_SubCategory.resx">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_UpdateQuery.resx">
+      <DependentUpon>frm_UpdateQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Uc_MultiItem.resx">
+      <DependentUpon>Uc_MultiItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentOption\frm_PaymentOptionForPaymentVoucher.resx">
       <DependentUpon>frm_PaymentOptionForPaymentVoucher.cs</DependentUpon>
@@ -587,6 +674,9 @@
     <EmbeddedResource Include="Report\Customer\frm_SaleLedger.resx">
       <DependentUpon>frm_SaleLedger.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Customer\frm_CustomerGSTReport.resx">
+      <DependentUpon>frm_CustomerGSTReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,8 +713,14 @@
     <EmbeddedResource Include="Sale\frm_ChangeBill.resx">
       <DependentUpon>frm_ChangeBill.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_CustomerPayment.resx">
+      <DependentUpon>frm_CustomerPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_SaleEstimate.resx">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_WholeSale.resx">
+      <DependentUpon>frm_WholeSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_SaleUpdate.resx">
       <DependentUpon>frm_SaleUpdate.cs</DependentUpon>
@@ -638,9 +734,18 @@
     <EmbeddedResource Include="Sale\frm_UpdateBill.resx">
       <DependentUpon>frm_UpdateBill.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Service\frm_JobCard.resx">
+      <DependentUpon>frm_JobCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service\frm_ServiceInvoice.resx">
+      <DependentUpon>frm_ServiceInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="bin\Debug\Barcode.btw" />
     <None Include="bin\Debug\Barcode2.btw" />
+    <None Include="bin\Debug\Barcode2Test.btw" />
+    <None Include="bin\Debug\BarcodeA4 - Test.btw" />
+    <None Include="bin\Debug\BarcodeA4.btw" />
     <None Include="bin\Debug\PrimeSolutions.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />
@@ -700,6 +805,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Scripts\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup>

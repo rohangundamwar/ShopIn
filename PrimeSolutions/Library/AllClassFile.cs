@@ -146,8 +146,8 @@ namespace PrimeSolutions.Library
         internal string getQty(string category, string subcategory,string price)
         {
             string Qty;
-            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'AND sellingprice='"+price+"' ";
-            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'AND sellingprice='" + price + "' ";
+            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'";
+            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'";
             DataTable DtPurchase = _objsqlhelper.GetDataTable(purchase);
             DataTable DtSale = _objsqlhelper.GetDataTable(sale);
             if (GetalooseItem(category))
@@ -253,7 +253,7 @@ namespace PrimeSolutions.Library
 
         internal DataTable getBarcodeItemByBilNo(string PBillNo)
         {
-            string str = "Select  * From BillItem Where (Barcode != '') AND PurchaseBillNo = '" + PBillNo + "' And type = 'Purchase'";
+            string str = "Select  * From BillItem Where (Barcode != '') AND barcodePrint = 'true' AND PurchaseRef = '" + PBillNo + "' And type = 'Purchase'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -460,7 +460,7 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        internal DataTable getpaymentByBill(string BillNo,string type)
+        public DataTable getpaymentByBill(string BillNo,string type)
         {
             string str = "select * from Payment where BillNo='" + BillNo + "' and type='"+type+"'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
@@ -539,26 +539,30 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public string GetSaleBillName()
+        public DataTable GetSaleBillName()
         {
-            string str = "SELECT SaleBill FROM CrystalReport where SrNo='1'";
-            string crt = _objsqlhelper.ExecuteScalar(str);
-            return crt;
+            string str = "SELECT * FROM CrystalReport ";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string start,string end)
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain)
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "'";
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"'";
             _objsqlhelper.ExecuteScalar(str);
 
-            string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "'";
-            _objsqlhelper.ExecuteScalar(str);
+            string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "' where type='GST'";
+            _objsqlhelper.ExecuteScalar(str2);
 
-            string str3 = "Update FinancialYearMaster set startyear= '" + start + "', endyear= '" + end + "', ";
-            _objsqlhelper.ExecuteScalar(str);
+            string str3 = "Update FinancialYearMaster set startyear= '" + start + "', endyear= '" + end + "' ";
+            _objsqlhelper.ExecuteScalar(str3);
 
+            string str4 = "Update CrystalReport set SaleBill= '" + PurchaseBill + "' where type='SupplierPurchase'";
+            _objsqlhelper.ExecuteScalar(str4);
 
-
+            string str5 = "Update CrystalReport set SaleBill= '" + Estimate + "' where type='Estimate'";
+            _objsqlhelper.ExecuteScalar(str5);
+            
         }
 
         public DataTable GetSaleBill()
