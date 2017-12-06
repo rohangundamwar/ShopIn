@@ -60,7 +60,7 @@ namespace PrimeSolutions.Report.CrystalReport
             DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
             _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
 
-            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "'";
+            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
             DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
             _objReport.Database.Tables["CustomerBill"].SetDataSource(dt_BillingDetails);
 
@@ -144,6 +144,21 @@ namespace PrimeSolutions.Report.CrystalReport
                 crReportViewer.Show();
                 return;
             }
+        }
+
+        public void JobCard(DataTable Dt)
+        {
+            string crname;
+            crname = "Select SaleBill from CrystalReport Where Type='JobCard'";
+            string dt_crname = _objsqlhelper.ExecuteScalar(crname);
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "\\" + dt_crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
         }
 
         public void ServiceInvoice(string ServiceID, string Type)

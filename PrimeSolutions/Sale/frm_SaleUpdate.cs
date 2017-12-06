@@ -95,7 +95,8 @@ namespace PrimeSolutions
                 string SGSTAmt = BillItem.Rows[i]["SGSTAmt"].ToString();
                 string IGST = BillItem.Rows[i]["IGST"].ToString();
                 string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
-                dgv_ItemInfo.Rows.Add(barcode,category,SubCategory,HSN, BatchNo, Rate,qty,Total,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt);
+                string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
+                dgv_ItemInfo.Rows.Add(barcode,category,SubCategory,HSN, BatchNo, Rate,qty,Total,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,Selling);
 
             }
             
@@ -631,6 +632,11 @@ namespace PrimeSolutions
             string BillNo = txt_BillNo.Text;
             string TransactionLedgerID = null;
 
+            //Delete Old Item And Bill
+
+            _Sale.DeleteBillItem(txt_BillNo.Text);
+            _Sale.DeleteBillDetails(txt_BillNo.Text);
+
             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
             
             if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
@@ -684,70 +690,10 @@ namespace PrimeSolutions
             }
             try
             {
-                 
-            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST");
 
-            if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
-            {
-                _a.InsertPaymentDetails("Sale", txt_BillAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
-            }
-                //create account ledger
-                string ledgerId;
-                ledgerId = _Sale.insertAcountLedgerDetail(Vouchertypeid: VouchertypeID, AccNo: lbl_AccNo.Text, Name: cmb_Name.Text, Narration: "", Date: dtp_Date.Text);
-
-                bool Payformstatus = true;
-                if (Convert.ToInt32(txt_PaidAmt.Text) == 0)
-                {
-                    DialogResult dr1 = MessageBox.Show("Save with Zero Amount :" + txt_PaidAmt.Text + "\n\n Do You Want To Continue", "ShopIn Says ", MessageBoxButtons.YesNo);
-                    if (dr1 == DialogResult.No)
-                    {
-                        Payformstatus = false;
-                    }
-                }
-
-                else if (Convert.ToInt32(txt_PaidAmt.Text) > 0 )
-
-                {
-                    DialogResult dr = MessageBox.Show("Amount to be Payed :" + txt_PaidAmt.Text + "\n\n Do You Want To Continue", "ShopIn Says ", MessageBoxButtons.YesNo);
-                    if (dr == DialogResult.Yes)
-                    {
-                        if (dtSett.PaymentForm == "1")
-                        {
-                            frm_PaymentOptionForReceiptVoucher form = new frm_PaymentOptionForReceiptVoucher
-                                (
-                               Amountpaid: txt_PaidAmt.Text,
-                               billno: txt_BillNo.Text,
-                               Accountno: txt_AccNo.Text,
-                               Date: dtp_Date.Text,
-
-                               CustomerType: CustomerType.CustomerSaleGST,
-                               OperationType: OperationType.Create
-                                );
-
-                            form.ShowDialog();
-                            Payformstatus = true;
-                            TransactionLedgerID = form.TransactionLedgerID;
-                            PaymentIDs = form.PaymentIDs;
-                            if (form.ReturnStatus == false)
-                            {
-                                Payformstatus = false;
-                            }
-                        }
-                        else if (dtSett.PaymentForm == "0")
-                        {
-                            Payformstatus = true;
-                        }
-                    }
-                    else if (dr == DialogResult.No)
-                    {
-                        Payformstatus = false;
-                    }
-                }
-                _Sale.InsertCreditDebitInSalesAccount(customerLedgerID: ledgerId, VouchertypeID: VouchertypeID, sbillno: txt_AccNo.Text.ToString(), Name: cmb_Name.Text, Amount: txt_PaidAmt.Text, Narration: "", Date: dtp_Date.Text);
-
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "GST");
             }
 
-            
             catch (Exception ex)
             {
                 _error.AddException(ex, "Sale");
@@ -773,14 +719,20 @@ namespace PrimeSolutions
         }
 
         private void frm_SaleForm_KeyDown(object sender, KeyEventArgs e)
-        { 
+        {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
             }
+
             if (e.KeyCode == Keys.Add)
             {
-                txt_TotalAmt.Focus();
+                Add();
+            }
+
+            if (e.KeyCode == Keys.End)
+            {
+                txt_Discount.Focus();
             }
         }
         

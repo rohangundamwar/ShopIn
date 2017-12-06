@@ -16,14 +16,14 @@ namespace PrimeSolutions.bin.Debug {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class BillA5 : ReportClass {
+    public class ThadaniBillA5 : ReportClass {
         
-        public BillA5() {
+        public ThadaniBillA5() {
         }
         
         public override string ResourceName {
             get {
-                return "BillA5.rpt";
+                return "ThadaniBillA5.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PrimeSolutions.bin.Debug {
         
         public override string FullResourceName {
             get {
-                return "PrimeSolutions.bin.Debug.BillA5.rpt";
+                return "PrimeSolutions.bin.Debug.ThadaniBillA5.rpt";
             }
             set {
                 // Do nothing
@@ -114,9 +114,9 @@ namespace PrimeSolutions.bin.Debug {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBillA5 : Component, ICachedReport {
+    public class CachedThadaniBillA5 : Component, ICachedReport {
         
-        public CachedBillA5() {
+        public CachedThadaniBillA5() {
         }
         
         [Browsable(false)]
@@ -153,7 +153,7 @@ namespace PrimeSolutions.bin.Debug {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            BillA5 rpt = new BillA5();
+            ThadaniBillA5 rpt = new ThadaniBillA5();
             rpt.Site = this.Site;
             return rpt;
         }

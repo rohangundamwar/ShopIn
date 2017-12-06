@@ -84,6 +84,19 @@ namespace PrimeSolutions.Common
             string H = "Maintainence";
             string query8 = "CREATE TABLE [dbo].[Maintenance]([Date] [nvarchar](max) NULL,[CustomerId] [nvarchar](max) NULL,[SrNo] [int] IDENTITY(1,1) NOT NULL,[Maintain] [nvarchar](max) NULL,[Item] [nvarchar](max) NULL,[MaintainDate] [nvarchar](max) NULL)";
             dgv_UpdateQuery.Rows.Add(false, H, query8);
+
+            string I = "BillItem Permanent delete";
+            string query9 = "ALTER TABLE BillItem ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_BillItem_PermanentDelete]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, I, query9);
+
+            string J = "CustomerBill Permanent delete";
+            string query10 = "ALTER TABLE CustomerBill ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_CustomerBill_PermanentDelete]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, J, query10);
+
+            string K = "SupplierBill Permanent delete";
+            string query11 = "ALTER TABLE SupplierBill ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_SupplierBill_PermanentDelete]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, K, query11);
+
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)

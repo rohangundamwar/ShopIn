@@ -46,6 +46,8 @@
             this.balanceSheetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openingBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerPaymentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseBilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,10 +66,13 @@
             this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -248,10 +253,27 @@
             // 
             // customerPaymentToolStripMenuItem
             // 
+            this.customerPaymentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customerPaymentToolStripMenuItem1,
+            this.supplierPaymentToolStripMenuItem});
             this.customerPaymentToolStripMenuItem.Name = "customerPaymentToolStripMenuItem";
             this.customerPaymentToolStripMenuItem.Size = new System.Drawing.Size(259, 24);
-            this.customerPaymentToolStripMenuItem.Text = "Customer Payment";
+            this.customerPaymentToolStripMenuItem.Text = "Payment";
             this.customerPaymentToolStripMenuItem.Click += new System.EventHandler(this.customerPaymentToolStripMenuItem_Click);
+            // 
+            // customerPaymentToolStripMenuItem1
+            // 
+            this.customerPaymentToolStripMenuItem1.Name = "customerPaymentToolStripMenuItem1";
+            this.customerPaymentToolStripMenuItem1.Size = new System.Drawing.Size(205, 24);
+            this.customerPaymentToolStripMenuItem1.Text = "Customer Payment";
+            this.customerPaymentToolStripMenuItem1.Click += new System.EventHandler(this.customerPaymentToolStripMenuItem1_Click);
+            // 
+            // supplierPaymentToolStripMenuItem
+            // 
+            this.supplierPaymentToolStripMenuItem.Name = "supplierPaymentToolStripMenuItem";
+            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(205, 24);
+            this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment";
+            this.supplierPaymentToolStripMenuItem.Click += new System.EventHandler(this.supplierPaymentToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
@@ -311,7 +333,8 @@
             this.saleToolStripMenuItem1,
             this.purchaseToolStripMenuItem1,
             this.duplicateBillToolStripMenuItem,
-            this.stockCheckToolStripMenuItem});
+            this.stockCheckToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.reportToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.presentation;
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
@@ -371,6 +394,7 @@
             this.purchaseToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplierDailyReportToolStripMenuItem,
             this.supplierBillDetailsToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.purchaseLedgerToolStripMenuItem,
             this.supplierGSTReportToolStripMenuItem});
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
@@ -405,6 +429,13 @@
             this.supplierGSTReportToolStripMenuItem.Text = "Supplier GST Report";
             this.supplierGSTReportToolStripMenuItem.Click += new System.EventHandler(this.supplierGSTReportToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(267, 24);
+            this.toolStripMenuItem2.Text = "Supplier Balance";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // duplicateBillToolStripMenuItem
             // 
             this.duplicateBillToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -435,6 +466,21 @@
             this.stockCheckToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
             this.stockCheckToolStripMenuItem.Text = "Stock Check";
             this.stockCheckToolStripMenuItem.Click += new System.EventHandler(this.stockCheckToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseGSTReportToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
+            this.toolStripMenuItem1.Text = "GST";
+            // 
+            // purchaseGSTReportToolStripMenuItem
+            // 
+            this.purchaseGSTReportToolStripMenuItem.Name = "purchaseGSTReportToolStripMenuItem";
+            this.purchaseGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
+            this.purchaseGSTReportToolStripMenuItem.Text = "Purchase GST Report";
+            this.purchaseGSTReportToolStripMenuItem.Click += new System.EventHandler(this.purchaseGSTReportToolStripMenuItem_Click);
             // 
             // masterToolStripMenuItem
             // 
@@ -710,6 +756,11 @@
         private System.Windows.Forms.ToolStripMenuItem newJobToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serviceInvoiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem purchaseGSTReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerPaymentToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem supplierPaymentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

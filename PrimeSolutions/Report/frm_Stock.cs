@@ -55,6 +55,11 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
                     dgv_stock.Rows[gcount].Cells["SellingPrice"].Value = dt1.Rows[j]["SellingPrice"].ToString();
                     a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["SellingPrice"].ToString()));
+                    if (Convert.ToInt32(a.Remove(a.Length - 4)) <= 5)
+                    {
+                        dgv_stock.Rows[gcount].DefaultCellStyle.BackColor = Color.LightCoral;
+                    }
+                        
                     dgv_stock.Rows[gcount].Cells["Quantity"].Value = a.ToString();
                     gcount = gcount + 1;
                 }

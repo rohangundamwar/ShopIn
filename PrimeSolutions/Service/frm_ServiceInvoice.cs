@@ -321,7 +321,10 @@ namespace PrimeSolutions.Service
 
         private void txt_maintain_KeyDown(object sender, KeyEventArgs e)
         {
-            Add();
+            if (e.KeyCode == Keys.Enter)
+            {
+                Add();
+            }
         }
 
         private void txt_SellingAmt_TextChanged(object sender, EventArgs e)

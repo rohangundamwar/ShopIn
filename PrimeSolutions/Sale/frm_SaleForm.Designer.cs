@@ -155,6 +155,8 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
+            this.txt_Aadhar = new System.Windows.Forms.TextBox();
+            this.lbl_Adhar = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -299,7 +301,7 @@
             this.lbl_ContactNo.AutoSize = true;
             this.lbl_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_ContactNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_ContactNo.Location = new System.Drawing.Point(9, 55);
+            this.lbl_ContactNo.Location = new System.Drawing.Point(9, 54);
             this.lbl_ContactNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ContactNo.Name = "lbl_ContactNo";
             this.lbl_ContactNo.Size = new System.Drawing.Size(88, 16);
@@ -309,6 +311,8 @@
             // pnl_SupplierInfo
             // 
             this.pnl_SupplierInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_SupplierInfo.Controls.Add(this.txt_Aadhar);
+            this.pnl_SupplierInfo.Controls.Add(this.lbl_Adhar);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_State);
             this.pnl_SupplierInfo.Controls.Add(this.cmb_State);
             this.pnl_SupplierInfo.Controls.Add(this.txt_Balance);
@@ -398,10 +402,10 @@
             // 
             this.txt_Balance.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Balance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Balance.Location = new System.Drawing.Point(908, 54);
+            this.txt_Balance.Location = new System.Drawing.Point(960, 55);
             this.txt_Balance.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Balance.Name = "txt_Balance";
-            this.txt_Balance.Size = new System.Drawing.Size(132, 15);
+            this.txt_Balance.Size = new System.Drawing.Size(80, 15);
             this.txt_Balance.TabIndex = 20;
             this.txt_Balance.Text = "0";
             // 
@@ -409,10 +413,10 @@
             // 
             this.txt_GSTIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_GSTIN.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_GSTIN.Location = new System.Drawing.Point(631, 54);
+            this.txt_GSTIN.Location = new System.Drawing.Point(511, 55);
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
-            this.txt_GSTIN.Size = new System.Drawing.Size(159, 15);
+            this.txt_GSTIN.Size = new System.Drawing.Size(150, 15);
             this.txt_GSTIN.TabIndex = 7;
             this.txt_GSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_GSTIN_KeyDown);
             // 
@@ -421,7 +425,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(553, 55);
+            this.label2.Location = new System.Drawing.Point(449, 54);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 16);
@@ -432,7 +436,7 @@
             // 
             this.txt_PanNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PanNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PanNo.Location = new System.Drawing.Point(364, 54);
+            this.txt_PanNo.Location = new System.Drawing.Point(276, 55);
             this.txt_PanNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PanNo.Name = "txt_PanNo";
             this.txt_PanNo.Size = new System.Drawing.Size(165, 15);
@@ -445,7 +449,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(281, 55);
+            this.label1.Location = new System.Drawing.Point(209, 54);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 16);
@@ -457,7 +461,7 @@
             this.lbl_Balance.AutoSize = true;
             this.lbl_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lbl_Balance.ForeColor = System.Drawing.Color.Red;
-            this.lbl_Balance.Location = new System.Drawing.Point(814, 55);
+            this.lbl_Balance.Location = new System.Drawing.Point(887, 54);
             this.lbl_Balance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Balance.Name = "lbl_Balance";
             this.lbl_Balance.Size = new System.Drawing.Size(65, 16);
@@ -468,10 +472,10 @@
             // 
             this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ContactNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_ContactNo.Location = new System.Drawing.Point(121, 54);
+            this.txt_ContactNo.Location = new System.Drawing.Point(105, 55);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
-            this.txt_ContactNo.Size = new System.Drawing.Size(136, 15);
+            this.txt_ContactNo.Size = new System.Drawing.Size(96, 15);
             this.txt_ContactNo.TabIndex = 5;
             this.txt_ContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ContactNo_KeyDown);
             this.txt_ContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ContactNo_KeyPress);
@@ -1700,6 +1704,28 @@
             this.bttn_Sale.UseVisualStyleBackColor = true;
             this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
             // 
+            // txt_Aadhar
+            // 
+            this.txt_Aadhar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Aadhar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Aadhar.Location = new System.Drawing.Point(735, 55);
+            this.txt_Aadhar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Aadhar.Name = "txt_Aadhar";
+            this.txt_Aadhar.Size = new System.Drawing.Size(144, 15);
+            this.txt_Aadhar.TabIndex = 24;
+            // 
+            // lbl_Adhar
+            // 
+            this.lbl_Adhar.AutoSize = true;
+            this.lbl_Adhar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Adhar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_Adhar.Location = new System.Drawing.Point(669, 54);
+            this.lbl_Adhar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Adhar.Name = "lbl_Adhar";
+            this.lbl_Adhar.Size = new System.Drawing.Size(58, 16);
+            this.lbl_Adhar.TabIndex = 23;
+            this.lbl_Adhar.Text = "Aadhar";
+            // 
             // frm_SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1863,5 +1889,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sales;
         private System.Windows.Forms.DataGridViewTextBoxColumn Maintain;
+        private System.Windows.Forms.TextBox txt_Aadhar;
+        private System.Windows.Forms.Label lbl_Adhar;
     }
 }

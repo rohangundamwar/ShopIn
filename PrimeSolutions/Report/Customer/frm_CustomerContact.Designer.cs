@@ -53,12 +53,12 @@
             this.dgv_Customer.Location = new System.Drawing.Point(12, 82);
             this.dgv_Customer.Name = "dgv_Customer";
             this.dgv_Customer.ReadOnly = true;
-            this.dgv_Customer.Size = new System.Drawing.Size(596, 326);
+            this.dgv_Customer.Size = new System.Drawing.Size(623, 326);
             this.dgv_Customer.TabIndex = 0;
             // 
             // bttn_Excel
             // 
-            this.bttn_Excel.Location = new System.Drawing.Point(429, 39);
+            this.bttn_Excel.Location = new System.Drawing.Point(456, 39);
             this.bttn_Excel.Name = "bttn_Excel";
             this.bttn_Excel.Size = new System.Drawing.Size(92, 23);
             this.bttn_Excel.TabIndex = 1;
@@ -71,7 +71,7 @@
             this.bttn_Close.BackColor = System.Drawing.Color.LightCoral;
             this.bttn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_Close.ForeColor = System.Drawing.Color.White;
-            this.bttn_Close.Location = new System.Drawing.Point(533, 39);
+            this.bttn_Close.Location = new System.Drawing.Point(560, 39);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(75, 23);
             this.bttn_Close.TabIndex = 2;
@@ -91,7 +91,7 @@
             this.CustomerName.HeaderText = "CustomerName";
             this.CustomerName.Name = "CustomerName";
             this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 150;
+            this.CustomerName.Width = 180;
             // 
             // ContactNo
             // 
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 429);
+            this.ClientSize = new System.Drawing.Size(648, 429);
             this.Controls.Add(this.dtp1);
             this.Controls.Add(this.bttn_Close);
             this.Controls.Add(this.bttn_Excel);

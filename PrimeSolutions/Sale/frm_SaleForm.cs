@@ -119,7 +119,7 @@ namespace PrimeSolutions
                 {
                     cmb_State.Enabled = false;
                     cmb_Category.Focus();
-                    string balance = Convert.ToString(_Sale.GetBalance(cmb_Name.Text,"Sale"));
+                    string balance = Convert.ToString(_Sale.GetBalance(txt_AccNo.Text, "Sale"));
                     if (balance != "" || balance != string.Empty)
                     {
                         txt_Balance.Text = balance;

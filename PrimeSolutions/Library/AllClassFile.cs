@@ -122,21 +122,21 @@ namespace PrimeSolutions.Library
         internal string getQty(string category, string subcategory)
         {
             string Qty;
-            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
-            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "' ";
-            DataTable DtPurchase = _objsqlhelper.GetDataTable(purchase);
-            DataTable DtSale = _objsqlhelper.GetDataTable(sale);
+            string purchase = "SELECT   FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string sale = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+            string QtySale = _objsqlhelper.ExecuteScalar(sale);
             if (GetalooseItem(category))
             {
-                double PurchaseQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtPurchase, "qty")), 3);
-                double SaleQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtSale, "qty")), 3);
+                double PurchaseQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
+                double SaleQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
                 Qty =Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  Kg";
             }
             else
             {
-                double PurchaseQty =Convert.ToInt32 (sumDataTableColumn(DtPurchase, "qty"));
-                double SaleQty = Convert.ToInt32(sumDataTableColumn(DtSale, "qty"));
+                double PurchaseQty =Convert.ToInt32 (QtyPurchase);
+                double SaleQty = Convert.ToInt32(QtyPurchase);
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  nos.";
             }
@@ -145,22 +145,27 @@ namespace PrimeSolutions.Library
 
         internal string getQty(string category, string subcategory,string price)
         {
+            double PurchaseQty, SaleQty;
             string Qty;
-            string purchase = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'";
-            string sale = "SELECT  qty FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'";
-            DataTable DtPurchase = _objsqlhelper.GetDataTable(purchase);
-            DataTable DtSale = _objsqlhelper.GetDataTable(sale);
+            string purchase = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (PermanentDelete = 0 or PermanentDelete is Null)";
+            string sale = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+            string QtySale = _objsqlhelper.ExecuteScalar(sale);
             if (GetalooseItem(category))
             {
-                double PurchaseQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtPurchase, "qty")), 3);
-                double SaleQty = Math.Round(Convert.ToDouble(sumDataTableColumn(DtSale, "qty")), 3);
+                PurchaseQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
+                SaleQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  Kg";
             }
             else
             {
-                double PurchaseQty = Convert.ToInt32(sumDataTableColumn(DtPurchase, "qty"));
-                double SaleQty = Convert.ToInt32(sumDataTableColumn(DtSale, "qty"));
+                PurchaseQty = Convert.ToInt32(QtyPurchase);
+                if (QtySale == "" || QtySale == null)
+                    SaleQty = 0;
+                else
+                    SaleQty = Convert.ToDouble(QtySale);
+
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  nos.";
             }
@@ -169,10 +174,9 @@ namespace PrimeSolutions.Library
 
         internal int getQtySupplier(string category, string subcategory, string BillNo)
         {
-            string str1 = "SELECT  qty FROM BillItem Where category = '" + category + "' AND SubCategory = '" + subcategory + "' AND PurchaseBillNo='" + BillNo + "' ";
-            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
-            int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
-            return Qty;
+            string str1 = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where category = '" + category + "' AND SubCategory = '" + subcategory + "' AND PurchaseBillNo='" + BillNo + "' ";
+            string Qty = _objsqlhelper.ExecuteScalar(str1);
+            return Convert.ToInt32(Qty) ;
         }
 
         internal bool GetalooseItem(string looseItem)
@@ -191,10 +195,10 @@ namespace PrimeSolutions.Library
 
         internal object getQty(string subcategory)
         {
-            string str1 = "SELECT  qty FROM BillItem Where sub_category = '" + subcategory + "'AND type = 'Purchase' ";
-            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
-            int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
-            return Qty;
+            string str1 = "SELECT Sum(Convert(Decimal,qty)) FROM BillItem Where sub_category = '" + subcategory + "'AND type = 'Purchase' ";
+            string Qty = _objsqlhelper.ExecuteScalar(str1);
+            
+            return  Convert.ToInt32(Qty) ;
         }
 
 
@@ -325,7 +329,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct SubCategory,SellingPrice FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct SubCategory,SellingPrice,Size FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

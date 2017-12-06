@@ -146,6 +146,12 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\ThadaniBillEstA5.cs">
+      <DependentUpon>ThadaniBillEstA5.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="bin\Debug\BillEstA5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,10 +182,10 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="bin\Debug\BillA5.cs">
+    <Compile Include="bin\Debug\ThadaniBillA5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BillA5.rpt</DependentUpon>
+      <DependentUpon>ThadaniBillA5.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\PayLedger.cs">
@@ -359,17 +365,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\frm_SupplierPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frm_SupplierPayment.Designer.cs">
+      <DependentUpon>frm_SupplierPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchase\frm_EstimatePurchace.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Purchase\frm_EstimatePurchace.Designer.cs">
       <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Purchase\frm_Stock.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchase\frm_Stock.Designer.cs">
-      <DependentUpon>frm_Stock.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\CrystalReoprt\frm_ReportViewer.cs">
       <SubType>Form</SubType>
@@ -413,6 +419,12 @@
     <Compile Include="Report\PrinterSetting.designer.cs">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Purchase\frm_SupplierBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_SupplierBalance.designer.cs">
+      <DependentUpon>frm_SupplierBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Purchase\frm_PurchaseDuplicateBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -442,6 +454,12 @@
     </Compile>
     <Compile Include="Report\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Purchase\TotalGSTReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\TotalGSTReport.Designer.cs">
+      <DependentUpon>TotalGSTReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Sale\frm_DuplicateBill.cs">
       <SubType>Form</SubType>
@@ -554,6 +572,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\ThadaniBillEstA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThadaniBillEstA5.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillEstA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillEstA5.cs</LastGenOutput>
@@ -574,9 +596,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PreetyLooksGST.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\BillA5.rpt">
+    <EmbeddedResource Include="bin\Debug\ThadaniBillA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BillA5.cs</LastGenOutput>
+      <LastGenOutput>ThadaniBillA5.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\PayLedger.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -659,6 +681,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frm_SupplierPayment.resx">
+      <DependentUpon>frm_SupplierPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchase\frm_EstimatePurchace.resx">
       <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,6 +708,9 @@
     <EmbeddedResource Include="Report\PrinterSetting.resx">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\frm_SupplierBalance.resx">
+      <DependentUpon>frm_SupplierBalance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_PurchaseDuplicateBill.resx">
       <DependentUpon>frm_PurchaseDuplicateBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -697,6 +725,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\TotalGSTReport.resx">
+      <DependentUpon>TotalGSTReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_DuplicateBill.resx">
       <DependentUpon>frm_DuplicateBill.cs</DependentUpon>
