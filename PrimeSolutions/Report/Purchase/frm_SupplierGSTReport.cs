@@ -25,36 +25,39 @@ namespace PrimeSolutions.Report.Purchase
 
         private void frm_SupplierBill_Load(object sender, EventArgs e)
         {
-            int j=0;
-            try
-            {
-                DataTable Bill = _p.GetPurchaseBill();
+        }
+
+
+        private void GetReport()
+        {
+            int i=0;
+
+                DataTable Bill = _p.GetSupplierBill(dtp_from.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"));
+            dgv_SupplierBill.Rows.Clear();
+                dgv_SupplierBill.Rows.Add();
                 if (Bill.Rows.Count > 0)
-                    for (j = 0; j < Bill.Rows.Count; j++)
-                    {
-                        string HSNAll = _p.GetAllHSN(Bill.Rows[j]["BillNo"].ToString(), "Purchase");
-                        DataTable Supplier = _p.GetSupplierDetailsFromBill(Bill.Rows[j]["RefrenceNo"].ToString());
-                        if (Supplier.Rows.Count != 0)
-                        {
-                            dgv_SupplierBill.Rows.Add();
-                            dgv_SupplierBill.Rows[j].Cells["SrNo"].Value = Convert.ToString(j + 1);
-                            dgv_SupplierBill.Rows[j].Cells["BillNo"].Value = Supplier.Rows[0]["BillNo"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["Date"].Value = Supplier.Rows[0]["Date"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["SupplierName"].Value = Supplier.Rows[0]["Name"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["GSTIN"].Value = Supplier.Rows[0]["GSTIN"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["HSNCode"].Value = HSNAll;
-                            dgv_SupplierBill.Rows[j].Cells["BillAmt"].Value = Supplier.Rows[0]["Amount"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["CGST"].Value = Supplier.Rows[0]["CGST"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["SGST"].Value = Supplier.Rows[0]["SGST"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["IGST"].Value = Supplier.Rows[0]["IGST"].ToString();
-                            dgv_SupplierBill.Rows[j].Cells["TotalAmt"].Value = Supplier.Rows[0]["GrandTotal"].ToString();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Supplier Details Missing");
-                        }
-                    }
-                j = j + 1;
+                {
+                for (i = 0; i < Bill.Rows.Count; i++)
+                {
+                    dgv_SupplierBill.Rows[i].Cells["SrNo"].Value = Convert.ToString(i + 1);
+                    dgv_SupplierBill.Rows[i].Cells["BillNo"].Value = Bill.Rows[i]["BillNo"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["Date"].Value = Bill.Rows[i]["Date"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["SupplierName"].Value = Bill.Rows[i]["Name"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["GSTIN"].Value = Bill.Rows[i]["GSTIN"].ToString();
+                    string HSN = _p.GetAllHSNPurchase(Bill.Rows[i]["RefrenceNo"].ToString());
+                    dgv_SupplierBill.Rows[i].Cells["HSNCode"].Value = HSN;
+                    dgv_SupplierBill.Rows[i].Cells["BillAmt"].Value = Bill.Rows[i]["Amount"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["CGST"].Value = Bill.Rows[i]["CGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["SGST"].Value = Bill.Rows[i]["SGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["IGST"].Value = Bill.Rows[i]["IGST"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["TotalAmt"].Value = Bill.Rows[i]["GrandTotal"].ToString();
+                    dgv_SupplierBill.Rows.Add();
+                }
+                    
+                }
+
+
+                int j = i + 1;
                 dgv_SupplierBill.Rows.Add();
                 dgv_SupplierBill.Rows[j].Cells["HSNCode"].Value = "Total";
                 dgv_SupplierBill.Rows[j].Cells["BillAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "BillAmt");
@@ -62,18 +65,14 @@ namespace PrimeSolutions.Report.Purchase
                 dgv_SupplierBill.Rows[j].Cells["SGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "SGST");
                 dgv_SupplierBill.Rows[j].Cells["IGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "IGST");
                 dgv_SupplierBill.Rows[j].Cells["TotalAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "TotalAmt");
-            }
-            catch (Exception ex)
-            {
-                _error.AddException(ex, "SupplierGSTReport");
-            }
             
+
 
         }
 
         private void bttn_excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_SupplierBill, "SupplierGSTReport", dtp1.Value.ToString("dd_MM_yyyy"));
+            _e.exporttoexcel(dgv_SupplierBill, "SupplierGSTReport", dtp_to.Value.ToString("dd_MM_yyyy"));
         }
 
         private void bttn_close_Click(object sender, EventArgs e)
@@ -87,6 +86,11 @@ namespace PrimeSolutions.Report.Purchase
             {
                 this.Close();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GetReport();
         }
     }
 }

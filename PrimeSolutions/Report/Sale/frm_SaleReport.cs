@@ -43,8 +43,8 @@ namespace PrimeSolutions.Report.Sale
                     DataTable item = _s.GetBillItem(dt.Rows[i]["BillNo"].ToString(),"Sale");
                     if(item.Rows.Count>0)
                     dgv_CustomerItem.Rows[i].Cells["Item"].Value = item.Rows[0]["Category"].ToString();
-                    string name = _s.GetCustomerByCustid(dt.Rows[i]["CustId"].ToString());
-                    dgv_CustomerItem.Rows[i].Cells["Name"].Value = name;
+                    dgv_CustomerItem.Rows[i].Cells["Name"].Value = dt.Rows[i]["CustomerName"].ToString();
+
                     // dgv_CustomerItem.Rows[i + 1].Cells["Amount"].Value = _common.sumGridViewColumn(dgv_CustomerItem, "Amount");
                 }
 

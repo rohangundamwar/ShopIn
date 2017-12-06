@@ -57,7 +57,7 @@ namespace PrimeSolutions.Common
             cmb_SaleBill.Text = _a.GetSaleBillName().Rows[0]["SaleBill"].ToString();
             cmb_PurchaseBill.Text = _a.GetSaleBillName().Rows[1]["SaleBill"].ToString();
             cmb_estimate.Text = _a.GetSaleBillName().Rows[2]["SaleBill"].ToString();
-            cmb_estimate.Text = _a.GetSaleBillName().Rows[3]["SaleBill"].ToString();
+            cmb_ServiceInc.Text = _a.GetSaleBillName().Rows[3]["SaleBill"].ToString();
 
             //6 payment form
 

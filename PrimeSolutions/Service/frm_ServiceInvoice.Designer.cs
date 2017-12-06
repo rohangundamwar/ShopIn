@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmb_ServiceId = new System.Windows.Forms.ComboBox();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.txt_address = new System.Windows.Forms.TextBox();
@@ -55,6 +55,7 @@
             this.IGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maintain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
             this.lbl_TotalPrice = new System.Windows.Forms.Label();
             this.lbl_BasePrice = new System.Windows.Forms.Label();
@@ -102,7 +103,10 @@
             this.lbl_PurchaseAmt = new System.Windows.Forms.Label();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
+            this.lbl_Other = new System.Windows.Forms.Label();
+            this.txt_Other = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -132,10 +136,6 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
-            this.Maintain = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Other = new System.Windows.Forms.TextBox();
-            this.lbl_Other = new System.Windows.Forms.Label();
-            this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ItemInfo)).BeginInit();
             this.pnl_ItemInfo.SuspendLayout();
             this.pnl_Button.SuspendLayout();
@@ -233,8 +233,8 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8F);
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8F);
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -260,8 +260,8 @@
             this.dgv_ItemInfo.Location = new System.Drawing.Point(7, 243);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ItemInfo.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1070, 192);
             this.dgv_ItemInfo.TabIndex = 9;
@@ -372,6 +372,13 @@
             this.TotalPrice.HeaderText = "TotalPrice";
             this.TotalPrice.Name = "TotalPrice";
             this.TotalPrice.ReadOnly = true;
+            // 
+            // Maintain
+            // 
+            this.Maintain.HeaderText = "Maintain";
+            this.Maintain.Name = "Maintain";
+            this.Maintain.ReadOnly = true;
+            this.Maintain.Visible = false;
             // 
             // pnl_ItemInfo
             // 
@@ -973,6 +980,13 @@
             this.panel1.Size = new System.Drawing.Size(1070, 78);
             this.panel1.TabIndex = 59;
             // 
+            // dtp_Date
+            // 
+            this.dtp_Date.Location = new System.Drawing.Point(822, 16);
+            this.dtp_Date.Name = "dtp_Date";
+            this.dtp_Date.Size = new System.Drawing.Size(179, 20);
+            this.dtp_Date.TabIndex = 9;
+            // 
             // pnl_PaymentOpt
             // 
             this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -1008,6 +1022,26 @@
             this.pnl_PaymentOpt.Name = "pnl_PaymentOpt";
             this.pnl_PaymentOpt.Size = new System.Drawing.Size(1070, 130);
             this.pnl_PaymentOpt.TabIndex = 60;
+            // 
+            // lbl_Other
+            // 
+            this.lbl_Other.AutoSize = true;
+            this.lbl_Other.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_Other.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_Other.Location = new System.Drawing.Point(62, 57);
+            this.lbl_Other.Name = "lbl_Other";
+            this.lbl_Other.Size = new System.Drawing.Size(85, 32);
+            this.lbl_Other.TabIndex = 58;
+            this.lbl_Other.Text = "Other \r\nCompliants";
+            // 
+            // txt_Other
+            // 
+            this.txt_Other.Location = new System.Drawing.Point(152, 57);
+            this.txt_Other.Multiline = true;
+            this.txt_Other.Name = "txt_Other";
+            this.txt_Other.Size = new System.Drawing.Size(582, 54);
+            this.txt_Other.TabIndex = 57;
+            this.txt_Other.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Other_KeyDown);
             // 
             // label25
             // 
@@ -1339,40 +1373,6 @@
             this.bttn_Sale.Text = "Sale";
             this.bttn_Sale.UseVisualStyleBackColor = true;
             this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
-            // 
-            // Maintain
-            // 
-            this.Maintain.HeaderText = "Maintain";
-            this.Maintain.Name = "Maintain";
-            this.Maintain.ReadOnly = true;
-            this.Maintain.Visible = false;
-            // 
-            // txt_Other
-            // 
-            this.txt_Other.Location = new System.Drawing.Point(152, 57);
-            this.txt_Other.Multiline = true;
-            this.txt_Other.Name = "txt_Other";
-            this.txt_Other.Size = new System.Drawing.Size(582, 54);
-            this.txt_Other.TabIndex = 57;
-            this.txt_Other.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Other_KeyDown);
-            // 
-            // lbl_Other
-            // 
-            this.lbl_Other.AutoSize = true;
-            this.lbl_Other.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_Other.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Other.Location = new System.Drawing.Point(62, 57);
-            this.lbl_Other.Name = "lbl_Other";
-            this.lbl_Other.Size = new System.Drawing.Size(85, 32);
-            this.lbl_Other.TabIndex = 58;
-            this.lbl_Other.Text = "Other \r\nCompliants";
-            // 
-            // dtp_Date
-            // 
-            this.dtp_Date.Location = new System.Drawing.Point(822, 16);
-            this.dtp_Date.Name = "dtp_Date";
-            this.dtp_Date.Size = new System.Drawing.Size(179, 20);
-            this.dtp_Date.TabIndex = 9;
             // 
             // frm_ServiceInvoice
             // 

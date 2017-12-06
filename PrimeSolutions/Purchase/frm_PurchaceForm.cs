@@ -29,6 +29,7 @@ namespace PrimeSolutions
         AllClassFile _objCustmor = new AllClassFile();
         ErrorLog _error = new ErrorLog();
         PurchaseCommon _purchase = new PurchaseCommon();
+        SaleCommon _sale = new SaleCommon();
         SettingValue dtsett;
         clsCommon _Common = new clsCommon();
         cls_Barcode _Barcode = new cls_Barcode();
@@ -130,6 +131,7 @@ namespace PrimeSolutions
             {
                 supplierexs = "Yes";
                 lbl_AccNo1.Text = supplier.Rows[0]["SupplierNo"].ToString();
+                txt_OldBalance.Text = _sale.GetBalance(lbl_AccNo1.Text, "Purchase").ToString();
                 cmb_State.Text = supplier.Rows[0]["state"].ToString();
                 txt_Address.Text = supplier.Rows[0]["Address"].ToString();
                 txt_City.Text = supplier.Rows[0]["City"].ToString();
@@ -175,7 +177,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_BillNo.Focus();
+                txt_PAN.Focus();
             }
         }
 
@@ -191,7 +193,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_PAN.Focus();
+                txt_Barcode.Focus();
             }
 
         }
@@ -265,7 +267,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_BalAmt.Focus();
+                cmb_PayMode.Focus();
             }
         }
 
@@ -390,7 +392,7 @@ namespace PrimeSolutions
 
         private void txt_BalAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_BalAmt.Text);
+            //_objSimpal.ValidationDigitWithPoint(e, txt_BalAmt.Text);
         }
 
         private void txt_Qty_TextChanged(object sender, EventArgs e)
@@ -870,7 +872,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Barcode.Focus();
+                txt_BillNo.Focus();
             }
             
         }
@@ -1010,6 +1012,22 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 txt_HSN.Focus();
+            }
+        }
+
+        private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_OldBalance.Text != "" || txt_OldBalance.Text != "0" || txt_OldBalance.Text != string.Empty)
+                if (txt_NetAmt.Text != "" || txt_NetAmt.Text != "0" || txt_NetAmt.Text != string.Empty)
+                    if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != string.Empty)
+                        txt_BalAmt.Text = Convert.ToString((Convert.ToDouble(txt_OldBalance.Text) + Convert.ToDouble(txt_NetAmt.Text)) - Convert.ToDouble(txt_PaidAmt.Text));
+        }
+
+        private void cmb_PayMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bttn_Add.Focus();
             }
         }
     }

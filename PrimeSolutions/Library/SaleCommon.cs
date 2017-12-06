@@ -27,7 +27,7 @@ namespace PrimeSolutions.Library
 
         public void UpdateItem(string ItemId, string SaleBill, string date)
         {
-            string str = "Update BillItem Set Type= 'Sale',SaleBillNo='" + SaleBill + "',SaleDate='" + date + "' Where Barcode='" + ItemId + "'";
+            string str = "Update BillItem Set Type= 'Sale',SaleBillNo='" + SaleBill + "',SaleDate='" + date + "' Where Barcode='" + ItemId + "' and PermananetDelete = false ";
             _sql.ExecuteSql(str);
         }
 
@@ -35,6 +35,16 @@ namespace PrimeSolutions.Library
         {
             string str = "Insert into BillItem(Category,SubCategory,Size,SaleBillNo,Type,SaleDate,Price,Qty,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,TotalPrice,BatchNo,HSN,SellingPrice,SalesPerson,Maintain) Values('" + Category + "','" + SubCategory + "','"+size+"','" + BillNo + "','" + type + "','" + date + "','" + price + "','" + Qty + "','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','" + IGSTAmt + "','" + IGSTAmt + "','" + totalAmt + "','" + batch + "','" + HSN + "','"+TotalPrice+"','"+SalesPerson+"','"+maintain+"') ";
             _sql.ExecuteSql(str);
+        }
+
+        public void DeleteBillItem(string BillNo)
+        {
+            string str = "Update BillItem Set PermanentDelete = 1 Where SaleBillNo ='" + BillNo + "'";
+        }
+
+        public void DeleteBillDetails(string BillNo)
+        {
+            string str = "Update CustomerBill Set permanentDelete = 1 Where BillNo ='" + BillNo + "'";
         }
 
         public DataTable GetItemDetailsByBarcode(string Barcode)
@@ -118,19 +128,13 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public double GetBalance(string Name,string Type)
+        public double GetBalance(string ID,string Type)
         {
             string str = "";
             double BillAmt = 0.0;
-            if (Type == "Sale")
-            {
-                str = "Select CustId From CustomerMaster where CustomerName = '" + Name + "'";
-            }
-            else if (Type == "Purchase")
-            {
-                str = "Select SupplierNo From SupplierMaster where Name = '" + Name + "'";
-            }
-            string CustId = _sql.ExecuteScalar(str);
+
+            string CustId = ID ;
+
             if (Type == "Sale")
             {
                BillAmt = GetTotalPurchase(CustId, Type);
@@ -146,29 +150,31 @@ namespace PrimeSolutions.Library
             return bal;
         }
 
+        public Double GetTotalSupplierPurchase(string SuppId, string type)
+        {
+            string str1 = "Select Sum(convert(decimal,GrandTotal)) From SupplierBill where SupplierNo = '" + SuppId + "'";
+            string BillAmt = _sql.ExecuteScalar(str1);
+            return Convert.ToDouble(BillAmt);
+        }
 
         public Double GetTotalPurchase(string CustId, string type)
         {
-            string str1 = "Select BillAmount From CustomerBill where CustId = '" + CustId + "'";
-            DataTable dt = _sql.GetDataTable(str1);
-            double BillAmt = _a.sumDataTableColumn(dt, "BillAmount");
-            return (BillAmt);
-        }
-
-        public Double GetTotalSupplierPurchase(string CustId,string type)
-        {
-            string str1 = "Select Amount From SupplierBill where SupplierNo = '" + CustId + "'";
-            DataTable dt = _sql.GetDataTable(str1);
-            double BillAmt = _a.sumDataTableColumn(dt, "Amount");
-            return (BillAmt);
+            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "'";
+            string BillAmt = _sql.ExecuteScalar(str1);
+            if (BillAmt == null || BillAmt == "")
+                return 0; 
+            else
+                return Convert.ToDouble(BillAmt);
         }
 
         public double GetTotalPaid(string CustId)
         {
-            string str2 = "Select Amt From Payment where Id = '" + CustId + "'";
-            DataTable dt1 = _sql.GetDataTable(str2);
-            double PaidAmt = _a.sumDataTableColumn(dt1, "Amt");
-            return (PaidAmt);
+            string str2 = "select Sum(convert(decimal,Amt)) from Payment where Id ='" + CustId + "'";
+            string PaidAmt = _sql.ExecuteScalar(str2);
+            if (PaidAmt == null || PaidAmt == "")
+                return 0;
+            else
+                return Convert.ToDouble(PaidAmt);
         }
 
         public double GetOpening(string CustId)
@@ -190,7 +196,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetBillItem(string BillNo, string Type)
         {
-            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "'";
+            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
             DataTable dt = _sql.GetDataTable(str);
             dt.Columns.Add("Amount");
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -244,7 +250,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerBill(string id)
         {
-            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "'";
+            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
@@ -358,9 +364,26 @@ namespace PrimeSolutions.Library
 
         }
 
+        public string GetAllHSNSale(string BillNo)
+        {
+            string AllHSN = "";
+            string str = "Select  distinct HSN from BillItem where SaleBillNo = '" + BillNo + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            int i = 0;
+
+            while (dt.Rows.Count > i)
+            {
+                AllHSN = dt.Rows[i]["HSN"].ToString();
+                AllHSN = AllHSN + ",";
+                i++;
+            }
+
+            return AllHSN;
+        }
+
         public DataTable GetCustomerReport(string from, string to)
         {
-            string str = "SELECT dbo.CustomerBill.BillNo, dbo.CustomerBill.Date, dbo.CustomerBill.Amount, dbo.CustomerBill.CGST, dbo.CustomerBill.SGST, dbo.CustomerBill.IGST, dbo.CustomerBill.GrandAmt,  dbo.CustomerBill.State, dbo.CustomerBill.BillAmount, dbo.CustomerMaster.CustomerName, dbo.CustomerMaster.Address, dbo.CustomerMaster.PanNo, dbo.CustomerMaster.GSTIN,  dbo.CustomerMaster.City FROM dbo.CustomerBill INNER JOIN dbo.CustomerMaster ON dbo.CustomerBill.CustId = dbo.CustomerMaster.CustId WHERE(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103))";
+            string str = "SELECT dbo.CustomerBill.BillNo, dbo.CustomerBill.Date, dbo.CustomerBill.Amount, dbo.CustomerBill.CGST, dbo.CustomerBill.SGST, dbo.CustomerBill.IGST, dbo.CustomerBill.GrandAmt,  dbo.CustomerBill.State,dbo.CustomerBill.Discount, dbo.CustomerBill.BillAmount, dbo.CustomerMaster.CustomerName, dbo.CustomerMaster.Address, dbo.CustomerMaster.PanNo, dbo.CustomerMaster.GSTIN,  dbo.CustomerMaster.City FROM dbo.CustomerBill INNER JOIN dbo.CustomerMaster ON dbo.CustomerBill.CustId = dbo.CustomerMaster.CustId WHERE(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+ "', 103)) and(PermanentDelete = 0 or PermanentDelete is Null) and (CustomerBill.Type ='GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -374,7 +397,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSaleBillData()
         {
-            string str = "select Distinct BillNo from CustomerBill";
+            string str = "select Distinct BillNo from CustomerBill Where PermanentDelete = 0 or PermanentDelete is Null";
             DataTable Bill = _sql.GetDataTable(str);
             return Bill;
         }

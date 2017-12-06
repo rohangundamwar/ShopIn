@@ -15,6 +15,7 @@ using PrimeSolutions.Report.Purchase;
 using PrimeSolutions.Accounting;
 using PrimeSolutions.Sale;
 using PrimeSolutions.Service;
+using PrimeSolutions.Purchase;
 
 namespace PrimeSolutions
 {
@@ -365,8 +366,7 @@ namespace PrimeSolutions
 
         private void customerPaymentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frm_CustomerPayment _form = new frm_CustomerPayment();
-            _form.ShowDialog();
+            
         }
 
         private void newJobToolStripMenuItem_Click(object sender, EventArgs e)
@@ -390,6 +390,30 @@ namespace PrimeSolutions
         {
             frm_ServiceInvoice _from = new frm_ServiceInvoice();
             _from.ShowDialog();
+        }
+
+        private void purchaseGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TotalGSTReport _form = new TotalGSTReport();
+                _form.ShowDialog();
+        }
+
+        private void customerPaymentToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frm_CustomerPayment _form = new frm_CustomerPayment();
+            _form.ShowDialog();
+        }
+
+        private void supplierPaymentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SupplierPayment _form = new frm_SupplierPayment();
+            _form.ShowDialog(); 
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frm_SupplierBalance _form = new frm_SupplierBalance();
+            _form.ShowDialog();
         }
     }
 }

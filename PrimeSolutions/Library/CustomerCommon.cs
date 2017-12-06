@@ -52,6 +52,12 @@ namespace PrimeSolutions.Library
             _Sql.ExecuteScalar(str);
         }
 
+        public void UpdateCustomer(string AccNo,string Name,string Address,string ContactNo,string PanNo,string GSTIN,string State,string City,string Opening)
+        {
+            string str = "Update CustomerMaster set Opening='" + Opening + "',CustomerName='"+Name+ "',Address='"+Address+ "',ContactNo='"+ContactNo+ "',PanNo='"+PanNo+ "',GSTIN='"+GSTIN+ "',State='"+State+ "',City='"+City+"' where CustId='" + AccNo + "'";
+            _Sql.ExecuteScalar(str);
+        }
+
         public DataTable GetCustomerItemDeatils(string CustId)
         {
             string str1 = "select BillNo from SaleBillMaster where CustomerId='" + CustId + "' ";

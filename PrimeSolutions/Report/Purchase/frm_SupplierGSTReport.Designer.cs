@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtp1 = new System.Windows.Forms.DateTimePicker();
             this.bttn_excel = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
             this.dgv_SupplierBill = new System.Windows.Forms.DataGridView();
@@ -44,22 +43,20 @@
             this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbl_to = new System.Windows.Forms.Label();
+            this.lbl_from = new System.Windows.Forms.Label();
+            this.dtp_from = new System.Windows.Forms.DateTimePicker();
+            this.dtp_to = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SupplierBill)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dtp1
-            // 
-            this.dtp1.Location = new System.Drawing.Point(12, 69);
-            this.dtp1.Name = "dtp1";
-            this.dtp1.Size = new System.Drawing.Size(103, 20);
-            this.dtp1.TabIndex = 0;
             // 
             // bttn_excel
             // 
             this.bttn_excel.BackColor = System.Drawing.Color.ForestGreen;
             this.bttn_excel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_excel.ForeColor = System.Drawing.Color.White;
-            this.bttn_excel.Location = new System.Drawing.Point(577, 70);
+            this.bttn_excel.Location = new System.Drawing.Point(918, 72);
             this.bttn_excel.Name = "bttn_excel";
             this.bttn_excel.Size = new System.Drawing.Size(108, 25);
             this.bttn_excel.TabIndex = 1;
@@ -72,7 +69,7 @@
             this.bttn_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.bttn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_close.ForeColor = System.Drawing.Color.White;
-            this.bttn_close.Location = new System.Drawing.Point(1078, 69);
+            this.bttn_close.Location = new System.Drawing.Point(1078, 72);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 25);
             this.bttn_close.TabIndex = 2;
@@ -179,16 +176,65 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Supplier GST Report";
             // 
+            // lbl_to
+            // 
+            this.lbl_to.AutoSize = true;
+            this.lbl_to.Location = new System.Drawing.Point(189, 78);
+            this.lbl_to.Name = "lbl_to";
+            this.lbl_to.Size = new System.Drawing.Size(20, 13);
+            this.lbl_to.TabIndex = 11;
+            this.lbl_to.Text = "To";
+            // 
+            // lbl_from
+            // 
+            this.lbl_from.AutoSize = true;
+            this.lbl_from.Location = new System.Drawing.Point(18, 78);
+            this.lbl_from.Name = "lbl_from";
+            this.lbl_from.Size = new System.Drawing.Size(30, 13);
+            this.lbl_from.TabIndex = 10;
+            this.lbl_from.Text = "From";
+            // 
+            // dtp_from
+            // 
+            this.dtp_from.Location = new System.Drawing.Point(73, 74);
+            this.dtp_from.Name = "dtp_from";
+            this.dtp_from.Size = new System.Drawing.Size(103, 20);
+            this.dtp_from.TabIndex = 9;
+            // 
+            // dtp_to
+            // 
+            this.dtp_to.Location = new System.Drawing.Point(222, 74);
+            this.dtp_to.Name = "dtp_to";
+            this.dtp_to.Size = new System.Drawing.Size(103, 20);
+            this.dtp_to.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Orange;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(383, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Generate";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frm_SupplierGSTReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 418);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lbl_to);
+            this.Controls.Add(this.lbl_from);
+            this.Controls.Add(this.dtp_from);
+            this.Controls.Add(this.dtp_to);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv_SupplierBill);
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_excel);
-            this.Controls.Add(this.dtp1);
             this.KeyPreview = true;
             this.Name = "frm_SupplierGSTReport";
             this.Text = "Supplier GST Report";
@@ -201,8 +247,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dtp1;
         private System.Windows.Forms.Button bttn_excel;
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.DataGridView dgv_SupplierBill;
@@ -218,5 +262,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_to;
+        private System.Windows.Forms.Label lbl_from;
+        private System.Windows.Forms.DateTimePicker dtp_from;
+        private System.Windows.Forms.DateTimePicker dtp_to;
+        private System.Windows.Forms.Button button1;
     }
 }

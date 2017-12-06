@@ -62,7 +62,7 @@ namespace PrimeSolutions.Report.Purchase
                 if (Bill.Rows.Count > 0)
                     for (j = 0; j < Bill.Rows.Count; j++)
                     {
-                        string HSNAll = _p.GetAllHSN(Bill.Rows[j]["BillNo"].ToString(), "Sale");
+                        string HSNAll = _sale.GetAllHSNSale(Bill.Rows[j]["BillNo"].ToString());
                         if (Bill.Rows.Count != 0)
                         {
                             dgv_SupplierBill.Rows.Add();

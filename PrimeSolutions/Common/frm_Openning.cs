@@ -28,11 +28,14 @@ namespace PrimeSolutions.Common
             if (CustomerEx == "No")
             {
                 _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text, txt_PanNo.Text, txt_GSTIN.Text, cmb_State.Text, txt_City.Text, txt_Opening.Text);
+                MessageBox.Show("Customer Added Successfully");
             }
             else
             {
-                _Cust.SetOpening(txt_AccNo.Text, txt_Opening.Text);
+                _Cust.UpdateCustomer(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text, txt_PanNo.Text, txt_GSTIN.Text, cmb_State.Text, txt_City.Text, txt_Opening.Text);
+                MessageBox.Show("Customer Details Updated Successfully");
             }
+            
             MasterClear();
         }
 

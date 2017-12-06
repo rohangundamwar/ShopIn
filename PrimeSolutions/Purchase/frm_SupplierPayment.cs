@@ -8,16 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Library;
 
-namespace PrimeSolutions.Sale
+namespace PrimeSolutions.Purchase
 {
-    public partial class frm_CustomerPayment : Form
+    public partial class frm_SupplierPayment : Form
     {
         CustomerCommon _cust = new CustomerCommon();
         DataTable cust;
         AllClassFile _a = new AllClassFile();
         ErrorLog _e = new ErrorLog();
 
-        public frm_CustomerPayment()
+        public frm_SupplierPayment()
         {
             InitializeComponent();
         }
@@ -45,13 +45,13 @@ namespace PrimeSolutions.Sale
         {
             try
             {
-                _a.InsertPaymentDetails("Customer", txt_Amount.Text, "Cash", lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), "");
+                _a.InsertPaymentDetails("Supplier", txt_Amount.Text, "Cash", lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), "");
                 MessageBox.Show("Payment Saved");
                 Clear();
             }
             catch(Exception ex)
             {
-                _e.AddException(ex,"Customer Payment");
+                _e.AddException(ex,"Supplier Payment");
             }
             
         }

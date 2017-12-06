@@ -8,17 +8,18 @@ using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Library;
 
-namespace PrimeSolutions.Report.Customer
+namespace PrimeSolutions.Report.Purchase
 {
-    public partial class frm_CustomerBalance : Form
+    public partial class frm_SupplierBalance : Form
     {
-        public frm_CustomerBalance()
+        public frm_SupplierBalance()
         {
             InitializeComponent();
         }
 
         AllClassFile _a = new AllClassFile();
         SaleCommon _s = new SaleCommon();
+        PurchaseCommon _Purchase = new PurchaseCommon();
         DataTable cust;
         CustomerCommon _Cust = new CustomerCommon();
         ExportToExcel _e = new ExportToExcel();
@@ -27,19 +28,19 @@ namespace PrimeSolutions.Report.Customer
         private void frm_CustomerBalance_Load(object sender, EventArgs e)
         {
             cmb_customer.SelectedIndex = -1;
-            cust = _s.GetCustomer();
+            cust = _a.getSupplierName();
             cmb_customer.DataSource = cust;
             dgv_Balance.Rows.Clear();
             for (int i = 0; i < cust.Rows.Count; i++)
             {
                 dgv_Balance.Rows.Add();
-                dgv_Balance.Rows[i].Cells["CustomerName"].Value = cust.Rows[i]["CustomerName"].ToString();
-                string CustId = cust.Rows[i]["CustId"].ToString();
-                dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
-                DataTable count = _s.GetCustomerBill(CustId);
+                dgv_Balance.Rows[i].Cells["CustomerName"].Value = cust.Rows[i]["Name"].ToString();
+                string CustId = cust.Rows[i]["SupplierNo"].ToString();
+                dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalSupplierPurchase(CustId, "Purchase");
+                DataTable count = _Purchase.GetSupplierBill(CustId);
                 dgv_Balance.Rows[i].Cells["NoOfBill"].Value = count.Rows.Count;
                 dgv_Balance.Rows[i].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);
-                dgv_Balance.Rows[i].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId, "Sale"));
+                dgv_Balance.Rows[i].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId, "Purchase"));
 
             }
              
@@ -50,12 +51,12 @@ namespace PrimeSolutions.Report.Customer
             dgv_Balance.Rows.Clear();
             dgv_Balance.Rows.Add();
             dgv_Balance.Rows[0].Cells["CustomerName"].Value = cmb_customer.Text;
-            string CustId = cust.Rows[cmb_customer.SelectedIndex]["CustId"].ToString();
-            dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
-            DataTable count = _s.GetCustomerBill(CustId);
+            string CustId = cust.Rows[cmb_customer.SelectedIndex]["SupplierNo"].ToString();
+            dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalSupplierPurchase(CustId,"Purchase");
+            DataTable count = _Purchase.GetSupplierBill(CustId);
             dgv_Balance.Rows[0].Cells["NoOfBill"].Value = count.Rows.Count;
             dgv_Balance.Rows[0].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);
-            dgv_Balance.Rows[0].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId,"Sale"));
+            dgv_Balance.Rows[0].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId, "Purchase"));
         }
 
         private void bttn_reset_Click(object sender, EventArgs e)
@@ -65,7 +66,7 @@ namespace PrimeSolutions.Report.Customer
 
         private void bttn_Excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_Balance,"CustomerBalance", dtp_date.Value.ToString("dd_MM_yyyy"));
+            _e.exporttoexcel(dgv_Balance,"SupplierBalance", dtp_date.Value.ToString("dd_MM_yyyy"));
             
         }
     }

@@ -85,6 +85,26 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public DataTable GetSupplierBill(string from, string to)
+        {
+            DataTable dt1, dt2, dt3;
+            string str1 = " SELECT dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo,dbo.SupplierBill.BillNo, dbo.SupplierBill.Amount,dbo.SupplierBill.Date, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+ "', 103)) AND (dbo.SupplierBill.permanentdelete = 0) GROUP BY dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State,dbo.SupplierBill.BillNo,dbo.SupplierBill.Date";
+            dt1 = _sql.GetDataTable(str1);
+            return dt1;
+        }
+
+        public DataTable GetBillItem(string RefrenceNO)
+        {
+            DataTable dt = _sql.GetDataTable("select * from BillItem Where PurchaseRef ='" + RefrenceNO + "'");
+            return dt;
+        }
+
+        public DataTable GetBillItemAmount(string RefrenceNO)
+        {
+            DataTable dt = _sql.GetDataTable("SELECT SUM(CONVERT(Decimal, dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal, dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal, dbo.BillItem.IGSTAmt)) AS IGST,  SUM(CONVERT(Decimal, dbo.BillItem.SellingPrice)) AS Selling, SUM(CONVERT(Decimal, dbo.BillItem.Price)) AS Price FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE(dbo.SupplierBill.RefrenceNo = '"+RefrenceNO+"')");
+            return dt;
+        }
+
         public DataTable GetPurchaseBillItem(string BillNo)
         {
             DataTable dt;
@@ -96,16 +116,17 @@ namespace PrimeSolutions.Library
         public DataTable GetPurchaseBill()
         {
             DataTable dt;
-            string str = "select * from SupplierBill ";
+            string str = "select * from SupplierBill Where Type ='GST'";
             dt = _sql.GetDataTable(str);
             return dt;
         }
+       
 
-        public string GetAllHSN(string BillNo, string type)
+        public string GetAllHSNPurchase(string Refrence)
         {
             string AllHSN = "";
-            string str = "Select  distinct HSN from BillItem where "+type+"BillNo = '" + BillNo + "'";
-            DataTable dt = new DataTable();
+            string str = "Select  distinct HSN from BillItem where PurchaseRef = '" + Refrence + "'";
+            DataTable dt = _sql.GetDataTable(str);
             int i = 0;
 
             while (dt.Rows.Count > i)
