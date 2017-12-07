@@ -34,14 +34,14 @@ namespace PrimeSolutions.Report.Sale
                 if (txt_type.Text == "GST")
                 {
                     CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
-                    SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
-                    _obj(bill.Text, "Print");
+                    SendData _obj = new SendData(_objfrm_ReportViewer.SupplierBill);
+                    _obj(txt_ref.Text, "Print");
                 }
                 else if (txt_type.Text == "Estimate")
                 {
                     CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
-                    SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
-                    _obj(bill.Text, "Print");
+                    SendData _obj = new SendData(_objfrm_ReportViewer.SupplierBill);
+                    _obj(txt_ref.Text, "Print");
                 }
             }
             catch (Exception ex)

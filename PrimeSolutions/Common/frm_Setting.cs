@@ -55,8 +55,8 @@ namespace PrimeSolutions.Common
 
             //5 Set Crystal Report
             cmb_SaleBill.Text = _a.GetSaleBillName().Rows[0]["SaleBill"].ToString();
-            cmb_PurchaseBill.Text = _a.GetSaleBillName().Rows[1]["SaleBill"].ToString();
-            cmb_estimate.Text = _a.GetSaleBillName().Rows[2]["SaleBill"].ToString();
+            cmb_estimate.Text = _a.GetSaleBillName().Rows[1]["SaleBill"].ToString();
+            cmb_PurchaseBill.Text = _a.GetSaleBillName().Rows[2]["SaleBill"].ToString();
             cmb_ServiceInc.Text = _a.GetSaleBillName().Rows[3]["SaleBill"].ToString();
 
             //6 payment form
@@ -124,7 +124,7 @@ namespace PrimeSolutions.Common
             StartDate = dtp_start.Value.ToString("dd/MM/yyyy");
             EndDate = dtp_end.Value.ToString("dd/MM/yyyy");
 
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text);
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text);
 
             MessageBox.Show("Setting Saved");
         }

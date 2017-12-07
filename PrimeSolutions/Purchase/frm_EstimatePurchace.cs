@@ -31,6 +31,7 @@ namespace PrimeSolutions
         clsCommon _Common = new clsCommon();
         string supplierexs = "No";
         frm_ReportViewer _print = new frm_ReportViewer();
+        cls_Barcode _Barcode = new cls_Barcode();
         public int[] PaymentIDs = new int[2];
         string Type = "Estimate";
 
@@ -106,6 +107,7 @@ namespace PrimeSolutions
             txt_IGST.Text = "0";
             lbl_AmtIGST.Text = "0";
             fillcomboox();
+            cmb_size.ResetText();
         }
 
         private void cmb_Name_KeyDown(object sender, KeyEventArgs e)
@@ -257,7 +259,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_BalAmt.Focus();
+                cmb_PayMode.Focus();
             }
         }
 
@@ -413,6 +415,7 @@ namespace PrimeSolutions
 
         private void Add()
         {
+            bool chk;
             //Insert category
             if (!_objCustmor.ItemCategory(cmb_Category.Text))
             {
@@ -425,17 +428,25 @@ namespace PrimeSolutions
                 _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
             }
 
-            
-                if (cmb_Category.Text == "" || cmb_SubCategory.Text == "")
+            if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
+            {
+                chk = true;
+            }
+            else
+            {
+                chk = false;
+            }
+            if (cmb_Category.Text == "" || cmb_SubCategory.Text == "")
             {
                 MessageBox.Show("Please Enter Item Details");
             }
+
 
             else
             {
                 try
                 {
-                    dgv_ItemInfo.Rows.Add(true, txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text, txt_HSN.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_Amt.Text, txt_BatchNo.Text, txt_SellingAmt.Text, txt_CGST.Text, lbl_AmtCGST.Text, txt_SGST.Text, lbl_AmtSGST.Text, txt_IGST.Text, lbl_AmtIGST.Text);
+                    dgv_ItemInfo.Rows.Add(chk, txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_Amt.Text, txt_BatchNo.Text, txt_SellingAmt.Text, txt_CGST.Text, lbl_AmtCGST.Text, txt_SGST.Text, lbl_AmtSGST.Text, txt_IGST.Text, lbl_AmtIGST.Text);
                     Clear();
                 }
                 catch (Exception ex)
@@ -506,6 +517,7 @@ namespace PrimeSolutions
         private void bttn_Purchase_Click(object sender, EventArgs e)
         {
             int p = 0;
+
             int BarcodeCount = _objCustmor.getbarcode();
 
             if (checkData())
@@ -520,11 +532,11 @@ namespace PrimeSolutions
                 }
                 catch (Exception ex)
                 {
-                    _error.AddException(ex, "EstPurchase");
+                    _error.AddException(ex, "EstPurchase_Insert_Supplier");
                 }
 
-                try
-                {
+                //try
+                //{
                     for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
                     {
                         if (_objCustmor.GetalooseItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value)))
@@ -532,8 +544,8 @@ namespace PrimeSolutions
 
                             string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
                             string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                            string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                             string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
+                            string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                             string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
                             string Qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
                             string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
@@ -547,210 +559,87 @@ namespace PrimeSolutions
                             string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string PBillNo = txt_BillNo.Text;
 
-                            _purchase.InsertItem("", category, subcategory, Size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null,"");
+                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null, txt_refrence.Text);
 
                         }
+
                         else if (!_objCustmor.GetalooseItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value)))
                         {
-                            if (Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value) == 1)
+                            string barcode;
+                            if (dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == "" || dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == string.Empty)
                             {
-                                if (BarcodeCount == 1)
-                                {
-                                    string barcode = _objSQLHelper.GetMaxID("B", "0");
-                                    string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                                    string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                                    string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                                    string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
-                                    string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
-                                    //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
-                                    string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                                    string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                                    string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                                    string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                                    string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                                    string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                                    string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                                    string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                                    string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                                    string PBillNo = txt_BillNo.Text;
-                                    string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                    _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
-                                    if (dtsett.BarcodeType == "Thermal")
-                                    {
-                                        if (dtsett.Barcode == "Yes")
-                                        {
-                                            if (dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString() == Convert.ToString(true))
-                                            {
-                                                _objCustmor.printBarcode(barcode, category, subcategory, purchaseamt, SellingAmt, "", SellingAmt, i);
-
-                                            }
-                                        }
-                                    }
-
-
-                                }
-                                else if (BarcodeCount == 2)
-                                {
-                                    int Qty = Convert.ToInt32(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value));
-                                    for (int j = 0; j < Qty; j++)
-                                    {
-                                        string barcode = _objSQLHelper.GetMaxID("B", "0");
-                                        string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                                        string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                                        string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                                        string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
-                                        string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
-                                        //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
-                                        string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                                        string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                                        string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                                        string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                                        string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                                        string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                                        string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                                        string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                                        string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                                        string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                        string barcode2 = "";
-                                        string category2 = "";
-                                        string subcategory2 = "";
-                                        string SellingAmt2 = "";
-                                        string PBillNo = txt_BillNo.Text;
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
-                                        if (dtsett.BarcodeType == "Thermal")
-                                        {
-                                            if (dtsett.Barcode == "Yes")
-                                            {
-                                                if (dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString() == Convert.ToString(true))
-                                                {
-                                                    _objCustmor.printBarcode(barcode, barcode2, category, category2, subcategory, subcategory2, SellingAmt, SellingAmt2, "", "", j);
-
-                                                }
-                                            }
-                                        }
-
-                                        j++;
-                                    }
-                                }
+                                barcode = _objSQLHelper.GetMaxID("B", "0");
+                            }
+                            else
+                            {
+                                barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Barcode"].Value);
                             }
 
-                            else if (Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value) > 1)
-                            {
-                                if (BarcodeCount == 1)
-                                {
-                                    int Qty = Convert.ToInt32(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value));
-                                    for (int j = 0; j < Qty; j++)
-                                    {
-                                        string barcode = _objSQLHelper.GetMaxID("B", "0");
-                                        string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                                        string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                                        string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                                        string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
-                                        string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
-                                        //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
-                                        string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                                        string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                                        string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                                        string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                                        string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                                        string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                                        string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                                        string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                                        string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                                        string PBillNo = txt_BillNo.Text;
-                                        string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
+                            string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                            string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                            string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
+                            string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
+                            string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
+                            string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                            string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                            string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
+                            string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
+                            string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
+                            string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
+                            string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
+                            string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
+                            string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
+                            string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
+                            string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
+                            string PBillNo = txt_BillNo.Text;
+                            _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint, txt_refrence.Text);
 
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGST, SGSTper, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
-                                        if (dtsett.BarcodeType == "Thermal")
-                                        {
-                                            if (dtsett.Barcode == "Yes")
-                                            {
-                                                if (dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString() == Convert.ToString(true))
-                                                {
-                                                    _objCustmor.printBarcode(barcode, category, subcategory, purchaseamt, SellingAmt, "", TotalAmt, i);
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
-                                else if (BarcodeCount == 2)
-                                {
-                                    int Qty = Convert.ToInt32(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value));
-                                    for (int j = 0; j < Qty; j++)
-                                    {
-                                        string barcode = _objSQLHelper.GetMaxID("B", "0");
-                                        string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                                        string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                                        string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                                        string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
-                                        string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
-                                        //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
-                                        string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                                        string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                                        string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                                        string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                                        string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                                        string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                                        string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                                        string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                                        string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                                        string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                        string barcode2 = "";
-                                        string category2 = "";
-                                        string subcategory2 = "";
-                                        string SellingAmt2 = "";
-                                        string PBillNo = txt_BillNo.Text;
-                                        _purchase.InsertItem(barcode, category, subcategory, Size, PBillNo, "Purchase", "1", CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,"");
-                                        if (Qty - j >= 2)
-                                        {
-                                            barcode2 = _objSQLHelper.GetMaxID("B", "0");
-                                            category2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
-                                            subcategory2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
-                                            string Size2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                                            string HSN2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
-                                            string purchaseamt2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
-                                            //string qty2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
-                                            string TotalAmt2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                                            string BatchNo2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                                            SellingAmt2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                                            string CGSTper2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                                            string CGST2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                                            string SGSTper2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                                            string SGST2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                                            string IGSTper2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                                            string IGST2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                                            string BarcodePrint2 = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
-                                            _purchase.InsertItem(barcode2, category2, subcategory2, Size2, PBillNo, "Purchase", "1", CGSTper2, CGST2, SGSTper2, SGST2, IGSTper2, IGST2, purchaseamt2, TotalAmt2, BatchNo2, SellingAmt2, HSN2, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint2,"");
-                                        }
-                                        if (dtsett.BarcodeType == "Thermal")
-                                        {
-                                            if (dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString() == Convert.ToString(true))
-                                            {
-                                                if (dtsett.Barcode == "Yes")
-                                                {
-                                                    _objCustmor.printBarcode(barcode, barcode2, category, category2, subcategory, subcategory2, SellingAmt, SellingAmt2, "", "", j);
-
-                                                }
-                                            }
-                                        }
-                                        j++;
-                                    }
-                                }
-                            }
                         }
                     }
 
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    _error.AddException(ex, "EstPurchase");
+                //    MessageBox.Show("Problem Inserting Item \n" + ex.Message);
+                //}
+
+                try
+                {
+
+                    if (dtsett.Barcode == "Yes")
+                    {
+                        //insert Into Temp Table
+                        _Common.InsertIntoTemp(txt_refrence.Text);
+
+                        if (dtsett.BarcodeType == "Thermal")
+                        {
+                            if (dtsett.BarcodeCount == "1")
+                            {
+                                _Barcode.PrintBarcode1No(1);
+                            }
+                            else if (dtsett.BarcodeCount == "2")
+                            {
+                                _Barcode.PrintBarcode2No(1);
+                            }
+                        }
+                        else if (dtsett.BarcodeType == "Laser")
+                        {
+                            _Barcode.PrintBarcodeA4(p = 0);
+                        }
+
+                    }
+
+                    _Common.DeleteTemp();
                 }
                 catch (Exception ex)
                 {
-                    _error.AddException(ex, "EstPurchase");
+                    _error.AddException(ex, "Purchase/PrintBarcode");
                 }
 
                 try
                 {
-                    if (dtsett.BarcodeType == "Laser")
-                        _barcode.PrintBarcodeA4(txt_BillNo.Text, p = 0);
                     _objCustmor.InsertBillDetail(lbl_AccNo1.Text, txt_BillNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, txt_CGSTValue.Text, txt_SGSTValue.Text, txt_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,Type,txt_refrence.Text);
                     if (txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != "" || txt_PaidAmt.Text != string.Empty)
                     {
@@ -1052,6 +941,14 @@ namespace PrimeSolutions
         {
             Masterclear();
             Clear();
+        }
+
+        private void cmb_PayMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bttn_Purchase.Focus();
+            }
         }
     }
 }

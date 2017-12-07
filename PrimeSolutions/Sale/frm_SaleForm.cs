@@ -674,7 +674,7 @@ namespace PrimeSolutions
             try
             {
                  
-            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST");
+            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST",txt_Extra.Text);
 
             if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
             {
@@ -776,7 +776,7 @@ namespace PrimeSolutions
 
             if (e.KeyCode == Keys.End)
             {
-                txt_Discount.Focus();
+                txt_Extra.Focus();
             }
         }
         
@@ -1091,6 +1091,7 @@ namespace PrimeSolutions
         {
             DataTable dt = _a.GetSizeByCatAndSubCat(cmb_Category.Text, cmb_SubCategory.Text);
             cmb_size.DataSource = dt;
+            cmb_size.SelectedIndex = 0;
         }
 
         private void cmb_size_KeyDown(object sender, KeyEventArgs e)
@@ -1136,6 +1137,14 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 Add();
+            }
+        }
+
+        private void txt_Extra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_Discount.Focus();
             }
         }
     }

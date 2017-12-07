@@ -97,6 +97,15 @@ namespace PrimeSolutions.Common
             string query11 = "ALTER TABLE SupplierBill ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_SupplierBill_PermanentDelete]  DEFAULT ((0))";
             dgv_UpdateQuery.Rows.Add(false, K, query11);
 
+            string L = "Login";
+            string query12 = "CREATE TABLE [dbo].[Login]([UserID] [nvarchar](max) NULL,[Password] [nvarchar](max) NULL,[Type] [nvarchar](max) NULL)";
+            dgv_UpdateQuery.Rows.Add(false, L, query12);
+
+
+            string M = "Extra Charges";
+            string query13 = "ALTER TABLE CustomerBill ADD ExtraCharges nvarchar(MAX)";
+            dgv_UpdateQuery.Rows.Add(false, M, query13);
+
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)

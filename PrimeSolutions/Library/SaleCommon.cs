@@ -19,9 +19,9 @@ namespace PrimeSolutions.Library
         Cls_BalanceSheet _objCeditDebit = new Cls_BalanceSheet();
         string BillNo;
 
-        public void AddBillDetails(string BillNo, string CustomerId, string date, string amount, string CGST, string SGST, string IGST, string GrandAmt, string State,string BillAmt,string Dissount,string Type)
+        public void AddBillDetails(string BillNo, string CustomerId, string date, string amount, string CGST, string SGST, string IGST, string GrandAmt, string State,string BillAmt,string Dissount,string Type,string Extra)
         {
-            string str = "Insert into CustomerBill(BillNo,CustId,Date,Amount,CGST,SGST,IGST,GrandAmt,State,BillAmount,Discount,Type)Values('" + BillNo + "','" + CustomerId + "','" + date + "','" + amount + "','" + CGST + "','" + SGST + "','" + IGST + "','" + GrandAmt + "','" + State + "','"+BillAmt+"','"+Dissount+"','"+Type+"')";
+            string str = "Insert into CustomerBill(BillNo,CustId,Date,Amount,CGST,SGST,IGST,GrandAmt,State,BillAmount,Discount,Type,ExtraCharges)Values('" + BillNo + "','" + CustomerId + "','" + date + "','" + amount + "','" + CGST + "','" + SGST + "','" + IGST + "','" + GrandAmt + "','" + State + "','"+BillAmt+"','"+Dissount+"','"+Type+"','"+Extra+"')";
             _sql.ExecuteSql(str);
         }
 
@@ -152,14 +152,14 @@ namespace PrimeSolutions.Library
 
         public Double GetTotalSupplierPurchase(string SuppId, string type)
         {
-            string str1 = "Select Sum(convert(decimal,GrandTotal)) From SupplierBill where SupplierNo = '" + SuppId + "'";
+            string str1 = "Select Sum(convert(decimal,GrandTotal)) From SupplierBill where SupplierNo = '" + SuppId + "' and (PermanentDelete = 0 or PermanentDelete is Null)";
             string BillAmt = _sql.ExecuteScalar(str1);
             return Convert.ToDouble(BillAmt);
         }
 
         public Double GetTotalPurchase(string CustId, string type)
         {
-            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "'";
+            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
             string BillAmt = _sql.ExecuteScalar(str1);
             if (BillAmt == null || BillAmt == "")
                 return 0; 

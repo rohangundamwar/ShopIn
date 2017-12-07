@@ -51,9 +51,6 @@
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseBilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newJobToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serviceInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,15 +61,18 @@
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newJobToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +87,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_ValidDays = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bttn_Login = new System.Windows.Forms.Button();
             this.pnl_ActivateMsg = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -137,22 +138,23 @@
             // gSTSaleToolStripMenuItem
             // 
             this.gSTSaleToolStripMenuItem.Name = "gSTSaleToolStripMenuItem";
-            this.gSTSaleToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
+            this.gSTSaleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.gSTSaleToolStripMenuItem.Text = "GST Sale";
             this.gSTSaleToolStripMenuItem.Click += new System.EventHandler(this.gSTSaleToolStripMenuItem_Click);
             // 
             // estimateToolStripMenuItem
             // 
             this.estimateToolStripMenuItem.Name = "estimateToolStripMenuItem";
-            this.estimateToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
+            this.estimateToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.estimateToolStripMenuItem.Text = "Estimate";
             this.estimateToolStripMenuItem.Click += new System.EventHandler(this.estimateToolStripMenuItem_Click);
             // 
             // wholeSaleToolStripMenuItem
             // 
             this.wholeSaleToolStripMenuItem.Name = "wholeSaleToolStripMenuItem";
-            this.wholeSaleToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
+            this.wholeSaleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.wholeSaleToolStripMenuItem.Text = "Whole sale";
+            this.wholeSaleToolStripMenuItem.Visible = false;
             this.wholeSaleToolStripMenuItem.Click += new System.EventHandler(this.wholeSaleToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem
@@ -173,7 +175,7 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -181,14 +183,15 @@
             // 
             this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.barcodeEntryToolStripMenuItem.Text = "Barcode Reprint";
             this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // purchaseItemToolStripMenuItem
             // 
+            this.purchaseItemToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("purchaseItemToolStripMenuItem.Image")));
             this.purchaseItemToolStripMenuItem.Name = "purchaseItemToolStripMenuItem";
-            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.purchaseItemToolStripMenuItem.Text = "Purchase Item";
             this.purchaseItemToolStripMenuItem.Click += new System.EventHandler(this.purchaseItemToolStripMenuItem_Click);
             // 
@@ -279,8 +282,7 @@
             // 
             this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saleBillToolStripMenuItem,
-            this.purchaseBilToolStripMenuItem,
-            this.serviceToolStripMenuItem});
+            this.purchaseBilToolStripMenuItem});
             this.updateToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.updateToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.check;
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
@@ -302,29 +304,6 @@
             this.purchaseBilToolStripMenuItem.Text = "Purchase Bill";
             this.purchaseBilToolStripMenuItem.Click += new System.EventHandler(this.purchaseBilToolStripMenuItem_Click);
             // 
-            // serviceToolStripMenuItem
-            // 
-            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newJobToolStripMenuItem,
-            this.serviceInvoiceToolStripMenuItem});
-            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
-            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
-            this.serviceToolStripMenuItem.Text = "Service";
-            // 
-            // newJobToolStripMenuItem
-            // 
-            this.newJobToolStripMenuItem.Name = "newJobToolStripMenuItem";
-            this.newJobToolStripMenuItem.Size = new System.Drawing.Size(203, 24);
-            this.newJobToolStripMenuItem.Text = "Generate Job Card";
-            this.newJobToolStripMenuItem.Click += new System.EventHandler(this.newJobToolStripMenuItem_Click);
-            // 
-            // serviceInvoiceToolStripMenuItem
-            // 
-            this.serviceInvoiceToolStripMenuItem.Name = "serviceInvoiceToolStripMenuItem";
-            this.serviceInvoiceToolStripMenuItem.Size = new System.Drawing.Size(203, 24);
-            this.serviceInvoiceToolStripMenuItem.Text = "Service Invoice";
-            this.serviceInvoiceToolStripMenuItem.Click += new System.EventHandler(this.serviceInvoiceToolStripMenuItem_Click);
-            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.Checked = true;
@@ -334,7 +313,8 @@
             this.purchaseToolStripMenuItem1,
             this.duplicateBillToolStripMenuItem,
             this.stockCheckToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.serviceToolStripMenuItem});
             this.reportToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.reportToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.presentation;
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
@@ -415,6 +395,13 @@
             this.supplierBillDetailsToolStripMenuItem.Text = "Supplier Bill Details";
             this.supplierBillDetailsToolStripMenuItem.Click += new System.EventHandler(this.supplierBillDetailsToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(267, 24);
+            this.toolStripMenuItem2.Text = "Supplier Balance";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // purchaseLedgerToolStripMenuItem
             // 
             this.purchaseLedgerToolStripMenuItem.Name = "purchaseLedgerToolStripMenuItem";
@@ -428,13 +415,6 @@
             this.supplierGSTReportToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
             this.supplierGSTReportToolStripMenuItem.Text = "Supplier GST Report";
             this.supplierGSTReportToolStripMenuItem.Click += new System.EventHandler(this.supplierGSTReportToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(267, 24);
-            this.toolStripMenuItem2.Text = "Supplier Balance";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // duplicateBillToolStripMenuItem
             // 
@@ -481,6 +461,29 @@
             this.purchaseGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
             this.purchaseGSTReportToolStripMenuItem.Text = "Purchase GST Report";
             this.purchaseGSTReportToolStripMenuItem.Click += new System.EventHandler(this.purchaseGSTReportToolStripMenuItem_Click);
+            // 
+            // serviceToolStripMenuItem
+            // 
+            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newJobToolStripMenuItem,
+            this.serviceInvoiceToolStripMenuItem});
+            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
+            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
+            this.serviceToolStripMenuItem.Text = "Service";
+            // 
+            // newJobToolStripMenuItem
+            // 
+            this.newJobToolStripMenuItem.Name = "newJobToolStripMenuItem";
+            this.newJobToolStripMenuItem.Size = new System.Drawing.Size(203, 24);
+            this.newJobToolStripMenuItem.Text = "Generate Job Card";
+            this.newJobToolStripMenuItem.Click += new System.EventHandler(this.newJobToolStripMenuItem_Click_1);
+            // 
+            // serviceInvoiceToolStripMenuItem
+            // 
+            this.serviceInvoiceToolStripMenuItem.Name = "serviceInvoiceToolStripMenuItem";
+            this.serviceInvoiceToolStripMenuItem.Size = new System.Drawing.Size(203, 24);
+            this.serviceInvoiceToolStripMenuItem.Text = "Service Invoice";
+            this.serviceInvoiceToolStripMenuItem.Click += new System.EventHandler(this.serviceInvoiceToolStripMenuItem_Click_1);
             // 
             // masterToolStripMenuItem
             // 
@@ -603,11 +606,22 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.bttn_Login);
             this.panel2.Controls.Add(this.pnl_ActivateMsg);
-            this.panel2.Location = new System.Drawing.Point(7, 8);
+            this.panel2.Location = new System.Drawing.Point(6, 7);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(565, 359);
             this.panel2.TabIndex = 7;
+            // 
+            // bttn_Login
+            // 
+            this.bttn_Login.Location = new System.Drawing.Point(463, 318);
+            this.bttn_Login.Name = "bttn_Login";
+            this.bttn_Login.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Login.TabIndex = 1;
+            this.bttn_Login.Text = "Login";
+            this.bttn_Login.UseVisualStyleBackColor = true;
+            this.bttn_Login.Click += new System.EventHandler(this.button1_Click);
             // 
             // pnl_ActivateMsg
             // 
@@ -615,10 +629,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnl_ActivateMsg.Controls.Add(this.label1);
-            this.pnl_ActivateMsg.Location = new System.Drawing.Point(147, 129);
+            this.pnl_ActivateMsg.Location = new System.Drawing.Point(146, 128);
             this.pnl_ActivateMsg.Name = "pnl_ActivateMsg";
             this.pnl_ActivateMsg.Size = new System.Drawing.Size(284, 117);
             this.pnl_ActivateMsg.TabIndex = 0;
+            this.pnl_ActivateMsg.Visible = false;
             // 
             // label1
             // 
@@ -637,7 +652,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.lbl_developer);
             this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(253, 371);
+            this.panel3.Location = new System.Drawing.Point(261, 373);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(311, 62);
             this.panel3.TabIndex = 6;
@@ -752,15 +767,16 @@
         private System.Windows.Forms.ToolStripMenuItem wholeSaleToolStripMenuItem;
         private System.Windows.Forms.Label lbl_ValidDays;
         private System.Windows.Forms.ToolStripMenuItem customerPaymentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newJobToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serviceInvoiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem purchaseGSTReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customerPaymentToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem supplierPaymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newJobToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serviceInvoiceToolStripMenuItem;
+        private System.Windows.Forms.Button bttn_Login;
     }
 }
 

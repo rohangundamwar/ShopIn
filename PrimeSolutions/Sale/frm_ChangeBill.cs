@@ -28,7 +28,7 @@ namespace PrimeSolutions.Report.Sale
         {
             try
             {
-                frm_SaleUpdate _form = new frm_SaleUpdate(bill.Text);
+                frm_SaleUpdate _form = new frm_SaleUpdate(bill.Text,txt_type.Text);
                 _form.ShowDialog();
             }
             catch (Exception ex)

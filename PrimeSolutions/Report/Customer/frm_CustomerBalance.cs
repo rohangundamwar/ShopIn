@@ -12,17 +12,20 @@ namespace PrimeSolutions.Report.Customer
 {
     public partial class frm_CustomerBalance : Form
     {
+        
         public frm_CustomerBalance()
         {
             InitializeComponent();
         }
 
         AllClassFile _a = new AllClassFile();
+        clsCommon _common = new clsCommon();
         SaleCommon _s = new SaleCommon();
         DataTable cust;
         CustomerCommon _Cust = new CustomerCommon();
         ExportToExcel _e = new ExportToExcel();
-       
+        public delegate void SendData(DataTable dt,string Type,string Date);
+
 
         private void frm_CustomerBalance_Load(object sender, EventArgs e)
         {
@@ -33,7 +36,7 @@ namespace PrimeSolutions.Report.Customer
             for (int i = 0; i < cust.Rows.Count; i++)
             {
                 dgv_Balance.Rows.Add();
-                dgv_Balance.Rows[i].Cells["CustomerName"].Value = cust.Rows[i]["CustomerName"].ToString();
+                dgv_Balance.Rows[i].Cells["Name"].Value = cust.Rows[i]["CustomerName"].ToString();
                 string CustId = cust.Rows[i]["CustId"].ToString();
                 dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
                 DataTable count = _s.GetCustomerBill(CustId);
@@ -67,6 +70,14 @@ namespace PrimeSolutions.Report.Customer
         {
             _e.exporttoexcel(dgv_Balance,"CustomerBalance", dtp_date.Value.ToString("dd_MM_yyyy"));
             
+        }
+
+        private void bttn_Print_Click(object sender, EventArgs e)
+        {
+            DataTable DT = _common.DataGridView2DataTable(dgv_Balance,"Balance",0);
+            CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+            SendData _obj = new SendData(_objfrm_ReportViewer.Balance);
+            _obj(DT, "Customer",dtp_date.Value.ToString("dd/MM/yyyy"));
         }
     }
 }

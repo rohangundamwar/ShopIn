@@ -48,6 +48,12 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public string GetPassword(string ID)
+        {
+            string str = "Select password from Login Where UserId='" + ID + "'";
+            return _objSqlhelper.ExecuteScalar(str);
+        }
+
         public void InsertIntoTemp(string BillNo)
         {
             DataTable dt = GetBillItemByRefrence(BillNo, "Purchase");
@@ -71,9 +77,10 @@ namespace PrimeSolutions.Library
                         string Category = Convert.ToString(dt.Rows[i]["Category"]);
                         string subcategory = Convert.ToString(dt.Rows[i]["SubCategory"]);
                         string SellingAmt = Convert.ToString(dt.Rows[i]["SellingPrice"]);
+                        string Size = Convert.ToString(dt.Rows[i]["size"]);
                         for (int j = 0; j < Qty; j++)
                         {
-                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "') ";
+                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "','"+Size+"') ";
                             _objSqlhelper.ExecuteScalar(str);
                         }
                     }

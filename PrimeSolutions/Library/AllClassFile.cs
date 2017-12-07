@@ -122,6 +122,7 @@ namespace PrimeSolutions.Library
         internal string getQty(string category, string subcategory)
         {
             string Qty;
+
             string purchase = "SELECT   FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
             string sale = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null) ";
             string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
@@ -143,32 +144,65 @@ namespace PrimeSolutions.Library
             return (Qty);
         }
 
-        internal string getQty(string category, string subcategory,string price)
+        internal string getQty(string category, string subcategory,string size)
         {
-            double PurchaseQty, SaleQty;
+            string purchase="", sale="";
+            decimal PurchaseQty, SaleQty;
             string Qty;
-            string purchase = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (PermanentDelete = 0 or PermanentDelete is Null)";
-            string sale = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null) ";
-            string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
-            string QtySale = _objsqlhelper.ExecuteScalar(sale);
             if (GetalooseItem(category))
             {
-                PurchaseQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
-                SaleQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
-                Qty = Convert.ToString(PurchaseQty - SaleQty);
-                Qty = Qty + "  Kg";
-            }
-            else
-            {
-                PurchaseQty = Convert.ToInt32(QtyPurchase);
+                purchase = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null)";
+                sale = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and (PermanentDelete = 0 or PermanentDelete is Null) ";
+
+                string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+                string QtySale = _objsqlhelper.ExecuteScalar(sale);
+
+                PurchaseQty = Math.Round(Convert.ToDecimal(QtyPurchase), 3);
+
+                if (PurchaseQty == 0 || PurchaseQty == null)
+                    PurchaseQty = 0;
+
+                else
+                    PurchaseQty = Convert.ToDecimal(PurchaseQty);
+
                 if (QtySale == "" || QtySale == null)
                     SaleQty = 0;
                 else
-                    SaleQty = Convert.ToDouble(QtySale);
+                    SaleQty = Convert.ToDecimal(QtySale);
 
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
-                Qty = Qty + "  nos.";
+
+                
+                    Qty = Qty + " Kg";
+               
             }
+
+            else
+            {
+                purchase = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' AND size = '" + size + "' and (PermanentDelete = 0 or PermanentDelete is Null)";
+                sale = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "' AND size = '" + size + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+
+                string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+                string QtySale = _objsqlhelper.ExecuteScalar(sale);
+
+                PurchaseQty = Math.Round(Convert.ToDecimal(QtyPurchase), 2);
+
+                if (PurchaseQty == 0 || PurchaseQty == null)
+                    PurchaseQty = 0;
+
+                else
+                    PurchaseQty = Convert.ToDecimal(PurchaseQty);
+
+
+                if (QtySale == "" || QtySale == null)
+                    SaleQty = 0;
+                else
+                    SaleQty = Convert.ToDecimal(QtySale);
+
+                Qty = Convert.ToString(PurchaseQty - SaleQty);
+                    Qty = Qty + " nos";
+            }
+
             return (Qty);
         }
 
@@ -329,7 +363,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct SubCategory,SellingPrice,Size FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct SubCategory,Size FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -550,13 +584,16 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain)
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice)
         {
             string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"'";
             _objsqlhelper.ExecuteScalar(str);
 
             string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "' where type='GST'";
             _objsqlhelper.ExecuteScalar(str2);
+
+            string str6 = "Update CrystalReport set SaleBill= '" + ServiceInvoice + "' where type='ServiceInvoice'";
+            _objsqlhelper.ExecuteScalar(str6);
 
             string str3 = "Update FinancialYearMaster set startyear= '" + start + "', endyear= '" + end + "' ";
             _objsqlhelper.ExecuteScalar(str3);

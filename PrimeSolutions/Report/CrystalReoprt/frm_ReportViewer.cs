@@ -76,7 +76,7 @@ namespace PrimeSolutions.Report.CrystalReport
 
             try
             {
-                string Balance = Convert.ToString(_sales.GetBalance(dt_CustomerInfo.Rows[0]["CustomerName"].ToString(),"Sale"));
+                string Balance = Convert.ToString(_sales.GetBalance(dt_CustomerInfo.Rows[0]["CustId"].ToString(),"Sale"));
                 _objReport.SetParameterValue("Balance", Balance);
             }
             catch (Exception ex)
@@ -146,18 +146,93 @@ namespace PrimeSolutions.Report.CrystalReport
             }
         }
 
-        public void JobCard(DataTable Dt)
+        public void JobCard(DataTable Dt, string PrinterName, string Copy)
         {
             string crname;
-            crname = "Select SaleBill from CrystalReport Where Type='JobCard'";
-            string dt_crname = _objsqlhelper.ExecuteScalar(crname);
+            crname = "crt_JobCard.rpt";
             ReportDocument _objReport = new ReportDocument();
 
-            _objReport.Load(Environment.CurrentDirectory + "\\" + dt_crname);
+            _objReport.Load(Environment.CurrentDirectory + "/CRTReport/" + crname);
 
             string company = "SELECT * from CompanyMaster";
             DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
             _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                for (int i = 0; i < Dt.Rows.Count; i++)
+                {
+                    _objReport.SetParameterValue("ServiceID", Dt.Rows[i]["ServiceID"].ToString());
+                    _objReport.SetParameterValue("Name", Dt.Rows[i]["Name"].ToString());
+                    _objReport.SetParameterValue("Address", Dt.Rows[i]["Address"].ToString());
+                    _objReport.SetParameterValue("ServiceDate", Dt.Rows[i]["Maintenance"].ToString());
+                    _objReport.SetParameterValue("ContactNo", Dt.Rows[i]["MobileNo"].ToString());
+                    _objReport.SetParameterValue("ModelNo", Dt.Rows[i]["Model"].ToString());
+                    try
+                    {
+                        int Copies = _objPrinterSetting.copies;
+                        _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                        _objReport.PrintToPrinter(Copies, true, 0, 0);
+                        printresult = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                
+                if (printresult == true)
+                {
+                    printresult = false;
+                }
+
+            }
+        }
+
+        public void JobCardList(DataTable Dt,string From,string To)
+        {
+            string crname;
+            crname = "crt_ServiceJobCard.rpt";
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "/CRTReport/" + crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            _objReport.Database.Tables["Service"].SetDataSource(Dt);
+
+            _objReport.SetParameterValue("From", From);
+
+            _objReport.SetParameterValue("To", To);
+
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int Copies = _objPrinterSetting.copies;
+
+                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                    _objReport.PrintToPrinter(Copies, true, 0, 0);
+                    printresult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                if (printresult == true)
+                {
+                    printresult = false;
+                }
+            }
+            else
+            {
+                crReportViewer.ReportSource = _objReport;
+                crReportViewer.Show();
+                return;
+            }
 
         }
 
@@ -383,7 +458,7 @@ namespace PrimeSolutions.Report.CrystalReport
 
             try
             {
-                string Balance = Convert.ToString(_sales.GetBalance(dt_Supplier_Info.Rows[0]["Name"].ToString(),"Purchase"));
+                string Balance = Convert.ToString(_sales.GetBalance(dt_Supplier_Info.Rows[0]["SupplierNo"].ToString(),"Purchase"));
                 _objReport.SetParameterValue("Balance", Balance);
             }
             catch (Exception ex)
@@ -453,8 +528,6 @@ namespace PrimeSolutions.Report.CrystalReport
             }
         }
 
-        
-
         public void SaleLedger(DataTable sale,DataTable pay,string Bill,string payment,string balance)
         {
             ReportDocument _objReport = new ReportDocument();
@@ -482,7 +555,54 @@ namespace PrimeSolutions.Report.CrystalReport
             crReportViewer.ReportSource = _objReport;
             crReportViewer.Show();
         }
-        
+
+        public void Balance(DataTable Dt,string Type,string Date)
+        {
+            string crname="";
+            if (Type == "Customer")
+            {
+                crname = "crt_CustomerBalance.rpt";
+            }
+            if (Type == "Supplier")
+            {
+                crname = "crt_SupplierBalance.rpt";
+            }
+            
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "/CRTReport/" + crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            _objReport.Database.Tables["Balance"].SetDataSource(Dt);
+
+            _objReport.SetParameterValue("Date", Date);
+
+
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int Copies = _objPrinterSetting.copies;
+                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                    _objReport.PrintToPrinter(Copies, true, 0, 0);
+                    printresult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+            if (printresult == true)
+            {
+                printresult = false;
+            }
+
+
+        } 
 
         private void frm_ReportViewer_Load(object sender, EventArgs e)
         {

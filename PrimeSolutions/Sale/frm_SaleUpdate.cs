@@ -34,9 +34,12 @@ namespace PrimeSolutions
         string VouchertypeIDMod = "0";
         string VouchertypeIDModPayment = "0";
         string billno;
+        string BillType;
 
-        public frm_SaleUpdate(string BillNo)
+
+        public frm_SaleUpdate(string BillNo,string Type)
         {
+            string BillType = Type;
             billno = BillNo;
             dtSett = new SettingValue();
             dtSett = _Common.getSettingValue();
@@ -691,7 +694,7 @@ namespace PrimeSolutions
             try
             {
 
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "GST");
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, BillType ,txt_Extra.Text);
             }
 
             catch (Exception ex)

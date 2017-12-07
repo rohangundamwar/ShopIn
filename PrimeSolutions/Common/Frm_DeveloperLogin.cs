@@ -12,6 +12,7 @@ namespace PrimeSolutions.Common
     public partial class Frm_DeveloperLogin : Form
     {
         public bool Developer_login_Result { get; set; }
+
         public Frm_DeveloperLogin()
         {
             InitializeComponent();
