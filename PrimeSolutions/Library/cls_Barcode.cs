@@ -8,9 +8,8 @@ namespace PrimeSolutions.Library
     class cls_Barcode
     {
         SQLHelper _sql = new SQLHelper();
-        public void PrintBarcodeA4(string BillNo, int i)
+        public void PrintBarcodeA4(int i)
         {
-            _sql.ExecuteScalar("Update PrintQue SET PrintQue = '" + BillNo + "' Where SrNo='1'");
             BarTender.Application btApp;
             BarTender.Messages btMsgs;
             BarTender.Database btDb;

@@ -99,7 +99,7 @@ namespace PrimeSolutions.Common
             
             else if (dtsett.Rows[0]["BarcodeType"].ToString() == "Laser")
             {
-                _barcode.PrintBarcodeA4(txt_PBillNo.Text, p);
+                _barcode.PrintBarcodeA4(p);
             }
 
             _common.DeleteTemp();

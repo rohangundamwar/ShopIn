@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Stock));
             this.dgv_stock = new System.Windows.Forms.DataGridView();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.pnl_Bottom = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
@@ -48,6 +43,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_reset = new System.Windows.Forms.Button();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).BeginInit();
             this.pnl_Bottom.SuspendLayout();
             this.pnl_Top.SuspendLayout();
@@ -64,43 +64,13 @@
             this.SrNo,
             this.Category,
             this.SubCategory,
-            this.SellingPrice,
+            this.Size,
             this.Quantity});
             this.dgv_stock.Location = new System.Drawing.Point(0, 107);
             this.dgv_stock.Name = "dgv_stock";
             this.dgv_stock.ReadOnly = true;
             this.dgv_stock.Size = new System.Drawing.Size(740, 429);
             this.dgv_stock.TabIndex = 0;
-            // 
-            // SrNo
-            // 
-            this.SrNo.HeaderText = "SrNo";
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            // 
-            // SellingPrice
-            // 
-            this.SellingPrice.HeaderText = "SellingPrice";
-            this.SellingPrice.Name = "SellingPrice";
-            this.SellingPrice.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
             // 
             // bttn_Close
             // 
@@ -247,6 +217,36 @@
             this.btn_reset.UseVisualStyleBackColor = false;
             this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
             // 
+            // SrNo
+            // 
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            this.Size.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
             // frm_Stock
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -287,16 +287,16 @@
         private System.Windows.Forms.DateTimePicker dtp_Date;
         private System.Windows.Forms.Label lbl_Date;
         private System.Windows.Forms.Button bttn_Excel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SellingPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.ComboBox cmb_category;
         private System.Windows.Forms.ComboBox cmb_SubCategory;
         private System.Windows.Forms.Button bttn_Sort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_reset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
     }
 }

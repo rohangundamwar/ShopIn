@@ -21,9 +21,11 @@ namespace PrimeSolutions.Report.Purchase
         SaleCommon _s = new SaleCommon();
         PurchaseCommon _Purchase = new PurchaseCommon();
         DataTable cust;
+        clsCommon _common = new clsCommon();
         CustomerCommon _Cust = new CustomerCommon();
         ExportToExcel _e = new ExportToExcel();
-       
+        public delegate void SendData(DataTable dt, string Type, string Date);
+
 
         private void frm_CustomerBalance_Load(object sender, EventArgs e)
         {
@@ -34,7 +36,7 @@ namespace PrimeSolutions.Report.Purchase
             for (int i = 0; i < cust.Rows.Count; i++)
             {
                 dgv_Balance.Rows.Add();
-                dgv_Balance.Rows[i].Cells["CustomerName"].Value = cust.Rows[i]["Name"].ToString();
+                dgv_Balance.Rows[i].Cells["Name"].Value = cust.Rows[i]["Name"].ToString();
                 string CustId = cust.Rows[i]["SupplierNo"].ToString();
                 dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalSupplierPurchase(CustId, "Purchase");
                 DataTable count = _Purchase.GetSupplierBill(CustId);
@@ -68,6 +70,14 @@ namespace PrimeSolutions.Report.Purchase
         {
             _e.exporttoexcel(dgv_Balance,"SupplierBalance", dtp_date.Value.ToString("dd_MM_yyyy"));
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataTable DT = _common.DataGridView2DataTable(dgv_Balance, "Balance", 0);
+            CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+            SendData _obj = new SendData(_objfrm_ReportViewer.Balance);
+            _obj(DT, "Supplier", dtp_date.Value.ToString("dd/MM/yyyy"));
         }
     }
 }

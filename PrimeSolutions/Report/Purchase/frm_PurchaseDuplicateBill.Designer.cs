@@ -34,6 +34,7 @@
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefrenceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_Bill = new System.Windows.Forms.Label();
             this.bttn_print = new System.Windows.Forms.Button();
             this.bttn_view = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.bill = new System.Windows.Forms.Label();
             this.txt_type = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.RefrenceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_Ref = new System.Windows.Forms.Label();
             this.txt_ref = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
@@ -64,9 +64,9 @@
             this.lbl_customer.AutoSize = true;
             this.lbl_customer.Location = new System.Drawing.Point(17, 35);
             this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(82, 13);
+            this.lbl_customer.Size = new System.Drawing.Size(76, 13);
             this.lbl_customer.TabIndex = 1;
-            this.lbl_customer.Text = "Customer Name";
+            this.lbl_customer.Text = "Supplier Name";
             // 
             // dgv_Bill
             // 
@@ -105,6 +105,12 @@
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
+            // 
+            // RefrenceNo
+            // 
+            this.RefrenceNo.HeaderText = "RefrenceNo";
+            this.RefrenceNo.Name = "RefrenceNo";
+            this.RefrenceNo.ReadOnly = true;
             // 
             // lbl_Bill
             // 
@@ -173,12 +179,6 @@
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Type";
-            // 
-            // RefrenceNo
-            // 
-            this.RefrenceNo.HeaderText = "RefrenceNo";
-            this.RefrenceNo.Name = "RefrenceNo";
-            this.RefrenceNo.ReadOnly = true;
             // 
             // lbl_Ref
             // 

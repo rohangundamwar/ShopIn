@@ -146,6 +146,36 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_SupplierBalance.cs">
+      <DependentUpon>crt_SupplierBalance.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_CustomerBalance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_CustomerBalance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_JobCard.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_JobCard.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_ServiceJobCard.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_ServiceJobCard.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\Service_Invoice1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Service_Invoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="bin\Debug\ThadaniBillEstA5.cs">
       <DependentUpon>ThadaniBillEstA5.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -249,6 +279,12 @@
     <Compile Include="Common\Frm_DeveloperLogin.designer.cs">
       <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_Login.Designer.cs">
+      <DependentUpon>frm_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_LooseItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +317,11 @@
     <Compile Include="Common\Uc_MultiItem.Designer.cs">
       <DependentUpon>Uc_MultiItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\Balance.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Balance.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\Barcode.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -295,6 +336,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ledger.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Service.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Service.xsd</DependentUpon>
     </Compile>
     <Compile Include="Library\ClsFinancialYear.cs" />
     <Compile Include="Library\Cls_BalanceSheet.cs" />
@@ -455,12 +501,6 @@
     <Compile Include="Report\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report\Purchase\TotalGSTReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Report\Purchase\TotalGSTReport.Designer.cs">
-      <DependentUpon>TotalGSTReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="Report\Sale\frm_DuplicateBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -572,6 +612,26 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SupplierBalance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_SupplierBalance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_CustomerBalance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_CustomerBalance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_JobCard.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_JobCard.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_ServiceJobCard.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_ServiceJobCard.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\Service_Invoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Service_Invoice1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\ThadaniBillEstA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ThadaniBillEstA5.cs</LastGenOutput>
@@ -634,6 +694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Frm_DeveloperLogin.resx">
       <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Login.resx">
+      <DependentUpon>frm_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_LooseItem.resx">
       <DependentUpon>frm_LooseItem.cs</DependentUpon>
@@ -726,9 +789,6 @@
     <EmbeddedResource Include="Report\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Purchase\TotalGSTReport.resx">
-      <DependentUpon>TotalGSTReport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_DuplicateBill.resx">
       <DependentUpon>frm_DuplicateBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -780,6 +840,17 @@
     <None Include="bin\Debug\PrimeSolutions.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />
+    <None Include="Dataset\Balance.xsc">
+      <DependentUpon>Balance.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Balance.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Balance.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\Balance.xss">
+      <DependentUpon>Balance.xsd</DependentUpon>
+    </None>
     <None Include="Dataset\Barcode.xsc">
       <DependentUpon>Barcode.xsd</DependentUpon>
     </None>
@@ -812,6 +883,17 @@
     </None>
     <None Include="Dataset\Ledger.xss">
       <DependentUpon>Ledger.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Service.xsc">
+      <DependentUpon>Service.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Service.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Service.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\Service.xss">
+      <DependentUpon>Service.xsd</DependentUpon>
     </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
@@ -854,6 +936,7 @@
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <None Include="Resources\icon.ico" />
     <None Include="Resources\check.png" />
+    <None Include="Resources\login.png" />
     <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />

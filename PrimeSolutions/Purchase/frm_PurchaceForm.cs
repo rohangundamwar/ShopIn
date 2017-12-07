@@ -75,6 +75,7 @@ namespace PrimeSolutions
             txt_NetAmt.Text = "0";
             txt_PaidAmt.Text = "0";
             txt_BalAmt.Text = "0";
+            txt_OtherCharges.Text = "0";
             cmb_PayMode.SelectedIndex = 0;
             dgv_ItemInfo.Rows.Clear();
             Clear();
@@ -205,11 +206,6 @@ namespace PrimeSolutions
                 new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Category.Text, @"\s+", " ").Trim() as String);
                 cmb_SubCategory.Focus();
             }
-            if (e.KeyCode == Keys.End)
-            {
-                txt_PaidAmt.Focus();
-            }
-
         }
 
         private void cmb_SubCategory_KeyDown(object sender, KeyEventArgs e)
@@ -474,6 +470,15 @@ namespace PrimeSolutions
             {
                 this.Close();
             }
+            if (e.KeyCode == Keys.Add)
+            {
+                Add();
+            }
+            if (e.KeyCode == Keys.End)
+            {
+                txt_OtherCharges.Focus();
+            }
+
         }
 
         private void Calculate()
@@ -632,7 +637,7 @@ namespace PrimeSolutions
                         else if (dtsett.BarcodeType == "Laser")
                         {
                             //insert Into Temp Table
-                            _Barcode.PrintBarcodeA4(txt_BillNo.Text, p = 0);
+                            _Barcode.PrintBarcodeA4(p = 0);
                         }
                             
                     }
@@ -1029,6 +1034,29 @@ namespace PrimeSolutions
             {
                 bttn_Add.Focus();
             }
+        }
+
+        private void txt_NetAmt_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ChangeTotalBill()
+        {
+            txt_TotalBill.Text = txt_NetAmt.Text + "+" + lbl_OtherCharges.Text + "=";
+        }
+
+        private void txt_OtherCharges_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_PaidAmt.Focus();
+            }
+        }
+
+        private void txt_OtherCharges_TextChanged(object sender, EventArgs e)
+        {
+            txt_TotalBill.Text = "₹" + txt_NetAmt.Text + "+" + "₹" + txt_OtherCharges.Text + '\n' + "₹" + Convert.ToString((Convert.ToInt32(txt_NetAmt.Text)) + (Convert.ToInt32(txt_OtherCharges.Text)));
         }
     }
 }

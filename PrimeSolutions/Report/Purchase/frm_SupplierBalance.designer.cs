@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dgv_Balance = new System.Windows.Forms.DataGridView();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +41,7 @@
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_reset = new System.Windows.Forms.Button();
             this.dtp_date = new System.Windows.Forms.DateTimePicker();
+            this.bttn_Print = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Balance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             this.dgv_Balance.BackgroundColor = System.Drawing.Color.Moccasin;
             this.dgv_Balance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Balance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustomerName,
+            this.Name,
             this.TotalPurchase,
             this.NoOfBill,
             this.TotalPaid,
@@ -62,13 +63,13 @@
             this.dgv_Balance.Size = new System.Drawing.Size(643, 196);
             this.dgv_Balance.TabIndex = 0;
             // 
-            // CustomerName
+            // Name
             // 
-            this.CustomerName.FillWeight = 200F;
-            this.CustomerName.HeaderText = "CustomerName";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 200;
+            this.Name.FillWeight = 200F;
+            this.Name.HeaderText = "SupplierName";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            this.Name.Width = 200;
             // 
             // TotalPurchase
             // 
@@ -164,12 +165,24 @@
             this.dtp_date.Size = new System.Drawing.Size(200, 20);
             this.dtp_date.TabIndex = 7;
             // 
+            // bttn_Print
+            // 
+            this.bttn_Print.ForeColor = System.Drawing.Color.Blue;
+            this.bttn_Print.Location = new System.Drawing.Point(490, 280);
+            this.bttn_Print.Name = "bttn_Print";
+            this.bttn_Print.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Print.TabIndex = 8;
+            this.bttn_Print.Text = "Print";
+            this.bttn_Print.UseVisualStyleBackColor = true;
+            this.bttn_Print.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frm_SupplierBalance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bttn_close;
             this.ClientSize = new System.Drawing.Size(667, 315);
+            this.Controls.Add(this.bttn_Print);
             this.Controls.Add(this.dtp_date);
             this.Controls.Add(this.bttn_reset);
             this.Controls.Add(this.bttn_Excel);
@@ -178,7 +191,6 @@
             this.Controls.Add(this.bttn_Find);
             this.Controls.Add(this.cmb_customer);
             this.Controls.Add(this.dgv_Balance);
-            this.Name = "frm_SupplierBalance";
             this.Text = "Supplier Balance";
             this.Load += new System.EventHandler(this.frm_CustomerBalance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Balance)).EndInit();
@@ -190,11 +202,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv_Balance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoOfBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPaid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalBalance;
         private System.Windows.Forms.ComboBox cmb_customer;
         private System.Windows.Forms.Button bttn_Find;
         private System.Windows.Forms.Label lbl_name;
@@ -202,5 +209,11 @@
         private System.Windows.Forms.Button bttn_Excel;
         private System.Windows.Forms.Button bttn_reset;
         private System.Windows.Forms.DateTimePicker dtp_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoOfBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalPaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalBalance;
+        private System.Windows.Forms.Button bttn_Print;
     }
 }

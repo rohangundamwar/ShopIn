@@ -53,9 +53,9 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
                     dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
                     dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
-                    dgv_stock.Rows[gcount].Cells["SellingPrice"].Value = dt1.Rows[j]["SellingPrice"].ToString();
-                    a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["SellingPrice"].ToString()));
-                    if (Convert.ToInt32(a.Remove(a.Length - 4)) <= 5)
+                    dgv_stock.Rows[gcount].Cells["Size"].Value = dt1.Rows[j]["Size"].ToString();
+                    a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["Size"].ToString()));
+                    if (Convert.ToDouble(a.Remove(a.Length - 4)) <= 5)
                     {
                         dgv_stock.Rows[gcount].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
@@ -90,8 +90,8 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[i].Cells["SrNo"].Value = (i + 1).ToString();
                     dgv_stock.Rows[i].Cells["Category"].Value = cmb_category.Text;
                     dgv_stock.Rows[i].Cells["SubCategory"].Value = SubCat.Rows[i]["SubCategory"].ToString();
-                    dgv_stock.Rows[i].Cells["SellingPrice"].Value = SubCat.Rows[i]["SellingPrice"].ToString();
-                    dgv_stock.Rows[i].Cells["Quantity"].Value = _objstock.getQty(cmb_category.Text, SubCat.Rows[i]["SubCategory"].ToString(), SubCat.Rows[i]["SellingPrice"].ToString());
+                    dgv_stock.Rows[i].Cells["Size"].Value = SubCat.Rows[i]["Size"].ToString();
+                    dgv_stock.Rows[i].Cells["Quantity"].Value = _objstock.getQty(cmb_category.Text, SubCat.Rows[i]["SubCategory"].ToString(), SubCat.Rows[i]["Size"].ToString());
 
                 }
 
@@ -106,8 +106,8 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[i].Cells["SrNo"].Value = i + 1.ToString();
                     dgv_stock.Rows[i].Cells["Category"].Value = Cat.Rows[i]["Category"].ToString();
                     dgv_stock.Rows[i].Cells["SubCategory"].Value = cmb_SubCategory.Text;
-                    dgv_stock.Rows[i].Cells["SellingPrice"].Value = Cat.Rows[i]["SellingPrice"].ToString();
-                    dgv_stock.Rows[i].Cells["Quantity"].Value = _objstock.getQty(Cat.Rows[i]["Category"].ToString(), cmb_SubCategory.Text, Cat.Rows[i]["SellingPrice"].ToString());
+                    dgv_stock.Rows[i].Cells["Size"].Value = Cat.Rows[i]["Size"].ToString();
+                    dgv_stock.Rows[i].Cells["Quantity"].Value = _objstock.getQty(Cat.Rows[i]["Category"].ToString(), cmb_SubCategory.Text, Cat.Rows[i]["Size"].ToString());
                 }
             }
                  

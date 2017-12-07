@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmb_ServiceId = new System.Windows.Forms.ComboBox();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.txt_address = new System.Windows.Forms.TextBox();
@@ -136,6 +136,8 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
+            this.txt_Extra = new System.Windows.Forms.TextBox();
+            this.lbl_Extra = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ItemInfo)).BeginInit();
             this.pnl_ItemInfo.SuspendLayout();
             this.pnl_Button.SuspendLayout();
@@ -233,8 +235,8 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8F);
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8F);
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -260,8 +262,8 @@
             this.dgv_ItemInfo.Location = new System.Drawing.Point(7, 243);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_ItemInfo.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1070, 192);
             this.dgv_ItemInfo.TabIndex = 9;
@@ -990,6 +992,8 @@
             // pnl_PaymentOpt
             // 
             this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_PaymentOpt.Controls.Add(this.txt_Extra);
+            this.pnl_PaymentOpt.Controls.Add(this.lbl_Extra);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_Other);
             this.pnl_PaymentOpt.Controls.Add(this.txt_Other);
             this.pnl_PaymentOpt.Controls.Add(this.label25);
@@ -1028,7 +1032,7 @@
             this.lbl_Other.AutoSize = true;
             this.lbl_Other.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lbl_Other.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Other.Location = new System.Drawing.Point(62, 57);
+            this.lbl_Other.Location = new System.Drawing.Point(275, 68);
             this.lbl_Other.Name = "lbl_Other";
             this.lbl_Other.Size = new System.Drawing.Size(85, 32);
             this.lbl_Other.TabIndex = 58;
@@ -1036,10 +1040,10 @@
             // 
             // txt_Other
             // 
-            this.txt_Other.Location = new System.Drawing.Point(152, 57);
+            this.txt_Other.Location = new System.Drawing.Point(365, 68);
             this.txt_Other.Multiline = true;
             this.txt_Other.Name = "txt_Other";
-            this.txt_Other.Size = new System.Drawing.Size(582, 54);
+            this.txt_Other.Size = new System.Drawing.Size(328, 54);
             this.txt_Other.TabIndex = 57;
             this.txt_Other.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Other_KeyDown);
             // 
@@ -1341,7 +1345,7 @@
             // bttn_Close
             // 
             this.bttn_Close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_Close.Location = new System.Drawing.Point(995, 513);
+            this.bttn_Close.Location = new System.Drawing.Point(995, 527);
             this.bttn_Close.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(76, 28);
@@ -1353,7 +1357,7 @@
             // bttn_Clear
             // 
             this.bttn_Clear.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Clear.Location = new System.Drawing.Point(764, 513);
+            this.bttn_Clear.Location = new System.Drawing.Point(764, 527);
             this.bttn_Clear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Clear.Name = "bttn_Clear";
             this.bttn_Clear.Size = new System.Drawing.Size(76, 28);
@@ -1365,7 +1369,7 @@
             // 
             this.bttn_Sale.Enabled = false;
             this.bttn_Sale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.bttn_Sale.Location = new System.Drawing.Point(882, 513);
+            this.bttn_Sale.Location = new System.Drawing.Point(882, 527);
             this.bttn_Sale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Sale.Name = "bttn_Sale";
             this.bttn_Sale.Size = new System.Drawing.Size(76, 28);
@@ -1374,11 +1378,35 @@
             this.bttn_Sale.UseVisualStyleBackColor = true;
             this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
             // 
+            // txt_Extra
+            // 
+            this.txt_Extra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Extra.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Extra.Location = new System.Drawing.Point(171, 68);
+            this.txt_Extra.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Extra.Name = "txt_Extra";
+            this.txt_Extra.Size = new System.Drawing.Size(64, 13);
+            this.txt_Extra.TabIndex = 63;
+            this.txt_Extra.Text = "0";
+            this.txt_Extra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Extra_KeyDown);
+            // 
+            // lbl_Extra
+            // 
+            this.lbl_Extra.AutoSize = true;
+            this.lbl_Extra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Extra.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_Extra.Location = new System.Drawing.Point(63, 68);
+            this.lbl_Extra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Extra.Name = "lbl_Extra";
+            this.lbl_Extra.Size = new System.Drawing.Size(105, 16);
+            this.lbl_Extra.TabIndex = 62;
+            this.lbl_Extra.Text = "Extra Charges";
+            // 
             // frm_ServiceInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 559);
+            this.ClientSize = new System.Drawing.Size(1083, 572);
             this.Controls.Add(this.bttn_Close);
             this.Controls.Add(this.bttn_Clear);
             this.Controls.Add(this.bttn_Sale);
@@ -1509,5 +1537,7 @@
         private System.Windows.Forms.Label lbl_Other;
         private System.Windows.Forms.TextBox txt_Other;
         private System.Windows.Forms.DateTimePicker dtp_Date;
+        private System.Windows.Forms.TextBox txt_Extra;
+        private System.Windows.Forms.Label lbl_Extra;
     }
 }
