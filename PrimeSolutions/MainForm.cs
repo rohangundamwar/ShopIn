@@ -404,8 +404,8 @@ namespace PrimeSolutions
 
         private void purchaseGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TotalGSTReport _form = new TotalGSTReport();
-            //    _form.ShowDialog();
+            frm_TotalSupplierGST _form = new frm_TotalSupplierGST();
+            _form.ShowDialog(); 
         }
 
         private void customerPaymentToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -449,6 +449,12 @@ namespace PrimeSolutions
             _login.Show();
 
             menuStrip1.Visible = _login.result;
+        }
+
+        private void saleGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_TotalCustomerGST _form = new frm_TotalCustomerGST();
+            _form.ShowDialog();
         }
     }
 }

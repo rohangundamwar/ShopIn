@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GST" targetNamespace="http://tempuri.org/GST.xsd" xmlns:mstns="http://tempuri.org/GST.xsd" xmlns="http://tempuri.org/GST.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GST" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="GST" msprop:Generator_UserDSName="GST">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GST" msprop:Generator_TableClassName="GSTDataTable" msprop:Generator_TableVarName="tableGST" msprop:Generator_RowChangedName="GSTRowChanged" msprop:Generator_TablePropName="_GST" msprop:Generator_RowDeletingName="GSTRowDeleting" msprop:Generator_RowChangingName="GSTRowChanging" msprop:Generator_RowEvHandlerName="GSTRowChangeEventHandler" msprop:Generator_RowDeletedName="GSTRowDeleted" msprop:Generator_RowClassName="GSTRow" msprop:Generator_UserTableName="GST" msprop:Generator_RowEvArgName="GSTRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SrNo" msprop:Generator_ColumnVarNameInTable="columnSrNo" msprop:Generator_ColumnPropNameInRow="SrNo" msprop:Generator_ColumnPropNameInTable="SrNoColumn" msprop:Generator_UserColumnName="SrNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="GSTIN" msprop:Generator_ColumnVarNameInTable="columnGSTIN" msprop:Generator_ColumnPropNameInRow="GSTIN" msprop:Generator_ColumnPropNameInTable="GSTINColumn" msprop:Generator_UserColumnName="GSTIN" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountZero" msprop:Generator_ColumnVarNameInTable="columnAmountZero" msprop:Generator_ColumnPropNameInRow="AmountZero" msprop:Generator_ColumnPropNameInTable="AmountZeroColumn" msprop:Generator_UserColumnName="AmountZero" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt5per" msprop:Generator_ColumnVarNameInTable="columnAmt5per" msprop:Generator_ColumnPropNameInRow="Amt5per" msprop:Generator_ColumnPropNameInTable="Amt5perColumn" msprop:Generator_UserColumnName="Amt5per" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST5Per" msprop:Generator_ColumnVarNameInTable="columnSGST5Per" msprop:Generator_ColumnPropNameInRow="SGST5Per" msprop:Generator_ColumnPropNameInTable="SGST5PerColumn" msprop:Generator_UserColumnName="SGST5Per" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST5per" msprop:Generator_ColumnVarNameInTable="columnCGST5per" msprop:Generator_ColumnPropNameInRow="CGST5per" msprop:Generator_ColumnPropNameInTable="CGST5perColumn" msprop:Generator_UserColumnName="CGST5per" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST5per" msprop:Generator_ColumnVarNameInTable="columnIGST5per" msprop:Generator_ColumnPropNameInRow="IGST5per" msprop:Generator_ColumnPropNameInTable="IGST5perColumn" msprop:Generator_UserColumnName="IGST5per" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt12per" msprop:Generator_ColumnVarNameInTable="columnAmt12per" msprop:Generator_ColumnPropNameInRow="Amt12per" msprop:Generator_ColumnPropNameInTable="Amt12perColumn" msprop:Generator_UserColumnName="Amt12per" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST12per" msprop:Generator_ColumnVarNameInTable="columnSGST12per" msprop:Generator_ColumnPropNameInRow="SGST12per" msprop:Generator_ColumnPropNameInTable="SGST12perColumn" msprop:Generator_UserColumnName="SGST12per" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST12per" msprop:Generator_ColumnVarNameInTable="columnCGST12per" msprop:Generator_ColumnPropNameInRow="CGST12per" msprop:Generator_ColumnPropNameInTable="CGST12perColumn" msprop:Generator_UserColumnName="CGST12per" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST12per" msprop:Generator_ColumnVarNameInTable="columnIGST12per" msprop:Generator_ColumnPropNameInRow="IGST12per" msprop:Generator_ColumnPropNameInTable="IGST12perColumn" msprop:Generator_UserColumnName="IGST12per" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt18per" msprop:Generator_ColumnVarNameInTable="columnAmt18per" msprop:Generator_ColumnPropNameInRow="Amt18per" msprop:Generator_ColumnPropNameInTable="Amt18perColumn" msprop:Generator_UserColumnName="Amt18per" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST18per" msprop:Generator_ColumnVarNameInTable="columnSGST18per" msprop:Generator_ColumnPropNameInRow="SGST18per" msprop:Generator_ColumnPropNameInTable="SGST18perColumn" msprop:Generator_UserColumnName="SGST18per" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST18per" msprop:Generator_ColumnVarNameInTable="columnCGST18per" msprop:Generator_ColumnPropNameInRow="CGST18per" msprop:Generator_ColumnPropNameInTable="CGST18perColumn" msprop:Generator_UserColumnName="CGST18per" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST18per" msprop:Generator_ColumnVarNameInTable="columnIGST18per" msprop:Generator_ColumnPropNameInRow="IGST18per" msprop:Generator_ColumnPropNameInTable="IGST18perColumn" msprop:Generator_UserColumnName="IGST18per" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt28per" msprop:Generator_ColumnVarNameInTable="columnAmt28per" msprop:Generator_ColumnPropNameInRow="Amt28per" msprop:Generator_ColumnPropNameInTable="Amt28perColumn" msprop:Generator_UserColumnName="Amt28per" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST28per" msprop:Generator_ColumnVarNameInTable="columnSGST28per" msprop:Generator_ColumnPropNameInRow="SGST28per" msprop:Generator_ColumnPropNameInTable="SGST28perColumn" msprop:Generator_UserColumnName="SGST28per" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST28per" msprop:Generator_ColumnVarNameInTable="columnCGST28per" msprop:Generator_ColumnPropNameInRow="CGST28per" msprop:Generator_ColumnPropNameInTable="CGST28perColumn" msprop:Generator_UserColumnName="CGST28per" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST28per" msprop:Generator_ColumnVarNameInTable="columnIGST28per" msprop:Generator_ColumnPropNameInRow="IGST28per" msprop:Generator_ColumnPropNameInTable="IGST28perColumn" msprop:Generator_UserColumnName="IGST28per" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

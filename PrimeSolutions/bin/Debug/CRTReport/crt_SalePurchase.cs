@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PrimeSolutions.bin.Debug {
+namespace PrimeSolutions.bin.Debug.CRTReport {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace PrimeSolutions.bin.Debug {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Service_Invoice : ReportClass {
+    public class crt_SalePurchase : ReportClass {
         
-        public Service_Invoice() {
+        public crt_SalePurchase() {
         }
         
         public override string ResourceName {
             get {
-                return "Service_Invoice.rpt";
+                return "crt_SalePurchase.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PrimeSolutions.bin.Debug {
         
         public override string FullResourceName {
             get {
-                return "PrimeSolutions.bin.Debug.Service_Invoice.rpt";
+                return "PrimeSolutions.bin.Debug.CRTReport.crt_SalePurchase.rpt";
             }
             set {
                 // Do nothing
@@ -87,28 +87,12 @@ namespace PrimeSolutions.bin.Debug {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Balance {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_inwords {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedService_Invoice : Component, ICachedReport {
+    public class Cachedcrt_SalePurchase : Component, ICachedReport {
         
-        public CachedService_Invoice() {
+        public Cachedcrt_SalePurchase() {
         }
         
         [Browsable(false)]
@@ -145,7 +129,7 @@ namespace PrimeSolutions.bin.Debug {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Service_Invoice rpt = new Service_Invoice();
+            crt_SalePurchase rpt = new crt_SalePurchase();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -265,32 +265,22 @@ namespace PrimeSolutions.Report.CrystalReport
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             
-                _objReport.SetParameterValue("Balance", "0");
+            _objReport.SetParameterValue("Balance", "0");
 
 
-            try
-            {
-                double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["BillAmount"].ToString());
-                inword = Math.Round(inword);
-                int number = Convert.ToInt32(inword);
-                string inwordsString = _objCommon.NumberToWords(number);
-                _objReport.SetParameterValue("inwords", inwordsString);
-            }
-            catch (Exception ex)
-            {
-                _error.AddException(ex, "ReportViewer");
-                MessageBox.Show(ex.ToString());
-            }
-
-            try
-            {
-                _objReport.SetParameterValue("Qty", qty);
-            }
-            catch (Exception ex)
-            {
-                _error.AddException(ex, "ReportViewer");
-                MessageBox.Show(ex.ToString());
-            }
+            //try
+            //{
+            //    double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["BillAmount"].ToString());
+            //    inword = Math.Round(inword);
+            //    int number = Convert.ToInt32(inword);
+            //    string inwordsString = _objCommon.NumberToWords(number);
+            _objReport.SetParameterValue("inwords", "Kuch Nahi");
+            //}
+            //catch (Exception ex)
+            //{
+            //    _error.AddException(ex, "ReportViewer");
+            //    MessageBox.Show(ex.ToString());
+            //}
 
             if (Type == "Print")
             {
@@ -603,6 +593,45 @@ namespace PrimeSolutions.Report.CrystalReport
 
 
         } 
+
+        public void GSTReport(DataTable dt,string Type,string from, string to)
+        {
+            string crname = "";
+            if (Type == "Customer")
+            {
+                crname = "crt_SaleGST.rpt";
+            }
+            if (Type == "Supplier")
+            {
+                crname = "crt_PurchaseGST.rpt";
+            }
+
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "/CRTReport/" + crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            _objReport.Database.Tables["GST"].SetDataSource(dt);
+
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int Copies = _objPrinterSetting.copies;
+                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                    _objReport.PrintToPrinter(Copies, true, 0, 0);
+                    printresult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+
+        }
 
         private void frm_ReportViewer_Load(object sender, EventArgs e)
         {
