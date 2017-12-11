@@ -299,7 +299,7 @@ namespace PrimeSolutions.Library
 
         internal DataTable GetCategoryBySubCategory(string SubCategory)
         {
-            string str = "select Distinct Category,SellingPrice from BillItem where type='purchase' and SubCategory = '" + SubCategory + "' ";
+            string str = "select Distinct Category,Size from BillItem where type='purchase' and SubCategory = '" + SubCategory + "' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

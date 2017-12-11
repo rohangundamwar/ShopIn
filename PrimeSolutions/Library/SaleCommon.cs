@@ -47,6 +47,28 @@ namespace PrimeSolutions.Library
             string str = "Update CustomerBill Set permanentDelete = 1 Where BillNo ='" + BillNo + "'";
         }
 
+
+        public DataTable GetCsutomerDetail(string from, string to)
+        {
+            string str = "SELECT distinct dbo.CustomerMaster.CustomerName,dbo.CustomerMaster.GSTIN FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId WHERE(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.CustomerBill.permanentdelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable CustomerGSTReport(string from, string to, string CustId, string Sper, string Iper)
+        {
+            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '"+CustId+"') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103)) AND(dbo.BillItem.CGST = '"+Sper+"') OR (dbo.BillItem.IGST = '"+Iper+ "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable CustomerGSTReportZeroPer(string from, string to, string CustId, string Sper, string Iper)
+        {
+            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '" + CustId + "') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND(dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
         public DataTable GetItemDetailsByBarcode(string Barcode)
         {
             string str = "Select * from BillItem where Barcode = '" + Barcode + "'";
@@ -215,7 +237,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerByBill(string BillNo)
         {
-            string str2 = "select * from CustomerMaster where CustId = (select CustId from CustomerBill where BillNo = '"+BillNo+"') ";
+            string str2 = "select * from CustomerMaster where CustId = (select Distinct CustId from CustomerBill where BillNo = '"+BillNo+"') ";
             DataTable dt = _sql.GetDataTable(str2);
             return dt;
         }

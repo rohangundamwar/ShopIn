@@ -612,25 +612,17 @@ namespace PrimeSolutions
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
                     string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
                     string Maintain = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value);
-
                     string PBillNo = txt_BillNo.Text;
-                    if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
-                        
-                    {
-                        _Sale.AddItemDetails(category,subcategory,"Size",txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
-                    }
-
-                    else
-                    {
-                        _Sale.UpdateItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value), txt_BillNo.Text,dtp_Date.Value.ToString("dd/MM/yyyy"));
-                    }
+                    
+                    _Sale.AddItemDetails(category,subcategory,"Size",txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
+                    
 
                 }
             }
         
             catch (Exception ex)
             {
-                _error.AddException(ex, "Sale");
+                _error.AddException(ex, "Sale/Item");
             }
             try
             {
@@ -643,7 +635,7 @@ namespace PrimeSolutions
             }
             catch (Exception ex)
             {
-                _error.AddException(ex, "Sale");
+                _error.AddException(ex, "Sale/BillDetails");
             }
             try
             {
@@ -654,6 +646,7 @@ namespace PrimeSolutions
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                _error.AddException(ex, "Sale/Print");
             }
             //_Sale.PrintBillThermal(BillNo);
 

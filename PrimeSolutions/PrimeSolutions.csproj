@@ -146,6 +146,24 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_SaleGST.cs">
+      <DependentUpon>crt_SaleGST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_PurchaseGST.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_PurchaseGST.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_SalePurchase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_SalePurchase.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="bin\Debug\CRTReport\crt_SupplierBalance.cs">
       <DependentUpon>crt_SupplierBalance.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -332,6 +350,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bill.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\GST.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GST.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\Ledger.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -453,6 +476,12 @@
     <Compile Include="Report\Customer\frm_CustomerGSTReport.Designer.cs">
       <DependentUpon>frm_CustomerGSTReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Customer\frm_TotalCustomerGST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Customer\frm_TotalCustomerGST.Designer.cs">
+      <DependentUpon>frm_TotalCustomerGST.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\frm_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,6 +523,12 @@
     </Compile>
     <Compile Include="Report\Purchase\frm_SupplierBill.Designer.cs">
       <DependentUpon>frm_SupplierBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_TotalSupplierGST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Purchase\frm_TotalSupplierGST.Designer.cs">
+      <DependentUpon>frm_TotalSupplierGST.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Purchase\PurchaseReport.cs">
       <SubType>Form</SubType>
@@ -611,6 +646,18 @@
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SaleGST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_SaleGST.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_PurchaseGST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_PurchaseGST.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SalePurchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_SalePurchase.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\CRTReport\crt_SupplierBalance.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -765,6 +812,9 @@
     <EmbeddedResource Include="Report\Customer\frm_CustomerGSTReport.resx">
       <DependentUpon>frm_CustomerGSTReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Customer\frm_TotalCustomerGST.resx">
+      <DependentUpon>frm_TotalCustomerGST.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
@@ -785,6 +835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_SupplierBill.resx">
       <DependentUpon>frm_SupplierBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Purchase\frm_TotalSupplierGST.resx">
+      <DependentUpon>frm_TotalSupplierGST.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
@@ -872,6 +925,17 @@
     </None>
     <None Include="Dataset\Bill.xss">
       <DependentUpon>Bill.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\GST.xsc">
+      <DependentUpon>GST.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\GST.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GST.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\GST.xss">
+      <DependentUpon>GST.xsd</DependentUpon>
     </None>
     <None Include="Dataset\Ledger.xsc">
       <DependentUpon>Ledger.xsd</DependentUpon>
