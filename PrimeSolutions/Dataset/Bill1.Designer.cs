@@ -511,6 +511,8 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnBillAmount;
             
+            private global::System.Data.DataColumn columnNarration;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CustomerBillDataTable() {
@@ -634,6 +636,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NarrationColumn {
+                get {
+                    return this.columnNarration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -669,7 +679,7 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CustomerBillRow AddCustomerBillRow(string CustId, string BillNo, string Date, string Amount, string CGST, string SGST, string IGST, string GrandAmt, string State, string Discount, string BillAmount) {
+            public CustomerBillRow AddCustomerBillRow(string CustId, string BillNo, string Date, string Amount, string CGST, string SGST, string IGST, string GrandAmt, string State, string Discount, string BillAmount, string Narration) {
                 CustomerBillRow rowCustomerBillRow = ((CustomerBillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CustId,
@@ -682,7 +692,8 @@ namespace PrimeSolutions.Dataset {
                         GrandAmt,
                         State,
                         Discount,
-                        BillAmount};
+                        BillAmount,
+                        Narration};
                 rowCustomerBillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerBillRow);
                 return rowCustomerBillRow;
@@ -716,6 +727,7 @@ namespace PrimeSolutions.Dataset {
                 this.columnState = base.Columns["State"];
                 this.columnDiscount = base.Columns["Discount"];
                 this.columnBillAmount = base.Columns["BillAmount"];
+                this.columnNarration = base.Columns["Narration"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -743,6 +755,8 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnDiscount);
                 this.columnBillAmount = new global::System.Data.DataColumn("BillAmount", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBillAmount);
+                this.columnNarration = new global::System.Data.DataColumn("Narration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNarration);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3274,6 +3288,22 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Narration {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomerBill.NarrationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Narration\' in table \'CustomerBill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomerBill.NarrationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCustIdNull() {
                 return this.IsNull(this.tableCustomerBill.CustIdColumn);
             }
@@ -3402,6 +3432,18 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBillAmountNull() {
                 this[this.tableCustomerBill.BillAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNarrationNull() {
+                return this.IsNull(this.tableCustomerBill.NarrationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNarrationNull() {
+                this[this.tableCustomerBill.NarrationColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -276,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 486);
+            this.ClientSize = new System.Drawing.Size(1256, 509);
             this.Controls.Add(this.bttn_Print);
             this.Controls.Add(this.bttn_Excel);
             this.Controls.Add(this.label1);
@@ -285,6 +285,7 @@
             this.Controls.Add(this.dtp_From);
             this.Controls.Add(this.dtp_to);
             this.Text = "TotalSupplierGST";
+            this.Load += new System.EventHandler(this.frm_TotalSupplierGST_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_GST)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

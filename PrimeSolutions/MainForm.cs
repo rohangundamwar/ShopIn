@@ -456,5 +456,11 @@ namespace PrimeSolutions
             frm_TotalCustomerGST _form = new frm_TotalCustomerGST();
             _form.ShowDialog();
         }
+
+        private void monthlyGSTReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_MonthlyGSTReport _form = new frm_MonthlyGSTReport();
+            _form.ShowDialog();
+        }
     }
 }

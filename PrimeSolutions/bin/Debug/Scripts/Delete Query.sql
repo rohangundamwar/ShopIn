@@ -14,3 +14,4 @@ TRUNCATE TABLE SubCategoryMaster
 TRUNCATE TABLE SupplierBill
 TRUNCATE TABLE SupplierMaster
 TRUNCATE TABLE Temp
+TRUNCATE TABLE Maintenance

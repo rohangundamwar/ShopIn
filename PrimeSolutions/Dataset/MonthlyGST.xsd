@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MonthlyGST" targetNamespace="http://tempuri.org/MonthlyGST.xsd" xmlns:mstns="http://tempuri.org/MonthlyGST.xsd" xmlns="http://tempuri.org/MonthlyGST.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MonthlyGST" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MonthlyGST" msprop:Generator_UserDSName="MonthlyGST">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Sale" msprop:Generator_TableClassName="SaleDataTable" msprop:Generator_TableVarName="tableSale" msprop:Generator_TablePropName="Sale" msprop:Generator_RowDeletingName="SaleRowDeleting" msprop:Generator_RowChangingName="SaleRowChanging" msprop:Generator_RowEvHandlerName="SaleRowChangeEventHandler" msprop:Generator_RowDeletedName="SaleRowDeleted" msprop:Generator_UserTableName="Sale" msprop:Generator_RowChangedName="SaleRowChanged" msprop:Generator_RowEvArgName="SaleRowChangeEvent" msprop:Generator_RowClassName="SaleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Taxable2" msprop:Generator_ColumnVarNameInTable="columnTaxable2" msprop:Generator_ColumnPropNameInRow="Taxable2" msprop:Generator_ColumnPropNameInTable="Taxable2Column" msprop:Generator_UserColumnName="Taxable2" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST2" msprop:Generator_ColumnVarNameInTable="columnSGST2" msprop:Generator_ColumnPropNameInRow="SGST2" msprop:Generator_ColumnPropNameInTable="SGST2Column" msprop:Generator_UserColumnName="SGST2" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST2" msprop:Generator_ColumnVarNameInTable="columnCGST2" msprop:Generator_ColumnPropNameInRow="CGST2" msprop:Generator_ColumnPropNameInTable="CGST2Column" msprop:Generator_UserColumnName="CGST2" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST2" msprop:Generator_ColumnVarNameInTable="columnIGST2" msprop:Generator_ColumnPropNameInRow="IGST2" msprop:Generator_ColumnPropNameInTable="IGST2Column" msprop:Generator_UserColumnName="IGST2" type="xs:string" minOccurs="0" />
+              <xs:element name="GSTper2" msprop:Generator_ColumnVarNameInTable="columnGSTper2" msprop:Generator_ColumnPropNameInRow="GSTper2" msprop:Generator_ColumnPropNameInTable="GSTper2Column" msprop:Generator_UserColumnName="GSTper2" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Purchase" msprop:Generator_TableClassName="PurchaseDataTable" msprop:Generator_TableVarName="tablePurchase" msprop:Generator_TablePropName="Purchase" msprop:Generator_RowDeletingName="PurchaseRowDeleting" msprop:Generator_RowChangingName="PurchaseRowChanging" msprop:Generator_RowEvHandlerName="PurchaseRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseRowDeleted" msprop:Generator_UserTableName="Purchase" msprop:Generator_RowChangedName="PurchaseRowChanged" msprop:Generator_RowEvArgName="PurchaseRowChangeEvent" msprop:Generator_RowClassName="PurchaseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Taxable" msprop:Generator_ColumnVarNameInTable="columnTaxable" msprop:Generator_ColumnPropNameInRow="Taxable" msprop:Generator_ColumnPropNameInTable="TaxableColumn" msprop:Generator_UserColumnName="Taxable" type="xs:string" minOccurs="0" />
+              <xs:element name="SGST" msprop:Generator_ColumnVarNameInTable="columnSGST" msprop:Generator_ColumnPropNameInRow="SGST" msprop:Generator_ColumnPropNameInTable="SGSTColumn" msprop:Generator_UserColumnName="SGST" type="xs:string" minOccurs="0" />
+              <xs:element name="CGST" msprop:Generator_ColumnVarNameInTable="columnCGST" msprop:Generator_ColumnPropNameInRow="CGST" msprop:Generator_ColumnPropNameInTable="CGSTColumn" msprop:Generator_UserColumnName="CGST" type="xs:string" minOccurs="0" />
+              <xs:element name="IGST" msprop:Generator_ColumnVarNameInTable="columnIGST" msprop:Generator_ColumnPropNameInRow="IGST" msprop:Generator_ColumnPropNameInTable="IGSTColumn" msprop:Generator_UserColumnName="IGST" type="xs:string" minOccurs="0" />
+              <xs:element name="GSTper" msprop:Generator_ColumnVarNameInTable="columnGSTper" msprop:Generator_ColumnPropNameInRow="GSTper" msprop:Generator_ColumnPropNameInTable="GSTperColumn" msprop:Generator_UserColumnName="GSTper" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
