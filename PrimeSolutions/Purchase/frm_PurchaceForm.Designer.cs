@@ -59,6 +59,9 @@
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.cmb_size = new System.Windows.Forms.ComboBox();
             this.lbl_size = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -116,13 +119,14 @@
             this.IGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmb_PayMode = new System.Windows.Forms.ComboBox();
             this.txt_TotalBill = new System.Windows.Forms.Label();
             this.txt_OtherCharges = new System.Windows.Forms.TextBox();
             this.lbl_OtherCharges = new System.Windows.Forms.Label();
             this.lbl_BalAmt = new System.Windows.Forms.Label();
             this.txt_BalAmt = new System.Windows.Forms.Label();
             this.txt_OldBalance = new System.Windows.Forms.Label();
-            this.cmb_PayMode = new System.Windows.Forms.ComboBox();
             this.txt_IGSTValue = new System.Windows.Forms.TextBox();
             this.lblIGST1 = new System.Windows.Forms.Label();
             this.txt_SGSTValue = new System.Windows.Forms.TextBox();
@@ -140,10 +144,6 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Purchase = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -151,8 +151,8 @@
             this.pnl_Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ItemInfo)).BeginInit();
             this.pnl_PaymentOpt.SuspendLayout();
-            this.pnl_Bottom.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.pnl_Bottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_Main
@@ -571,6 +571,33 @@
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1074, 155);
             this.pnl_ItemInfo.TabIndex = 8;
             this.pnl_ItemInfo.Tag = "Item";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(990, 84);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(16, 16);
+            this.label9.TabIndex = 243;
+            this.label9.Text = "₹";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(638, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(16, 16);
+            this.label2.TabIndex = 242;
+            this.label2.Text = "₹";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(257, 84);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(16, 16);
+            this.label18.TabIndex = 241;
+            this.label18.Text = "₹";
             // 
             // cmb_size
             // 
@@ -1199,6 +1226,31 @@
             this.pnl_PaymentOpt.Size = new System.Drawing.Size(1074, 114);
             this.pnl_PaymentOpt.TabIndex = 10;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmb_PayMode);
+            this.groupBox1.Location = new System.Drawing.Point(923, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(129, 62);
+            this.groupBox1.TabIndex = 240;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Payment";
+            // 
+            // cmb_PayMode
+            // 
+            this.cmb_PayMode.FormattingEnabled = true;
+            this.cmb_PayMode.Items.AddRange(new object[] {
+            "Cash",
+            "Cheque",
+            "RTGS",
+            "DD",
+            "Card"});
+            this.cmb_PayMode.Location = new System.Drawing.Point(5, 31);
+            this.cmb_PayMode.Name = "cmb_PayMode";
+            this.cmb_PayMode.Size = new System.Drawing.Size(118, 24);
+            this.cmb_PayMode.TabIndex = 23;
+            this.cmb_PayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_PayMode_KeyDown);
+            // 
             // txt_TotalBill
             // 
             this.txt_TotalBill.AutoSize = true;
@@ -1261,21 +1313,6 @@
             this.txt_OldBalance.Size = new System.Drawing.Size(24, 16);
             this.txt_OldBalance.TabIndex = 234;
             this.txt_OldBalance.Text = "00";
-            // 
-            // cmb_PayMode
-            // 
-            this.cmb_PayMode.FormattingEnabled = true;
-            this.cmb_PayMode.Items.AddRange(new object[] {
-            "Cash",
-            "Cheque",
-            "RTGS",
-            "DD",
-            "Card"});
-            this.cmb_PayMode.Location = new System.Drawing.Point(5, 31);
-            this.cmb_PayMode.Name = "cmb_PayMode";
-            this.cmb_PayMode.Size = new System.Drawing.Size(118, 24);
-            this.cmb_PayMode.TabIndex = 23;
-            this.cmb_PayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_PayMode_KeyDown);
             // 
             // txt_IGSTValue
             // 
@@ -1484,43 +1521,6 @@
             this.bttn_Purchase.UseVisualStyleBackColor = true;
             this.bttn_Purchase.Click += new System.EventHandler(this.bttn_Purchase_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cmb_PayMode);
-            this.groupBox1.Location = new System.Drawing.Point(923, 42);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(129, 61);
-            this.groupBox1.TabIndex = 240;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Payment";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(257, 84);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(16, 16);
-            this.label18.TabIndex = 241;
-            this.label18.Text = "₹";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(638, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(16, 16);
-            this.label2.TabIndex = 242;
-            this.label2.Text = "₹";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(990, 84);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(16, 16);
-            this.label9.TabIndex = 243;
-            this.label9.Text = "₹";
-            // 
             // frm_PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1555,8 +1555,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ItemInfo)).EndInit();
             this.pnl_PaymentOpt.ResumeLayout(false);
             this.pnl_PaymentOpt.PerformLayout();
-            this.pnl_Bottom.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.pnl_Bottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

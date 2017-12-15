@@ -70,6 +70,7 @@
             this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newJobToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.saleGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthlyGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -452,7 +453,8 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseGSTReportToolStripMenuItem,
-            this.saleGSTReportToolStripMenuItem});
+            this.saleGSTReportToolStripMenuItem,
+            this.monthlyGSTReportToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.toolStripMenuItem1.Text = "GST";
@@ -463,6 +465,13 @@
             this.purchaseGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
             this.purchaseGSTReportToolStripMenuItem.Text = "Purchase GST Report";
             this.purchaseGSTReportToolStripMenuItem.Click += new System.EventHandler(this.purchaseGSTReportToolStripMenuItem_Click);
+            // 
+            // saleGSTReportToolStripMenuItem
+            // 
+            this.saleGSTReportToolStripMenuItem.Name = "saleGSTReportToolStripMenuItem";
+            this.saleGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
+            this.saleGSTReportToolStripMenuItem.Text = "Sale GST Report";
+            this.saleGSTReportToolStripMenuItem.Click += new System.EventHandler(this.saleGSTReportToolStripMenuItem_Click);
             // 
             // serviceToolStripMenuItem
             // 
@@ -680,12 +689,12 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
-            // saleGSTReportToolStripMenuItem
+            // monthlyGSTReportToolStripMenuItem
             // 
-            this.saleGSTReportToolStripMenuItem.Name = "saleGSTReportToolStripMenuItem";
-            this.saleGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
-            this.saleGSTReportToolStripMenuItem.Text = "Sale GST Report";
-            this.saleGSTReportToolStripMenuItem.Click += new System.EventHandler(this.saleGSTReportToolStripMenuItem_Click);
+            this.monthlyGSTReportToolStripMenuItem.Name = "monthlyGSTReportToolStripMenuItem";
+            this.monthlyGSTReportToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
+            this.monthlyGSTReportToolStripMenuItem.Text = "Monthly GST Report";
+            this.monthlyGSTReportToolStripMenuItem.Click += new System.EventHandler(this.monthlyGSTReportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -787,6 +796,7 @@
         private System.Windows.Forms.ToolStripMenuItem serviceInvoiceToolStripMenuItem;
         private System.Windows.Forms.Button bttn_Login;
         private System.Windows.Forms.ToolStripMenuItem saleGSTReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem monthlyGSTReportToolStripMenuItem;
     }
 }
 

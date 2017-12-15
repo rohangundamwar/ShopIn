@@ -11,7 +11,6 @@ namespace PrimeSolutions.Service
     {
         cls_ServiceCommon _service = new cls_ServiceCommon();
         clsCommon _common = new clsCommon();
-        frm_ReportViewer _r = new frm_ReportViewer();
         PrinterSetting _objPrinterSetting = new PrinterSetting();
 
         public delegate void SendData(DataTable Table, string From, string To);

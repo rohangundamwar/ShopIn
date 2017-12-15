@@ -52,7 +52,7 @@ namespace PrimeSolutions.Report.Customer
         {
             dgv_Balance.Rows.Clear();
             dgv_Balance.Rows.Add();
-            dgv_Balance.Rows[0].Cells["CustomerName"].Value = cmb_customer.Text;
+            dgv_Balance.Rows[0].Cells["Name"].Value = cmb_customer.Text;
             string CustId = cust.Rows[cmb_customer.SelectedIndex]["CustId"].ToString();
             dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
             DataTable count = _s.GetCustomerBill(CustId);
