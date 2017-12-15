@@ -667,15 +667,21 @@ namespace PrimeSolutions
             try
             {
                  
-            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST",txt_Extra.Text);
-              
-                
-             // "txt_PaidAmt"
+            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST",txt_Extra.Text,txt_Narration.Text);
 
-            if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
-            {
-                _a.InsertPaymentDetails("Sale", txt_PaidAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
-            }
+
+                // "txt_PaidAmt"
+                if (txt_PaidAmt.Text != null || txt_PaidAmt.Text != "")
+                {
+                    int paid = Convert.ToInt32(txt_PaidAmt.Text);
+
+                    if (paid != 0)
+                    {
+                        _a.InsertPaymentDetails("Sale", txt_PaidAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                    }
+                }
+                
+
                 //create account ledger
                 string ledgerId;
                 ledgerId = _Sale.insertAcountLedgerDetail(Vouchertypeid: VouchertypeID, AccNo: lbl_AccNo.Text, Name: cmb_Name.Text, Narration: "", Date: dtp_Date.Text);
@@ -689,6 +695,7 @@ namespace PrimeSolutions
                         Payformstatus = false;
                     }
                 }
+
 
                 else if (Convert.ToInt32(txt_PaidAmt.Text) > 0 )
 
@@ -989,10 +996,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txt_PaidAmt.Text == "" || txt_PaidAmt.Text == "0" || txt_PaidAmt.Text == string.Empty)
-                    bttn_Sale.Focus();
-                else
-                    cmb_PayMode.Focus();
+                txt_Narration.Focus();
             }
             
         }
@@ -1142,6 +1146,18 @@ namespace PrimeSolutions
             {
                 txt_Discount.Focus();
             }
+        }
+
+        private void txt_Narration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txt_PaidAmt.Text == "" || txt_PaidAmt.Text == "0" || txt_PaidAmt.Text == string.Empty)
+                    bttn_Sale.Focus();
+                else
+                    cmb_PayMode.Focus();
+            }
+            
         }
     }
 }

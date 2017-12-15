@@ -469,7 +469,11 @@ namespace PrimeSolutions.Service
 
         private void txt_Other_KeyDown(object sender, KeyEventArgs e)
         {
-            txt_PaidAmt.Focus();
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_PaidAmt.Focus();
+            }
+            
         }
 
         private void bttn_Sale_Click(object sender, EventArgs e)
@@ -521,7 +525,7 @@ namespace PrimeSolutions.Service
             try
             {
 
-                _Sale.AddBillDetails(cmb_ServiceId.Text, lbl_CustID.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text,"", txt_BillAmt.Text, txt_Discount.Text, "Service Invoice",txt_Extra.Text);
+                _Sale.AddBillDetails(cmb_ServiceId.Text, lbl_CustID.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text,"", txt_BillAmt.Text, txt_Discount.Text, "Service Invoice",txt_Extra.Text, txt_Other.Text);
 
                 if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
                 {

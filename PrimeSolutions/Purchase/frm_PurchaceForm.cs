@@ -493,10 +493,10 @@ namespace PrimeSolutions
            
             for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
             {
-                total += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                CGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                SGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                IGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
+                total += Math.Round(Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value),2);
+                CGSTAmt += Math.Round(Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["CGST"].Value),2) ;
+                SGSTAmt += Math.Round(Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["SGST"].Value),2);
+                IGSTAmt +=Math.Round(Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["IGST"].Value),2) ;
             }
 
             txt_TotalAmt.Text = total.ToString();
@@ -1022,9 +1022,9 @@ namespace PrimeSolutions
 
         private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
         {
-            if (txt_OldBalance.Text != "" || txt_OldBalance.Text != "0" || txt_OldBalance.Text != string.Empty)
-                if (txt_NetAmt.Text != "" || txt_NetAmt.Text != "0" || txt_NetAmt.Text != string.Empty)
-                    if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != string.Empty)
+            if ((txt_OldBalance.Text != "" || txt_OldBalance.Text != "0") || txt_OldBalance.Text != string.Empty)
+                if ((txt_NetAmt.Text != "" || txt_NetAmt.Text != "0") || txt_NetAmt.Text != string.Empty)
+                    if ((txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0") || txt_PaidAmt.Text != string.Empty)
                         txt_BalAmt.Text = Convert.ToString((Convert.ToDouble(txt_OldBalance.Text) + Convert.ToDouble(txt_NetAmt.Text)) - Convert.ToDouble(txt_PaidAmt.Text));
         }
 
@@ -1032,7 +1032,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                bttn_Add.Focus();
+                bttn_Purchase.Focus();
             }
         }
 

@@ -616,6 +616,7 @@ namespace PrimeSolutions.Report.CrystalReport
 
             _objReport.Database.Tables["GST"].SetDataSource(dt);
 
+
             if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -631,6 +632,40 @@ namespace PrimeSolutions.Report.CrystalReport
                 }
             }
 
+        }
+
+        public void MonthlyGST(DataTable DtSale, DataTable DtPurchase, string Month)
+        {
+            string crname = "crt_MonthlyGST.rpt";
+
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "/CRTReport/" + crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            _objReport.Database.Tables["Sale"].SetDataSource(DtSale);
+            _objReport.Database.Tables["Purchase"].SetDataSource(DtPurchase);
+
+
+            _objReport.SetParameterValue("Month", Month);
+
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int Copies = _objPrinterSetting.copies;
+                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                    _objReport.PrintToPrinter(Copies, true, 0, 0);
+                    printresult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void frm_ReportViewer_Load(object sender, EventArgs e)

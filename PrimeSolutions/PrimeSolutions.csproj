@@ -146,6 +146,30 @@
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\BillA5.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_MonthlyGST.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_MonthlyGST.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_MonthlyPurchase.cs">
+      <DependentUpon>crt_MonthlyPurchase.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_MonthlySale.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_MonthlySale.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="bin\Debug\CRTReport\crt_SaleGST.cs">
       <DependentUpon>crt_SaleGST.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -360,6 +384,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ledger.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\MonthlyGST.cs">
+      <DependentUpon>MonthlyGST.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\MonthlyGST.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthlyGST.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\Service.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -481,6 +513,12 @@
     </Compile>
     <Compile Include="Report\Customer\frm_TotalCustomerGST.Designer.cs">
       <DependentUpon>frm_TotalCustomerGST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frm_MonthlyGSTReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frm_MonthlyGSTReport.Designer.cs">
+      <DependentUpon>frm_MonthlyGSTReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\frm_Stock.cs">
       <SubType>Form</SubType>
@@ -646,6 +684,22 @@
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_MonthlyGST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_MonthlyGST.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_MonthlyPurchase.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_MonthlyPurchase.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_MonthlySale.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_MonthlySale.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\CRTReport\crt_SaleGST.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -815,6 +869,9 @@
     <EmbeddedResource Include="Report\Customer\frm_TotalCustomerGST.resx">
       <DependentUpon>frm_TotalCustomerGST.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\frm_MonthlyGSTReport.resx">
+      <DependentUpon>frm_MonthlyGSTReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
@@ -947,6 +1004,17 @@
     </None>
     <None Include="Dataset\Ledger.xss">
       <DependentUpon>Ledger.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\MonthlyGST.xsc">
+      <DependentUpon>MonthlyGST.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\MonthlyGST.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonthlyGST.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\MonthlyGST.xss">
+      <DependentUpon>MonthlyGST.xsd</DependentUpon>
     </None>
     <None Include="Dataset\Service.xsc">
       <DependentUpon>Service.xsd</DependentUpon>

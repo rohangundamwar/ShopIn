@@ -120,6 +120,8 @@
             this.Sales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Maintain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
+            this.txt_Extra = new System.Windows.Forms.TextBox();
+            this.lbl_Extra = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -150,8 +152,8 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
-            this.txt_Extra = new System.Windows.Forms.TextBox();
-            this.lbl_Extra = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txt_Narration = new System.Windows.Forms.TextBox();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -1237,6 +1239,8 @@
             // pnl_PaymentOpt
             // 
             this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_PaymentOpt.Controls.Add(this.label26);
+            this.pnl_PaymentOpt.Controls.Add(this.txt_Narration);
             this.pnl_PaymentOpt.Controls.Add(this.txt_Extra);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_Extra);
             this.pnl_PaymentOpt.Controls.Add(this.label25);
@@ -1265,10 +1269,33 @@
             this.pnl_PaymentOpt.Controls.Add(this.lbl_PaidAmt);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_NetAmount);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_TotalAmt);
-            this.pnl_PaymentOpt.Location = new System.Drawing.Point(4, 481);
+            this.pnl_PaymentOpt.Location = new System.Drawing.Point(4, 482);
             this.pnl_PaymentOpt.Name = "pnl_PaymentOpt";
-            this.pnl_PaymentOpt.Size = new System.Drawing.Size(984, 67);
+            this.pnl_PaymentOpt.Size = new System.Drawing.Size(984, 117);
             this.pnl_PaymentOpt.TabIndex = 10;
+            // 
+            // txt_Extra
+            // 
+            this.txt_Extra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Extra.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Extra.Location = new System.Drawing.Point(145, 39);
+            this.txt_Extra.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Extra.Name = "txt_Extra";
+            this.txt_Extra.Size = new System.Drawing.Size(64, 15);
+            this.txt_Extra.TabIndex = 61;
+            this.txt_Extra.Text = "0";
+            // 
+            // lbl_Extra
+            // 
+            this.lbl_Extra.AutoSize = true;
+            this.lbl_Extra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Extra.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_Extra.Location = new System.Drawing.Point(38, 38);
+            this.lbl_Extra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Extra.Name = "lbl_Extra";
+            this.lbl_Extra.Size = new System.Drawing.Size(105, 16);
+            this.lbl_Extra.TabIndex = 60;
+            this.lbl_Extra.Text = "Extra Charges";
             // 
             // label25
             // 
@@ -1574,7 +1601,7 @@
             this.pnl_Bottom.Controls.Add(this.bttn_Clear);
             this.pnl_Bottom.Controls.Add(this.bttn_Sale);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 550);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 604);
             this.pnl_Bottom.Name = "pnl_Bottom";
             this.pnl_Bottom.Size = new System.Drawing.Size(992, 44);
             this.pnl_Bottom.TabIndex = 11;
@@ -1616,35 +1643,32 @@
             this.bttn_Sale.UseVisualStyleBackColor = true;
             this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
             // 
-            // txt_Extra
+            // label26
             // 
-            this.txt_Extra.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_Extra.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Extra.Location = new System.Drawing.Point(146, 39);
-            this.txt_Extra.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_Extra.Name = "txt_Extra";
-            this.txt_Extra.Size = new System.Drawing.Size(64, 15);
-            this.txt_Extra.TabIndex = 61;
-            this.txt_Extra.Text = "0";
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label26.Location = new System.Drawing.Point(40, 69);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(72, 16);
+            this.label26.TabIndex = 63;
+            this.label26.Text = "Narration";
             // 
-            // lbl_Extra
+            // txt_Narration
             // 
-            this.lbl_Extra.AutoSize = true;
-            this.lbl_Extra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Extra.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Extra.Location = new System.Drawing.Point(38, 38);
-            this.lbl_Extra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_Extra.Name = "lbl_Extra";
-            this.lbl_Extra.Size = new System.Drawing.Size(105, 16);
-            this.lbl_Extra.TabIndex = 60;
-            this.lbl_Extra.Text = "Extra Charges";
+            this.txt_Narration.Location = new System.Drawing.Point(145, 66);
+            this.txt_Narration.Multiline = true;
+            this.txt_Narration.Name = "txt_Narration";
+            this.txt_Narration.Size = new System.Drawing.Size(360, 42);
+            this.txt_Narration.TabIndex = 62;
             // 
             // frm_SaleUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(992, 594);
+            this.ClientSize = new System.Drawing.Size(992, 648);
             this.Controls.Add(this.pnl_Bottom);
             this.Controls.Add(this.pnl_PaymentOpt);
             this.Controls.Add(this.dgv_ItemInfo);
@@ -1802,5 +1826,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Maintain;
         private System.Windows.Forms.TextBox txt_Extra;
         private System.Windows.Forms.Label lbl_Extra;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txt_Narration;
     }
 }
