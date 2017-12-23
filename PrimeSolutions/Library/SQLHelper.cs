@@ -386,7 +386,7 @@ namespace PrimeSolutions.Library
 
                 case "Q":
 
-                    SQL = "Select Max(Right(SupplierNo,4))+1 As MaxID From SupplierMaster Where Right(Left(SupplierNo,1),1)= 'Q'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From CustomerBill Where Right(Left(BillNo,1),1)= 'Q'";
                     break;
 
 

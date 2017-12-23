@@ -195,7 +195,7 @@ namespace PrimeSolutions.Library
 
         public Double GetTotalPurchase(string CustId, string type)
         {
-            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "' and (PermanentDelete = 0 or PermanentDelete is Null) And (Type ='GST' or Type ='Estimate') ";
             string BillAmt = _sql.ExecuteScalar(str1);
             if (BillAmt == null || BillAmt == "")
                 return 0; 
@@ -229,17 +229,37 @@ namespace PrimeSolutions.Library
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
+        
 
         public DataTable GetBillItem(string BillNo, string Type)
         {
-            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
-            DataTable dt = _sql.GetDataTable(str);
-            dt.Columns.Add("Amount");
-            for (int i = 0; i < dt.Rows.Count; i++)
+            DataTable dt = new DataTable();
+
+            if (Type == "Sale")
             {
-                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+                dt = _sql.GetDataTable(str);
+                dt.Columns.Add("Amount");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                }
+                return dt;
             }
-            return dt;
+
+            else if (Type == "Purchase")
+            {
+                string str = "Select * from BillItem where PurchaseRef= '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+                dt = _sql.GetDataTable(str);
+                dt.Columns.Add("Amount");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                }
+                return dt;
+            }
+            else return dt;
+            
         }
 
         public DataTable GetCompanydetails()
@@ -286,11 +306,18 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerBill(string id)
         {
-            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) And (Type ='GST' or Type ='Estimate')";
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
-        
+
+        public DataTable GetCustomerQoutation(string id)
+        {
+            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) And (Type ='Qoutation') ";
+            DataTable dt1 = _sql.GetDataTable(str);
+            return dt1;
+        }
+
         public DataTable GetCustomerPayment(string id)
         {
             string str = "Select * from Payment where Id='"+id+"'";
