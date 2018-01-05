@@ -633,7 +633,7 @@ namespace PrimeSolutions
             try
             {
                 Report.CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new Report.CrystalReport.frm_ReportViewer();
-                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
+                SendData _obj = new SendData(_objfrm_ReportViewer.Qoutation);
                 _obj(txt_BillNo.Text, "Print");
             }
             catch (Exception ex)
