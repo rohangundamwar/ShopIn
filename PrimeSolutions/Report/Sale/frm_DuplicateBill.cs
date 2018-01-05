@@ -17,7 +17,7 @@ namespace PrimeSolutions.Report.Sale
         public delegate void SendData(string BillNO,string Type);
         frm_ReportViewer _r = new frm_ReportViewer();
         DataTable dt;
-        DataTable dt1;
+        DataTable dt1,dt2;
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {
@@ -65,6 +65,8 @@ namespace PrimeSolutions.Report.Sale
         {
             string id = cmb_customer.SelectedIndex.ToString();
             dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
+            dt2 = _s.GetCustomerQoutation(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
+            dt1.Merge(dt2);
             dgv_Bill.Rows.Clear();
             for (int i = 0; i < dt1.Rows.Count; i++)
             {

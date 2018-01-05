@@ -43,6 +43,7 @@
             this.CGST2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGST2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_print = new System.Windows.Forms.Button();
+            this.cmb_year = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_purchase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sale)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +65,7 @@
             "October",
             "November",
             "December"});
-            this.cmb_month.Location = new System.Drawing.Point(151, 36);
+            this.cmb_month.Location = new System.Drawing.Point(55, 38);
             this.cmb_month.Name = "cmb_month";
             this.cmb_month.Size = new System.Drawing.Size(128, 21);
             this.cmb_month.TabIndex = 0;
@@ -72,7 +73,7 @@
             // 
             // bttn_Generate
             // 
-            this.bttn_Generate.Location = new System.Drawing.Point(308, 36);
+            this.bttn_Generate.Location = new System.Drawing.Point(316, 37);
             this.bttn_Generate.Name = "bttn_Generate";
             this.bttn_Generate.Size = new System.Drawing.Size(75, 23);
             this.bttn_Generate.TabIndex = 1;
@@ -182,7 +183,7 @@
             // 
             this.bttn_print.BackColor = System.Drawing.Color.Green;
             this.bttn_print.ForeColor = System.Drawing.Color.White;
-            this.bttn_print.Location = new System.Drawing.Point(415, 36);
+            this.bttn_print.Location = new System.Drawing.Point(415, 37);
             this.bttn_print.Name = "bttn_print";
             this.bttn_print.Size = new System.Drawing.Size(75, 23);
             this.bttn_print.TabIndex = 4;
@@ -190,11 +191,24 @@
             this.bttn_print.UseVisualStyleBackColor = false;
             this.bttn_print.Click += new System.EventHandler(this.bttn_print_Click);
             // 
+            // cmb_year
+            // 
+            this.cmb_year.FormattingEnabled = true;
+            this.cmb_year.Items.AddRange(new object[] {
+            "2017",
+            "2018",
+            "2019"});
+            this.cmb_year.Location = new System.Drawing.Point(207, 38);
+            this.cmb_year.Name = "cmb_year";
+            this.cmb_year.Size = new System.Drawing.Size(85, 21);
+            this.cmb_year.TabIndex = 5;
+            // 
             // frm_MonthlyGSTReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 502);
+            this.Controls.Add(this.cmb_year);
             this.Controls.Add(this.bttn_print);
             this.Controls.Add(this.dgv_sale);
             this.Controls.Add(this.dgv_purchase);
@@ -226,5 +240,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CGST2;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST2;
         private System.Windows.Forms.Button bttn_print;
+        private System.Windows.Forms.ComboBox cmb_year;
     }
 }

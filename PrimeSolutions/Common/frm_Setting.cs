@@ -50,6 +50,9 @@ namespace PrimeSolutions.Common
             //3 Barcode Type
             cmb_BarcodeType.Text = dt.Rows[0]["BarcodeType"].ToString();
 
+            //Bill Type
+            cmb_BillType.Text = dt.Rows[0]["BillType"].ToString();
+
             //4 maintain
             cmb_maintain.Text = dt.Rows[0]["Maintenance"].ToString();
 
@@ -124,7 +127,7 @@ namespace PrimeSolutions.Common
             StartDate = dtp_start.Value.ToString("dd/MM/yyyy");
             EndDate = dtp_end.Value.ToString("dd/MM/yyyy");
 
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text);
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text,cmb_BillType.Text);
 
             MessageBox.Show("Setting Saved");
         }

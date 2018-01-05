@@ -584,9 +584,9 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice)
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice,string BillType)
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"'";
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"',BillType='"+ BillType + "'";
             _objsqlhelper.ExecuteScalar(str);
 
             string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "' where type='GST'";

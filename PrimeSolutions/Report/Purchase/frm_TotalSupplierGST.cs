@@ -30,22 +30,22 @@ namespace PrimeSolutions.Report.Purchase
             
             dgv_GST.Rows.Clear();
             int i = 0;
-            DataTable dt1 = _purchase.GetSupplierDetail(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"));
-            for (i = 0; i < dt1.Rows.Count; i++)
+            DataTable Supplier = _purchase.GetSupplierDetail(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"));
+            for (i = 0; i < Supplier.Rows.Count; i++)
             {
                
                 //For 0% Item
-                DataTable ZeroPer = _purchase.SupplierGSTReportZerPer(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), dt1.Rows[i]["Name"].ToString(), "0", "0");
+                DataTable ZeroPer = _purchase.SupplierGSTReportZerPer(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), Supplier.Rows[i]["Name"].ToString(), "0", "0");
 
                 //Rest of Slabs
-                DataTable FivePer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), dt1.Rows[i]["Name"].ToString(), "2.5", "5");
-                DataTable TwelvePer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), dt1.Rows[i]["Name"].ToString(), "6", "12");
-                DataTable EighteenPer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), dt1.Rows[i]["Name"].ToString(), "9", "18");
-                DataTable TwentyEtPer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), dt1.Rows[i]["Name"].ToString(), "14", "28");
+                DataTable FivePer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), Supplier.Rows[i]["Name"].ToString(), "2.5", "5");
+                DataTable TwelvePer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), Supplier.Rows[i]["Name"].ToString(), "6", "12");
+                DataTable EighteenPer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), Supplier.Rows[i]["Name"].ToString(), "9", "18");
+                DataTable TwentyEtPer = _purchase.SupplierGSTReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"), Supplier.Rows[i]["Name"].ToString(), "14", "28");
 
                 
 
-                dgv_GST.Rows.Add(i + 1, dt1.Rows[i]["Name"], dt1.Rows[i]["GSTIN"]);
+                dgv_GST.Rows.Add(i + 1, Supplier.Rows[i]["Name"], Supplier.Rows[i]["GSTIN"]);
 
                 dgv_GST.Rows[i].Cells[3].Value = ZeroPer.Rows[0]["Taxable"];
 

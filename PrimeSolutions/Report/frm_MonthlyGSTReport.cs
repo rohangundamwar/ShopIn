@@ -33,7 +33,7 @@ namespace PrimeSolutions.Report
         private void bttn_Generate_Click(object sender, EventArgs e)
         {
             DateTime date = DateTime.ParseExact(cmb_month.Text, "MMMM", CultureInfo.InvariantCulture);
-            var firstDayOfMonth = new DateTime(date.Year, date.Month , 1);
+            var firstDayOfMonth = new DateTime(Convert.ToInt32(cmb_year.Text), date.Month , 1);
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
             first = firstDayOfMonth.ToString("dd/MM/yyyy");

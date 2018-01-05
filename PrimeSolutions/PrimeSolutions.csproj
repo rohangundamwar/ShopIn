@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PrimeSolutions</RootNamespace>
-    <AssemblyName>PrimeSolutions</AssemblyName>
+    <AssemblyName>ShopIn</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -24,10 +24,16 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>ShopIn</ProductName>
+    <PublisherName>Primatus Informatics</PublisherName>
+    <SuiteName>ERP</SuiteName>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+    <BootstrapperComponentsUrl>\\Packages</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +58,24 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>PrimeSolutions.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
@@ -86,7 +110,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -297,6 +328,12 @@
     <Compile Include="Common\Fix Rate.Designer.cs">
       <DependentUpon>Fix Rate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_Activation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_Activation.Designer.cs">
+      <DependentUpon>frm_Activation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_BarcodePrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +435,7 @@
       <DependentUpon>Service.xsd</DependentUpon>
     </Compile>
     <Compile Include="Library\ClsFinancialYear.cs" />
+    <Compile Include="Library\cls_Activation.cs" />
     <Compile Include="Library\Cls_BalanceSheet.cs" />
     <Compile Include="Library\cls_Barcode.cs" />
     <Compile Include="Library\Cls_paymentoption.cs" />
@@ -616,6 +654,12 @@
     <Compile Include="Sale\frm_SaleEstimate.Designer.cs">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sale\frm_UpdateEstimate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_UpdateEstimate.Designer.cs">
+      <DependentUpon>frm_UpdateEstimate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sale\frm_WholeSale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -784,6 +828,9 @@
     <EmbeddedResource Include="Common\Fix Rate.resx">
       <DependentUpon>Fix Rate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Activation.resx">
+      <DependentUpon>frm_Activation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_BarcodePrint.resx">
       <DependentUpon>frm_BarcodePrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -920,6 +967,9 @@
     <EmbeddedResource Include="Sale\frm_SaleEstimate.resx">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_UpdateEstimate.resx">
+      <DependentUpon>frm_UpdateEstimate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_WholeSale.resx">
       <DependentUpon>frm_WholeSale.cs</DependentUpon>
     </EmbeddedResource>
@@ -1034,6 +1084,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1066,9 +1117,11 @@
     <Content Include="obj\Debug\PrimeSolutions.exe" />
     <Content Include="obj\Debug\PrimeSolutions.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\unlock.png" />
     <None Include="Resources\icon.ico" />
     <None Include="Resources\check.png" />
     <None Include="Resources\login.png" />
+    <None Include="Resources\Graphicloads-Flat-Finance-Unlock %281%29.ico" />
     <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />
@@ -1095,11 +1148,31 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.Express.11.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2012 Express</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x64">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x86">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x86%29</ProductName>
+      <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
       <Visible>False</Visible>
       <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="SAP.CrystalReports14.NET.2.0">
+      <Visible>False</Visible>
+      <ProductName>SAP Crystal Reports Runtime Engine for .NET Framework</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
@@ -1112,6 +1185,7 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
     </COMReference>
   </ItemGroup>
   <ItemGroup>

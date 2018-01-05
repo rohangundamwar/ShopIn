@@ -96,7 +96,7 @@
             this.bttn_login.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.bttn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_login.ForeColor = System.Drawing.Color.White;
-            this.bttn_login.Location = new System.Drawing.Point(162, 221);
+            this.bttn_login.Location = new System.Drawing.Point(162, 219);
             this.bttn_login.Name = "bttn_login";
             this.bttn_login.Size = new System.Drawing.Size(78, 29);
             this.bttn_login.TabIndex = 7;

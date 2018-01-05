@@ -209,7 +209,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_HSN.Focus();
+                cmb_size.Focus();
             }
         }
 
@@ -610,7 +610,6 @@ namespace PrimeSolutions
 
                     if (dtsett.Barcode == "Yes")
                     {
-                        //insert Into Temp Table
                         _Common.InsertIntoTemp(txt_refrence.Text);
 
                         if (dtsett.BarcodeType == "Thermal")
@@ -626,6 +625,7 @@ namespace PrimeSolutions
                         }
                         else if (dtsett.BarcodeType == "Laser")
                         {
+                            //insert Into Temp Table
                             _Barcode.PrintBarcodeA4(p = 0);
                         }
 
@@ -948,6 +948,38 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 bttn_Purchase.Focus();
+            }
+        }
+
+        private void dgv_ItemInfo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+               txt_PaidAmt.Focus();
+            }
+        }
+
+        private void dgv_ItemInfo_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (Convert.ToString(dgv_ItemInfo.CurrentCell.Value) == Convert.ToString(true))
+                {
+                    dgv_ItemInfo.CurrentCell.Value = false;
+                }
+                else if (Convert.ToString(dgv_ItemInfo.CurrentCell.Value) == Convert.ToString(false))
+                {
+                    dgv_ItemInfo.CurrentCell.Value = true;
+                }
+
+            }
+        }
+
+        private void cmb_size_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_HSN.Focus();
             }
         }
     }

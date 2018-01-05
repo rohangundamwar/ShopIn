@@ -75,5 +75,7 @@ namespace PrimeSolutions.Common
             this.BringToFront();
             clear();
         }
+
+        
     }
 }

@@ -110,6 +110,10 @@ namespace PrimeSolutions.Common
             string query14 = "ALTER TABLE CustomerBill ADD Narration nvarchar(MAX)";
             dgv_UpdateQuery.Rows.Add(false, N, query14);
 
+            string O = "Add Bill Type";
+            string query15 = "ALTER TABLE setting ADD BillType NVARCHAR(MAX)";
+            dgv_UpdateQuery.Rows.Add(false, O, query15);
+
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)

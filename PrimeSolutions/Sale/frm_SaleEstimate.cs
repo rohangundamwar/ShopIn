@@ -43,7 +43,6 @@ namespace PrimeSolutions
         {
             this.BringToFront();
             cmb_Category.DataSource = _a.FillCategory();
-            cmb_SubCategory.DataSource = _a.FillSubCategory();
             cmb_Name.DataSource = _Cust.GetCustomerDeatils();
             cmb_Name.Select();
             Clear();
@@ -252,7 +251,7 @@ namespace PrimeSolutions
             }
             if (e.KeyCode == Keys.End)
             {
-               txt_Discount.Focus();
+               txt_Extra.Focus();
             }
         }
 
@@ -261,11 +260,8 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_HSN.Select();
-                if (cmb_SubCategory.Text != "" || cmb_SubCategory.Text != string.Empty)
-                {
-                    fillitem();
-                }
+                new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_SubCategory.Text, @"\s+", " ").Trim() as String);
+                cmb_size.Select();
             }
         }
 
@@ -465,7 +461,7 @@ namespace PrimeSolutions
         {
             try
             {
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text, txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text, txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text);
                 Clear();
             }
             catch (Exception ex)
@@ -525,7 +521,6 @@ namespace PrimeSolutions
         private void CalculateBase()
         {
             lbl_BasePrice.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) * 100) / (100 + Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)), 2)) ;
-         
         }
 
         private void CalculateTotalBase()
@@ -612,9 +607,10 @@ namespace PrimeSolutions
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
                     string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
                     string Maintain = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value);
+                    string size= Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string PBillNo = txt_BillNo.Text;
                     
-                    _Sale.AddItemDetails(category,subcategory,"Size",txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
+                    _Sale.AddItemDetails(category,subcategory, size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
                     
 
                 }
@@ -626,11 +622,18 @@ namespace PrimeSolutions
             }
             try
             {
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,"");
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,txt_Narration.Text);
 
-                if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
+
+                //payment
+                if (txt_PaidAmt.Text != null || txt_PaidAmt.Text != "")
                 {
-                    _a.InsertPaymentDetails("Sale", txt_BillAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                    int paid = Convert.ToInt32(txt_PaidAmt.Text);
+
+                    if (paid != 0)
+                    {
+                        _a.InsertPaymentDetails("Sale", txt_PaidAmt.Text, cmb_PayMode.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                    }
                 }
             }
             catch (Exception ex)
@@ -666,7 +669,7 @@ namespace PrimeSolutions
             }
             if (e.KeyCode == Keys.Add)
             {
-                txt_TotalAmt.Focus();
+                Add(); ;
             }
         }
         
@@ -958,6 +961,40 @@ namespace PrimeSolutions
         }
 
         private void cmb_PayMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_Narration.Focus();
+            }
+        }
+
+        private void cmb_size_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_HSN.Focus();
+                if (cmb_SubCategory.Text != "" || cmb_SubCategory.Text != string.Empty)
+                {   
+                    fillitem();
+                }
+            }
+        }
+
+        private void cmb_SubCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = _a.GetSizeByCatAndSubCat(cmb_Category.Text, cmb_SubCategory.Text);
+            cmb_size.DataSource = dt;
+        }
+
+        private void txt_Extra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_Discount.Focus();
+            }
+        }
+
+        private void txt_Narration_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

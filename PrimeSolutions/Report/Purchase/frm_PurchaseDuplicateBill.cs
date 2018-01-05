@@ -40,7 +40,7 @@ namespace PrimeSolutions.Report.Sale
                 else if (txt_type.Text == "Estimate")
                 {
                     CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
-                    SendData _obj = new SendData(_objfrm_ReportViewer.SupplierBill);
+                    SendData _obj = new SendData(_objfrm_ReportViewer.SupplierBillEst);
                     _obj(txt_ref.Text, "Print");
                 }
             }
@@ -93,7 +93,7 @@ namespace PrimeSolutions.Report.Sale
             else if (txt_type.Text == "Estimate")
             {
                 CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
-                SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBillEst);
+                SendData _obj = new SendData(_objfrm_ReportViewer.SupplierBillEst);
                 _obj(txt_ref.Text, "View");
                 _objfrm_ReportViewer.Show();
             }

@@ -92,30 +92,36 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+
+        //Suppier Specific All Slab
         public DataTable SupplierGSTReport(string from, string to, string supplier,string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE ((dbo.SupplierMaster.Name = '" + supplier + "') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date,103) <= CONVERT(DateTime, '" + to + "', 103))) AND ((dbo.BillItem.CGST='" + Sper + "') or  (dbo.BillItem.IGST='" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE ((dbo.SupplierMaster.Name = '" + supplier + "') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date,103) <= CONVERT(DateTime, '" + to + "', 103))) AND ((dbo.BillItem.CGST='" + Sper + "') or  (dbo.BillItem.IGST='" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
+        //Suppier Specific Zero Slab
         public DataTable SupplierGSTReportZerPer(string from, string to, string supplier, string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE ((dbo.SupplierMaster.Name = '" + supplier + "') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date,103) <= CONVERT(DateTime, '" + to + "', 103))) AND ((dbo.BillItem.CGST='" + Sper + "') AND  (dbo.BillItem.IGST='" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE ((dbo.SupplierMaster.Name = '" + supplier + "') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date,103) <= CONVERT(DateTime, '" + to + "', 103))) AND ((dbo.BillItem.CGST='" + Sper + "') AND  (dbo.BillItem.IGST='" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
+        //Total GST All Slab
         public DataTable SupplierGSTReport(string from, string to, string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseBillNo = dbo.SupplierBill.BillNo WHERE((CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103))) AND((dbo.BillItem.CGST = '"+Sper+"') or (dbo.BillItem.IGST = '"+Iper+"')) AND (dbo.SupplierBill.permanentdelete = 0) AND(dbo.SupplierBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo WHERE((CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103))) AND((dbo.BillItem.CGST = '"+Sper+"') or (dbo.BillItem.IGST = '"+Iper+"')) AND (dbo.SupplierBill.permanentdelete = 0) AND(dbo.SupplierBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
+
+        //Total GST Zero Slab
         public DataTable SupplierGSTReportZerPer(string from, string to, string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseBillNo = dbo.SupplierBill.BillNo WHERE((CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND(dbo.SupplierBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo WHERE((CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "')) AND(dbo.SupplierBill.permanentdelete = 0) AND(dbo.SupplierBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }

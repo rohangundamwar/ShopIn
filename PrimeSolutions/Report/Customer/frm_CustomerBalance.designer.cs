@@ -40,7 +40,6 @@
             this.bttn_close = new System.Windows.Forms.Button();
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_reset = new System.Windows.Forms.Button();
-            this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.bttn_Print = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Balance)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +96,8 @@
             // 
             // cmb_customer
             // 
+            this.cmb_customer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_customer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_customer.DisplayMember = "CustomerName";
             this.cmb_customer.FormattingEnabled = true;
             this.cmb_customer.Location = new System.Drawing.Point(118, 25);
@@ -158,13 +159,6 @@
             this.bttn_reset.UseVisualStyleBackColor = true;
             this.bttn_reset.Click += new System.EventHandler(this.bttn_reset_Click);
             // 
-            // dtp_date
-            // 
-            this.dtp_date.Location = new System.Drawing.Point(15, 280);
-            this.dtp_date.Name = "dtp_date";
-            this.dtp_date.Size = new System.Drawing.Size(200, 20);
-            this.dtp_date.TabIndex = 7;
-            // 
             // bttn_Print
             // 
             this.bttn_Print.ForeColor = System.Drawing.Color.Blue;
@@ -183,7 +177,6 @@
             this.CancelButton = this.bttn_close;
             this.ClientSize = new System.Drawing.Size(667, 315);
             this.Controls.Add(this.bttn_Print);
-            this.Controls.Add(this.dtp_date);
             this.Controls.Add(this.bttn_reset);
             this.Controls.Add(this.bttn_Excel);
             this.Controls.Add(this.bttn_close);
@@ -208,7 +201,6 @@
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Button bttn_Excel;
         private System.Windows.Forms.Button bttn_reset;
-        private System.Windows.Forms.DateTimePicker dtp_date;
         private System.Windows.Forms.Button bttn_Print;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;

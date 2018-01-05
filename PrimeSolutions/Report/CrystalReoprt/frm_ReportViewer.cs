@@ -341,6 +341,7 @@ namespace PrimeSolutions.Report.CrystalReport
 
             DataTable dt_ItemsDetails = _sales.GetBillItem(BillNo,"Sale");
             _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
+
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
 
@@ -372,9 +373,18 @@ namespace PrimeSolutions.Report.CrystalReport
                 MessageBox.Show(ex.ToString());
             }
 
+            
             try
             {
-                _objReport.SetParameterValue("Qty", qty);
+                if (Convert.ToDouble(qty) > 0)
+                {
+                    _objReport.SetParameterValue("Qty", qty);
+                }
+                else
+                {
+                    _objReport.SetParameterValue("Qty", "0");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -439,7 +449,7 @@ namespace PrimeSolutions.Report.CrystalReport
             DataTable dt_Supplier_Info = _sales.GetSupplierByBill(RefrenceNo);
             _objReport.Database.Tables["SupplierDetails"].SetDataSource(dt_Supplier_Info);
 
-            DataTable dt_ItemsDetails = _sales.GetBillItem(dt_BillingDetails.Rows[0]["BillNo"].ToString(), "Purchase");
+            DataTable dt_ItemsDetails = _sales.GetBillItem(RefrenceNo, "Purchase");
             _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
@@ -449,6 +459,105 @@ namespace PrimeSolutions.Report.CrystalReport
             try
             {
                 string Balance = Convert.ToString(_sales.GetBalance(dt_Supplier_Info.Rows[0]["SupplierNo"].ToString(),"Purchase"));
+                _objReport.SetParameterValue("Balance", Balance);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+            try
+            {
+                double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["Amount"].ToString());
+                inword = Math.Round(inword);
+                int number = Convert.ToInt32(inword);
+                string inwordsString = _objCommon.NumberToWords(number);
+                _objReport.SetParameterValue("inwords", inwordsString);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+            try
+            {
+                _objReport.SetParameterValue("Qty", qty);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+            if (Type == "Print")
+            {
+                if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        int Copies = _objPrinterSetting.copies;
+
+                        _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                        _objReport.PrintToPrinter(Copies, true, 0, 0);
+                        printresult = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    if (printresult == true)
+                    {
+                        printresult = false;
+                    }
+                }
+                else
+                {
+                    crReportViewer.ReportSource = _objReport;
+                    crReportViewer.Show();
+                    return;
+                }
+
+            }
+            else
+            {
+                crReportViewer.ReportSource = _objReport;
+                crReportViewer.Show();
+                return;
+            }
+        }
+
+        public void SupplierBillEst(string RefrenceNo, string Type)
+        {
+            string SqlCrname;
+            SqlCrname = "Select SaleBill from CrystalReport Where Type='SupplierPurchase'";
+            string crname = _objsqlhelper.ExecuteScalar(SqlCrname);
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "\\" + crname);
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            string BillingDetails = "Select * from SupplierBill Where RefrenceNo='" + RefrenceNo + "'";
+            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
+            _objReport.Database.Tables["SupplierBill"].SetDataSource(dt_BillingDetails);
+
+            DataTable dt_Supplier_Info = _sales.GetSupplierByBill(RefrenceNo);
+            _objReport.Database.Tables["SupplierDetails"].SetDataSource(dt_Supplier_Info);
+
+            DataTable dt_ItemsDetails = _sales.GetBillItem(RefrenceNo, "Purchase");
+            _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
+            string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
+
+            DataTable dt_Payment = _a.getpaymentByBill(RefrenceNo, "Supplier");
+            _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
+
+            try
+            {
+                string Balance = Convert.ToString(_sales.GetBalance(dt_Supplier_Info.Rows[0]["SupplierNo"].ToString(), "Purchase"));
                 _objReport.SetParameterValue("Balance", Balance);
             }
             catch (Exception ex)

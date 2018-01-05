@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
             this.txt_refrence = new System.Windows.Forms.Label();
@@ -58,6 +58,8 @@
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
+            this.cmb_size = new System.Windows.Forms.ComboBox();
+            this.lbl_size = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -133,8 +135,6 @@
             this.SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGSTper = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmb_size = new System.Windows.Forms.ComboBox();
-            this.lbl_size = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -337,6 +337,8 @@
             // 
             // cmb_State
             // 
+            this.cmb_State.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_State.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_State.DisplayMember = "26";
             this.cmb_State.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.cmb_State.FormattingEnabled = true;
@@ -506,6 +508,8 @@
             // 
             // cmb_Name
             // 
+            this.cmb_Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Name.BackColor = System.Drawing.SystemColors.Window;
             this.cmb_Name.DisplayMember = "name";
             this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -561,6 +565,32 @@
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1074, 155);
             this.pnl_ItemInfo.TabIndex = 8;
             this.pnl_ItemInfo.Tag = "Item";
+            // 
+            // cmb_size
+            // 
+            this.cmb_size.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_size.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_size.DisplayMember = "SubCategory";
+            this.cmb_size.FormattingEnabled = true;
+            this.cmb_size.Location = new System.Drawing.Point(825, 8);
+            this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmb_size.Name = "cmb_size";
+            this.cmb_size.Size = new System.Drawing.Size(86, 24);
+            this.cmb_size.TabIndex = 46;
+            this.cmb_size.ValueMember = "SubCategory";
+            this.cmb_size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_size_KeyDown);
+            // 
+            // lbl_size
+            // 
+            this.lbl_size.AutoSize = true;
+            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_size.Location = new System.Drawing.Point(781, 13);
+            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_size.Name = "lbl_size";
+            this.lbl_size.Size = new System.Drawing.Size(38, 16);
+            this.lbl_size.TabIndex = 45;
+            this.lbl_size.Text = "Size";
             // 
             // label8
             // 
@@ -914,6 +944,8 @@
             // 
             // cmb_SubCategory
             // 
+            this.cmb_SubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_SubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_SubCategory.DisplayMember = "SubCategory";
             this.cmb_SubCategory.FormattingEnabled = true;
             this.cmb_SubCategory.Location = new System.Drawing.Point(593, 9);
@@ -928,6 +960,8 @@
             // cmb_Category
             // 
             this.cmb_Category.AllowDrop = true;
+            this.cmb_Category.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Category.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Category.BackColor = System.Drawing.Color.White;
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
@@ -1247,8 +1281,8 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -1276,10 +1310,12 @@
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.RowHeadersWidth = 30;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1074, 160);
             this.dgv_ItemInfo.TabIndex = 25;
+            this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick_1);
+            this.dgv_ItemInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_ItemInfo_KeyDown);
             // 
             // Chk
             // 
@@ -1287,7 +1323,7 @@
             this.Chk.HeaderText = "Chk";
             this.Chk.Name = "Chk";
             this.Chk.ReadOnly = true;
-            this.Chk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Chk.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Chk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Barcode
@@ -1401,29 +1437,6 @@
             this.IGST.HeaderText = "IGST";
             this.IGST.Name = "IGST";
             this.IGST.ReadOnly = true;
-            // 
-            // cmb_size
-            // 
-            this.cmb_size.DisplayMember = "SubCategory";
-            this.cmb_size.FormattingEnabled = true;
-            this.cmb_size.Location = new System.Drawing.Point(825, 8);
-            this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmb_size.Name = "cmb_size";
-            this.cmb_size.Size = new System.Drawing.Size(86, 24);
-            this.cmb_size.TabIndex = 46;
-            this.cmb_size.ValueMember = "SubCategory";
-            // 
-            // lbl_size
-            // 
-            this.lbl_size.AutoSize = true;
-            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_size.Location = new System.Drawing.Point(781, 13);
-            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_size.Name = "lbl_size";
-            this.lbl_size.Size = new System.Drawing.Size(38, 16);
-            this.lbl_size.TabIndex = 45;
-            this.lbl_size.Text = "Size";
             // 
             // frm_EstimatePurchace
             // 
@@ -1551,6 +1564,8 @@
         private System.Windows.Forms.Label txt_refrence;
         private System.Windows.Forms.Label lbl_PurcahseRef;
         private System.Windows.Forms.DataGridView dgv_ItemInfo;
+        private System.Windows.Forms.ComboBox cmb_size;
+        private System.Windows.Forms.Label lbl_size;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Chk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
@@ -1568,7 +1583,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGSTper;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST;
-        private System.Windows.Forms.ComboBox cmb_size;
-        private System.Windows.Forms.Label lbl_size;
     }
 }

@@ -344,6 +344,8 @@
             // 
             // cmb_State
             // 
+            this.cmb_State.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_State.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_State.DisplayMember = "26";
             this.cmb_State.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.cmb_State.FormattingEnabled = true;
@@ -513,6 +515,8 @@
             // 
             // cmb_Name
             // 
+            this.cmb_Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Name.BackColor = System.Drawing.SystemColors.Window;
             this.cmb_Name.DisplayMember = "name";
             this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -601,6 +605,8 @@
             // 
             // cmb_size
             // 
+            this.cmb_size.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_size.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_size.DisplayMember = "SubCategory";
             this.cmb_size.FormattingEnabled = true;
             this.cmb_size.Location = new System.Drawing.Point(781, 9);
@@ -975,6 +981,8 @@
             // 
             // cmb_SubCategory
             // 
+            this.cmb_SubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_SubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_SubCategory.DisplayMember = "SubCategory";
             this.cmb_SubCategory.FormattingEnabled = true;
             this.cmb_SubCategory.Location = new System.Drawing.Point(582, 9);
@@ -989,6 +997,8 @@
             // cmb_Category
             // 
             this.cmb_Category.AllowDrop = true;
+            this.cmb_Category.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Category.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Category.BackColor = System.Drawing.Color.White;
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
@@ -1238,6 +1248,8 @@
             // 
             // cmb_PayMode
             // 
+            this.cmb_PayMode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_PayMode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_PayMode.FormattingEnabled = true;
             this.cmb_PayMode.Items.AddRange(new object[] {
             "Cash",
