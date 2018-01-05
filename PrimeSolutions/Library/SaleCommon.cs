@@ -40,11 +40,13 @@ namespace PrimeSolutions.Library
         public void DeleteBillItem(string BillNo)
         {
             string str = "Update BillItem Set PermanentDelete = 1 Where SaleBillNo ='" + BillNo + "'";
+            _sql.ExecuteSql(str);
         }
 
         public void DeleteBillDetails(string BillNo)
         {
             string str = "Update CustomerBill Set permanentDelete = 1 Where BillNo ='" + BillNo + "'";
+            _sql.ExecuteSql(str);
         }
 
 
@@ -57,28 +59,28 @@ namespace PrimeSolutions.Library
 
         public DataTable CustomerGSTReport(string from, string to, string CustId, string Sper, string Iper)
         {
-            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '"+CustId+"') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103)) AND(dbo.BillItem.CGST = '"+Sper+"') OR (dbo.BillItem.IGST = '"+Iper+ "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
+            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '"+CustId+"') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '"+to+"', 103)) AND(dbo.BillItem.CGST = '"+Sper+"') OR (dbo.BillItem.IGST = '"+Iper+ "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
         public DataTable CustomerGSTReportZeroPer(string from, string to, string CustId, string Sper, string Iper)
         {
-            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '" + CustId + "') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND(dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
+            string str = "SELECT     SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId INNER JOIN dbo.BillItem ON dbo.CustomerBill.BillNo = dbo.BillItem.SaleBillNo WHERE(dbo.CustomerMaster.CustomerName = '" + CustId + "') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND(dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "') AND(dbo.CustomerBill.permanentDelete = 0) AND (dbo.CustomerBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
         public DataTable CustomerGSTReport(string from, string to, string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE((CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') OR (dbo.BillItem.IGST = '" + Iper + "')) AND (dbo.CustomerBill.permanentdelete = 0) AND(dbo.CustomerBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE((CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') OR (dbo.BillItem.IGST = '" + Iper + "')) AND (dbo.CustomerBill.permanentdelete = 0) AND(dbo.CustomerBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
 
         public DataTable CustomerGSTReportZeroPer(string from, string to, string Sper, string Iper)
         {
-            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.Price)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE((CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "')) AND (dbo.CustomerBill.permanentdelete = 0) AND(dbo.CustomerBill.Type = 'GST')";
+            string str = "SELECT SUM(CONVERT(Decimal(10, 2), dbo.BillItem.TotalPrice)) AS Taxable, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.CGSTAmt)) AS CGST, SUM(CONVERT(Decimal(10, 2), dbo.BillItem.SGSTAmt)) AS SGST,  SUM(CONVERT(Decimal(10, 2), dbo.BillItem.IGSTAmt)) AS IGST FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE((CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103))) AND((dbo.BillItem.CGST = '" + Sper + "') AND (dbo.BillItem.IGST = '" + Iper + "')) AND (dbo.CustomerBill.permanentdelete = 0) AND(dbo.CustomerBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -166,23 +168,35 @@ namespace PrimeSolutions.Library
 
         public double GetBalance(string ID,string Type)
         {
-            string str = "";
-            double BillAmt = 0.0;
-
-            string CustId = ID ;
-
+            double bal=0;
             if (Type == "Sale")
             {
-               BillAmt = GetTotalPurchase(CustId, Type);
+                string CustBal = "select (((Select Opening From CustomerMaster where CustId = '" + ID + "')+(Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + ID + "' and (PermanentDelete = 0 or PermanentDelete is Null) AND (Type='GST' or Type='Estimate' or Type='Service Invoice')))-(select Sum(convert(decimal,Amt)) from Payment where Id ='" + ID + "')) as Balance";
+                string CustBalance = _sql.ExecuteScalar(CustBal);
+                if (CustBalance == null || CustBalance=="")
+                {
+                    bal = 0;
+                }
+                else
+                {
+                    bal = Convert.ToDouble(CustBalance);
+                }
+                
             }
             else if (Type == "Purchase")
             {
-               BillAmt = GetTotalSupplierPurchase(CustId, Type);
+                string SuppBal = "select ((Select Sum(convert(decimal,GrandTotal)) From SupplierBill where SupplierNo = '" + ID + "' and (PermanentDelete = 0 or PermanentDelete is Null))-(select Sum(convert(decimal,Amt)) from Payment where Id ='" + ID + "')) as Balance";
+                string SupllierBal = _sql.ExecuteScalar(SuppBal);
+                if (SupllierBal == null || SupllierBal=="")
+                {
+                    bal = 0;
+                }
+                else
+                {
+                    bal = Convert.ToDouble(SupllierBal);
+                }
             }
 
-            double PaidAmt = GetTotalPaid(CustId);
-            double opening = GetOpening(CustId);
-            double bal = (opening + BillAmt) - PaidAmt;
             return bal;
         }
 
@@ -195,7 +209,7 @@ namespace PrimeSolutions.Library
 
         public Double GetTotalPurchase(string CustId, string type)
         {
-            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string str1 = "Select Sum(convert(decimal,BillAmount)) From CustomerBill where CustId = '" + CustId + "' and (PermanentDelete = 0 or PermanentDelete is Null) AND (Type='GST' or Type='Estimate' or Type='Service Invoice')";
             string BillAmt = _sql.ExecuteScalar(str1);
             if (BillAmt == null || BillAmt == "")
                 return 0; 
@@ -229,17 +243,37 @@ namespace PrimeSolutions.Library
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
+        
 
         public DataTable GetBillItem(string BillNo, string Type)
         {
-            string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
-            DataTable dt = _sql.GetDataTable(str);
-            dt.Columns.Add("Amount");
-            for (int i = 0; i < dt.Rows.Count; i++)
+            DataTable dt = new DataTable();
+
+            if (Type == "Sale")
             {
-                dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+                dt = _sql.GetDataTable(str);
+                dt.Columns.Add("Amount");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                }
+                return dt;
             }
-            return dt;
+
+            else if (Type == "Purchase")
+            {
+                string str = "Select * from BillItem where PurchaseRef= '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+                dt = _sql.GetDataTable(str);
+                dt.Columns.Add("Amount");
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
+                }
+                return dt;
+            }
+            else return dt;
+            
         }
 
         public DataTable GetCompanydetails()
@@ -286,12 +320,19 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCustomerBill(string id)
         {
-            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) And (Type ='GST' or Type ='Estimate')";
             DataTable dt1 = _sql.GetDataTable(str);
             return dt1;
         }
-        
-        public DataTable GetCustomerPayment(string id)
+
+        public DataTable GetCustomerQoutation(string id)
+        {
+           string str = "select BillNo,BillAmount,Date,Type from CustomerBill where CustId='" + id + "' and (PermanentDelete = 0 or PermanentDelete is Null) And (Type ='Qoutation') ";
+           DataTable dt1 = _sql.GetDataTable(str);
+           return dt1;
+       }
+
+    public DataTable GetCustomerPayment(string id)
         {
             string str = "Select * from Payment where Id='"+id+"'";
             DataTable dt1 = _sql.GetDataTable(str);

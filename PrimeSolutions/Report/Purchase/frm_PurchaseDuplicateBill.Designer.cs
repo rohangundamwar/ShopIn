@@ -49,6 +49,8 @@
             // 
             // cmb_customer
             // 
+            this.cmb_customer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_customer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_customer.BackColor = System.Drawing.Color.Cornsilk;
             this.cmb_customer.DisplayMember = "Name";
             this.cmb_customer.FormattingEnabled = true;

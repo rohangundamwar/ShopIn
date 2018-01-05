@@ -87,19 +87,20 @@ namespace PrimeSolutions
                 string barcode = BillItem.Rows[i]["Barcode"].ToString();
                 string category= BillItem.Rows[i]["Category"].ToString();
                 string SubCategory = BillItem.Rows[i]["SubCategory"].ToString();
+                string Size = BillItem.Rows[i]["Size"].ToString();
                 string HSN = BillItem.Rows[i]["HSN"].ToString();
                 string BatchNo= BillItem.Rows[i]["BatchNo"].ToString();
                 string Rate = BillItem.Rows[i]["Price"].ToString();
                 string qty = BillItem.Rows[i]["Qty"].ToString();
                 string Total = BillItem.Rows[i]["TotalPrice"].ToString();
-                string CSGT = BillItem.Rows[i]["CGST"].ToString();
+                string CGST = BillItem.Rows[i]["CGST"].ToString();
                 string CGSTAmt = BillItem.Rows[i]["CGSTAmt"].ToString();
                 string SGST = BillItem.Rows[i]["SGST"].ToString();
                 string SGSTAmt = BillItem.Rows[i]["SGSTAmt"].ToString();
                 string IGST = BillItem.Rows[i]["IGST"].ToString();
                 string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
                 string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
-                dgv_ItemInfo.Rows.Add(barcode,category,SubCategory,HSN, BatchNo, Rate,qty,Total,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,Selling);
+                dgv_ItemInfo.Rows.Add(barcode,category,SubCategory,Size,HSN, BatchNo, Rate,qty,Total,CGST,CGSTAmt,SGST,SGSTAmt,IGST,IGSTAmt,Selling);
 
             }
             
@@ -107,7 +108,6 @@ namespace PrimeSolutions
             txt_Balance.Text = "0";
             txt_BillAmt.Text = "0";
             txt_NetAmt.Text = "0";
-            bttn_Sale.Enabled = false;
 
         }
 
@@ -124,8 +124,7 @@ namespace PrimeSolutions
 
         private void Masterclear()
         {
-            
-            
+
         }
 
         private void Clear()
@@ -235,7 +234,7 @@ namespace PrimeSolutions
             }
             if (txt_BarcodeNo.Text == "" || txt_BarcodeNo.Text == string.Empty)
             {
-                DataTable GST = _Sale.GetItemDetailsByCategoySubCategory(cmb_Category.Text, cmb_SubCategory.Text);
+                DataTable GST = _Sale.GetItemDetailsByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text);
                 if (GST.Rows.Count > 0)
                 {
                     try
@@ -314,7 +313,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_HSN.Select();
+                cmb_size.Select();
                 if (cmb_SubCategory.Text != "" || cmb_SubCategory.Text != string.Empty)
                 {
                     fillitem();
@@ -518,7 +517,7 @@ namespace PrimeSolutions
         {
             try
             {
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text, txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text, txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text);
                 Clear();
             }
             catch (Exception ex)
@@ -526,7 +525,6 @@ namespace PrimeSolutions
                 MessageBox.Show(ex.Message);
             }
             Calculate();
-            bttn_Sale.Enabled = true;
             cmb_Category.Focus();
         }
         
@@ -642,13 +640,6 @@ namespace PrimeSolutions
 
             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
             
-            if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
-            {
-                if(Customerexs=="No")
-                {
-                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text,txt_PanNo.Text,txt_GSTIN.Text,cmb_State.Text,txt_City.Text,"");
-                }
-            }
             try
             {
 
@@ -657,6 +648,7 @@ namespace PrimeSolutions
                     string barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value);
                     string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
                     string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                    string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
                     string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
                     string Qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
@@ -670,26 +662,19 @@ namespace PrimeSolutions
                     string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
                     string PBillNo = txt_BillNo.Text;
-                    string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
-                    string Maintain = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value);
 
                     if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value.ToString() == string.Empty)
                         
                     {
-                        _Sale.AddItemDetails(category,subcategory,"Size",txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
+                        _Sale.AddItemDetails(category,subcategory,Size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,"","");
                     }
-
-                    else
-                    {
-                        _Sale.UpdateItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value), txt_BillNo.Text,dtp_Date.Value.ToString("dd/MM/yyyy"));
-                    }
-
+                    
                 }
             }
         
             catch (Exception ex)
             {
-                _error.AddException(ex, "Sale");
+                _error.AddException(ex, "SaleUpdate");
             }
             try
             {
@@ -699,7 +684,7 @@ namespace PrimeSolutions
 
             catch (Exception ex)
             {
-                _error.AddException(ex, "Sale");
+                _error.AddException(ex, "SaleUpdate");
             }
             try
             {
@@ -714,11 +699,7 @@ namespace PrimeSolutions
             //_Sale.PrintBillThermal(BillNo);
 
             MessageBox.Show("Sale Successfully Done");
-            Masterclear();
-            Clear();
-            this.BringToFront();
-            
-            
+            this.Close();
         }
 
         private void frm_SaleForm_KeyDown(object sender, KeyEventArgs e)
@@ -1032,6 +1013,20 @@ namespace PrimeSolutions
             {
                 bttn_Sale.Focus();
             }
+        }
+
+        private void cmb_size_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_HSN.Focus();
+            }
+        }
+
+        private void cmb_SubCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = _a.GetSizeByCatAndSubCat(cmb_Category.Text, cmb_SubCategory.Text);
+            cmb_size.DataSource = dt;
         }
     }
 }

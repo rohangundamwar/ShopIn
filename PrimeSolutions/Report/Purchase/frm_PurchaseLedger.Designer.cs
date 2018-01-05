@@ -52,6 +52,8 @@
             // 
             // cmb_supplier
             // 
+            this.cmb_supplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_supplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_supplier.DisplayMember = "Name";
             this.cmb_supplier.FormattingEnabled = true;
             this.cmb_supplier.Location = new System.Drawing.Point(77, 30);

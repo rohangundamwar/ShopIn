@@ -16,6 +16,11 @@ using PrimeSolutions.Accounting;
 using PrimeSolutions.Sale;
 using PrimeSolutions.Service;
 using PrimeSolutions.Purchase;
+using System.Net.NetworkInformation;
+using System.Management;
+using System.Security.Cryptography;
+using System.IO;
+using System.ServiceProcess;
 
 namespace PrimeSolutions
 {
@@ -28,7 +33,7 @@ namespace PrimeSolutions
 
         clsCommon _common = new clsCommon();
         SettingValue dtSett = new SettingValue();
-        
+        cls_Activation _Act = new cls_Activation();
 
 
         private void supplierDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -313,15 +318,24 @@ namespace PrimeSolutions
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //string SqlStatus = _common.GetSqlStatus("MSSQLSERVER");
+            //if (SqlStatus != "Running")
+            //{
+            //     _common.StartService("MSSQLSERVER", 100000);
+            //}
+           
             frm_Login _form = new frm_Login();
             _form.ShowDialog();
 
             menuStrip1.Visible = _form.result;
             bttn_Login.Visible = !_form.result;
-            
 
-            string Valid = _common.CheckValidity();
-            dtSett = _common.getSettingValue();
+            if (!_Act.CheckActivation())
+            {
+                menuStrip1.Enabled = false;
+            }
+
+            string Valid = _Act.CheckValidity();
 
             if (Valid == "Valid")
             {
@@ -339,6 +353,7 @@ namespace PrimeSolutions
                 lbl_ValidDays.Visible = true; 
             }
 
+            dtSett = _common.getSettingValue();
             if (dtSett.Maintenance == "No")
             {
                 serviceToolStripMenuItem.Visible = false;

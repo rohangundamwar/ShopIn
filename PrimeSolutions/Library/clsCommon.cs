@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using PrimeSolutions.Common;
+using System.ServiceProcess;
 
 namespace PrimeSolutions.Library
 {
@@ -124,6 +125,38 @@ namespace PrimeSolutions.Library
 
         }
 
+        public string GetSqlStatus(string Name)
+        {
+            ServiceController sc = new ServiceController(Name);
+
+            switch (sc.Status)
+            {
+                case ServiceControllerStatus.Running:
+                    return "Running";
+                case ServiceControllerStatus.Stopped:
+                    return "Stopped";
+                case ServiceControllerStatus.Paused:
+                    return "Paused";
+                case ServiceControllerStatus.StopPending:
+                    return "Stopping";
+                case ServiceControllerStatus.StartPending:
+                    return "Starting";
+                default:
+                    return "Status Changing";
+            }
+        }
+
+        public void StartService(string serviceName, int timeoutSecond)
+        {
+            ServiceController service = new ServiceController(serviceName);
+
+            TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutSecond);
+
+            service.Start();
+            service.WaitForStatus(ServiceControllerStatus.Running, timeout);
+        }
+
+
 
         public void DeleteTemp()
         {
@@ -142,29 +175,7 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.ExecuteScalar(str);
         }
 
-        public string CheckValidity()
-        {
-            string str = "SELECT * from Activation";
-            DataTable dt = _objSqlhelper.GetDataTable(str);
-            DateTime start = Convert.ToDateTime(dt.Rows[0]["StartDate"]);
-            int ValidDays = Convert.ToInt32(dt.Rows[0]["Validity"]);
-            DateTime ValidTo = start.AddDays(ValidDays);
-            DateTime CurrentDate = DateTime.Now;
-            if (CurrentDate < ValidTo)
-            {
-                if (ValidTo.AddDays(-15) < CurrentDate)
-                {
-                    string days = Convert.ToString((ValidTo.Date - CurrentDate.Date).Days);
-                    return days ;
-                }
-                else
-                return "Valid";
-            }
-            
-            else
-                return "Invalid";
-
-        }
+        
 
         public DataTable GetSalesPerson()
         {

@@ -34,7 +34,6 @@ namespace PrimeSolutions
         clsCommon _Common = new clsCommon();
         cls_Barcode _Barcode = new cls_Barcode();
         string supplierexs = "No";
-        frm_ReportViewer _print = new frm_ReportViewer();
         public int[] PaymentIDs = new int[2];
         string VouchertypeID = "0";
         string Type = "GST";
@@ -429,7 +428,7 @@ namespace PrimeSolutions
             {
                 _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
             }
-
+            
             if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
             {
                 chk = true;
@@ -572,7 +571,7 @@ namespace PrimeSolutions
                             string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string PBillNo = txt_BillNo.Text;
 
-                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null,"");
+                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null,txt_PurchaseRef.Text);
 
                         }
 
@@ -656,7 +655,7 @@ namespace PrimeSolutions
                     _objCustmor.InsertBillDetail(lbl_AccNo1.Text, txt_BillNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, txt_CGSTValue.Text, txt_SGSTValue.Text, txt_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,Type,txt_PurchaseRef.Text);
                     if(txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != "" || txt_PaidAmt.Text != string.Empty)
                     {
-                        _objCustmor.InsertPaymentDetails("Supplier", txt_NetAmt.Text, cmb_PayMode.Text, lbl_AccNo1.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                        _objCustmor.InsertPaymentDetails("Supplier", txt_PaidAmt.Text, cmb_PayMode.Text, lbl_AccNo1.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
                     }
                 }
                 catch(Exception ex)

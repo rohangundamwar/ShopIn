@@ -47,35 +47,55 @@ namespace PrimeSolutions.Report.Customer
             int index = cmb_supplier.SelectedIndex;
             string Custid = dtCustomer.Rows[index]["CustId"].ToString();
             dtCustBill = _s.GetCustomerBill(Custid);
+            double Opening =  _s.GetOpening(dtCustomer.Rows[index]["CustId"].ToString());
             dgv_Bill.Rows.Clear();
-            if (dtCustBill.Rows.Count>0)
-            for (int i = 0; i < dtCustBill.Rows.Count; i++)
-            {
-                    
-                dgv_Bill.Rows.Add();
-                dgv_Bill.Rows[i].Cells["Date"].Value = dtCustBill.Rows[i]["Date"].ToString();
-                dgv_Bill.Rows[i].Cells["BillNo"].Value = dtCustBill.Rows[i]["BillNo"].ToString();
-                dgv_Bill.Rows[i].Cells["Amount"].Value = dtCustBill.Rows[i]["BillAmount"].ToString();
-            }
-            dtpay = _s.GetCustomerPayment(Custid);
             dgv_Payment.Rows.Clear();
-            if (dtpay.Rows.Count > 0)
-            for (int i = 0; i < dtpay.Rows.Count; i++)
+
+            if (Opening != 0)
             {
-                    
-                dgv_Payment.Rows.Add();
-                dgv_Payment.Rows[i].Cells["PayDate"].Value = dtpay.Rows[i]["Date"].ToString();
-                dgv_Payment.Rows[i].Cells["PaidAmt"].Value = dtpay.Rows[i]["Amt"].ToString();
-                dgv_Payment.Rows[i].Cells["PayType"].Value = dtpay.Rows[i]["Paymode"].ToString();
+                dgv_Bill.Rows.Add();
+                dgv_Bill.Rows[0].Cells["Amount"].Value = Convert.ToString(Opening);
+                dgv_Bill.Rows[0].Cells["BillNo"].Value = "Opening Balance";
+            }
+            else if (Opening == 0)
+            {
+                dgv_Bill.Rows.Add();
+                dgv_Bill.Rows[0].Cells["Amount"].Value = 0;
+                dgv_Bill.Rows[0].Cells["BillNo"].Value = "Opening Balance";
             }
 
+                if (dtCustBill.Rows.Count > 0)
+            {
+                for (int i = 1; i <= dtCustBill.Rows.Count; i++)
+                {
+                    dgv_Bill.Rows.Add();
+                    dgv_Bill.Rows[i].Cells["Date"].Value = dtCustBill.Rows[i - 1]["Date"].ToString();
+                    dgv_Bill.Rows[i].Cells["BillNo"].Value = dtCustBill.Rows[i - 1]["BillNo"].ToString();
+                    dgv_Bill.Rows[i].Cells["Amount"].Value = dtCustBill.Rows[i - 1]["BillAmount"].ToString();
+                }
+            }
+            
+
+            dtpay = _s.GetCustomerPayment(Custid);
+            if (dtpay.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtpay.Rows.Count; i++)
+                {
+                    dgv_Payment.Rows.Add();
+                    dgv_Payment.Rows[i].Cells["PayDate"].Value = dtpay.Rows[i]["Date"].ToString();
+                    dgv_Payment.Rows[i].Cells["PaidAmt"].Value = dtpay.Rows[i]["Amt"].ToString();
+                    dgv_Payment.Rows[i].Cells["PayType"].Value = dtpay.Rows[i]["Paymode"].ToString();
+                }
+            }
+                
             string TotalBill =Convert.ToString(_c.sumGridViewColumn(dgv_Bill, "Amount"));
             string TotalPaid = Convert.ToString(_c.sumGridViewColumn(dgv_Payment, "PaidAmt"));
-            string Balance = Convert.ToString(Convert.ToDouble(TotalBill) - Convert.ToDouble(TotalPaid));
+            string Balance = Convert.ToString(Convert.ToDouble(TotalBill) - (Convert.ToDouble(TotalPaid)));
 
             txt_Bill.Text = TotalBill;
             txt_payment.Text = TotalPaid;
-            txt_balance.Text = Balance; 
+            txt_balance.Text = Balance;
+            cmb_supplier.Focus();
 
         }
 
@@ -83,7 +103,7 @@ namespace PrimeSolutions.Report.Customer
         {
             if (e.KeyCode == Keys.Enter)
             {
-                search();
+                bttn_search.Focus();
             }
         }
 

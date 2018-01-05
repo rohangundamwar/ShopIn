@@ -33,7 +33,7 @@ namespace PrimeSolutions.Report.Purchase
 
         private void bttn_search_Click(object sender, EventArgs e)
         {
-            search();
+            search(); 
         }
         private void print()
         {
@@ -74,8 +74,8 @@ namespace PrimeSolutions.Report.Purchase
 
             txt_Bill.Text = TotalBill;
             txt_payment.Text = TotalPaid;
-            txt_balance.Text = Balance; 
-
+            txt_balance.Text = Balance;
+            cmb_supplier.Focus();
         }
 
         private void frm_PurchaseLedger_KeyDown(object sender, KeyEventArgs e)

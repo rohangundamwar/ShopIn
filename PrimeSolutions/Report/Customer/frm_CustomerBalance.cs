@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Library;
+using System.Data.SqlClient;
 
 namespace PrimeSolutions.Report.Customer
 {
     public partial class frm_CustomerBalance : Form
     {
-        
+
         public frm_CustomerBalance()
         {
             InitializeComponent();
@@ -45,8 +46,17 @@ namespace PrimeSolutions.Report.Customer
                 dgv_Balance.Rows[i].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId, "Sale"));
 
             }
-             
-        }
+
+            foreach (DataGridViewRow row in dgv_Balance.Rows)
+            {
+                if (row.Cells["TotalBalance"].Value.ToString() == "0")
+                {
+                    dgv_Balance.Rows.Remove(row);
+                }
+
+            }
+
+        } 
 
         private void bttn_Find_Click(object sender, EventArgs e)
         {
@@ -68,7 +78,7 @@ namespace PrimeSolutions.Report.Customer
 
         private void bttn_Excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_Balance,"CustomerBalance", dtp_date.Value.ToString("dd_MM_yyyy"));
+            _e.exporttoexcel(dgv_Balance,"CustomerBalance", DateTime.Now.ToString("dd_MM_yyyy"));
             
         }
 
@@ -77,7 +87,7 @@ namespace PrimeSolutions.Report.Customer
             DataTable DT = _common.DataGridView2DataTable(dgv_Balance,"Balance",0);
             CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
             SendData _obj = new SendData(_objfrm_ReportViewer.Balance);
-            _obj(DT, "Customer",dtp_date.Value.ToString("dd/MM/yyyy"));
+            _obj(DT, "Customer", DateTime.Now.ToString("dd/MM/yyyy"));
         }
     }
 }

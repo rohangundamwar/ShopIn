@@ -1,6 +1,6 @@
 ﻿namespace PrimeSolutions
 {
-    partial class frm_SaleUpdate
+    partial class frm_UpdateEstimate
     {
         /// <summary>
         /// Required designer variable.
