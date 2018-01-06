@@ -516,6 +516,12 @@
     <Compile Include="Purchase\frm_EstimatePurchace.Designer.cs">
       <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Quotation\frm_Qoutation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotation\frm_Qoutation.Designer.cs">
+      <DependentUpon>frm_Qoutation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\CrystalReoprt\frm_ReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -898,6 +904,9 @@
     <EmbeddedResource Include="Purchase\frm_EstimatePurchace.resx">
       <DependentUpon>frm_EstimatePurchace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Quotation\frm_Qoutation.resx">
+      <DependentUpon>frm_Qoutation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\CrystalReoprt\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -1122,6 +1131,7 @@
     <None Include="Resources\check.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\Graphicloads-Flat-Finance-Unlock %281%29.ico" />
+    <None Include="Resources\quotation.png" />
     <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />

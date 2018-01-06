@@ -429,6 +429,102 @@ namespace PrimeSolutions.Report.CrystalReport
             }
         }
 
+        public void Qoutation(string BillNo,string type)
+        {
+            string crname;
+            crname = "Select SaleBill from CrystalReport Where Type='Qoutation'";
+            DataTable dt_crname = _objsqlhelper.GetDataTable(crname);
+            ReportDocument _objReport = new ReportDocument();
+
+            _objReport.Load(Environment.CurrentDirectory + "\\" + dt_crname.Rows[0]["SaleBill"].ToString());
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "'";
+            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
+            _objReport.Database.Tables["CustomerBill"].SetDataSource(dt_BillingDetails);
+
+            DataTable dt_CustomerInfo = _sales.GetCustomerByBill(BillNo);
+            _objReport.Database.Tables["CustomerDetails"].SetDataSource(dt_CustomerInfo);
+
+            DataTable dt_ItemsDetails = _sales.GetBillItem(BillNo, "Sale");
+            _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
+
+            string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
+
+
+            try
+            {
+                double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["BillAmount"].ToString());
+                inword = Math.Round(inword);
+                int number = Convert.ToInt32(inword);
+                string inwordsString = _objCommon.NumberToWords(number);
+                _objReport.SetParameterValue("inwords", inwordsString);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+
+            try
+            {
+                if (Convert.ToDouble(qty) > 0)
+                {
+                    _objReport.SetParameterValue("Qty", qty);
+                }
+                else
+                {
+                    _objReport.SetParameterValue("Qty", "0");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+                MessageBox.Show(ex.ToString());
+            }
+
+            if (type == "Print")
+            {
+                if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        int Copies = _objPrinterSetting.copies;
+
+                        _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                        _objReport.PrintToPrinter(Copies, true, 0, 0);
+                        printresult = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    if (printresult == true)
+                    {
+                        printresult = false;
+                    }
+                }
+                else
+                {
+                    crReportViewer.ReportSource = _objReport;
+                    crReportViewer.Show();
+                    return;
+                }
+
+            }
+            else
+            {
+                crReportViewer.ReportSource = _objReport;
+                crReportViewer.Show();
+                return;
+            }
+        }
+
         public void SupplierBill(string RefrenceNo, string Type)
         {
             string SqlCrname;

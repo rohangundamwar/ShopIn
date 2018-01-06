@@ -35,6 +35,14 @@ namespace PrimeSolutions.Report.Sale
                     SendData _obj = new SendData(_objfrm_ReportViewer.CustomerBill);
                     _obj(bill.Text, "Print");
                 }
+
+                if (txt_type.Text == "Qoutation")
+                {
+                    CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.Qoutation);
+                    _obj(bill.Text, "Print");
+                }
+
                 else if (txt_type.Text == "Estimate")
                 {
                     CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
@@ -94,6 +102,15 @@ namespace PrimeSolutions.Report.Sale
                 _obj(bill.Text, "View");
                 _objfrm_ReportViewer.Show();
             }
+
+            if (txt_type.Text == "Qoutation")
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                SendData _obj = new SendData(_objfrm_ReportViewer.Qoutation);
+                _obj(bill.Text, "View");
+                _objfrm_ReportViewer.Show();
+            }
+
             else if (txt_type.Text == "Estimate")
             {
                 CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();

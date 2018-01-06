@@ -428,7 +428,7 @@ namespace PrimeSolutions
                 _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
             }
 
-            if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
+            if (txt_Barcode.Text == "" || (txt_Barcode.Text == string.Empty || txt_Barcode.Text == null))
             {
                 chk = true;
             }
@@ -566,7 +566,7 @@ namespace PrimeSolutions
                         else if (!_objCustmor.GetalooseItem(Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value)))
                         {
                             string barcode;
-                            if (dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == "" || dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == string.Empty)
+                            if (dgv_ItemInfo.Rows[i].Cells["Barcode"].Value == "" || dgv_ItemInfo.Rows[i].Cells[0].Value == "true")
                             {
                                 barcode = _objSQLHelper.GetMaxID("B", "0");
                             }

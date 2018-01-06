@@ -247,32 +247,32 @@ namespace PrimeSolutions.Library
 
         public DataTable GetBillItem(string BillNo, string Type)
         {
-            DataTable dt = new DataTable();
+            DataTable Item = new DataTable();
 
             if (Type == "Sale")
             {
                 string str = "Select * from BillItem where " + Type + "BillNo = '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
-                dt = _sql.GetDataTable(str);
+                DataTable dt = _sql.GetDataTable(str);
                 dt.Columns.Add("Amount");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
                 }
-                return dt;
+                Item = dt;
             }
 
             else if (Type == "Purchase")
             {
                 string str = "Select * from BillItem where PurchaseRef= '" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
-                dt = _sql.GetDataTable(str);
+                DataTable dt = _sql.GetDataTable(str);
                 dt.Columns.Add("Amount");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     dt.Rows[i]["Amount"] = Convert.ToString(Math.Round(Convert.ToDouble(dt.Rows[i]["Price"].ToString()) * Convert.ToDouble(dt.Rows[i]["Qty"].ToString()), 2));
                 }
-                return dt;
+                Item = dt;
             }
-            else return dt;
+            return Item;
             
         }
 

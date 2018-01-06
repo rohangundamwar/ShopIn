@@ -14,6 +14,7 @@ namespace PrimeSolutions.Common
     {
         SQLHelper _sql = new SQLHelper();
         cls_Activation _act = new cls_Activation();
+        
 
         public frm_Activation()
         {
