@@ -982,5 +982,10 @@ namespace PrimeSolutions
                 txt_HSN.Focus();
             }
         }
+
+        private void txt_GSTIN_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
