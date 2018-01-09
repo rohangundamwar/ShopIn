@@ -180,14 +180,15 @@
             this.pnl_Top.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Top.Name = "pnl_Top";
             this.pnl_Top.Size = new System.Drawing.Size(1085, 46);
-            this.pnl_Top.TabIndex = 0;
+            this.pnl_Top.TabIndex = 88;
             // 
             // dtp_Date
             // 
             this.dtp_Date.Location = new System.Drawing.Point(948, 12);
             this.dtp_Date.Name = "dtp_Date";
             this.dtp_Date.Size = new System.Drawing.Size(125, 23);
-            this.dtp_Date.TabIndex = 12;
+            this.dtp_Date.TabIndex = 999;
+            this.dtp_Date.TabStop = false;
             // 
             // txt_PurchaseRef
             // 
@@ -196,7 +197,7 @@
             this.txt_PurchaseRef.Location = new System.Drawing.Point(256, 15);
             this.txt_PurchaseRef.Name = "txt_PurchaseRef";
             this.txt_PurchaseRef.Size = new System.Drawing.Size(50, 16);
-            this.txt_PurchaseRef.TabIndex = 11;
+            this.txt_PurchaseRef.TabIndex = 0;
             this.txt_PurchaseRef.Text = "label1";
             // 
             // lbl_PRef
@@ -208,7 +209,7 @@
             this.lbl_PRef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PRef.Name = "lbl_PRef";
             this.lbl_PRef.Size = new System.Drawing.Size(64, 16);
-            this.lbl_PRef.TabIndex = 10;
+            this.lbl_PRef.TabIndex = 0;
             this.lbl_PRef.Text = "Ref No: ";
             // 
             // lbl_AccNo1
@@ -218,7 +219,7 @@
             this.lbl_AccNo1.Location = new System.Drawing.Point(83, 15);
             this.lbl_AccNo1.Name = "lbl_AccNo1";
             this.lbl_AccNo1.Size = new System.Drawing.Size(50, 16);
-            this.lbl_AccNo1.TabIndex = 9;
+            this.lbl_AccNo1.TabIndex = 0;
             this.lbl_AccNo1.Text = "label1";
             // 
             // lbl_Date
@@ -229,7 +230,7 @@
             this.lbl_Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Date.Name = "lbl_Date";
             this.lbl_Date.Size = new System.Drawing.Size(40, 16);
-            this.lbl_Date.TabIndex = 2;
+            this.lbl_Date.TabIndex = 0;
             this.lbl_Date.Text = "Date";
             // 
             // lbl_Purchase
@@ -241,7 +242,7 @@
             this.lbl_Purchase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Purchase.Name = "lbl_Purchase";
             this.lbl_Purchase.Size = new System.Drawing.Size(94, 23);
-            this.lbl_Purchase.TabIndex = 1;
+            this.lbl_Purchase.TabIndex = 0;
             this.lbl_Purchase.Text = "Purchase";
             // 
             // lbl_AccNo
@@ -253,7 +254,7 @@
             this.lbl_AccNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_AccNo.Name = "lbl_AccNo";
             this.lbl_AccNo.Size = new System.Drawing.Size(54, 16);
-            this.lbl_AccNo.TabIndex = 2;
+            this.lbl_AccNo.TabIndex = 0;
             this.lbl_AccNo.Text = "AccNo";
             // 
             // lbl_PurchaseFrom
@@ -265,7 +266,7 @@
             this.lbl_PurchaseFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PurchaseFrom.Name = "lbl_PurchaseFrom";
             this.lbl_PurchaseFrom.Size = new System.Drawing.Size(112, 16);
-            this.lbl_PurchaseFrom.TabIndex = 3;
+            this.lbl_PurchaseFrom.TabIndex = 0;
             this.lbl_PurchaseFrom.Text = "Purchase From";
             // 
             // lbl_State
@@ -277,7 +278,7 @@
             this.lbl_State.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_State.Name = "lbl_State";
             this.lbl_State.Size = new System.Drawing.Size(44, 16);
-            this.lbl_State.TabIndex = 4;
+            this.lbl_State.TabIndex = 0;
             this.lbl_State.Text = "State";
             // 
             // lbl_ContactNo
@@ -289,7 +290,7 @@
             this.lbl_ContactNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ContactNo.Name = "lbl_ContactNo";
             this.lbl_ContactNo.Size = new System.Drawing.Size(88, 16);
-            this.lbl_ContactNo.TabIndex = 5;
+            this.lbl_ContactNo.TabIndex = 0;
             this.lbl_ContactNo.Text = "Contact No.";
             // 
             // lbl_BillNo
@@ -301,7 +302,7 @@
             this.lbl_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_BillNo.Name = "lbl_BillNo";
             this.lbl_BillNo.Size = new System.Drawing.Size(127, 16);
-            this.lbl_BillNo.TabIndex = 6;
+            this.lbl_BillNo.TabIndex = 0;
             this.lbl_BillNo.Text = "Purchase Bill No.";
             // 
             // pnl_SupplierInfo
@@ -328,7 +329,7 @@
             this.pnl_SupplierInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_SupplierInfo.Name = "pnl_SupplierInfo";
             this.pnl_SupplierInfo.Size = new System.Drawing.Size(1074, 84);
-            this.pnl_SupplierInfo.TabIndex = 7;
+            this.pnl_SupplierInfo.TabIndex = 111;
             // 
             // lbl_Address
             // 
@@ -339,7 +340,7 @@
             this.lbl_Address.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Address.Name = "lbl_Address";
             this.lbl_Address.Size = new System.Drawing.Size(66, 16);
-            this.lbl_Address.TabIndex = 21;
+            this.lbl_Address.TabIndex = 0;
             this.lbl_Address.Text = "Address";
             // 
             // cmb_State
@@ -403,7 +404,7 @@
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
             this.txt_GSTIN.Size = new System.Drawing.Size(117, 16);
-            this.txt_GSTIN.TabIndex = 8;
+            this.txt_GSTIN.TabIndex = 7;
             this.txt_GSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_GSTIN_KeyDown);
             // 
             // label4
@@ -415,7 +416,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 16);
-            this.label4.TabIndex = 18;
+            this.label4.TabIndex = 0;
             this.label4.Text = "GSTIN";
             // 
             // txt_PAN
@@ -424,7 +425,7 @@
             this.txt_PAN.Location = new System.Drawing.Point(403, 50);
             this.txt_PAN.Name = "txt_PAN";
             this.txt_PAN.Size = new System.Drawing.Size(132, 23);
-            this.txt_PAN.TabIndex = 7;
+            this.txt_PAN.TabIndex = 6;
             this.txt_PAN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PAN_KeyDown);
             // 
             // label3
@@ -436,7 +437,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 16);
-            this.label3.TabIndex = 16;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Pan No";
             // 
             // lbl_Balance
@@ -460,7 +461,7 @@
             this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BillNo.Name = "txt_BillNo";
             this.txt_BillNo.Size = new System.Drawing.Size(100, 16);
-            this.txt_BillNo.TabIndex = 6;
+            this.txt_BillNo.TabIndex = 8;
             this.txt_BillNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BillNo_KeyDown);
             this.txt_BillNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BillNo_KeyPress);
             // 
@@ -497,7 +498,7 @@
             this.lbl_City.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_City.Name = "lbl_City";
             this.lbl_City.Size = new System.Drawing.Size(34, 16);
-            this.lbl_City.TabIndex = 10;
+            this.lbl_City.TabIndex = 0;
             this.lbl_City.Text = "City";
             // 
             // txt_Address
@@ -573,7 +574,7 @@
             this.pnl_ItemInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_ItemInfo.Name = "pnl_ItemInfo";
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1074, 155);
-            this.pnl_ItemInfo.TabIndex = 8;
+            this.pnl_ItemInfo.TabIndex = 112;
             this.pnl_ItemInfo.Tag = "Item";
             // 
             // label9
@@ -582,7 +583,7 @@
             this.label9.Location = new System.Drawing.Point(990, 84);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(16, 16);
-            this.label9.TabIndex = 243;
+            this.label9.TabIndex = 0;
             this.label9.Text = "₹";
             // 
             // label2
@@ -591,7 +592,7 @@
             this.label2.Location = new System.Drawing.Point(638, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(16, 16);
-            this.label2.TabIndex = 242;
+            this.label2.TabIndex = 0;
             this.label2.Text = "₹";
             // 
             // label18
@@ -600,7 +601,7 @@
             this.label18.Location = new System.Drawing.Point(257, 84);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(16, 16);
-            this.label18.TabIndex = 241;
+            this.label18.TabIndex = 0;
             this.label18.Text = "₹";
             // 
             // cmb_size
@@ -613,7 +614,7 @@
             this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_size.Name = "cmb_size";
             this.cmb_size.Size = new System.Drawing.Size(86, 24);
-            this.cmb_size.TabIndex = 44;
+            this.cmb_size.TabIndex = 12;
             this.cmb_size.ValueMember = "SubCategory";
             this.cmb_size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_size_KeyDown);
             // 
@@ -626,7 +627,7 @@
             this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_size.Name = "lbl_size";
             this.lbl_size.Size = new System.Drawing.Size(38, 16);
-            this.lbl_size.TabIndex = 43;
+            this.lbl_size.TabIndex = 0;
             this.lbl_size.Text = "Size";
             // 
             // label8
@@ -635,7 +636,7 @@
             this.label8.Location = new System.Drawing.Point(959, 84);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(18, 16);
-            this.label8.TabIndex = 42;
+            this.label8.TabIndex = 0;
             this.label8.Text = "%";
             // 
             // label6
@@ -644,7 +645,7 @@
             this.label6.Location = new System.Drawing.Point(597, 84);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 16);
-            this.label6.TabIndex = 41;
+            this.label6.TabIndex = 0;
             this.label6.Text = "%";
             // 
             // label5
@@ -653,7 +654,7 @@
             this.label5.Location = new System.Drawing.Point(212, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 16);
-            this.label5.TabIndex = 40;
+            this.label5.TabIndex = 0;
             this.label5.Text = "%";
             // 
             // txt_HSN
@@ -664,7 +665,7 @@
             this.txt_HSN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_HSN.Name = "txt_HSN";
             this.txt_HSN.Size = new System.Drawing.Size(117, 16);
-            this.txt_HSN.TabIndex = 12;
+            this.txt_HSN.TabIndex = 13;
             this.txt_HSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_HSN_KeyDown);
             // 
             // lbl_HSN
@@ -676,7 +677,7 @@
             this.lbl_HSN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_HSN.Name = "lbl_HSN";
             this.lbl_HSN.Size = new System.Drawing.Size(44, 16);
-            this.lbl_HSN.TabIndex = 39;
+            this.lbl_HSN.TabIndex = 0;
             this.lbl_HSN.Text = "HSN ";
             // 
             // lbl_AmtIGST
@@ -685,7 +686,7 @@
             this.lbl_AmtIGST.Location = new System.Drawing.Point(1014, 84);
             this.lbl_AmtIGST.Name = "lbl_AmtIGST";
             this.lbl_AmtIGST.Size = new System.Drawing.Size(16, 16);
-            this.lbl_AmtIGST.TabIndex = 38;
+            this.lbl_AmtIGST.TabIndex = 0;
             this.lbl_AmtIGST.Text = "0";
             // 
             // lbl_AmtSGST
@@ -694,7 +695,7 @@
             this.lbl_AmtSGST.Location = new System.Drawing.Point(671, 84);
             this.lbl_AmtSGST.Name = "lbl_AmtSGST";
             this.lbl_AmtSGST.Size = new System.Drawing.Size(16, 16);
-            this.lbl_AmtSGST.TabIndex = 37;
+            this.lbl_AmtSGST.TabIndex = 0;
             this.lbl_AmtSGST.Text = "0";
             // 
             // lbl_AmtCGST
@@ -703,7 +704,7 @@
             this.lbl_AmtCGST.Location = new System.Drawing.Point(289, 84);
             this.lbl_AmtCGST.Name = "lbl_AmtCGST";
             this.lbl_AmtCGST.Size = new System.Drawing.Size(16, 16);
-            this.lbl_AmtCGST.TabIndex = 36;
+            this.lbl_AmtCGST.TabIndex = 0;
             this.lbl_AmtCGST.Text = "0";
             // 
             // lbl_IGST
@@ -715,7 +716,7 @@
             this.lbl_IGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_IGST.Name = "lbl_IGST";
             this.lbl_IGST.Size = new System.Drawing.Size(43, 16);
-            this.lbl_IGST.TabIndex = 35;
+            this.lbl_IGST.TabIndex = 0;
             this.lbl_IGST.Text = "IGST";
             // 
             // txt_IGST
@@ -723,7 +724,7 @@
             this.txt_IGST.Location = new System.Drawing.Point(892, 81);
             this.txt_IGST.Name = "txt_IGST";
             this.txt_IGST.Size = new System.Drawing.Size(61, 23);
-            this.txt_IGST.TabIndex = 20;
+            this.txt_IGST.TabIndex = 21;
             this.txt_IGST.TextChanged += new System.EventHandler(this.txt_IGST_TextChanged);
             this.txt_IGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_IGST_KeyDown);
             this.txt_IGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_IGST_KeyPress);
@@ -737,7 +738,7 @@
             this.lbl_SGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SGST.Name = "lbl_SGST";
             this.lbl_SGST.Size = new System.Drawing.Size(49, 16);
-            this.lbl_SGST.TabIndex = 33;
+            this.lbl_SGST.TabIndex = 0;
             this.lbl_SGST.Text = "SGST";
             // 
             // txt_SGST
@@ -745,7 +746,7 @@
             this.txt_SGST.Location = new System.Drawing.Point(516, 81);
             this.txt_SGST.Name = "txt_SGST";
             this.txt_SGST.Size = new System.Drawing.Size(75, 23);
-            this.txt_SGST.TabIndex = 19;
+            this.txt_SGST.TabIndex = 20;
             this.txt_SGST.TextChanged += new System.EventHandler(this.txt_SGST_TextChanged);
             this.txt_SGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SGST_KeyDown);
             this.txt_SGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_SGST_KeyPress);
@@ -759,7 +760,7 @@
             this.lbl_CGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_CGST.Name = "lbl_CGST";
             this.lbl_CGST.Size = new System.Drawing.Size(49, 16);
-            this.lbl_CGST.TabIndex = 31;
+            this.lbl_CGST.TabIndex = 0;
             this.lbl_CGST.Text = "CGST";
             // 
             // txt_CGST
@@ -767,7 +768,7 @@
             this.txt_CGST.Location = new System.Drawing.Point(139, 81);
             this.txt_CGST.Name = "txt_CGST";
             this.txt_CGST.Size = new System.Drawing.Size(70, 23);
-            this.txt_CGST.TabIndex = 18;
+            this.txt_CGST.TabIndex = 19;
             this.txt_CGST.TextChanged += new System.EventHandler(this.txt_CGST_TextChanged);
             this.txt_CGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_CGST_KeyDown);
             this.txt_CGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_CGST_KeyPress);
@@ -780,7 +781,7 @@
             this.txt_BatchNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BatchNo.Name = "txt_BatchNo";
             this.txt_BatchNo.Size = new System.Drawing.Size(97, 16);
-            this.txt_BatchNo.TabIndex = 16;
+            this.txt_BatchNo.TabIndex = 17;
             this.txt_BatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BatchNo_KeyDown);
             // 
             // label7
@@ -792,7 +793,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 16);
-            this.label7.TabIndex = 28;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Batch No";
             // 
             // txt_Barcode
@@ -815,7 +816,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
-            this.label1.TabIndex = 22;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Barcode";
             // 
             // pnl_Button
@@ -830,7 +831,7 @@
             this.pnl_Button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_Button.Name = "pnl_Button";
             this.pnl_Button.Size = new System.Drawing.Size(1074, 41);
-            this.pnl_Button.TabIndex = 21;
+            this.pnl_Button.TabIndex = 22;
             // 
             // bttn_All
             // 
@@ -839,7 +840,8 @@
             this.bttn_All.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_All.Name = "bttn_All";
             this.bttn_All.Size = new System.Drawing.Size(76, 28);
-            this.bttn_All.TabIndex = 22;
+            this.bttn_All.TabIndex = 999;
+            this.bttn_All.TabStop = false;
             this.bttn_All.Text = "Clear";
             this.bttn_All.UseVisualStyleBackColor = true;
             this.bttn_All.Click += new System.EventHandler(this.bttn_All_Click);
@@ -851,7 +853,8 @@
             this.bttn_Delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Delete.Name = "bttn_Delete";
             this.bttn_Delete.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Delete.TabIndex = 0;
+            this.bttn_Delete.TabIndex = 999;
+            this.bttn_Delete.TabStop = false;
             this.bttn_Delete.Text = "Delete";
             this.bttn_Delete.UseVisualStyleBackColor = true;
             this.bttn_Delete.Click += new System.EventHandler(this.bttn_Delete_Click);
@@ -863,7 +866,8 @@
             this.bttn_Reset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Reset.Name = "bttn_Reset";
             this.bttn_Reset.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Reset.TabIndex = 0;
+            this.bttn_Reset.TabIndex = 999;
+            this.bttn_Reset.TabStop = false;
             this.bttn_Reset.Text = "Reset";
             this.bttn_Reset.UseVisualStyleBackColor = true;
             this.bttn_Reset.Click += new System.EventHandler(this.bttn_Reset_Click);
@@ -875,7 +879,8 @@
             this.bttn_Update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Update.Name = "bttn_Update";
             this.bttn_Update.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Update.TabIndex = 0;
+            this.bttn_Update.TabIndex = 999;
+            this.bttn_Update.TabStop = false;
             this.bttn_Update.Text = "Update";
             this.bttn_Update.UseVisualStyleBackColor = true;
             this.bttn_Update.Click += new System.EventHandler(this.bttn_Update_Click);
@@ -887,7 +892,7 @@
             this.bttn_Add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Add.Name = "bttn_Add";
             this.bttn_Add.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Add.TabIndex = 21;
+            this.bttn_Add.TabIndex = 33;
             this.bttn_Add.Text = "Add";
             this.bttn_Add.UseVisualStyleBackColor = true;
             this.bttn_Add.Click += new System.EventHandler(this.bttn_Add_Click);
@@ -901,7 +906,7 @@
             this.txt_Amt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Amt.Name = "txt_Amt";
             this.txt_Amt.Size = new System.Drawing.Size(134, 16);
-            this.txt_Amt.TabIndex = 15;
+            this.txt_Amt.TabIndex = 16;
             this.txt_Amt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Amt_KeyPress);
             // 
             // lbl_Amount
@@ -913,7 +918,7 @@
             this.lbl_Amount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Amount.Name = "lbl_Amount";
             this.lbl_Amount.Size = new System.Drawing.Size(59, 16);
-            this.lbl_Amount.TabIndex = 19;
+            this.lbl_Amount.TabIndex = 0;
             this.lbl_Amount.Text = "Amount";
             // 
             // txt_Qty
@@ -924,7 +929,7 @@
             this.txt_Qty.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Qty.Name = "txt_Qty";
             this.txt_Qty.Size = new System.Drawing.Size(44, 16);
-            this.txt_Qty.TabIndex = 14;
+            this.txt_Qty.TabIndex = 15;
             this.txt_Qty.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
             this.txt_Qty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Qty_KeyDown);
             this.txt_Qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Qty_KeyPress);
@@ -939,7 +944,7 @@
             this.lbl_Qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Qty.Name = "lbl_Qty";
             this.lbl_Qty.Size = new System.Drawing.Size(64, 16);
-            this.lbl_Qty.TabIndex = 17;
+            this.lbl_Qty.TabIndex = 0;
             this.lbl_Qty.Text = "Quantity";
             // 
             // txt_SellingAmt
@@ -950,7 +955,7 @@
             this.txt_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SellingAmt.Name = "txt_SellingAmt";
             this.txt_SellingAmt.Size = new System.Drawing.Size(117, 16);
-            this.txt_SellingAmt.TabIndex = 17;
+            this.txt_SellingAmt.TabIndex = 18;
             this.txt_SellingAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SellingAmt_KeyDown);
             this.txt_SellingAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_SellingAmt_KeyPress);
             // 
@@ -963,7 +968,7 @@
             this.lbl_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SellingAmt.Name = "lbl_SellingAmt";
             this.lbl_SellingAmt.Size = new System.Drawing.Size(86, 16);
-            this.lbl_SellingAmt.TabIndex = 15;
+            this.lbl_SellingAmt.TabIndex = 0;
             this.lbl_SellingAmt.Text = "Selling Amt";
             // 
             // txt_PurchaseAmt
@@ -974,7 +979,7 @@
             this.txt_PurchaseAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PurchaseAmt.Name = "txt_PurchaseAmt";
             this.txt_PurchaseAmt.Size = new System.Drawing.Size(119, 16);
-            this.txt_PurchaseAmt.TabIndex = 13;
+            this.txt_PurchaseAmt.TabIndex = 14;
             this.txt_PurchaseAmt.TextChanged += new System.EventHandler(this.txt_PurchaseAmt_TextChanged);
             this.txt_PurchaseAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PurchaseAmt_KeyDown);
             this.txt_PurchaseAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PurchaseAmt_KeyPress);
@@ -1021,7 +1026,7 @@
             this.lbl_Category.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Category.Name = "lbl_Category";
             this.lbl_Category.Size = new System.Drawing.Size(71, 16);
-            this.lbl_Category.TabIndex = 3;
+            this.lbl_Category.TabIndex = 0;
             this.lbl_Category.Text = "Category";
             // 
             // lbl_Rate
@@ -1033,7 +1038,7 @@
             this.lbl_Rate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Rate.Name = "lbl_Rate";
             this.lbl_Rate.Size = new System.Drawing.Size(103, 16);
-            this.lbl_Rate.TabIndex = 5;
+            this.lbl_Rate.TabIndex = 0;
             this.lbl_Rate.Text = "Purchase Amt";
             // 
             // lbl_SubCategory
@@ -1045,7 +1050,7 @@
             this.lbl_SubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SubCategory.Name = "lbl_SubCategory";
             this.lbl_SubCategory.Size = new System.Drawing.Size(98, 16);
-            this.lbl_SubCategory.TabIndex = 4;
+            this.lbl_SubCategory.TabIndex = 0;
             this.lbl_SubCategory.Text = "SubCategory";
             // 
             // dgv_ItemInfo
@@ -1084,7 +1089,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1074, 160);
-            this.dgv_ItemInfo.TabIndex = 9;
+            this.dgv_ItemInfo.TabIndex = 0;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
             // 
             // Chk
@@ -1234,7 +1239,7 @@
             this.pnl_PaymentOpt.Location = new System.Drawing.Point(6, 461);
             this.pnl_PaymentOpt.Name = "pnl_PaymentOpt";
             this.pnl_PaymentOpt.Size = new System.Drawing.Size(1074, 114);
-            this.pnl_PaymentOpt.TabIndex = 10;
+            this.pnl_PaymentOpt.TabIndex = 34;
             // 
             // groupBox1
             // 
@@ -1242,7 +1247,7 @@
             this.groupBox1.Location = new System.Drawing.Point(923, 41);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(129, 62);
-            this.groupBox1.TabIndex = 240;
+            this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Payment";
             // 
@@ -1260,7 +1265,7 @@
             this.cmb_PayMode.Location = new System.Drawing.Point(5, 31);
             this.cmb_PayMode.Name = "cmb_PayMode";
             this.cmb_PayMode.Size = new System.Drawing.Size(118, 24);
-            this.cmb_PayMode.TabIndex = 23;
+            this.cmb_PayMode.TabIndex = 45;
             this.cmb_PayMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_PayMode_KeyDown);
             // 
             // txt_TotalBill
@@ -1270,7 +1275,7 @@
             this.txt_TotalBill.Location = new System.Drawing.Point(778, 52);
             this.txt_TotalBill.Name = "txt_TotalBill";
             this.txt_TotalBill.Size = new System.Drawing.Size(50, 16);
-            this.txt_TotalBill.TabIndex = 239;
+            this.txt_TotalBill.TabIndex = 0;
             this.txt_TotalBill.Text = "label9";
             // 
             // txt_OtherCharges
@@ -1281,7 +1286,7 @@
             this.txt_OtherCharges.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_OtherCharges.Name = "txt_OtherCharges";
             this.txt_OtherCharges.Size = new System.Drawing.Size(92, 16);
-            this.txt_OtherCharges.TabIndex = 237;
+            this.txt_OtherCharges.TabIndex = 41;
             this.txt_OtherCharges.TextChanged += new System.EventHandler(this.txt_OtherCharges_TextChanged);
             this.txt_OtherCharges.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_OtherCharges_KeyDown);
             // 
@@ -1294,7 +1299,7 @@
             this.lbl_OtherCharges.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_OtherCharges.Name = "lbl_OtherCharges";
             this.lbl_OtherCharges.Size = new System.Drawing.Size(107, 16);
-            this.lbl_OtherCharges.TabIndex = 238;
+            this.lbl_OtherCharges.TabIndex = 0;
             this.lbl_OtherCharges.Text = "Other Charges";
             // 
             // lbl_BalAmt
@@ -1304,7 +1309,7 @@
             this.lbl_BalAmt.Location = new System.Drawing.Point(495, 52);
             this.lbl_BalAmt.Name = "lbl_BalAmt";
             this.lbl_BalAmt.Size = new System.Drawing.Size(122, 16);
-            this.lbl_BalAmt.TabIndex = 236;
+            this.lbl_BalAmt.TabIndex = 0;
             this.lbl_BalAmt.Text = "Current Balance";
             // 
             // txt_BalAmt
@@ -1314,7 +1319,7 @@
             this.txt_BalAmt.Location = new System.Drawing.Point(637, 52);
             this.txt_BalAmt.Name = "txt_BalAmt";
             this.txt_BalAmt.Size = new System.Drawing.Size(32, 16);
-            this.txt_BalAmt.TabIndex = 235;
+            this.txt_BalAmt.TabIndex = 0;
             this.txt_BalAmt.Text = "000";
             // 
             // txt_OldBalance
@@ -1323,7 +1328,7 @@
             this.txt_OldBalance.Location = new System.Drawing.Point(996, 14);
             this.txt_OldBalance.Name = "txt_OldBalance";
             this.txt_OldBalance.Size = new System.Drawing.Size(24, 16);
-            this.txt_OldBalance.TabIndex = 234;
+            this.txt_OldBalance.TabIndex = 0;
             this.txt_OldBalance.Text = "00";
             // 
             // txt_IGSTValue
@@ -1346,7 +1351,7 @@
             this.lblIGST1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIGST1.Name = "lblIGST1";
             this.lblIGST1.Size = new System.Drawing.Size(43, 16);
-            this.lblIGST1.TabIndex = 231;
+            this.lblIGST1.TabIndex = 0;
             this.lblIGST1.Text = "IGST";
             // 
             // txt_SGSTValue
@@ -1369,7 +1374,7 @@
             this.lbl_SGST1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SGST1.Name = "lbl_SGST1";
             this.lbl_SGST1.Size = new System.Drawing.Size(49, 16);
-            this.lbl_SGST1.TabIndex = 229;
+            this.lbl_SGST1.TabIndex = 0;
             this.lbl_SGST1.Text = "SGST";
             // 
             // txt_CGSTValue
@@ -1393,7 +1398,7 @@
             this.lbl_BalanceAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_BalanceAmt.Name = "lbl_BalanceAmt";
             this.lbl_BalanceAmt.Size = new System.Drawing.Size(93, 16);
-            this.lbl_BalanceAmt.TabIndex = 29;
+            this.lbl_BalanceAmt.TabIndex = 0;
             this.lbl_BalanceAmt.Text = "Old Balance";
             // 
             // txt_PaidAmt
@@ -1404,7 +1409,7 @@
             this.txt_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PaidAmt.Name = "txt_PaidAmt";
             this.txt_PaidAmt.Size = new System.Drawing.Size(92, 16);
-            this.txt_PaidAmt.TabIndex = 22;
+            this.txt_PaidAmt.TabIndex = 42;
             this.txt_PaidAmt.TextChanged += new System.EventHandler(this.txt_PaidAmt_TextChanged);
             this.txt_PaidAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PaidAmt_KeyDown);
             this.txt_PaidAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PaidAmt_KeyPress);
@@ -1418,7 +1423,7 @@
             this.lbl_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PaidAmt.Name = "lbl_PaidAmt";
             this.lbl_PaidAmt.Size = new System.Drawing.Size(74, 16);
-            this.lbl_PaidAmt.TabIndex = 27;
+            this.lbl_PaidAmt.TabIndex = 0;
             this.lbl_PaidAmt.Text = "Paid  Amt";
             // 
             // txt_NetAmt
@@ -1444,7 +1449,7 @@
             this.lbl_NetAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_NetAmount.Name = "lbl_NetAmount";
             this.lbl_NetAmount.Size = new System.Drawing.Size(62, 16);
-            this.lbl_NetAmount.TabIndex = 25;
+            this.lbl_NetAmount.TabIndex = 0;
             this.lbl_NetAmount.Text = "Net Amt";
             // 
             // lbl_CSGT1
@@ -1456,7 +1461,7 @@
             this.lbl_CSGT1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_CSGT1.Name = "lbl_CSGT1";
             this.lbl_CSGT1.Size = new System.Drawing.Size(49, 16);
-            this.lbl_CSGT1.TabIndex = 23;
+            this.lbl_CSGT1.TabIndex = 0;
             this.lbl_CSGT1.Text = "CGST";
             // 
             // txt_TotalAmt
@@ -1481,7 +1486,7 @@
             this.lbl_TotalAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_TotalAmt.Name = "lbl_TotalAmt";
             this.lbl_TotalAmt.Size = new System.Drawing.Size(74, 16);
-            this.lbl_TotalAmt.TabIndex = 21;
+            this.lbl_TotalAmt.TabIndex = 0;
             this.lbl_TotalAmt.Text = "Total Amt";
             // 
             // pnl_Bottom
@@ -1494,7 +1499,7 @@
             this.pnl_Bottom.Location = new System.Drawing.Point(0, 577);
             this.pnl_Bottom.Name = "pnl_Bottom";
             this.pnl_Bottom.Size = new System.Drawing.Size(1085, 44);
-            this.pnl_Bottom.TabIndex = 11;
+            this.pnl_Bottom.TabIndex = 46;
             // 
             // bttn_Clear
             // 
@@ -1503,7 +1508,8 @@
             this.bttn_Clear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Clear.Name = "bttn_Clear";
             this.bttn_Clear.Size = new System.Drawing.Size(82, 28);
-            this.bttn_Clear.TabIndex = 19;
+            this.bttn_Clear.TabIndex = 49;
+            this.bttn_Clear.TabStop = false;
             this.bttn_Clear.Text = "Clear";
             this.bttn_Clear.UseVisualStyleBackColor = true;
             this.bttn_Clear.Click += new System.EventHandler(this.bttn_Clear_Click);
@@ -1515,7 +1521,8 @@
             this.bttn_Close.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Close.Name = "bttn_Close";
             this.bttn_Close.Size = new System.Drawing.Size(82, 28);
-            this.bttn_Close.TabIndex = 18;
+            this.bttn_Close.TabIndex = 48;
+            this.bttn_Close.TabStop = false;
             this.bttn_Close.Text = "Close";
             this.bttn_Close.UseVisualStyleBackColor = true;
             this.bttn_Close.Click += new System.EventHandler(this.bttn_Close_Click);
@@ -1528,7 +1535,7 @@
             this.bttn_Purchase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Purchase.Name = "bttn_Purchase";
             this.bttn_Purchase.Size = new System.Drawing.Size(96, 28);
-            this.bttn_Purchase.TabIndex = 24;
+            this.bttn_Purchase.TabIndex = 47;
             this.bttn_Purchase.Text = "Purchase";
             this.bttn_Purchase.UseVisualStyleBackColor = true;
             this.bttn_Purchase.Click += new System.EventHandler(this.bttn_Purchase_Click);
