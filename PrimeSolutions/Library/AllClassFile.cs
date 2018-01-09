@@ -9,9 +9,9 @@ namespace PrimeSolutions.Library
     public class AllClassFile
     {
         SQLHelper _objsqlhelper = new SQLHelper();
-        BarTender.ApplicationClass btApp;
-        BarTender.Format btFormat;
-        BarTender.Messages btMsgs;
+        //BarTender.ApplicationClass btApp;
+        //BarTender.Format btFormat;
+        //BarTender.Messages btMsgs;
 
         public DataTable getStock()
         {
@@ -21,88 +21,88 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt, string size, string total, int i)
-        {
-            btApp = new BarTender.ApplicationClass();
-            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\Barcode.btw", false, "");
-            try
-            {
-                btFormat.SetNamedSubStringValue("barcode", barcode);
+        //public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt, string size, string total, int i)
+        //{
+        //    btApp = new BarTender.ApplicationClass();
+        //    btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\Barcode.btw", false, "");
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("barcode", barcode);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("category", category);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("category", category);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("size", size);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("size", size);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("subcategory", subcategory);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("subcategory", subcategory);
 
-            }
-            catch { }
+        //    }
+        //    catch { }
 
-            try
-            {
-                btFormat.SetNamedSubStringValue("sellingamt", sellingamt);
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("sellingamt", sellingamt);
 
-            }
-            catch { }
+        //    }
+        //    catch { }
 
-            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
-        }
+        //    btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+        //}
 
-        public void printBarcode(string barcode1, string barcode2, string category1, string category2, string subcategory1, string subcategory2, string sellingamt1, string sellingamt2, string size1, string size2, int i)
-        {
-            btApp = new BarTender.ApplicationClass();
-            btFormat = btApp.Formats.Open(System.Windows.Forms.Application.StartupPath + "\\Barcode2.btw", false, "");
-            try
-            {
-                btFormat.SetNamedSubStringValue("barcode1", barcode1);
-                btFormat.SetNamedSubStringValue("barcode2", barcode2);
+        //public void printBarcode(string barcode1, string barcode2, string category1, string category2, string subcategory1, string subcategory2, string sellingamt1, string sellingamt2, string size1, string size2, int i)
+        //{
+        //    btApp = new BarTender.ApplicationClass();
+        //    btFormat = btApp.Formats.Open(System.Windows.Forms.Application.StartupPath + "\\Barcode2.btw", false, "");
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("barcode1", barcode1);
+        //        btFormat.SetNamedSubStringValue("barcode2", barcode2);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("category1", category1);
-                btFormat.SetNamedSubStringValue("category2", category2);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("category1", category1);
+        //        btFormat.SetNamedSubStringValue("category2", category2);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("subcategory1", subcategory1);
-                btFormat.SetNamedSubStringValue("subcategory2", subcategory2);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("subcategory1", subcategory1);
+        //        btFormat.SetNamedSubStringValue("subcategory2", subcategory2);
 
-            }
-            catch { }
+        //    }
+        //    catch { }
 
-            try
-            {
-                btFormat.SetNamedSubStringValue("sellingamt1", sellingamt1);
-                btFormat.SetNamedSubStringValue("sellingamt2", sellingamt2);
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("sellingamt1", sellingamt1);
+        //        btFormat.SetNamedSubStringValue("sellingamt2", sellingamt2);
 
-            }
-            catch { }
-            try
-            {
-                btFormat.SetNamedSubStringValue("size1", size1);
-                btFormat.SetNamedSubStringValue("size2", size2);
+        //    }
+        //    catch { }
+        //    try
+        //    {
+        //        btFormat.SetNamedSubStringValue("size1", size1);
+        //        btFormat.SetNamedSubStringValue("size2", size2);
 
-            }
-            catch { }
-            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+        //    }
+        //    catch { }
+        //    btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
 
-        }
+        //}
 
         internal string GetState()
         {
@@ -289,9 +289,9 @@ namespace PrimeSolutions.Library
         }
 
 
-        internal DataTable getBarcodeItemByBilNo(string PBillNo)
+        internal DataTable getBarcodeItemByRefrence(string PBillNo)
         {
-            string str = "Select  * From BillItem Where (Barcode != '') AND barcodePrint = 'true' AND PurchaseRef = '" + PBillNo + "' And type = 'Purchase'";
+            string str = "Select  * From BillItem Where (Barcode != '') AND PurchaseRef = '" + PBillNo + "' And type = 'Purchase'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

@@ -51,6 +51,7 @@
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseBilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.qoutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.qoutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -179,7 +179,7 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -187,15 +187,15 @@
             // 
             this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
-            this.barcodeEntryToolStripMenuItem.Text = "Barcode Reprint";
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.barcodeEntryToolStripMenuItem.Text = "Barcode Entry";
             this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // purchaseItemToolStripMenuItem
             // 
             this.purchaseItemToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("purchaseItemToolStripMenuItem.Image")));
             this.purchaseItemToolStripMenuItem.Name = "purchaseItemToolStripMenuItem";
-            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.purchaseItemToolStripMenuItem.Text = "Purchase Item";
             this.purchaseItemToolStripMenuItem.Click += new System.EventHandler(this.purchaseItemToolStripMenuItem_Click);
             // 
@@ -308,6 +308,16 @@
             this.purchaseBilToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.purchaseBilToolStripMenuItem.Text = "Purchase Bill";
             this.purchaseBilToolStripMenuItem.Click += new System.EventHandler(this.purchaseBilToolStripMenuItem_Click);
+            // 
+            // qoutationToolStripMenuItem
+            // 
+            this.qoutationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.qoutationToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.quotation;
+            this.qoutationToolStripMenuItem.Name = "qoutationToolStripMenuItem";
+            this.qoutationToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
+            this.qoutationToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
+            this.qoutationToolStripMenuItem.Text = "Qoutation";
+            this.qoutationToolStripMenuItem.Click += new System.EventHandler(this.qoutationToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -700,16 +710,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
-            // 
-            // qoutationToolStripMenuItem
-            // 
-            this.qoutationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.qoutationToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.quotation;
-            this.qoutationToolStripMenuItem.Name = "qoutationToolStripMenuItem";
-            this.qoutationToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.qoutationToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
-            this.qoutationToolStripMenuItem.Text = "Qoutation";
-            this.qoutationToolStripMenuItem.Click += new System.EventHandler(this.qoutationToolStripMenuItem_Click);
             // 
             // MainForm
             // 

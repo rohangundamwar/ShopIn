@@ -80,7 +80,7 @@ namespace PrimeSolutions.Library
         public DataTable GetSupplierBill(string ID)
         {
             DataTable dt;
-            string str = "select BillNo,Amount,Date,Type,RefrenceNo from SupplierBill Where SupplierNo='" + ID+"'";
+            string str = "select BillNo,Amount,Date,Type,RefrenceNo from SupplierBill Where SupplierNo='"+ID+"'";
             dt = _sql.GetDataTable(str);
             return dt;
         }
