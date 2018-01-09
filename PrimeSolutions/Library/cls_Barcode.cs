@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BarTender;
 
 namespace PrimeSolutions.Library
 {
     class cls_Barcode
     {
         SQLHelper _sql = new SQLHelper();
+
         public void PrintBarcodeA4(int i)
         {
             BarTender.Application btApp;
@@ -41,8 +43,6 @@ namespace PrimeSolutions.Library
             BarTender.QueryPrompt btQueryPrompt;
             // Create a new instance of BarTender
             btApp = new BarTender.Application();
-            // Set the BarTender application visible
-            btApp.Visible = true;
             // Open a BarTender document
             btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "Barcode1Test");
             btDb = btFormat.Databases.GetDatabase(1);
@@ -62,8 +62,6 @@ namespace PrimeSolutions.Library
             BarTender.QueryPrompt btQueryPrompt;
             // Create a new instance of BarTender
             btApp = new BarTender.Application();
-            // Set the BarTender application visible
-            btApp.Visible = true;
             // Open a BarTender document
             btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "Barcode2Test");
             btDb = btFormat.Databases.GetDatabase(1);

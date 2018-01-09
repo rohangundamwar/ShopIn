@@ -44,7 +44,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetBillItemByRefrence(string BillNo, string Type)
         {
-            string str = "Select * from BillItem where PurchaseRef = '" + BillNo + "'";
+            string str = "Select * from BillItem where PurchaseRef = '" + BillNo + "' where BarcodePrint=1";
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }
@@ -65,15 +65,7 @@ namespace PrimeSolutions.Library
                 {
                     if (Convert.ToBoolean(dt.Rows[i]["BarcodePrint"]))
                     {
-                        string barcode;
-                        if (Convert.ToString(dt.Rows[i]["Barcode"]) == "" || Convert.ToString(dt.Rows[i]["Barcode"]) == string.Empty)
-                        {
-                            barcode = _objSqlhelper.GetMaxID("B", "0");
-                        }
-                        else
-                        {
-                            barcode = Convert.ToString(dt.Rows[i]["Barcode"]);
-                        }
+                        string barcode = Convert.ToString(dt.Rows[i]["Barcode"]);
                         int Qty = Convert.ToInt32(dt.Rows[i]["Qty"]);
                         string Category = Convert.ToString(dt.Rows[i]["Category"]);
                         string subcategory = Convert.ToString(dt.Rows[i]["SubCategory"]);
@@ -87,7 +79,7 @@ namespace PrimeSolutions.Library
                     }
                 }
             }
-            //DeleteTemp();
+            
 
         }
 
@@ -98,7 +90,7 @@ namespace PrimeSolutions.Library
             {
                 if (!_objCustmor.GetalooseItem(Convert.ToString(dt.Rows[i]["Category"])))
                 {
-                    if (Convert.ToBoolean(dt.Rows[i]["BarcodePrint"]))
+                    //if (Convert.ToBoolean(dt.Rows[i]["Chk"]))
                     {
                         string barcode;
                         if (Convert.ToString(dt.Rows[i]["Barcode"]) == "" || Convert.ToString(dt.Rows[i]["Barcode"]) == string.Empty)
@@ -109,13 +101,14 @@ namespace PrimeSolutions.Library
                         {
                             barcode = Convert.ToString(dt.Rows[i]["Barcode"]);
                         }
-                        int Qty = Convert.ToInt32(dt.Rows[i]["Qty"]);
+                        string Size = Convert.ToString(dt.Rows[i]["Size"]);
                         string Category = Convert.ToString(dt.Rows[i]["Category"]);
                         string subcategory = Convert.ToString(dt.Rows[i]["SubCategory"]);
                         string SellingAmt = Convert.ToString(dt.Rows[i]["SellingAmt"]);
-                        for (int j = 0; j < Qty; j++)
+                        int qty = Convert.ToInt32(dt.Rows[i]["Qty"]);
+                        for(int j=0;j< qty; j++)
                         {
-                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "') ";
+                            string str = "insert into Temp values('" + barcode + "','" + Category + "','" + subcategory + "','" + SellingAmt + "','" + Size + "')";
                             _objSqlhelper.ExecuteScalar(str);
                         }
                     }
