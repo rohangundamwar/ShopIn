@@ -27,7 +27,8 @@ namespace PrimeSolutions.Report.Purchase
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     dgv_SupplierBill.Rows.Add();
-                    dgv_SupplierBill.Rows[i].Cells["SrNo"].Value = dt.Rows[i]["SrNo"].ToString();
+                    dgv_SupplierBill.Rows[i].Cells["SrNo"].Value = i+1;
+                    dgv_SupplierBill.Rows[i].Cells["Name"].Value = dt.Rows[i]["Name"].ToString();
                     dgv_SupplierBill.Rows[i].Cells["BillNo"].Value = dt.Rows[i]["BillNo"].ToString();
                     dgv_SupplierBill.Rows[i].Cells["Date"].Value = dt.Rows[i]["Date"].ToString();
                     dgv_SupplierBill.Rows[i].Cells["BillAmt"].Value = dt.Rows[i]["Amount"].ToString();
@@ -55,6 +56,11 @@ namespace PrimeSolutions.Report.Purchase
             {
                 this.Close();
             }
+        }
+
+        private void dgv_SupplierBill_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

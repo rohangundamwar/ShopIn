@@ -16,7 +16,7 @@ namespace PrimeSolutions.Report
         Library.PurchaseCommon _p = new Library.PurchaseCommon();
         AllClassFile _C = new AllClassFile();
         ExportToExcel _e = new ExportToExcel();
-        DataTable Supplier; 
+        DataTable Supplier,Bill; 
         
         public SupplierBill()
         {
@@ -32,12 +32,14 @@ namespace PrimeSolutions.Report
         private void cmb_BillNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgv_BillItem.Rows.Clear();
-            DataTable SupplierItem = _p.GetPurchaseBillItem(cmb_BillNo.Text);
+            DataTable SupplierItem = _p.GetPurchaseBillItem(Bill.Rows[cmb_BillNo.SelectedIndex]["RefrenceNo"].ToString());
             for (int i = 0; i < SupplierItem.Rows.Count; i++)
             {
                 dgv_BillItem.Rows.Add();
                 dgv_BillItem.Rows[i].Cells["Category"].Value = SupplierItem.Rows[i]["Category"].ToString();
                 dgv_BillItem.Rows[i].Cells["SubCategory"].Value = SupplierItem.Rows[i]["SubCategory"].ToString();
+                dgv_BillItem.Rows[i].Cells["Size"].Value = SupplierItem.Rows[i]["Size"].ToString();
+
                 int qty = _C.getQtySupplier(SupplierItem.Rows[i]["category"].ToString(), SupplierItem.Rows[i]["SubCategory"].ToString(),cmb_BillNo.Text);
                 dgv_BillItem.Rows[i].Cells["Quantity"].Value = qty.ToString();
 
@@ -67,7 +69,8 @@ namespace PrimeSolutions.Report
 
         private void cmb_Name_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmb_BillNo.DataSource = _p.GetSupplierBill(Supplier.Rows[cmb_Name.SelectedIndex]["SupplierNo"].ToString());
+            Bill= _p.GetSupplierBill(Supplier.Rows[cmb_Name.SelectedIndex]["SupplierNo"].ToString());
+            cmb_BillNo.DataSource = Bill;
         }
     }
 }

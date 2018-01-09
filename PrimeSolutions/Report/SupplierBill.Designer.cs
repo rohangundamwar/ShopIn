@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_BillItem = new System.Windows.Forms.DataGridView();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_BillNo = new System.Windows.Forms.ComboBox();
             this.lbl_BillNo = new System.Windows.Forms.Label();
             this.bttn_close = new System.Windows.Forms.Button();
@@ -39,6 +36,10 @@
             this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.lbl_PurchaseFrom = new System.Windows.Forms.Label();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BillItem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,32 +50,13 @@
             this.dgv_BillItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Category,
             this.SubCategory,
+            this.Size,
             this.Quantity});
             this.dgv_BillItem.Location = new System.Drawing.Point(14, 110);
             this.dgv_BillItem.Name = "dgv_BillItem";
             this.dgv_BillItem.ReadOnly = true;
             this.dgv_BillItem.Size = new System.Drawing.Size(513, 288);
             this.dgv_BillItem.TabIndex = 0;
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            this.Category.Width = 150;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            this.SubCategory.Width = 120;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
             // 
             // cmb_BillNo
             // 
@@ -156,6 +138,32 @@
             this.lbl_PurchaseFrom.TabIndex = 6;
             this.lbl_PurchaseFrom.Text = "Purchase From";
             // 
+            // Category
+            // 
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            this.Category.Width = 150;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            this.SubCategory.Width = 120;
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            this.Size.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
             // SupplierBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,14 +193,14 @@
         private System.Windows.Forms.DataGridView dgv_BillItem;
         private System.Windows.Forms.ComboBox cmb_BillNo;
         private System.Windows.Forms.Label lbl_BillNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
-      
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Button bttn_Excel;
         private System.Windows.Forms.DateTimePicker dtp_date;
         private System.Windows.Forms.ComboBox cmb_Name;
         private System.Windows.Forms.Label lbl_PurchaseFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
     }
 }
