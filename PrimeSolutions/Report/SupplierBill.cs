@@ -16,16 +16,17 @@ namespace PrimeSolutions.Report
         Library.PurchaseCommon _p = new Library.PurchaseCommon();
         AllClassFile _C = new AllClassFile();
         ExportToExcel _e = new ExportToExcel();
+        DataTable Supplier; 
         
         public SupplierBill()
         {
             InitializeComponent();
+            Supplier = _C.getSupplierName();
         }
 
         private void SupplierBill_Load(object sender, EventArgs e)
         {
-            cmb_BillNo.DataSource = _p.GetSupplierBillNo();
-            cmb_BillNo.SelectedIndex = -1;
+            cmb_Name.DataSource = Supplier;
         }
 
         private void cmb_BillNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,6 +63,11 @@ namespace PrimeSolutions.Report
             {
                 this.Close();
             }
+        }
+
+        private void cmb_Name_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_BillNo.DataSource = _p.GetSupplierBill(Supplier.Rows[cmb_Name.SelectedIndex]["SupplierNo"].ToString());
         }
     }
 }

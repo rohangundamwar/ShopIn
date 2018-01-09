@@ -37,6 +37,8 @@
             this.bttn_close = new System.Windows.Forms.Button();
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.dtp_date = new System.Windows.Forms.DateTimePicker();
+            this.cmb_Name = new System.Windows.Forms.ComboBox();
+            this.lbl_PurchaseFrom = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BillItem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@
             this.Category,
             this.SubCategory,
             this.Quantity});
-            this.dgv_BillItem.Location = new System.Drawing.Point(12, 83);
+            this.dgv_BillItem.Location = new System.Drawing.Point(14, 110);
             this.dgv_BillItem.Name = "dgv_BillItem";
             this.dgv_BillItem.ReadOnly = true;
             this.dgv_BillItem.Size = new System.Drawing.Size(513, 288);
@@ -76,9 +78,11 @@
             // 
             // cmb_BillNo
             // 
+            this.cmb_BillNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_BillNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_BillNo.DisplayMember = "BillNo";
             this.cmb_BillNo.FormattingEnabled = true;
-            this.cmb_BillNo.Location = new System.Drawing.Point(114, 45);
+            this.cmb_BillNo.Location = new System.Drawing.Point(383, 71);
             this.cmb_BillNo.Name = "cmb_BillNo";
             this.cmb_BillNo.Size = new System.Drawing.Size(121, 21);
             this.cmb_BillNo.TabIndex = 1;
@@ -88,7 +92,7 @@
             // lbl_BillNo
             // 
             this.lbl_BillNo.AutoSize = true;
-            this.lbl_BillNo.Location = new System.Drawing.Point(21, 49);
+            this.lbl_BillNo.Location = new System.Drawing.Point(290, 75);
             this.lbl_BillNo.Name = "lbl_BillNo";
             this.lbl_BillNo.Size = new System.Drawing.Size(87, 13);
             this.lbl_BillNo.TabIndex = 2;
@@ -99,7 +103,7 @@
             this.bttn_close.BackColor = System.Drawing.Color.LightCoral;
             this.bttn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_close.ForeColor = System.Drawing.Color.White;
-            this.bttn_close.Location = new System.Drawing.Point(450, 43);
+            this.bttn_close.Location = new System.Drawing.Point(429, 13);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 3;
@@ -109,7 +113,7 @@
             // 
             // bttn_Excel
             // 
-            this.bttn_Excel.Location = new System.Drawing.Point(324, 43);
+            this.bttn_Excel.Location = new System.Drawing.Point(273, 13);
             this.bttn_Excel.Name = "bttn_Excel";
             this.bttn_Excel.Size = new System.Drawing.Size(104, 23);
             this.bttn_Excel.TabIndex = 4;
@@ -124,11 +128,41 @@
             this.dtp_date.Size = new System.Drawing.Size(120, 20);
             this.dtp_date.TabIndex = 5;
             // 
+            // cmb_Name
+            // 
+            this.cmb_Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_Name.BackColor = System.Drawing.SystemColors.Window;
+            this.cmb_Name.DisplayMember = "Name";
+            this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cmb_Name.FormattingEnabled = true;
+            this.cmb_Name.Location = new System.Drawing.Point(24, 72);
+            this.cmb_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmb_Name.Name = "cmb_Name";
+            this.cmb_Name.Size = new System.Drawing.Size(259, 21);
+            this.cmb_Name.TabIndex = 7;
+            this.cmb_Name.ValueMember = "Name";
+            this.cmb_Name.SelectedIndexChanged += new System.EventHandler(this.cmb_Name_SelectedIndexChanged);
+            // 
+            // lbl_PurchaseFrom
+            // 
+            this.lbl_PurchaseFrom.AutoSize = true;
+            this.lbl_PurchaseFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_PurchaseFrom.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_PurchaseFrom.Location = new System.Drawing.Point(24, 44);
+            this.lbl_PurchaseFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PurchaseFrom.Name = "lbl_PurchaseFrom";
+            this.lbl_PurchaseFrom.Size = new System.Drawing.Size(104, 15);
+            this.lbl_PurchaseFrom.TabIndex = 6;
+            this.lbl_PurchaseFrom.Text = "Purchase From";
+            // 
             // SupplierBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 385);
+            this.ClientSize = new System.Drawing.Size(539, 413);
+            this.Controls.Add(this.cmb_Name);
+            this.Controls.Add(this.lbl_PurchaseFrom);
             this.Controls.Add(this.dtp_date);
             this.Controls.Add(this.bttn_Excel);
             this.Controls.Add(this.bttn_close);
@@ -158,5 +192,7 @@
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Button bttn_Excel;
         private System.Windows.Forms.DateTimePicker dtp_date;
+        private System.Windows.Forms.ComboBox cmb_Name;
+        private System.Windows.Forms.Label lbl_PurchaseFrom;
     }
 }
