@@ -35,10 +35,14 @@
             this.txt_Amount = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
             this.dtp_Date = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmb_name
             // 
+            this.cmb_name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_name.DisplayMember = "CustomerName";
             this.cmb_name.FormattingEnabled = true;
             this.cmb_name.Location = new System.Drawing.Point(93, 62);
@@ -100,11 +104,33 @@
             this.dtp_Date.Size = new System.Drawing.Size(89, 20);
             this.dtp_Date.TabIndex = 6;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(32, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Receipt No:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(113, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "0";
+            // 
             // frm_CustomerPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 202);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dtp_Date);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.txt_Amount);
@@ -129,5 +155,7 @@
         private System.Windows.Forms.TextBox txt_Amount;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.DateTimePicker dtp_Date;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

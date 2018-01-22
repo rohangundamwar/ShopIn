@@ -38,6 +38,8 @@ namespace PrimeSolutions.Report.Customer
             {
                 dgv_Balance.Rows.Add();
                 dgv_Balance.Rows[i].Cells["Name"].Value = cust.Rows[i]["CustomerName"].ToString();
+                dgv_Balance.Rows[i].Cells["MobileNo"].Value = cust.Rows[i]["ContactNo"].ToString();
+                //dgv_Balance.Rows[0].Cells["ContactNo"].Value = cust.Rows[0]["ContactNo"].ToString();
                 string CustId = cust.Rows[i]["CustId"].ToString();
                 dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
                 DataTable count = _s.GetCustomerBill(CustId);
@@ -63,6 +65,7 @@ namespace PrimeSolutions.Report.Customer
             dgv_Balance.Rows.Clear();
             dgv_Balance.Rows.Add();
             dgv_Balance.Rows[0].Cells["Name"].Value = cmb_customer.Text;
+            //dgv_Balance.Rows[0].Cells["ContactNo"].Value = dt.Rows[0]["ContactNo"].ToString();
             string CustId = cust.Rows[cmb_customer.SelectedIndex]["CustId"].ToString();
             dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
             DataTable count = _s.GetCustomerBill(CustId);
@@ -88,6 +91,11 @@ namespace PrimeSolutions.Report.Customer
             CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
             SendData _obj = new SendData(_objfrm_ReportViewer.Balance);
             _obj(DT, "Customer", DateTime.Now.ToString("dd/MM/yyyy"));
+        }
+
+        private void dgv_Balance_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

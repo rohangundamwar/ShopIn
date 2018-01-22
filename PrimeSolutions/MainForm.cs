@@ -21,6 +21,8 @@ using System.Management;
 using System.Security.Cryptography;
 using System.IO;
 using System.ServiceProcess;
+using PrimeSolutions.Report.Profit_Loss;
+using PrimeSolutions.Report.Receipt;
 
 namespace PrimeSolutions
 {
@@ -68,7 +70,6 @@ namespace PrimeSolutions
             _form.ShowDialog();
 
         }
-
 
         private void backUpDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -481,6 +482,33 @@ namespace PrimeSolutions
         private void qoutationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_Qoutation _form = new frm_Qoutation();
+            _form.ShowDialog();
+        }
+
+        private void salesCommisionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Sales_Commission _from = new frm_Sales_Commission();
+            _from.ShowDialog();
+
+
+        }
+
+        private void dailyExpenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Daily_Expenses _form = new frm_Daily_Expenses();
+            _form.ShowDialog();
+        }
+
+        private void dailyProfitLossToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_profit_loss _form = new frm_profit_loss();
+            _form.ShowDialog();
+
+        }
+
+        private void receiptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Duplicate_Receipt _form = new frm_Duplicate_Receipt();
             _form.ShowDialog();
         }
     }

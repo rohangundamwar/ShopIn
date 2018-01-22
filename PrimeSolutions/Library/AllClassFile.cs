@@ -478,6 +478,12 @@ namespace PrimeSolutions.Library
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
+        public DataTable getSalesMan()
+        {
+            string str = "select Name from SalesmanMaster";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
 
         internal void InsertBillDetail(string accno, string BillNo, string date, string billamt, string CGST, string SGST, string IGST, string Total, string State,string Type,string RefNo)
         {

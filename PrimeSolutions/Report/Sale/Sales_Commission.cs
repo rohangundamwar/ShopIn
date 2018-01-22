@@ -21,7 +21,7 @@ namespace PrimeSolutions.Report.Sale
         public frm_Sales_Commission()
         {
             InitializeComponent();
-            SalesmanMaster = _s.getSalesMan();
+           // SalesmanMaster = _s.getSalesMan();
         }
 
         private void button4_Click(object sender, EventArgs e)

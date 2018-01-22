@@ -36,9 +36,6 @@
             this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_Payment = new System.Windows.Forms.DataGridView();
-            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,6 +43,11 @@
             this.txt_payment = new System.Windows.Forms.Label();
             this.txt_balance = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Receipt_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Payment)).BeginInit();
             this.SuspendLayout();
@@ -58,13 +60,13 @@
             this.cmb_supplier.FormattingEnabled = true;
             this.cmb_supplier.Location = new System.Drawing.Point(77, 27);
             this.cmb_supplier.Name = "cmb_supplier";
-            this.cmb_supplier.Size = new System.Drawing.Size(217, 21);
+            this.cmb_supplier.Size = new System.Drawing.Size(258, 21);
             this.cmb_supplier.TabIndex = 0;
             this.cmb_supplier.ValueMember = "CustomerName";
             // 
             // bttn_search
             // 
-            this.bttn_search.Location = new System.Drawing.Point(365, 26);
+            this.bttn_search.Location = new System.Drawing.Point(371, 26);
             this.bttn_search.Name = "bttn_search";
             this.bttn_search.Size = new System.Drawing.Size(75, 23);
             this.bttn_search.TabIndex = 1;
@@ -123,31 +125,14 @@
             this.dgv_Payment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Payment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PayDate,
+            this.Receipt_No,
             this.PaidAmt,
             this.PayType});
             this.dgv_Payment.Location = new System.Drawing.Point(365, 77);
             this.dgv_Payment.Name = "dgv_Payment";
             this.dgv_Payment.ReadOnly = true;
-            this.dgv_Payment.Size = new System.Drawing.Size(343, 332);
+            this.dgv_Payment.Size = new System.Drawing.Size(444, 332);
             this.dgv_Payment.TabIndex = 4;
-            // 
-            // PayDate
-            // 
-            this.PayDate.HeaderText = "PayDate";
-            this.PayDate.Name = "PayDate";
-            this.PayDate.ReadOnly = true;
-            // 
-            // PaidAmt
-            // 
-            this.PaidAmt.HeaderText = "PaidAmt";
-            this.PaidAmt.Name = "PaidAmt";
-            this.PaidAmt.ReadOnly = true;
-            // 
-            // PayType
-            // 
-            this.PayType.HeaderText = "PayType";
-            this.PayType.Name = "PayType";
-            this.PayType.ReadOnly = true;
             // 
             // label2
             // 
@@ -216,7 +201,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(492, 26);
+            this.button1.Location = new System.Drawing.Point(498, 26);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -224,12 +209,47 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // PayDate
+            // 
+            this.PayDate.HeaderText = "PayDate";
+            this.PayDate.Name = "PayDate";
+            this.PayDate.ReadOnly = true;
+            // 
+            // Receipt_No
+            // 
+            this.Receipt_No.HeaderText = "Receipt no";
+            this.Receipt_No.Name = "Receipt_No";
+            this.Receipt_No.ReadOnly = true;
+            // 
+            // PaidAmt
+            // 
+            this.PaidAmt.HeaderText = "PaidAmt";
+            this.PaidAmt.Name = "PaidAmt";
+            this.PaidAmt.ReadOnly = true;
+            // 
+            // PayType
+            // 
+            this.PayType.HeaderText = "PayType";
+            this.PayType.Name = "PayType";
+            this.PayType.ReadOnly = true;
+            // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(629, 25);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(75, 23);
+            this.btn_close.TabIndex = 13;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
             // frm_SaleLedger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.ClientSize = new System.Drawing.Size(721, 476);
+            this.ClientSize = new System.Drawing.Size(831, 476);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_balance);
             this.Controls.Add(this.txt_payment);
@@ -264,9 +284,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PayDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PayType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -274,5 +291,10 @@
         private System.Windows.Forms.Label txt_payment;
         private System.Windows.Forms.Label txt_balance;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PayDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Receipt_No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PayType;
+        private System.Windows.Forms.Button btn_close;
     }
 }

@@ -165,6 +165,12 @@
     <Compile Include="Accounting\Frm_Credit DebitEntry.designer.cs">
       <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\frm_Daily_Expenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frm_Daily_Expenses.Designer.cs">
+      <DependentUpon>frm_Daily_Expenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="bin\Debug\BarcodeRPT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,6 +182,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BillA4.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PaymentBillA5.cs">
+      <DependentUpon>PaymentBillA5.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\ReceiptBillA5.cs">
+      <DependentUpon>ReceiptBillA5.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="bin\Debug\BillA5.cs">
       <AutoGen>True</AutoGen>
@@ -576,6 +594,12 @@
     <Compile Include="Report\PrinterSetting.designer.cs">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Profit_Loss\frm_profit_loss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Profit_Loss\frm_profit_loss.Designer.cs">
+      <DependentUpon>frm_profit_loss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Purchase\frm_SupplierBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -618,6 +642,12 @@
     <Compile Include="Report\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Receipt\frm_Duplicate_Receipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Receipt\frm_Duplicate_Receipt.Designer.cs">
+      <DependentUpon>frm_Duplicate_Receipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Sale\frm_DuplicateBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -629,6 +659,12 @@
     </Compile>
     <Compile Include="Report\Sale\frm_SaleReport.Designer.cs">
       <DependentUpon>frm_SaleReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Sale\Sales_Commission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Sale\Sales_Commission.Designer.cs">
+      <DependentUpon>Sales_Commission.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\SupplierBill.cs">
       <SubType>Form</SubType>
@@ -727,6 +763,9 @@
     <EmbeddedResource Include="Accounting\Frm_Credit DebitEntry.resx">
       <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frm_Daily_Expenses.resx">
+      <DependentUpon>frm_Daily_Expenses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BarcodeRPT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeRPT.cs</LastGenOutput>
@@ -734,6 +773,14 @@
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BillA4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PaymentBillA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PaymentBillA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\ReceiptBillA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReceiptBillA5.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -934,6 +981,9 @@
     <EmbeddedResource Include="Report\PrinterSetting.resx">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Profit_Loss\frm_profit_loss.resx">
+      <DependentUpon>frm_profit_loss.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_SupplierBalance.resx">
       <DependentUpon>frm_SupplierBalance.cs</DependentUpon>
     </EmbeddedResource>
@@ -955,11 +1005,17 @@
     <EmbeddedResource Include="Report\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Receipt\frm_Duplicate_Receipt.resx">
+      <DependentUpon>frm_Duplicate_Receipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_DuplicateBill.resx">
       <DependentUpon>frm_DuplicateBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_SaleReport.resx">
       <DependentUpon>frm_SaleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sale\Sales_Commission.resx">
+      <DependentUpon>Sales_Commission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\SupplierBill.resx">
       <DependentUpon>SupplierBill.cs</DependentUpon>

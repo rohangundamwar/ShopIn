@@ -119,6 +119,10 @@ namespace PrimeSolutions.Report.Customer
             _obj(dtCustBill, dtpay, txt_Bill.Text,txt_payment.Text,txt_balance.Text);
             _objfrm_ReportViewer.Show();
         }
-            
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

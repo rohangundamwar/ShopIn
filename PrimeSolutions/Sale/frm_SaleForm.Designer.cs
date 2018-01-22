@@ -235,6 +235,7 @@
             this.dtp_Date.Name = "dtp_Date";
             this.dtp_Date.Size = new System.Drawing.Size(104, 22);
             this.dtp_Date.TabIndex = 0;
+            this.dtp_Date.TabStop = false;
             // 
             // lbl_Date
             // 
@@ -344,7 +345,7 @@
             this.pnl_SupplierInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_SupplierInfo.Name = "pnl_SupplierInfo";
             this.pnl_SupplierInfo.Size = new System.Drawing.Size(1058, 84);
-            this.pnl_SupplierInfo.TabIndex = 7;
+            this.pnl_SupplierInfo.TabIndex = 1;
             // 
             // txt_Aadhar
             // 
@@ -354,7 +355,7 @@
             this.txt_Aadhar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Aadhar.Name = "txt_Aadhar";
             this.txt_Aadhar.Size = new System.Drawing.Size(144, 15);
-            this.txt_Aadhar.TabIndex = 24;
+            this.txt_Aadhar.TabIndex = 8;
             // 
             // lbl_Adhar
             // 
@@ -365,7 +366,7 @@
             this.lbl_Adhar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Adhar.Name = "lbl_Adhar";
             this.lbl_Adhar.Size = new System.Drawing.Size(58, 16);
-            this.lbl_Adhar.TabIndex = 23;
+            this.lbl_Adhar.TabIndex = 0;
             this.lbl_Adhar.Text = "Aadhar";
             // 
             // lbl_State
@@ -377,7 +378,7 @@
             this.lbl_State.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_State.Name = "lbl_State";
             this.lbl_State.Size = new System.Drawing.Size(44, 16);
-            this.lbl_State.TabIndex = 22;
+            this.lbl_State.TabIndex = 0;
             this.lbl_State.Text = "State";
             // 
             // cmb_State
@@ -442,6 +443,7 @@
             this.txt_Balance.Name = "txt_Balance";
             this.txt_Balance.Size = new System.Drawing.Size(80, 15);
             this.txt_Balance.TabIndex = 20;
+            this.txt_Balance.TabStop = false;
             this.txt_Balance.Text = "0";
             // 
             // txt_GSTIN
@@ -628,7 +630,7 @@
             this.pnl_ItemInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_ItemInfo.Name = "pnl_ItemInfo";
             this.pnl_ItemInfo.Size = new System.Drawing.Size(1058, 186);
-            this.pnl_ItemInfo.TabIndex = 8;
+            this.pnl_ItemInfo.TabIndex = 9;
             // 
             // label28
             // 
@@ -805,7 +807,7 @@
             this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_size.Name = "cmb_size";
             this.cmb_size.Size = new System.Drawing.Size(71, 24);
-            this.cmb_size.TabIndex = 52;
+            this.cmb_size.TabIndex = 12;
             this.cmb_size.ValueMember = "Size";
             this.cmb_size.SelectedIndexChanged += new System.EventHandler(this.cmb_size_SelectedIndexChanged);
             this.cmb_size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_size_KeyDown);
@@ -819,7 +821,7 @@
             this.lbl_Size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Size.Name = "lbl_Size";
             this.lbl_Size.Size = new System.Drawing.Size(38, 16);
-            this.lbl_Size.TabIndex = 51;
+            this.lbl_Size.TabIndex = 0;
             this.lbl_Size.Text = "Size";
             // 
             // label19
@@ -1010,7 +1012,7 @@
             this.txt_BatchNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BatchNo.Name = "txt_BatchNo";
             this.txt_BatchNo.Size = new System.Drawing.Size(140, 15);
-            this.txt_BatchNo.TabIndex = 12;
+            this.txt_BatchNo.TabIndex = 14;
             this.txt_BatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BatchNo_KeyDown);
             // 
             // label4
@@ -1033,7 +1035,7 @@
             this.txt_HSN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_HSN.Name = "txt_HSN";
             this.txt_HSN.Size = new System.Drawing.Size(98, 15);
-            this.txt_HSN.TabIndex = 11;
+            this.txt_HSN.TabIndex = 13;
             this.txt_HSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_HSN_KeyDown);
             // 
             // label3
@@ -1195,7 +1197,7 @@
             this.txt_BarcodeNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BarcodeNo.Name = "txt_BarcodeNo";
             this.txt_BarcodeNo.Size = new System.Drawing.Size(90, 15);
-            this.txt_BarcodeNo.TabIndex = 8;
+            this.txt_BarcodeNo.TabIndex = 9;
             this.txt_BarcodeNo.TextChanged += new System.EventHandler(this.txt_BarcodeNo_TextChanged);
             this.txt_BarcodeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PurchaseAmt_KeyDown);
             this.txt_BarcodeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PurchaseAmt_KeyPress);
@@ -1211,7 +1213,7 @@
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
             this.cmb_SubCategory.Size = new System.Drawing.Size(146, 24);
-            this.cmb_SubCategory.TabIndex = 10;
+            this.cmb_SubCategory.TabIndex = 11;
             this.cmb_SubCategory.ValueMember = "SubCategory";
             this.cmb_SubCategory.SelectedIndexChanged += new System.EventHandler(this.cmb_SubCategory_SelectedIndexChanged);
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
@@ -1228,7 +1230,7 @@
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Category.Name = "cmb_Category";
             this.cmb_Category.Size = new System.Drawing.Size(146, 24);
-            this.cmb_Category.TabIndex = 9;
+            this.cmb_Category.TabIndex = 10;
             this.cmb_Category.ValueMember = "Category";
             this.cmb_Category.SelectedIndexChanged += new System.EventHandler(this.cmb_Category_SelectedIndexChanged);
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);

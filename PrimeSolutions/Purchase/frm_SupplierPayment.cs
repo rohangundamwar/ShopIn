@@ -13,7 +13,7 @@ namespace PrimeSolutions.Purchase
     public partial class frm_SupplierPayment : Form
     {
         CustomerCommon _cust = new CustomerCommon();
-        DataTable cust;
+        DataTable Supplier;
         AllClassFile _a = new AllClassFile();
         ErrorLog _e = new ErrorLog();
 
@@ -31,14 +31,14 @@ namespace PrimeSolutions.Purchase
         private void frm_CustomerPayment_Load(object sender, EventArgs e)
         {
             Clear();
-            cust = _cust.GetCustomerDeatils();
-            cmb_name.DataSource = cust;
+            Supplier = _a.getSupplierName();
+            cmb_name.DataSource = Supplier;
         }
 
         private void cmb_name_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id =  cmb_name.SelectedIndex.ToString();
-            lbl_id.Text = cust.Rows[Convert.ToInt32(id)]["CustId"].ToString();
+            lbl_id.Text = Supplier.Rows[Convert.ToInt32(id)]["SupplierNo"].ToString();
         }
 
         private void Save_Click(object sender, EventArgs e)

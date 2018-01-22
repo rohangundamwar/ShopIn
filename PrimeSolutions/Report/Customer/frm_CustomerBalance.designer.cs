@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_Balance = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_customer = new System.Windows.Forms.ComboBox();
             this.bttn_Find = new System.Windows.Forms.Button();
             this.lbl_name = new System.Windows.Forms.Label();
@@ -41,6 +36,12 @@
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_reset = new System.Windows.Forms.Button();
             this.bttn_Print = new System.Windows.Forms.Button();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MobileNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Balance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.dgv_Balance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Balance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Name,
+            this.MobileNo,
             this.TotalPurchase,
             this.NoOfBill,
             this.TotalPaid,
@@ -61,38 +63,7 @@
             this.dgv_Balance.ReadOnly = true;
             this.dgv_Balance.Size = new System.Drawing.Size(643, 196);
             this.dgv_Balance.TabIndex = 0;
-            // 
-            // Name
-            // 
-            this.Name.FillWeight = 200F;
-            this.Name.HeaderText = "CustomerName";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            this.Name.Width = 200;
-            // 
-            // TotalPurchase
-            // 
-            this.TotalPurchase.HeaderText = "TotalPurchase";
-            this.TotalPurchase.Name = "TotalPurchase";
-            this.TotalPurchase.ReadOnly = true;
-            // 
-            // NoOfBill
-            // 
-            this.NoOfBill.HeaderText = "NoOfBill";
-            this.NoOfBill.Name = "NoOfBill";
-            this.NoOfBill.ReadOnly = true;
-            // 
-            // TotalPaid
-            // 
-            this.TotalPaid.HeaderText = "TotalPaid";
-            this.TotalPaid.Name = "TotalPaid";
-            this.TotalPaid.ReadOnly = true;
-            // 
-            // TotalBalance
-            // 
-            this.TotalBalance.HeaderText = "TotalBalance";
-            this.TotalBalance.Name = "TotalBalance";
-            this.TotalBalance.ReadOnly = true;
+            this.dgv_Balance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Balance_CellContentClick);
             // 
             // cmb_customer
             // 
@@ -170,6 +141,44 @@
             this.bttn_Print.UseVisualStyleBackColor = true;
             this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
             // 
+            // Name
+            // 
+            this.Name.FillWeight = 200F;
+            this.Name.HeaderText = "CustomerName";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            this.Name.Width = 200;
+            // 
+            // MobileNo
+            // 
+            this.MobileNo.HeaderText = "Mobile No";
+            this.MobileNo.Name = "MobileNo";
+            this.MobileNo.ReadOnly = true;
+            // 
+            // TotalPurchase
+            // 
+            this.TotalPurchase.HeaderText = "TotalPurchase";
+            this.TotalPurchase.Name = "TotalPurchase";
+            this.TotalPurchase.ReadOnly = true;
+            // 
+            // NoOfBill
+            // 
+            this.NoOfBill.HeaderText = "NoOfBill";
+            this.NoOfBill.Name = "NoOfBill";
+            this.NoOfBill.ReadOnly = true;
+            // 
+            // TotalPaid
+            // 
+            this.TotalPaid.HeaderText = "TotalPaid";
+            this.TotalPaid.Name = "TotalPaid";
+            this.TotalPaid.ReadOnly = true;
+            // 
+            // TotalBalance
+            // 
+            this.TotalBalance.HeaderText = "TotalBalance";
+            this.TotalBalance.Name = "TotalBalance";
+            this.TotalBalance.ReadOnly = true;
+            // 
             // frm_CustomerBalance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +212,7 @@
         private System.Windows.Forms.Button bttn_reset;
         private System.Windows.Forms.Button bttn_Print;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MobileNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoOfBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPaid;
