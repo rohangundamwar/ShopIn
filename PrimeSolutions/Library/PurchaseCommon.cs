@@ -146,10 +146,10 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public DataTable GetPurchaseBillItem(string BillNo)
+        public DataTable GetPurchaseBillItem(string RefrenceNo)
         {
             DataTable dt;
-            string str = "select distinct Category,SubCategory from BillItem where PurchaseBillNo = '" + BillNo+"'";
+            string str = "select Category,SubCategory,Size,Qty from BillItem where PurchaseRef = '" + RefrenceNo+ "' and PermanentDelete='0' ";
             dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -157,7 +157,7 @@ namespace PrimeSolutions.Library
         public DataTable GetPurchaseBill()
         {
             DataTable dt;
-            string str = "select * from SupplierBill Where Type ='GST'";
+            string str = "SELECT dbo.SupplierMaster.SupplierNo, dbo.SupplierBill.BillNo, dbo.SupplierBill.Date, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State,   dbo.SupplierBill.RefrenceNo, dbo.SupplierMaster.Name FROM dbo.SupplierBill INNER JOIN dbo.SupplierMaster ON dbo.SupplierBill.SupplierNo = dbo.SupplierMaster.SupplierNo WHERE(dbo.SupplierBill.Type = 'GST')";
             dt = _sql.GetDataTable(str);
             return dt;
         }

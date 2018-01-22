@@ -33,6 +33,7 @@
             this.bttn_close = new System.Windows.Forms.Button();
             this.dgv_SupplierBill = new System.Windows.Forms.DataGridView();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +80,7 @@
             this.dgv_SupplierBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_SupplierBill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SrNo,
+            this.Name,
             this.BillNo,
             this.Date,
             this.BillAmt,
@@ -89,14 +91,21 @@
             this.dgv_SupplierBill.Location = new System.Drawing.Point(11, 87);
             this.dgv_SupplierBill.Name = "dgv_SupplierBill";
             this.dgv_SupplierBill.ReadOnly = true;
-            this.dgv_SupplierBill.Size = new System.Drawing.Size(843, 279);
+            this.dgv_SupplierBill.Size = new System.Drawing.Size(840, 279);
             this.dgv_SupplierBill.TabIndex = 3;
+            this.dgv_SupplierBill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_SupplierBill_CellContentClick);
             // 
             // SrNo
             // 
             this.SrNo.HeaderText = "SrNo";
             this.SrNo.Name = "SrNo";
             this.SrNo.ReadOnly = true;
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
             // 
             // BillNo
             // 
@@ -150,7 +159,7 @@
             this.Controls.Add(this.bttn_excel);
             this.Controls.Add(this.dtp1);
             this.KeyPreview = true;
-            this.Name = "frm_SupplierBill";
+            //this.Name = "frm_SupplierBill";
             this.Text = "Supplier Bill";
             this.Load += new System.EventHandler(this.frm_SupplierBill_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_SupplierBill_KeyDown);
@@ -166,6 +175,7 @@
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.DataGridView dgv_SupplierBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillAmt;
