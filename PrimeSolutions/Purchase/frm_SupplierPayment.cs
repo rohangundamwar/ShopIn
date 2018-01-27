@@ -16,6 +16,7 @@ namespace PrimeSolutions.Purchase
         DataTable cust;
         AllClassFile _a = new AllClassFile();
         ErrorLog _e = new ErrorLog();
+        
 
         public frm_SupplierPayment()
         {
@@ -31,7 +32,7 @@ namespace PrimeSolutions.Purchase
         private void frm_CustomerPayment_Load(object sender, EventArgs e)
         {
             Clear();
-            cust = _cust.GetCustomerDeatils();
+            cust = _a.getSupplierName();
             cmb_name.DataSource = cust;
         }
 
