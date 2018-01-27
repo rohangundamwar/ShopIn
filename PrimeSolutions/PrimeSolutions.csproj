@@ -630,6 +630,12 @@
     <Compile Include="Report\Sale\frm_SaleReport.Designer.cs">
       <DependentUpon>frm_SaleReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Sale\Sales_Commission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Sale\Sales_Commission.designer.cs">
+      <DependentUpon>Sales_Commission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\SupplierBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -960,6 +966,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_SaleReport.resx">
       <DependentUpon>frm_SaleReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sale\Sales_Commission.resx">
+      <DependentUpon>Sales_Commission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\SupplierBill.resx">
       <DependentUpon>SupplierBill.cs</DependentUpon>

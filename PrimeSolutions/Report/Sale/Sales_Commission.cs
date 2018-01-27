@@ -13,7 +13,7 @@ namespace PrimeSolutions.Report.Sale
 {
     public partial class frm_Sales_Commission : Form
     {
-        Library.SaleCommon _s = new Library.SaleCommon();
+        SaleCommon _s = new SaleCommon();
         ExportToExcel _e = new ExportToExcel();
         AllClassFile _C = new AllClassFile();
         DataTable SalesmanMaster, name;
@@ -21,7 +21,7 @@ namespace PrimeSolutions.Report.Sale
         public frm_Sales_Commission()
         {
             InitializeComponent();
-            SalesmanMaster = _s.getSalesMan();
+           // SalesmanMaster = _s.getSalesMan();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace PrimeSolutions.Report.Sale
         private void Cmb_Name_SelectedIndexChanged(object sender, EventArgs e)
         {
            
-                SalesmanMaster = _s.getSalesMan(name.Rows[Cmb_Name.SelectedIndex]["Name"].ToString());
+                SalesmanMaster = _s.getSalesMan();
                 Cmb_Name.DataSource = SalesmanMaster;
         }
     }

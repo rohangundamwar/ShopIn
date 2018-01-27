@@ -50,6 +50,15 @@ namespace PrimeSolutions.Library
         }
 
 
+        public DataTable getSalesMan()
+        {
+            DataTable dt;   
+            string str = "select Name from SalesmanMaster";
+            dt = _sql.GetDataTable(str);
+            return dt;
+
+        }
+
         public DataTable GetCsutomerDetail(string from, string to)
         {
             string str = "SELECT distinct dbo.CustomerMaster.CustomerName,dbo.CustomerMaster.GSTIN FROM dbo.CustomerMaster INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId WHERE(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.CustomerBill.permanentdelete = 0) AND (dbo.CustomerBill.Type = 'GST')";

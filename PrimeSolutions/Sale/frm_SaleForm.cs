@@ -1238,5 +1238,29 @@ namespace PrimeSolutions
             }
             
         }
+
+        private void lbl_DiscAmt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_DiscPer_TextChanged(object sender, EventArgs e)
+        {
+            double Selling = Convert.ToInt32(txt_SellingAmt.Text);
+            double DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+            double discount = DiscountPer / 100;
+            double DiscAmt = Selling * (DiscountPer / 100);
+            txt_DiscAmt.Text = DiscAmt.ToString();
+            lbl_DiscAmt.Text = Convert.ToString(Selling - DiscAmt);
+        }
+
+        private void txt_DiscAmt_TextChanged(object sender, EventArgs e)
+        {
+            double Selling = Convert.ToInt32(txt_SellingAmt.Text);
+            double DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
+            double DiscountPer = Math.Round((DiscountAmt / Selling) * 100, 2);
+            txt_DiscPer.Text = Convert.ToString(DiscountPer);
+            lbl_DiscAmt.Text = Convert.ToString(Selling - DiscountAmt);
+        }
     }
 }
