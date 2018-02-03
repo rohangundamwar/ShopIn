@@ -91,6 +91,7 @@
             this.Controls.Add(this.bttn_cancel);
             this.Controls.Add(this.lbl_Message);
             this.Name = "frm_backup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_backup";
             this.Load += new System.EventHandler(this.frm_backup_Load);
             this.ResumeLayout(false);

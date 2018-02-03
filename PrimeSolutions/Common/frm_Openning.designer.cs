@@ -56,7 +56,7 @@
             this.lbl_State.AutoSize = true;
             this.lbl_State.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_State.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_State.Location = new System.Drawing.Point(406, 25);
+            this.lbl_State.Location = new System.Drawing.Point(348, 27);
             this.lbl_State.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_State.Name = "lbl_State";
             this.lbl_State.Size = new System.Drawing.Size(40, 15);
@@ -106,7 +106,7 @@
             "34-Pondicherry",
             "35-Andaman&Nicobar Islands",
             "32-"});
-            this.cmb_State.Location = new System.Drawing.Point(457, 20);
+            this.cmb_State.Location = new System.Drawing.Point(398, 22);
             this.cmb_State.Name = "cmb_State";
             this.cmb_State.Size = new System.Drawing.Size(145, 24);
             this.cmb_State.TabIndex = 17;
@@ -118,7 +118,7 @@
             this.txt_GSTIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_GSTIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_GSTIN.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_GSTIN.Location = new System.Drawing.Point(690, 65);
+            this.txt_GSTIN.Location = new System.Drawing.Point(687, 65);
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
             this.txt_GSTIN.Size = new System.Drawing.Size(121, 16);
@@ -130,7 +130,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(622, 66);
+            this.label2.Location = new System.Drawing.Point(625, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 15);
@@ -142,7 +142,7 @@
             this.txt_PanNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PanNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_PanNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PanNo.Location = new System.Drawing.Point(486, 65);
+            this.txt_PanNo.Location = new System.Drawing.Point(490, 65);
             this.txt_PanNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PanNo.Name = "txt_PanNo";
             this.txt_PanNo.Size = new System.Drawing.Size(121, 16);
@@ -154,7 +154,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(417, 66);
+            this.label1.Location = new System.Drawing.Point(422, 66);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 15);
@@ -166,7 +166,7 @@
             this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_ContactNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_ContactNo.Location = new System.Drawing.Point(286, 65);
+            this.txt_ContactNo.Location = new System.Drawing.Point(287, 65);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
             this.txt_ContactNo.Size = new System.Drawing.Size(121, 16);
@@ -202,23 +202,25 @@
             this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_Address.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Address.Location = new System.Drawing.Point(690, 24);
+            this.txt_Address.Location = new System.Drawing.Point(621, 26);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(121, 16);
+            this.txt_Address.Size = new System.Drawing.Size(186, 16);
             this.txt_Address.TabIndex = 18;
             this.txt_Address.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Address_KeyDown);
             // 
             // cmb_Name
             // 
+            this.cmb_Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Name.BackColor = System.Drawing.SystemColors.Window;
             this.cmb_Name.DisplayMember = "CustomerName";
             this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.cmb_Name.FormattingEnabled = true;
-            this.cmb_Name.Location = new System.Drawing.Point(138, 22);
+            this.cmb_Name.Location = new System.Drawing.Point(133, 24);
             this.cmb_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Name.Name = "cmb_Name";
-            this.cmb_Name.Size = new System.Drawing.Size(261, 21);
+            this.cmb_Name.Size = new System.Drawing.Size(205, 21);
             this.cmb_Name.TabIndex = 16;
             this.cmb_Name.ValueMember = "CustomerName";
             this.cmb_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Name_KeyDown);
@@ -228,7 +230,7 @@
             this.lbl_CustomerName.AutoSize = true;
             this.lbl_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_CustomerName.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_CustomerName.Location = new System.Drawing.Point(13, 25);
+            this.lbl_CustomerName.Location = new System.Drawing.Point(13, 27);
             this.lbl_CustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_CustomerName.Name = "lbl_CustomerName";
             this.lbl_CustomerName.Size = new System.Drawing.Size(110, 15);
@@ -240,7 +242,7 @@
             this.lbl_ContactNo.AutoSize = true;
             this.lbl_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_ContactNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_ContactNo.Location = new System.Drawing.Point(188, 66);
+            this.lbl_ContactNo.Location = new System.Drawing.Point(192, 66);
             this.lbl_ContactNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ContactNo.Name = "lbl_ContactNo";
             this.lbl_ContactNo.Size = new System.Drawing.Size(81, 15);
@@ -252,7 +254,7 @@
             this.lbl_Add.AutoSize = true;
             this.lbl_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_Add.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Add.Location = new System.Drawing.Point(612, 25);
+            this.lbl_Add.Location = new System.Drawing.Point(553, 27);
             this.lbl_Add.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Add.Name = "lbl_Add";
             this.lbl_Add.Size = new System.Drawing.Size(58, 15);
@@ -266,6 +268,7 @@
             this.txt_Opening.Name = "txt_Opening";
             this.txt_Opening.Size = new System.Drawing.Size(137, 20);
             this.txt_Opening.TabIndex = 23;
+            this.txt_Opening.Text = "0";
             this.txt_Opening.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Opening_KeyDown);
             // 
             // label4

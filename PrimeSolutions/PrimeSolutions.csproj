@@ -165,11 +165,23 @@
     <Compile Include="Accounting\Frm_Credit DebitEntry.designer.cs">
       <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\frm_Daily_Expenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frm_Daily_Expenses.designer.cs">
+      <DependentUpon>frm_Daily_Expenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="bin\Debug\BarcodeRPT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BarcodeRPT.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\SmartCoolA4.cs">
+      <DependentUpon>SmartCoolA4.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="bin\Debug\BillA4.cs">
       <AutoGen>True</AutoGen>
@@ -241,6 +253,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crt_ServiceJobCard.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\OutationA4 -.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OutationA4 -.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\ReceiptA51.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReceiptA5.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\Service_Invoice1.cs">
@@ -576,6 +600,12 @@
     <Compile Include="Report\PrinterSetting.designer.cs">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\Profit_Loss\frm_profit_loss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Profit_Loss\frm_profit_loss.Designer.cs">
+      <DependentUpon>frm_profit_loss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\Purchase\frm_SupplierBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -617,6 +647,12 @@
     </Compile>
     <Compile Include="Report\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Sale\frm_DuplicateReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Sale\frm_DuplicateReceipt.Designer.cs">
+      <DependentUpon>frm_DuplicateReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\Sale\frm_DuplicateBill.cs">
       <SubType>Form</SubType>
@@ -696,12 +732,6 @@
     <Compile Include="Purchase\frm_PurchaceForm.Designer.cs">
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sale\frm_UpdateBill.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sale\frm_UpdateBill.Designer.cs">
-      <DependentUpon>frm_UpdateBill.cs</DependentUpon>
-    </Compile>
     <Compile Include="Service\frm_JobCard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -733,9 +763,16 @@
     <EmbeddedResource Include="Accounting\Frm_Credit DebitEntry.resx">
       <DependentUpon>Frm_Credit DebitEntry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frm_Daily_Expenses.resx">
+      <DependentUpon>frm_Daily_Expenses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BarcodeRPT.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeRPT.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\SmartCoolA4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SmartCoolA4.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -784,6 +821,14 @@
     <EmbeddedResource Include="bin\Debug\CRTReport\crt_ServiceJobCard.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crt_ServiceJobCard.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\OutationA4 -.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OutationA4 -.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\ReceiptA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReceiptA51.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\Service_Invoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -940,6 +985,9 @@
     <EmbeddedResource Include="Report\PrinterSetting.resx">
       <DependentUpon>PrinterSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Profit_Loss\frm_profit_loss.resx">
+      <DependentUpon>frm_profit_loss.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\frm_SupplierBalance.resx">
       <DependentUpon>frm_SupplierBalance.cs</DependentUpon>
     </EmbeddedResource>
@@ -960,6 +1008,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Sale\frm_DuplicateReceipt.resx">
+      <DependentUpon>frm_DuplicateReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Sale\frm_DuplicateBill.resx">
       <DependentUpon>frm_DuplicateBill.cs</DependentUpon>
@@ -999,9 +1050,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchase\frm_PurchaceForm.resx">
       <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sale\frm_UpdateBill.resx">
-      <DependentUpon>frm_UpdateBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Service\frm_JobCard.resx">
       <DependentUpon>frm_JobCard.cs</DependentUpon>

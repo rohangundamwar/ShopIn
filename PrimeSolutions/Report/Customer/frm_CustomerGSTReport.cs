@@ -58,7 +58,7 @@ namespace PrimeSolutions.Report.Purchase
             int j = 0;
             try
             {
-                DataTable Bill = _sale.GetCustomerReport(dtp_from.Value.ToString(),dtp_to.Value.ToString());
+                DataTable Bill = _sale.GetCustomerReport(dtp_from.Value.ToString(),dtp_to.Value.ToString(),"GST");
                 if (Bill.Rows.Count > 0)
                     for (j = 0; j < Bill.Rows.Count; j++)
                     {

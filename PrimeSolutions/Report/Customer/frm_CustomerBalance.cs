@@ -38,9 +38,10 @@ namespace PrimeSolutions.Report.Customer
             {
                 dgv_Balance.Rows.Add();
                 dgv_Balance.Rows[i].Cells["Name"].Value = cust.Rows[i]["CustomerName"].ToString();
+                dgv_Balance.Rows[i].Cells["ContactNo"].Value = cust.Rows[i]["ContactNo"].ToString();
                 string CustId = cust.Rows[i]["CustId"].ToString();
                 dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
-                DataTable count = _s.GetCustomerBill(CustId);
+                DataTable count = _s.GetCustomerBill(CustId,"All");
                 dgv_Balance.Rows[i].Cells["NoOfBill"].Value = count.Rows.Count;
                 dgv_Balance.Rows[i].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);
                 dgv_Balance.Rows[i].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId, "Sale"));
@@ -63,9 +64,10 @@ namespace PrimeSolutions.Report.Customer
             dgv_Balance.Rows.Clear();
             dgv_Balance.Rows.Add();
             dgv_Balance.Rows[0].Cells["Name"].Value = cmb_customer.Text;
+            dgv_Balance.Rows[0].Cells["ContactNo"].Value = cust.Rows[cmb_customer.SelectedIndex]["ContactNo"].ToString();
             string CustId = cust.Rows[cmb_customer.SelectedIndex]["CustId"].ToString();
             dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
-            DataTable count = _s.GetCustomerBill(CustId);
+            DataTable count = _s.GetCustomerBill(CustId,"All");
             dgv_Balance.Rows[0].Cells["NoOfBill"].Value = count.Rows.Count;
             dgv_Balance.Rows[0].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);
             dgv_Balance.Rows[0].Cells["TotalBalance"].Value = Convert.ToString(_s.GetBalance(CustId,"Sale"));

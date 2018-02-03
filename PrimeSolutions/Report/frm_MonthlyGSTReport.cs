@@ -145,6 +145,12 @@ namespace PrimeSolutions.Report
 
         }
 
+        private void cmb_month_TextChanged(object sender, EventArgs e)
+        {
+            lbl_Purchase.Text = cmb_month.Text;
+            lbl_sale.Text = cmb_month.Text;
+        }
+
         private void bttn_print_Click(object sender, EventArgs e)
         {
             try

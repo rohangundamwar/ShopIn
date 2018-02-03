@@ -416,6 +416,12 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        //Expenses
+        public void InsertExpenses(string date, string Expense, string Amount, string RefrenceNo)
+        {
+            string str = "insert into Expenses(date,Expense,Amount,RefrenceNo) values('" + date + "','" + Expense + "','" + Amount + "','" + RefrenceNo + "')";
+            _objsqlhelper.ExecuteScalar(str);
+        }
 
         //Insert Into Master
         public void InsertCategory(string category)
@@ -498,9 +504,9 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public DataTable getpaymentByBill(string BillNo,string type)
+        public DataTable getpaymentByBill(string BillNo,string type,string Delete)
         {
-            string str = "select * from Payment where BillNo='" + BillNo + "' and type='"+type+"'";
+            string str = "select * from Payment where BillNo='" + BillNo + "' and type='"+type+ "' and permanentdelete="+Delete+"";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }

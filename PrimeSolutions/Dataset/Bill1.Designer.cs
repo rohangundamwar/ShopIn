@@ -2088,6 +2088,10 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnPayMode;
             
+            private global::System.Data.DataColumn columnBillNo;
+            
+            private global::System.Data.DataColumn columnDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PaymentDataTable() {
@@ -2147,6 +2151,22 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BillNoColumn {
+                get {
+                    return this.columnBillNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DateColumn {
+                get {
+                    return this.columnDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2182,12 +2202,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PaymentRow AddPaymentRow(string Type, string Amt, string PayMode) {
+            public PaymentRow AddPaymentRow(string Type, string Amt, string PayMode, string BillNo, string Date) {
                 PaymentRow rowPaymentRow = ((PaymentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Type,
                         Amt,
-                        PayMode};
+                        PayMode,
+                        BillNo,
+                        Date};
                 rowPaymentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPaymentRow);
                 return rowPaymentRow;
@@ -2213,6 +2235,8 @@ namespace PrimeSolutions.Dataset {
                 this.columnType = base.Columns["Type"];
                 this.columnAmt = base.Columns["Amt"];
                 this.columnPayMode = base.Columns["PayMode"];
+                this.columnBillNo = base.Columns["BillNo"];
+                this.columnDate = base.Columns["Date"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2224,6 +2248,10 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnAmt);
                 this.columnPayMode = new global::System.Data.DataColumn("PayMode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPayMode);
+                this.columnBillNo = new global::System.Data.DataColumn("BillNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBillNo);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4508,6 +4536,38 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BillNo {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayment.BillNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BillNo\' in table \'Payment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayment.BillNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Date {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayment.DateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Date\' in table \'Payment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayment.DateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTypeNull() {
                 return this.IsNull(this.tablePayment.TypeColumn);
             }
@@ -4540,6 +4600,30 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPayModeNull() {
                 this[this.tablePayment.PayModeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBillNoNull() {
+                return this.IsNull(this.tablePayment.BillNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBillNoNull() {
+                this[this.tablePayment.BillNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDateNull() {
+                return this.IsNull(this.tablePayment.DateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDateNull() {
+                this[this.tablePayment.DateColumn] = global::System.Convert.DBNull;
             }
         }
         

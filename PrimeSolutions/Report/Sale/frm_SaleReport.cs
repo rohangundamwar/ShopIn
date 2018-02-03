@@ -20,6 +20,7 @@ namespace PrimeSolutions.Report.Sale
         SaleCommon _s = new SaleCommon();
         clsCommon _common = new clsCommon();
         ExportToExcel _e = new ExportToExcel();
+        AllClassFile _a = new AllClassFile();
 
         private void bttn_generate_Click(object sender, EventArgs e)
         {
@@ -29,7 +30,7 @@ namespace PrimeSolutions.Report.Sale
             DateTime to = dtp_ToDate.Value;
             string frmdate = dtp_date.Value.ToString("dd/MM/yyyy");
             string Todate = dtp_ToDate.Value.ToString("dd/MM/yyyy");
-            DataTable dt= _s.GetCustomerReport(frmdate,Todate);
+            DataTable dt= _s.GetCustomerReport(frmdate,Todate,"All");
             if(dt.Rows.Count>0)
             for (i = 0; i < dt.Rows.Count; i++)
 
@@ -40,10 +41,21 @@ namespace PrimeSolutions.Report.Sale
                     //dgv_CustomerItem.Rows[i].Cells["Name"].Value = dt.Rows[i]["Name"].ToString();
                     dgv_CustomerItem.Rows[i].Cells["Amount"].Value = dt.Rows[i]["BillAmount"].ToString();
                     dgv_CustomerItem.Rows[i].Cells["Discount"].Value = dt.Rows[i]["Discount"].ToString();
+                    dgv_CustomerItem.Rows[i].Cells["Type"].Value = dt.Rows[i]["Type"].ToString();
                     DataTable item = _s.GetBillItem(dt.Rows[i]["BillNo"].ToString(),"Sale");
-                    if(item.Rows.Count>0)
-                    dgv_CustomerItem.Rows[i].Cells["Item"].Value = item.Rows[0]["Category"].ToString();
+                    if (item.Rows.Count > 0)
+                    {
+                        var text = string.Join(",", item.AsEnumerable().Select(x => x["Category"].ToString()).ToArray());
+                        dgv_CustomerItem.Rows[i].Cells["Item"].Value = text;
+                        
+                    }
+                    
                     dgv_CustomerItem.Rows[i].Cells["Name"].Value = dt.Rows[i]["CustomerName"].ToString();
+                    DataTable payment = _a.getpaymentByBill(dt.Rows[i]["BillNo"].ToString(), "Sale","0");
+                    if (payment.Rows.Count != 0)
+                        dgv_CustomerItem.Rows[i].Cells["PaidAmt"].Value = payment.Rows[0]["Amt"].ToString();
+                    else
+                        dgv_CustomerItem.Rows[i].Cells["PaidAmt"].Value = 0;
 
                     // dgv_CustomerItem.Rows[i + 1].Cells["Amount"].Value = _common.sumGridViewColumn(dgv_CustomerItem, "Amount");
                 }
@@ -52,6 +64,12 @@ namespace PrimeSolutions.Report.Sale
             
             dgv_CustomerItem.Rows[i + 1].Cells["Item"].Value = "Total";
             dgv_CustomerItem.Rows[i + 1].Cells["Amount"].Value = _common.sumGridViewColumn(dgv_CustomerItem, "Amount");
+            
+            dgv_CustomerItem.Rows[i + 1].Cells["Discount"].Value = _common.sumGridViewColumn(dgv_CustomerItem, "Discount");
+
+            txt_TotalSale.Text = dgv_CustomerItem.Rows[i + 1].Cells["Amount"].Value.ToString();
+            txt_Physical.Text = Convert.ToString(_common.sumGridViewColumn(dgv_CustomerItem, "PaidAmt"));
+            txt_saleBal.Text = Convert.ToString(Convert.ToDouble(txt_TotalSale.Text) - Convert.ToDouble(txt_Physical.Text));
 
         }
 

@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.dgv_Balance = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_customer = new System.Windows.Forms.ComboBox();
             this.bttn_Find = new System.Windows.Forms.Button();
             this.lbl_name = new System.Windows.Forms.Label();
@@ -41,6 +36,12 @@
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_reset = new System.Windows.Forms.Button();
             this.bttn_Print = new System.Windows.Forms.Button();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Balance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.dgv_Balance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Balance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Name,
+            this.ContactNo,
             this.TotalPurchase,
             this.NoOfBill,
             this.TotalPaid,
@@ -59,40 +61,8 @@
             this.dgv_Balance.Location = new System.Drawing.Point(12, 68);
             this.dgv_Balance.Name = "dgv_Balance";
             this.dgv_Balance.ReadOnly = true;
-            this.dgv_Balance.Size = new System.Drawing.Size(643, 196);
+            this.dgv_Balance.Size = new System.Drawing.Size(743, 196);
             this.dgv_Balance.TabIndex = 0;
-            // 
-            // Name
-            // 
-            this.Name.FillWeight = 200F;
-            this.Name.HeaderText = "CustomerName";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            this.Name.Width = 200;
-            // 
-            // TotalPurchase
-            // 
-            this.TotalPurchase.HeaderText = "TotalPurchase";
-            this.TotalPurchase.Name = "TotalPurchase";
-            this.TotalPurchase.ReadOnly = true;
-            // 
-            // NoOfBill
-            // 
-            this.NoOfBill.HeaderText = "NoOfBill";
-            this.NoOfBill.Name = "NoOfBill";
-            this.NoOfBill.ReadOnly = true;
-            // 
-            // TotalPaid
-            // 
-            this.TotalPaid.HeaderText = "TotalPaid";
-            this.TotalPaid.Name = "TotalPaid";
-            this.TotalPaid.ReadOnly = true;
-            // 
-            // TotalBalance
-            // 
-            this.TotalBalance.HeaderText = "TotalBalance";
-            this.TotalBalance.Name = "TotalBalance";
-            this.TotalBalance.ReadOnly = true;
             // 
             // cmb_customer
             // 
@@ -130,7 +100,7 @@
             // 
             this.bttn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bttn_close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_close.Location = new System.Drawing.Point(580, 279);
+            this.bttn_close.Location = new System.Drawing.Point(680, 280);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 4;
@@ -162,7 +132,7 @@
             // bttn_Print
             // 
             this.bttn_Print.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Print.Location = new System.Drawing.Point(490, 279);
+            this.bttn_Print.Location = new System.Drawing.Point(590, 280);
             this.bttn_Print.Name = "bttn_Print";
             this.bttn_Print.Size = new System.Drawing.Size(75, 23);
             this.bttn_Print.TabIndex = 8;
@@ -170,12 +140,50 @@
             this.bttn_Print.UseVisualStyleBackColor = true;
             this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
             // 
+            // Name
+            // 
+            this.Name.FillWeight = 200F;
+            this.Name.HeaderText = "CustomerName";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            this.Name.Width = 200;
+            // 
+            // ContactNo
+            // 
+            this.ContactNo.HeaderText = "ContactNo";
+            this.ContactNo.Name = "ContactNo";
+            this.ContactNo.ReadOnly = true;
+            // 
+            // TotalPurchase
+            // 
+            this.TotalPurchase.HeaderText = "TotalPurchase";
+            this.TotalPurchase.Name = "TotalPurchase";
+            this.TotalPurchase.ReadOnly = true;
+            // 
+            // NoOfBill
+            // 
+            this.NoOfBill.HeaderText = "NoOfBill";
+            this.NoOfBill.Name = "NoOfBill";
+            this.NoOfBill.ReadOnly = true;
+            // 
+            // TotalPaid
+            // 
+            this.TotalPaid.HeaderText = "TotalPaid";
+            this.TotalPaid.Name = "TotalPaid";
+            this.TotalPaid.ReadOnly = true;
+            // 
+            // TotalBalance
+            // 
+            this.TotalBalance.HeaderText = "TotalBalance";
+            this.TotalBalance.Name = "TotalBalance";
+            this.TotalBalance.ReadOnly = true;
+            // 
             // frm_CustomerBalance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bttn_close;
-            this.ClientSize = new System.Drawing.Size(667, 315);
+            this.ClientSize = new System.Drawing.Size(764, 315);
             this.Controls.Add(this.bttn_Print);
             this.Controls.Add(this.bttn_reset);
             this.Controls.Add(this.bttn_Excel);
@@ -203,6 +211,7 @@
         private System.Windows.Forms.Button bttn_reset;
         private System.Windows.Forms.Button bttn_Print;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoOfBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPaid;

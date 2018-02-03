@@ -36,9 +36,6 @@
             this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_Payment = new System.Windows.Forms.DataGridView();
-            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,6 +43,10 @@
             this.txt_payment = new System.Windows.Forms.Label();
             this.txt_balance = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceiptNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Payment)).BeginInit();
             this.SuspendLayout();
@@ -123,31 +124,14 @@
             this.dgv_Payment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Payment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PayDate,
+            this.ReceiptNo,
             this.PaidAmt,
             this.PayType});
             this.dgv_Payment.Location = new System.Drawing.Point(365, 77);
             this.dgv_Payment.Name = "dgv_Payment";
             this.dgv_Payment.ReadOnly = true;
-            this.dgv_Payment.Size = new System.Drawing.Size(343, 332);
+            this.dgv_Payment.Size = new System.Drawing.Size(443, 332);
             this.dgv_Payment.TabIndex = 4;
-            // 
-            // PayDate
-            // 
-            this.PayDate.HeaderText = "PayDate";
-            this.PayDate.Name = "PayDate";
-            this.PayDate.ReadOnly = true;
-            // 
-            // PaidAmt
-            // 
-            this.PaidAmt.HeaderText = "PaidAmt";
-            this.PaidAmt.Name = "PaidAmt";
-            this.PaidAmt.ReadOnly = true;
-            // 
-            // PayType
-            // 
-            this.PayType.HeaderText = "PayType";
-            this.PayType.Name = "PayType";
-            this.PayType.ReadOnly = true;
             // 
             // label2
             // 
@@ -224,12 +208,36 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // PayDate
+            // 
+            this.PayDate.HeaderText = "PayDate";
+            this.PayDate.Name = "PayDate";
+            this.PayDate.ReadOnly = true;
+            // 
+            // ReceiptNo
+            // 
+            this.ReceiptNo.HeaderText = "Receipt No";
+            this.ReceiptNo.Name = "ReceiptNo";
+            this.ReceiptNo.ReadOnly = true;
+            // 
+            // PaidAmt
+            // 
+            this.PaidAmt.HeaderText = "PaidAmt";
+            this.PaidAmt.Name = "PaidAmt";
+            this.PaidAmt.ReadOnly = true;
+            // 
+            // PayType
+            // 
+            this.PayType.HeaderText = "PayType";
+            this.PayType.Name = "PayType";
+            this.PayType.ReadOnly = true;
+            // 
             // frm_SaleLedger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.ClientSize = new System.Drawing.Size(721, 476);
+            this.ClientSize = new System.Drawing.Size(819, 476);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_balance);
             this.Controls.Add(this.txt_payment);
@@ -264,9 +272,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PayDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PayType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -274,5 +279,9 @@
         private System.Windows.Forms.Label txt_payment;
         private System.Windows.Forms.Label txt_balance;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PayDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PayType;
     }
 }

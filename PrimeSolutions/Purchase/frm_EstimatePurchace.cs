@@ -28,6 +28,7 @@ namespace PrimeSolutions
         PurchaseCommon _purchase = new PurchaseCommon();
         cls_Barcode _barcode = new cls_Barcode();
         SettingValue dtsett;
+        SaleCommon _s = new SaleCommon();
         clsCommon _Common = new clsCommon();
         string supplierexs = "No";
         frm_ReportViewer _print = new frm_ReportViewer();
@@ -64,9 +65,6 @@ namespace PrimeSolutions
             txt_PAN.ResetText();
             txt_GSTIN.ResetText();
             txt_TotalAmt.Text = "0";
-            txt_CGSTValue.Text = "";
-            txt_SGSTValue.Text = "";
-            txt_IGSTValue.Text = "";
             txt_NetAmt.Text = "0";
             txt_PaidAmt.Text = "0";
             txt_BalAmt.Text = "0";
@@ -100,12 +98,6 @@ namespace PrimeSolutions
             txt_Amt.Text = "0";
             txt_BatchNo.Text = "";
             txt_SellingAmt.Text = "0";
-            txt_CGST.Text = "0";
-            lbl_AmtCGST.Text = "0";
-            txt_SGST.Text = "0";
-            lbl_AmtSGST.Text = "0";
-            txt_IGST.Text = "0";
-            lbl_AmtIGST.Text = "0";
             fillcomboox();
             cmb_size.ResetText();
         }
@@ -133,6 +125,7 @@ namespace PrimeSolutions
                 txt_PAN.Text = supplier.Rows[0]["PanNo"].ToString();
                 txt_GSTIN.Text = supplier.Rows[0]["GSTIN"].ToString();
                 txt_BillNo.Focus();
+                lbl_OldBalance.Text = _s.GetBalance(lbl_AccNo1.Text, "Purchase").ToString();
             }
             else if (supplier.Rows.Count == 0)
             {
@@ -235,7 +228,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_CGSTValue.Focus();
+                
             }
         }
 
@@ -290,15 +283,7 @@ namespace PrimeSolutions
             
             if (e.KeyCode == Keys.Enter)
             {
-                if (txt_CGST.Enabled == true)
-                {
-                    txt_CGST.Focus();
-                }
-                else
-                {
-                    txt_IGST.Focus();
-                }
-               
+                Add();
             }
         }
         
@@ -366,11 +351,7 @@ namespace PrimeSolutions
         {
             _objSimpal.ValidationDigitWithPoint(e, txt_TotalAmt.Text);
         }
-
-        private void txt_Vat_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_CGSTValue.Text);
-        }
+        
 
         private void txt_NetAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -446,7 +427,7 @@ namespace PrimeSolutions
             {
                 try
                 {
-                    dgv_ItemInfo.Rows.Add(chk, txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_Amt.Text, txt_BatchNo.Text, txt_SellingAmt.Text, txt_CGST.Text, lbl_AmtCGST.Text, txt_SGST.Text, lbl_AmtSGST.Text, txt_IGST.Text, lbl_AmtIGST.Text);
+                    dgv_ItemInfo.Rows.Add(chk, txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_Amt.Text, txt_BatchNo.Text, txt_SellingAmt.Text, "0","0","0","0","0","0");
                     Clear();
                 }
                 catch (Exception ex)
@@ -467,14 +448,16 @@ namespace PrimeSolutions
             {
                 this.Close();
             }
+
+            if (e.KeyCode == Keys.End)
+            {
+                txt_PaidAmt.Focus();
+            }
         }
 
         private void Calculate()
         {
             double total = 0;
-            double CGSTAmt = 0;
-            double SGSTAmt = 0;
-            double IGSTAmt = 0;
             try
             {
 
@@ -482,17 +465,10 @@ namespace PrimeSolutions
             for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
             {
                 total += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
-                CGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                SGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                IGSTAmt += Convert.ToDouble(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
+                
             }
 
-            txt_TotalAmt.Text = total.ToString();
-            txt_CGSTValue.Text = CGSTAmt.ToString();
-            txt_SGSTValue.Text = SGSTAmt.ToString();
-            txt_IGSTValue.Text = IGSTAmt.ToString();
-
-            txt_NetAmt.Text =Convert.ToString(total + CGSTAmt + SGSTAmt + IGSTAmt); 
+            txt_NetAmt.Text=txt_TotalAmt.Text =Convert.ToString(Math.Round(total, 2));
 
             }
             catch (Exception ex)
@@ -551,15 +527,9 @@ namespace PrimeSolutions
                             string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                             string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
                             string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                            string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                            string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                            string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                            string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                            string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                            string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string PBillNo = txt_BillNo.Text;
 
-                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null, txt_refrence.Text);
+                            _purchase.InsertItem("", category, subcategory, size, PBillNo, "Purchase", Qty, "0", "0", "0", "0", "0", "0", purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), null, txt_refrence.Text);
 
                         }
 
@@ -584,15 +554,9 @@ namespace PrimeSolutions
                             string TotalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                             string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
                             string SellingAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
-                            string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
-                            string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
-                            string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
-                            string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
-                            string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
-                            string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
                             string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
                             string PBillNo = txt_BillNo.Text;
-                            _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint, txt_refrence.Text);
+                            _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty,"0", "0", "0", "0", "0", "0", purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint, txt_refrence.Text);
 
                         }
                     }
@@ -616,11 +580,11 @@ namespace PrimeSolutions
                         {
                             if (dtsett.BarcodeCount == "1")
                             {
-                                _Barcode.PrintBarcode1No(1);
+                                _Barcode.PrintBarcode(1);
                             }
                             else if (dtsett.BarcodeCount == "2")
                             {
-                                _Barcode.PrintBarcode2No(1);
+                                _Barcode.PrintBarcode(2);
                             }
                         }
                         else if (dtsett.BarcodeType == "Laser")
@@ -640,10 +604,10 @@ namespace PrimeSolutions
 
                 try
                 {
-                    _objCustmor.InsertBillDetail(lbl_AccNo1.Text, txt_BillNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, txt_CGSTValue.Text, txt_SGSTValue.Text, txt_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,Type,txt_refrence.Text);
+                    _objCustmor.InsertBillDetail(lbl_AccNo1.Text, txt_BillNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, "0","0","0", txt_NetAmt.Text, cmb_State.Text,Type,txt_refrence.Text);
                     if (txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != "" || txt_PaidAmt.Text != string.Empty)
                     {
-                        _objCustmor.InsertPaymentDetails("Supplier", txt_NetAmt.Text, cmb_PayMode.Text, lbl_AccNo1.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
+                        _objCustmor.InsertPaymentDetails("Supplier", txt_PaidAmt.Text, cmb_PayMode.Text, lbl_AccNo1.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_BillNo.Text);
                     }
                 }
                 catch(Exception ex)
@@ -698,12 +662,6 @@ namespace PrimeSolutions
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = txt_Amt.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["BatchNo"].Value = txt_BatchNo.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value = txt_SellingAmt.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGST"].Value = lbl_AmtCGST.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGSTper"].Value = txt_CGST.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGST"].Value = lbl_AmtSGST.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGSTper"].Value = txt_SGST.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGST"].Value = lbl_AmtIGST.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGSTper"].Value = txt_IGST.Text;
                 Calculate();
                 
             }
@@ -751,12 +709,6 @@ namespace PrimeSolutions
                     txt_Amt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value.ToString();
                     txt_BatchNo.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["BatchNo"].Value.ToString();
                     txt_SellingAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value.ToString();
-                    lbl_AmtCGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGST"].Value.ToString();
-                    txt_CGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGSTper"].Value.ToString();
-                    lbl_AmtSGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGST"].Value.ToString();
-                    txt_SGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGSTper"].Value.ToString();
-                    lbl_AmtIGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGST"].Value.ToString();
-                    txt_IGST.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGSTper"].Value.ToString();
 
                 }
 
@@ -837,95 +789,25 @@ namespace PrimeSolutions
             }
             
         }
-
-        private void txt_CGST_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txt_SGST.Focus();
-            }
-
-            if (e.KeyCode == Keys.Space)
-            {
-                Add();
-            }
-
-        }
+        
 
         private void txt_Address_TextChanged(object sender, EventArgs e)
         {
 
         }
         
-        private void txt_SGST_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                Add();
-            }
-
-        }
-        
-
-        private void txt_CGST_TextChanged(object sender, EventArgs e)
-        {
-            lbl_AmtCGST.Text=Convert.ToString((Convert.ToDouble(txt_Amt.Text) * (Convert.ToDouble(txt_CGST.Text) * 0.01)));
-        }
-
-        private void txt_SGST_TextChanged(object sender, EventArgs e)
-        {
-            lbl_AmtSGST.Text = Convert.ToString((Convert.ToDouble(txt_Amt.Text) * (Convert.ToDouble(txt_SGST.Text) * 0.01)));
-        }
-
-        private void txt_IGST_TextChanged(object sender, EventArgs e)
-        {
-            lbl_AmtIGST.Text = Convert.ToString((Convert.ToDouble(txt_Amt.Text) * (Convert.ToDouble(txt_IGST.Text) * 0.01)));
-        }
-
         private void cmb_State_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmb_State.Text == _objCustmor.GetState())
-            {
-                txt_IGST.Enabled = false;
-                txt_CGST.Enabled = true;
-                txt_SGST.Enabled = true;
-            }
-            else
-            {
-                txt_IGST.Enabled = true;
-                txt_CGST.Enabled = false;
-                txt_SGST.Enabled = false;
-
-            }
+            
         }
 
-        private void txt_CGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_CGST.Text);
-        }
-
-        private void txt_SGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_SGST.Text);
-        }
-
-        private void txt_IGST_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            _objSimpal.ValidationDigitWithPoint(e, txt_IGST.Text);
-        }
+        
 
         private void bttn_Reset_Click(object sender, EventArgs e)
         {
             Clear();
         }
-
-        private void txt_IGST_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                Add();
-            }
-        }
+        
 
         private void bttn_All_Click(object sender, EventArgs e)
         {
@@ -982,10 +864,14 @@ namespace PrimeSolutions
                 txt_HSN.Focus();
             }
         }
-
-        private void txt_GSTIN_TextChanged(object sender, EventArgs e)
+        
+        private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
         {
-
+            if (txt_PaidAmt.Text != null || txt_PaidAmt.Text != "")
+            {
+                txt_BalAmt.Text =Convert.ToString((Convert.ToInt32(lbl_OldBalance.Text) + Convert.ToInt32(txt_NetAmt.Text)) - Convert.ToInt32(txt_PaidAmt.Text))  ;
+            }
+            
         }
     }
 }

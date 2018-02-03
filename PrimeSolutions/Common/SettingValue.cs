@@ -10,6 +10,7 @@ namespace PrimeSolutions.Common
         public string PaymentForm { get; set; }
         public string EstimatePayment { get; set; }
         public string Maintenance { get; set; }
+        public string ReceiptCopy { get; set; }
 
     }
 }

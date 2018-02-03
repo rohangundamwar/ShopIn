@@ -11,6 +11,7 @@ using PrimeSolutions.PaymentOption;
 using PrimeSolutions.Common;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using PrimeSolutions.Report.Sale;
 
 namespace PrimeSolutions
 
@@ -35,8 +36,11 @@ namespace PrimeSolutions
         string VouchertypeIDMod = "0";
         string VouchertypeIDModPayment = "0";
         DataTable dt_cust;
-        DataView dw;
-        string billno;  
+        string BillType { get; set; }
+        DataTable Payment;
+        DateTime Date { get; set; }
+        DataTable CustomerBill;
+
 
         public frm_SaleForm()
         {
@@ -46,36 +50,35 @@ namespace PrimeSolutions
             state = _a.GetState();
             VouchertypeID = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Invoice GST").Rows[0]["VoucherTypeID"].ToString();
             VouchertypeIDPayment = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Receipt Voucher").Rows[0]["VoucherTypeID"].ToString();
-
+            BillType = "New";
         }
 
         public frm_SaleForm(string BillNo, string Type)
         {
-            string BillType = Type;
-            billno = BillNo;
+            BillType = "Update";
             dtSett = new SettingValue();
             dtSett = _common.getSettingValue();
             InitializeComponent();
             VouchertypeID = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Invoice GST").Rows[0]["VoucherTypeID"].ToString();
             VouchertypeIDPayment = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Receipt Voucher").Rows[0]["VoucherTypeID"].ToString();
             getBillDetails(BillNo);
-            bttn_Sale.Text = "Update";
-            bttn_Sale.Enabled = true;
 
         }
 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
-            if (bttn_Sale.Text == "Update")
+            cmb_Category.DataSource = _a.FillCategory();
+            cmb_PayMode.SelectedIndex = 0;
+            if (BillType == "Update")
             {
-
+                pnl_Old.Visible = true;
+                Date = Convert.ToDateTime(CustomerBill.Rows[0]["Date"].ToString());
+                dtp_Date.Value = Date;
             }
             else
             {
                 dt_cust = _Cust.GetCustomerDeatils();
                 this.BringToFront();
-                cmb_Category.DataSource = _a.FillCategory();
-                dw = new DataView(dt_cust);
                 cmb_Name.DataSource = dt_cust;
                 cmb_SalesPerson.DataSource = _common.GetSalesPerson();
                 cmb_Name.Select();
@@ -89,23 +92,23 @@ namespace PrimeSolutions
         {
             txt_BillNo.Text = _objSQLHelper.GetMaxID("S", "0");
             txt_AccNo.Text = _objSQLHelper.GetMaxID("C", "0");
-            dw = new DataView(dt_cust);
             cmb_Name.SelectedIndex = -1;
             cmb_PayMode.SelectedIndex = 0;
             cmb_State.Text = state;
             txt_PanNo.Text = "";
-            txt_GSTIN.Text = "";
-            txt_BalanceAmt.Text="0";
+            txt_GSTIN.ResetText();
+            txt_BalanceAmt.Text = "0";
             txt_Balance.Text = "0";
+            txt_PaidAmt.Text = "0";
             txt_BillAmt.Text = "0";
             txt_Address.ResetText();
             txt_City.ResetText();
             txt_ContactNo.ResetText();
-            txt_NetAmt.Text="0";
+            txt_NetAmt.Text = "0";
             txt_TotalAmt.Text = "0";
-            txt_PaidAmt.Text = "0";
             dgv_ItemInfo.Rows.Clear();
             bttn_Sale.Enabled = false;
+            cmb_Name.Enabled = true;
             cmb_Name.Select();
             txt_maintain.Text = "0";
             if (dtSett.Maintenance == "Yes")
@@ -113,6 +116,7 @@ namespace PrimeSolutions
                 lbl_maintain.Visible = true;
                 txt_maintain.Visible = true;
             }
+            pnl_Old.Visible = false;
             
         }
 
@@ -131,28 +135,45 @@ namespace PrimeSolutions
             txt_SellingAmt.Text = "0";
         }
 
-        private void getBillDetails(string billNo)
+        public void getBillDetails(string billNo)
         {
             txt_BillNo.Text = billNo.ToString();
+
             //CustomerDetsils
             DataTable Cust = _Sale.GetCustomerByBill(billNo);
             cmb_Name.Text = Cust.Rows[0]["CustomerName"].ToString();
             cmb_Name.Enabled = false;
             txt_AccNo.Text = Cust.Rows[0]["CustId"].ToString();
             cmb_State.Text = Cust.Rows[0]["State"].ToString();
+            cmb_State.Enabled = false;
             txt_PanNo.Text = Cust.Rows[0]["PanNo"].ToString();
             txt_GSTIN.Text = Cust.Rows[0]["GSTIN"].ToString();
             txt_ContactNo.Text = Cust.Rows[0]["ContactNo"].ToString();
             txt_Address.Text = Cust.Rows[0]["Address"].ToString();
             txt_City.Text = Cust.Rows[0]["City"].ToString();
-
+            
             //PaymentDetails
-            DataTable Payment = _a.getpaymentByBill(billno, "Sale");
-            cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
-            txt_PaidAmt.Text = Payment.Rows[0]["Amt"].ToString();
+            Payment = _a.getpaymentByBill(billNo, "Sale", "0");
+            if (Payment.Rows.Count > 0)
+            {
+                cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
+                txt_OldPaid.Text = Payment.Rows[0]["Amt"].ToString();
+                
+            }
 
+            //CustomerBill
+            CustomerBill = _Sale.GetBillDetails(billNo);
+            txt_TotalAmt.Text = CustomerBill.Rows[0]["Amount"].ToString();
+            lbl_CGSTValue.Text = CustomerBill.Rows[0]["CGST"].ToString();
+            lbl_SGSTValue.Text = CustomerBill.Rows[0]["SGST"].ToString();
+            lbl_IGSTValue.Text = CustomerBill.Rows[0]["IGST"].ToString();
+            txt_NetAmt.Text = CustomerBill.Rows[0]["GrandAmt"].ToString();
+            txt_Discount.Text = CustomerBill.Rows[0]["Discount"].ToString();
+            txt_BillAmt.Text = CustomerBill.Rows[0]["BillAmount"].ToString();
+           
+           
             //BillItem
-            DataTable BillItem = _Sale.GetBillItem(billno, "Sale");
+            DataTable BillItem = _Sale.GetBillItem(billNo, "Sale");
             for (int i = 0; i < BillItem.Rows.Count; i++)
             {
                 string barcode = BillItem.Rows[i]["Barcode"].ToString();
@@ -171,21 +192,12 @@ namespace PrimeSolutions
                 string IGST = BillItem.Rows[i]["IGST"].ToString();
                 string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
                 string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
-                dgv_ItemInfo.Rows.Add(barcode, category, SubCategory, Size, HSN, BatchNo, Rate, qty, Total, CGST, CGSTAmt, SGST, SGSTAmt, IGST, IGSTAmt, Selling);
-
+                string sales = BillItem.Rows[i]["SalesPerson"].ToString();
+                string maintain = BillItem.Rows[i]["Maintain"].ToString();
+                dgv_ItemInfo.Rows.Add(barcode, category, SubCategory, Size, HSN, BatchNo, Rate, qty, Total, CGST, CGSTAmt, SGST, SGSTAmt, IGST, IGSTAmt, Selling,sales,maintain);
+                
             }
-
-
-            //CustomerBill
-            DataTable CustomerBill = _Sale.GetBillDetails(billNo);
-            txt_TotalAmt.Text = CustomerBill.Rows[0]["Amount"].ToString();
-            lbl_CGSTValue.Text = CustomerBill.Rows[0]["CGST"].ToString();
-            lbl_CGSTValue.Text = CustomerBill.Rows[0]["SGST"].ToString();
-            lbl_CGSTValue.Text = CustomerBill.Rows[0]["IGST"].ToString();
-            txt_NetAmt.Text = CustomerBill.Rows[0]["GrandAmt"].ToString();
-            txt_Discount.Text = CustomerBill.Rows[0]["Discount"].ToString();
-            txt_BillAmt.Text = CustomerBill.Rows[0]["BillAmount"].ToString();
-
+            
         }
 
         private void cmb_Name_KeyDown(object sender, KeyEventArgs e)
@@ -229,19 +241,7 @@ namespace PrimeSolutions
             }
             
         }
-
-        private void SearchCustomer()
-        {
-            DataView DwNew = dw;
-            DwNew.RowFilter = string.Format("CustomerName LIKE '%{0}%'", cmb_Name.Text);
-            dt_cust = DwNew.ToTable();
-            cmb_Name.DataSource = DwNew;
-            if (dt_cust.Rows.Count > 0)
-            {
-                cmb_Name.DroppedDown = true;
-            }
-        }
-
+        
         private int findCustomer()
         {
             DataTable dt = _Sale.GetCustomerDetails(cmb_Name.Text);
@@ -577,7 +577,7 @@ namespace PrimeSolutions
             try
             {
                 string sales = Convert.ToString(cmb_SalesPerson.Text[0]) ;
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text,sales,txt_maintain.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text,txt_DiscPer.Text,txt_DiscAmt.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text,sales,txt_maintain.Text);
                 Clear();
             }
             catch (Exception ex)
@@ -686,7 +686,6 @@ namespace PrimeSolutions
                 double BillAmt = NetAmt - Discount;
                 txt_BillAmt.Text = Convert.ToString(BillAmt);
             }
-                
         }
 
         private void bttn_Sale_Click(object sender, EventArgs e)
@@ -694,15 +693,25 @@ namespace PrimeSolutions
             string BillNo = txt_BillNo.Text;
             string TransactionLedgerID = null;
 
-            MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
-            
-            if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
+            if (BillType == "New")
             {
-                if(Customerexs=="No")
+                if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
                 {
-                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text,txt_PanNo.Text,txt_GSTIN.Text,cmb_State.Text,txt_City.Text,"");
+                    if (Customerexs == "No")
+                    {
+                        _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_ContactNo.Text, txt_PanNo.Text, txt_GSTIN.Text, cmb_State.Text, txt_City.Text, "0");
+                    }
                 }
             }
+            else
+            {
+                _Sale.DeleteBillItem(txt_BillNo.Text);
+                _Sale.DeleteBillDetails(txt_BillNo.Text);
+            }
+
+            MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
+            
+            
             try
             {
 
@@ -725,16 +734,17 @@ namespace PrimeSolutions
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
                     string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string PBillNo = txt_BillNo.Text;
-                    string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
-                    string Maintain = dtp_Date.Value.AddMonths(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value)).ToString("dd/MM/yyyy");
+                    string SalesPerson = Convert.ToString(cmb_SalesPerson.SelectedIndex + 1);
+                    string Maintain = dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString();
+                    string MaintainDate = dtp_Date.Value.AddMonths(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value)).ToString("dd/MM/yyyy");
 
-                    
+
                     _Sale.AddItemDetails(category,subcategory,Size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
                     
 
                     if (dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString() != "0")
                     {
-                        _Service.AddMaintain(dtp_Date.Value.ToString("dd/MM/yyyy"), category+" "+ subcategory, Maintain, txt_AccNo.Text);
+                        _Service.AddMaintain(dtp_Date.Value.ToString("dd/MM/yyyy"), category+" "+ subcategory, MaintainDate, txt_AccNo.Text);
                     }
 
                 }
@@ -751,6 +761,7 @@ namespace PrimeSolutions
 
 
                 // "txt_PaidAmt"
+                if(BillType=="New")
                 if (txt_PaidAmt.Text != null || txt_PaidAmt.Text != "")
                 {
                     int paid = Convert.ToInt32(txt_PaidAmt.Text);
@@ -838,11 +849,13 @@ namespace PrimeSolutions
             //_Sale.PrintBillThermal(BillNo);
 
             MessageBox.Show("Sale Successfully Done");
+            if (BillType == "Update")
+            {
+                this.Close();
+            }
             Masterclear();
             Clear();
             this.BringToFront();
-            
-            
         }
 
         private void frm_SaleForm_KeyDown(object sender, KeyEventArgs e)
@@ -921,6 +934,10 @@ namespace PrimeSolutions
 
         private void bttn_Delete_Click(object sender, EventArgs e)
         {
+            if (BillType == "Update")
+            {
+                bttn_Sale.Enabled = true;
+            }
             try
             {
                 dgv_ItemInfo.Rows.RemoveAt(dgv_ItemInfo.CurrentCell.RowIndex);
@@ -1147,9 +1164,9 @@ namespace PrimeSolutions
 
         private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
         {
-            if (txt_Balance.Text != "" || txt_Balance.Text != "0" || txt_Balance.Text != string.Empty)
-                if (txt_BillAmt.Text != "" || txt_BillAmt.Text != "0" || txt_BillAmt.Text != string.Empty)
-                    if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text != string.Empty)
+            if ((txt_Balance.Text != "" || txt_Balance.Text != "0") || txt_Balance.Text != string.Empty)
+                if ((txt_BillAmt.Text != "" || txt_BillAmt.Text != "0") || txt_BillAmt.Text != string.Empty)
+                    if (txt_PaidAmt.Text == "" || txt_PaidAmt.Text == "0")
                         txt_BalanceAmt.Text = Convert.ToString((Convert.ToDouble(txt_Balance.Text) + Convert.ToDouble(txt_BillAmt.Text)) - Convert.ToDouble(txt_PaidAmt.Text)); 
         }
 
@@ -1246,21 +1263,52 @@ namespace PrimeSolutions
 
         private void txt_DiscPer_TextChanged(object sender, EventArgs e)
         {
+            double DiscountPer = 0;
             double Selling = Convert.ToInt32(txt_SellingAmt.Text);
-            double DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+            if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
+            {   
+                DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+            }
+            
             double discount = DiscountPer / 100;
-            double DiscAmt = Selling * (DiscountPer / 100);
+            double DiscAmt =Math.Round(Selling * (DiscountPer / 100),2) ;
             txt_DiscAmt.Text = DiscAmt.ToString();
             lbl_DiscAmt.Text = Convert.ToString(Selling - DiscAmt);
         }
 
         private void txt_DiscAmt_TextChanged(object sender, EventArgs e)
         {
+            double DiscountAmt=0;
             double Selling = Convert.ToInt32(txt_SellingAmt.Text);
-            double DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
+            if (txt_DiscAmt.Text != "" && txt_DiscAmt.Text != null)
+            {
+                DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
+            }
             double DiscountPer = Math.Round((DiscountAmt / Selling) * 100, 2);
             txt_DiscPer.Text = Convert.ToString(DiscountPer);
             lbl_DiscAmt.Text = Convert.ToString(Selling - DiscountAmt);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txt_BillAmt_TextChanged(object sender, EventArgs e)
+        {
+            if (BillType == "Update")
+            {
+                if (Payment.Rows.Count > 0)
+                {
+                    txt_OldPaid.Text = Payment.Rows[0]["Amt"].ToString();
+                }
+                else
+                {
+                    txt_OldPaid.Text = "0";
+                }
+
+                txt_Diff.Text = Convert.ToString(Convert.ToInt32(txt_BillAmt.Text) - Convert.ToInt32(txt_PaidAmt.Text));
+            }
         }
     }
 }

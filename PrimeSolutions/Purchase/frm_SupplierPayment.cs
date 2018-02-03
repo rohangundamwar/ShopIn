@@ -13,9 +13,11 @@ namespace PrimeSolutions.Purchase
     public partial class frm_SupplierPayment : Form
     {
         CustomerCommon _cust = new CustomerCommon();
-        DataTable cust;
+        DataTable Supplier;
         AllClassFile _a = new AllClassFile();
         ErrorLog _e = new ErrorLog();
+        SQLHelper _sql = new SQLHelper();
+
         
 
         public frm_SupplierPayment()
@@ -28,25 +30,29 @@ namespace PrimeSolutions.Purchase
             cmb_name.ResetText();
             txt_Amount.Text = "";
             cmb_name.Focus();
+            txt_ReceiptNo.Text = _sql.GetMaxID("X", "0");
+            cmb_PaymentType.SelectedIndex = 0;
+
         }
         private void frm_CustomerPayment_Load(object sender, EventArgs e)
         {
             Clear();
-            cust = _a.getSupplierName();
-            cmb_name.DataSource = cust;
+            Supplier = _a.getSupplierName();
+            cmb_name.DataSource = Supplier;
+
         }
 
         private void cmb_name_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id =  cmb_name.SelectedIndex.ToString();
-            lbl_id.Text = cust.Rows[Convert.ToInt32(id)]["CustId"].ToString();
+            lbl_id.Text = Supplier.Rows[Convert.ToInt32(id)]["SupplierNo"].ToString();
         }
 
         private void Save_Click(object sender, EventArgs e)
         {
             try
             {
-                _a.InsertPaymentDetails("Supplier", txt_Amount.Text, "Cash", lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), "");
+                _a.InsertPaymentDetails("Supplier", txt_Amount.Text, cmb_PaymentType.Text , lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"),txt_ReceiptNo.Text);
                 MessageBox.Show("Payment Saved");
                 Clear();
             }

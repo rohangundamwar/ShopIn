@@ -52,7 +52,7 @@ namespace PrimeSolutions.Report.Purchase
         {
             dgv_Balance.Rows.Clear();
             dgv_Balance.Rows.Add();
-            dgv_Balance.Rows[0].Cells["CustomerName"].Value = cmb_customer.Text;
+            dgv_Balance.Rows[0].Cells["Name"].Value = cmb_customer.Text;
             string CustId = cust.Rows[cmb_customer.SelectedIndex]["SupplierNo"].ToString();
             dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalSupplierPurchase(CustId,"Purchase");
             DataTable count = _Purchase.GetSupplierBill(CustId);

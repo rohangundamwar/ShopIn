@@ -48,6 +48,7 @@
             // 
             // dtp_From
             // 
+            this.dtp_From.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_From.Location = new System.Drawing.Point(71, 58);
             this.dtp_From.Name = "dtp_From";
             this.dtp_From.Size = new System.Drawing.Size(132, 20);
@@ -55,6 +56,7 @@
             // 
             // dtp_To
             // 
+            this.dtp_To.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_To.Location = new System.Drawing.Point(284, 58);
             this.dtp_To.Name = "dtp_To";
             this.dtp_To.Size = new System.Drawing.Size(132, 20);
@@ -74,11 +76,13 @@
             // 
             this.Cmb_Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Cmb_Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Cmb_Name.DisplayMember = "Name";
             this.Cmb_Name.FormattingEnabled = true;
             this.Cmb_Name.Location = new System.Drawing.Point(129, 20);
             this.Cmb_Name.Name = "Cmb_Name";
             this.Cmb_Name.Size = new System.Drawing.Size(290, 21);
             this.Cmb_Name.TabIndex = 3;
+            this.Cmb_Name.ValueMember = "Name";
             this.Cmb_Name.SelectedIndexChanged += new System.EventHandler(this.Cmb_Name_SelectedIndexChanged);
             // 
             // label2
@@ -110,6 +114,7 @@
             this.btn_Show.TabIndex = 6;
             this.btn_Show.Text = "Show";
             this.btn_Show.UseVisualStyleBackColor = true;
+            this.btn_Show.Click += new System.EventHandler(this.btn_Show_Click);
             // 
             // dvg_SalesCommision
             // 
@@ -205,7 +210,6 @@
             this.Controls.Add(this.dtp_To);
             this.Controls.Add(this.dtp_From);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //this.Name = "frm_Sales_Commission";
             this.Text = "Sales Commission";
             this.Load += new System.EventHandler(this.frm_Sales_Commission_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvg_SalesCommision)).EndInit();

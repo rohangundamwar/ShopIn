@@ -21,7 +21,7 @@ namespace PrimeSolutions.Report.Sale
         public frm_Sales_Commission()
         {
             InitializeComponent();
-           // SalesmanMaster = _s.getSalesMan();
+            SalesmanMaster = _s.getSalesMan();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -37,6 +37,18 @@ namespace PrimeSolutions.Report.Sale
         private void frm_Sales_Commission_Load(object sender, EventArgs e)
         {
             Cmb_Name.DataSource = SalesmanMaster;
+        }
+
+        private void btn_Show_Click(object sender, EventArgs e)
+        {
+            dvg_SalesCommision.Rows.Clear();
+            DataTable dt = _s.GetSalemanReport(dtp_From.Value.ToString("dd/MM/yyyy"), dtp_To.Value.ToString("dd/MM/yyyy"));
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dvg_SalesCommision.Rows.Add();
+                dvg_SalesCommision.Rows[i].Cells["Name"].Value = dt.Rows[i]["Name"].ToString();
+                dvg_SalesCommision.Rows[i].Cells["Sales_Amount"].Value = dt.Rows[i]["Amount"].ToString();
+            }
         }
 
         private void Cmb_Name_SelectedIndexChanged(object sender, EventArgs e)

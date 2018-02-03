@@ -16,6 +16,8 @@ namespace PrimeSolutions.Sale
         DataTable cust;
         AllClassFile _a = new AllClassFile();
         ErrorLog _e = new ErrorLog();
+        SQLHelper _sql = new SQLHelper();
+        public delegate void SendData(string BillNO, string type);
 
         public frm_CustomerPayment()
         {
@@ -27,6 +29,9 @@ namespace PrimeSolutions.Sale
             cmb_name.ResetText();
             txt_Amount.Text = "";
             cmb_name.Focus();
+            cmb_PaymentType.SelectedIndex = 0;
+            txt_ReceiptNo.Text = _sql.GetMaxID("R","0");
+
         }
         private void frm_CustomerPayment_Load(object sender, EventArgs e)
         {
@@ -45,15 +50,30 @@ namespace PrimeSolutions.Sale
         {
             try
             {
-                _a.InsertPaymentDetails("Customer", txt_Amount.Text, "Cash", lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), "");
+                _a.InsertPaymentDetails("Customer", txt_Amount.Text, cmb_PaymentType.Text, lbl_id.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_ReceiptNo.Text);
                 MessageBox.Show("Payment Saved");
-                Clear();
             }
             catch(Exception ex)
             {
                 _e.AddException(ex,"Customer Payment");
             }
-            
+
+            try
+            {
+                DialogResult dr = MessageBox.Show("Do You want to print Receipt", "", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    Report.CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new Report.CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.PaymentReceipt);
+                    _obj(txt_ReceiptNo.Text, "Customer");
+                }
+            }
+            catch (Exception ex)
+            {
+                _e.AddException(ex, "Customer Payment/Print");
+            }
+            MessageBox.Show("Done");
+            Clear();
         }
 
         private void cmb_name_KeyDown(object sender, KeyEventArgs e)
