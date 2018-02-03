@@ -71,7 +71,7 @@ namespace PrimeSolutions.Report.CrystalReport
             _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty")); 
 
-            DataTable dt_Payment = _a.getpaymentByBill(BillNo, "Sale");
+            DataTable dt_Payment = _a.getpaymentByBill(BillNo, "Sale","0");
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             try
@@ -172,7 +172,7 @@ namespace PrimeSolutions.Report.CrystalReport
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
 
-            DataTable dt_Payment = _a.getpaymentByBill(BillNo, "Sale");
+            DataTable dt_Payment = _a.getpaymentByBill(BillNo, "Sale","0");
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             try
@@ -371,7 +371,7 @@ namespace PrimeSolutions.Report.CrystalReport
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
 
-            DataTable dt_Payment = _a.getpaymentByBill(ServiceID, "Sale");
+            DataTable dt_Payment = _a.getpaymentByBill(ServiceID, "Sale","0");
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             
@@ -551,7 +551,7 @@ namespace PrimeSolutions.Report.CrystalReport
             _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
-            DataTable dt_Payment = _a.getpaymentByBill(RefrenceNo, "Supplier");
+            DataTable dt_Payment = _a.getpaymentByBill(RefrenceNo, "Supplier","0");
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             try
@@ -650,7 +650,7 @@ namespace PrimeSolutions.Report.CrystalReport
             _objReport.Database.Tables["BillItem"].SetDataSource(dt_ItemsDetails);
             string qty = Convert.ToString(_common.sumDataTableColumn(dt_ItemsDetails, "Qty"));
 
-            DataTable dt_Payment = _a.getpaymentByBill(RefrenceNo, "Supplier");
+            DataTable dt_Payment = _a.getpaymentByBill(RefrenceNo, "Supplier","0");
             _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
 
             try
@@ -724,6 +724,78 @@ namespace PrimeSolutions.Report.CrystalReport
                 return;
             }
         }
+
+        public void PaymentReceipt(string BillNo,string Type)
+        {
+            DataTable dt_Payment = new DataTable();
+            ReportDocument _objReport = new ReportDocument();
+            _objReport.Load(Environment.CurrentDirectory + "\\ReceiptA5.rpt");
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            if (Type == "Customer")
+            {
+                dt_Payment = _a.getpaymentByBill(BillNo, "Customer","0");
+                _objReport.Database.Tables["CustomerDetails"].SetDataSource(_sales.GetCustomerByCustid(dt_Payment.Rows[0]["Id"].ToString()));
+            }
+            
+            _objReport.Database.Tables["Payment"].SetDataSource(dt_Payment);
+
+            try
+            {
+                string Balance = Convert.ToString(_sales.GetBalance(dt_Payment.Rows[0]["Id"].ToString(), "Sale"));
+                _objReport.SetParameterValue("Balance", Balance);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer/GetBalance");
+                MessageBox.Show(ex.ToString());
+            }
+
+            try
+            {
+                double inword = Convert.ToDouble(dt_Payment.Rows[0]["Amt"].ToString());
+                inword = Math.Round(inword);
+                int number = Convert.ToInt32(inword);
+                string inwordsString = _objCommon.NumberToWords(number);
+                _objReport.SetParameterValue("inwords", inwordsString);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer/Inwords");
+                MessageBox.Show(ex.ToString());
+            }
+
+            if (_objPrinterSetting.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int Copies = _objPrinterSetting.copies;
+
+                    _objReport.PrintOptions.PrinterName = _objPrinterSetting.PrinterName;
+                    _objReport.PrintToPrinter(Copies, true, 0, 0);
+                    printresult = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                if (printresult == true)
+                {
+                    printresult = false;
+                }
+            }
+            else
+            {
+                crReportViewer.ReportSource = _objReport;
+                crReportViewer.Show();
+                return;
+            }
+
+        }
+
 
         public void SaleLedger(DataTable sale,DataTable pay,string Bill,string payment,string balance)
         {

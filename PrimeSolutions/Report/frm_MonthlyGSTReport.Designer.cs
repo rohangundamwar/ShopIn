@@ -44,6 +44,10 @@
             this.IGST2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_print = new System.Windows.Forms.Button();
             this.cmb_year = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_sale = new System.Windows.Forms.Label();
+            this.lbl_Purchase = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_purchase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sale)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +74,7 @@
             this.cmb_month.Size = new System.Drawing.Size(128, 21);
             this.cmb_month.TabIndex = 0;
             this.cmb_month.ValueMember = "Collection";
+            this.cmb_month.TextChanged += new System.EventHandler(this.cmb_month_TextChanged);
             // 
             // bttn_Generate
             // 
@@ -94,7 +99,7 @@
             this.CGST,
             this.IGST});
             this.dgv_purchase.GridColor = System.Drawing.SystemColors.Highlight;
-            this.dgv_purchase.Location = new System.Drawing.Point(12, 83);
+            this.dgv_purchase.Location = new System.Drawing.Point(13, 106);
             this.dgv_purchase.Name = "dgv_purchase";
             this.dgv_purchase.ReadOnly = true;
             this.dgv_purchase.Size = new System.Drawing.Size(543, 180);
@@ -143,7 +148,7 @@
             this.CGST2,
             this.IGST2});
             this.dgv_sale.GridColor = System.Drawing.SystemColors.Highlight;
-            this.dgv_sale.Location = new System.Drawing.Point(12, 304);
+            this.dgv_sale.Location = new System.Drawing.Point(12, 337);
             this.dgv_sale.Name = "dgv_sale";
             this.dgv_sale.ReadOnly = true;
             this.dgv_sale.Size = new System.Drawing.Size(543, 180);
@@ -203,11 +208,59 @@
             this.cmb_year.Size = new System.Drawing.Size(85, 21);
             this.cmb_year.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(189, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Purchase";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Green;
+            this.label2.Location = new System.Drawing.Point(209, 304);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Sale";
+            // 
+            // lbl_sale
+            // 
+            this.lbl_sale.AutoSize = true;
+            this.lbl_sale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_sale.ForeColor = System.Drawing.Color.Red;
+            this.lbl_sale.Location = new System.Drawing.Point(272, 304);
+            this.lbl_sale.Name = "lbl_sale";
+            this.lbl_sale.Size = new System.Drawing.Size(84, 20);
+            this.lbl_sale.TabIndex = 8;
+            this.lbl_sale.Text = "Purchase";
+            // 
+            // lbl_Purchase
+            // 
+            this.lbl_Purchase.AutoSize = true;
+            this.lbl_Purchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Purchase.ForeColor = System.Drawing.Color.Green;
+            this.lbl_Purchase.Location = new System.Drawing.Point(272, 81);
+            this.lbl_Purchase.Name = "lbl_Purchase";
+            this.lbl_Purchase.Size = new System.Drawing.Size(84, 20);
+            this.lbl_Purchase.TabIndex = 9;
+            this.lbl_Purchase.Text = "Purchase";
+            // 
             // frm_MonthlyGSTReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 502);
+            this.ClientSize = new System.Drawing.Size(568, 529);
+            this.Controls.Add(this.lbl_Purchase);
+            this.Controls.Add(this.lbl_sale);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmb_year);
             this.Controls.Add(this.bttn_print);
             this.Controls.Add(this.dgv_sale);
@@ -220,6 +273,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_purchase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sale)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -241,5 +295,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST2;
         private System.Windows.Forms.Button bttn_print;
         private System.Windows.Forms.ComboBox cmb_year;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_sale;
+        private System.Windows.Forms.Label lbl_Purchase;
     }
 }

@@ -61,6 +61,7 @@ namespace PrimeSolutions.Service
             txt_name.Text = Cust.Rows[0]["CustomerName"].ToString();
             txt_address.Text = Cust.Rows[0]["Address"].ToString() + "," + Cust.Rows[0]["City"].ToString() + "," + Cust.Rows[0]["State"].ToString();
             txt_Contact.Text = Cust.Rows[0]["ContactNo"].ToString();
+            lbl_CustID.Text= Cust.Rows[0]["CustId"].ToString();
         }
 
         private void Masterclear()

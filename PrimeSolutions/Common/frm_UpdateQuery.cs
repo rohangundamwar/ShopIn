@@ -100,8 +100,7 @@ namespace PrimeSolutions.Common
             string L = "Login";
             string query12 = "CREATE TABLE [dbo].[Login]([UserID] [nvarchar](max) NULL,[Password] [nvarchar](max) NULL,[Type] [nvarchar](max) NULL)";
             dgv_UpdateQuery.Rows.Add(false, L, query12);
-
-
+            
             string M = "Extra Charges";
             string query13 = "ALTER TABLE CustomerBill ADD ExtraCharges nvarchar(MAX)";
             dgv_UpdateQuery.Rows.Add(false, M, query13);
@@ -114,6 +113,13 @@ namespace PrimeSolutions.Common
             string query15 = "ALTER TABLE setting ADD BillType NVARCHAR(MAX)";
             dgv_UpdateQuery.Rows.Add(false, O, query15);
 
+            string P = "Update Opening";
+            string query16 = "update CustomerMaster set Opening = '0' where Opening = '' ";
+            dgv_UpdateQuery.Rows.Add(false, P, query16);
+
+            string Q = "Add Payment Permanentdelete";
+            string query17 = "ALTER TABLE Payment ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_Payment_PermanentDelete]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, Q, query17);
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)
@@ -134,8 +140,38 @@ namespace PrimeSolutions.Common
                 }
             }
         }
-        
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //ReceiptNo
+            string sql1 = "select count(BillNo) from Payment where type ='Customer' and BillNo=''";
+            string sql2 = "select count(BillNo) from Payment where type ='Supplier' and BillNo=''";
+            string X = _objSqlHelper.ExecuteScalar(sql1);
+            string Y = _objSqlHelper.ExecuteScalar(sql2);
+            int Xcount = Convert.ToInt32(X);
+            for (int i = 0; i < Xcount; i++)
+            {
+                string queryX = "Update top(1) Payment set BillNo='"+_objSqlHelper.GetMaxID("R","0")+"' where BillNo='' and Type='Customer'";
+                _objSqlHelper.ExecuteScalar(queryX);
+            }
+
+            int Ycount = Convert.ToInt32(Y);
+            for (int i = 0; i < Ycount; i++)
+            {
+                string queryY = "Update top(1) Payment set BillNo='" + _objSqlHelper.GetMaxID("X", "0") + "' where BillNo='' and Type='Supplier'";
+                _objSqlHelper.ExecuteScalar(queryY);
+            }
+
+            if (Xcount == 0 && Ycount == 0)
+            {
+                MessageBox.Show("Already Updated");
+            }
+            else
+            {
+                MessageBox.Show("Updated Successfully");
+            }
+            
+        }
     }
 
 }

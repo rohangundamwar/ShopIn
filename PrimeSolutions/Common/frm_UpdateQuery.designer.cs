@@ -37,6 +37,7 @@
             this.UpdateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Query = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chk_selectall = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UpdateQuery)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.btn_Execute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Execute.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btn_Execute.ForeColor = System.Drawing.Color.Green;
-            this.btn_Execute.Location = new System.Drawing.Point(657, 8);
+            this.btn_Execute.Location = new System.Drawing.Point(657, 15);
             this.btn_Execute.Name = "btn_Execute";
             this.btn_Execute.Size = new System.Drawing.Size(86, 26);
             this.btn_Execute.TabIndex = 1;
@@ -82,7 +83,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_UpdateQuery.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_UpdateQuery.Location = new System.Drawing.Point(12, 44);
+            this.dgv_UpdateQuery.Location = new System.Drawing.Point(12, 58);
             this.dgv_UpdateQuery.Name = "dgv_UpdateQuery";
             this.dgv_UpdateQuery.Size = new System.Drawing.Size(731, 412);
             this.dgv_UpdateQuery.TabIndex = 2;
@@ -107,7 +108,7 @@
             // 
             this.chk_selectall.AutoSize = true;
             this.chk_selectall.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.chk_selectall.Location = new System.Drawing.Point(12, 14);
+            this.chk_selectall.Location = new System.Drawing.Point(12, 21);
             this.chk_selectall.Name = "chk_selectall";
             this.chk_selectall.Size = new System.Drawing.Size(90, 23);
             this.chk_selectall.TabIndex = 3;
@@ -115,12 +116,23 @@
             this.chk_selectall.UseVisualStyleBackColor = true;
             this.chk_selectall.CheckedChanged += new System.EventHandler(this.chk_selectall_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(573, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 34);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Update Receipt No";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frm_UpdateQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
-            this.ClientSize = new System.Drawing.Size(754, 469);
+            this.ClientSize = new System.Drawing.Size(754, 483);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.chk_selectall);
             this.Controls.Add(this.dgv_UpdateQuery);
             this.Controls.Add(this.btn_Execute);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
         private System.Windows.Forms.DataGridViewTextBoxColumn UpdateName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Query;
+        private System.Windows.Forms.Button button1;
     }
 }

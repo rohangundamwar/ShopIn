@@ -21,6 +21,7 @@ using System.Management;
 using System.Security.Cryptography;
 using System.IO;
 using System.ServiceProcess;
+using PrimeSolutions.Report.Profit_Loss;
 
 namespace PrimeSolutions
 {
@@ -312,7 +313,7 @@ namespace PrimeSolutions
 
         private void saleBillToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frm_ChangeBill _form = new frm_ChangeBill();
+            frm_ChangeBill _form = new frm_ChangeBill("All");
             _form.ShowDialog();
         }
 
@@ -481,6 +482,30 @@ namespace PrimeSolutions
         private void qoutationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_Qoutation _form = new frm_Qoutation();
+            _form.ShowDialog();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            frm_Sales_Commission _form = new frm_Sales_Commission();
+            _form.ShowDialog();
+        }
+
+        private void dailyProfitLossToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_profit_loss _form = new frm_profit_loss();
+            _form.ShowDialog();
+        }
+
+        private void paymentReceiptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_DuplicateReceipt _form = new frm_DuplicateReceipt();
+            _form.ShowDialog();
+        }
+
+        private void dailyExpensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Daily_Expenses _form = new frm_Daily_Expenses();
             _form.ShowDialog();
         }
     }

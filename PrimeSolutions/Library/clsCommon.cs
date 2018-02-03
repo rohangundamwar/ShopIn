@@ -42,6 +42,41 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public DataTable GetIncome(string from, string to)
+        {
+            string str = "select * from Payment Where (convert(datetime,dbo.Payment.Date,103)>= convert(datetime,'"+from+"',103) and convert(datetime,dbo.Payment.Date,103)<= convert(datetime,'"+to+ "',103)) and PermanentDelete=0 and (Type ='Sale' or Type ='Customer')";
+            DataTable Income = _objSqlhelper.GetDataTable(str);
+            return Income;
+        }
+
+        public Tuple<DataTable ,DataTable,DataTable> ProfitLoss(string from, string to)
+        {
+            string income = "select * from Payment Where (convert(datetime,dbo.Payment.Date,103)>= convert(datetime,'" + from + "',103) and convert(datetime,dbo.Payment.Date,103)<= convert(datetime,'" + to + "',103)) and PermanentDelete=0 and (Type ='Sale' or Type ='Customer')";
+            DataTable Income = _objSqlhelper.GetDataTable(income);
+
+            string expenses = "select * from Payment Where (convert(datetime,dbo.Payment.Date,103)>= convert(datetime,'" + from + "',103) and convert(datetime,dbo.Payment.Date,103)<= convert(datetime,'" + to + "',103)) and PermanentDelete=0 and (Type ='Supplier') ORDER BY SrNo";
+            DataTable ExpensesPay = _objSqlhelper.GetDataTable(expenses);
+
+            string Exp = "select * from Expenses Where (convert(datetime,dbo.Expenses.Date,103)>= convert(datetime,'" + from + "',103) and convert(datetime,dbo.Expenses.Date,103)<= convert(datetime,'" + to + "',103))";
+            DataTable Expense = _objSqlhelper.GetDataTable(Exp);
+
+            return Tuple.Create(Income, ExpensesPay, Expense);
+        }
+
+        public DataTable GetExpensesPay(string from, string to)
+        {
+            string str = "select * from Payment Where (convert(datetime,dbo.Payment.Date,103)>= convert(datetime,'" + from + "',103) and convert(datetime,dbo.Payment.Date,103)<= convert(datetime,'" + to + "',103)) and PermanentDelete=0 and (Type ='Supplier') ORDER BY SrNo";
+            DataTable Expenses = _objSqlhelper.GetDataTable(str);
+            return Expenses;
+        }
+
+        public DataTable GetExpenses(string from, string to)
+        {
+            string str = "select * from Expenses Where (convert(datetime,dbo.Expenses.Date,103)>= convert(datetime,'" + from + "',103) and convert(datetime,dbo.Expenses.Date,103)<= convert(datetime,'" + to + "',103))";
+            DataTable Expenses = _objSqlhelper.GetDataTable(str);
+            return Expenses;
+        }
+
         public DataTable GetBillItemByRefrence(string BillNo, string Type)
         {
             string str = "Select * from BillItem where PurchaseRef = '" + BillNo + "' where BarcodePrint=1";
@@ -148,14 +183,13 @@ namespace PrimeSolutions.Library
             service.Start();
             service.WaitForStatus(ServiceControllerStatus.Running, timeout);
         }
-
-
-
+        
         public void DeleteTemp()
         {
-            string str = "delete from temp";
+            string str = "truncate table Temp";
             _objSqlhelper.ExecuteScalar(str);
         }
+
         public void setBillNo(string Change)
         {
             string str = "update PrintQue set PrintQue='" + Change + "'";
@@ -167,9 +201,7 @@ namespace PrimeSolutions.Library
             string str = "select PrintQue from PrintQue where SrNo='2'";
             return _objSqlhelper.ExecuteScalar(str);
         }
-
         
-
         public DataTable GetSalesPerson()
         {
             string sql = "select id+name as SalesPerson from SalesmanMaster";
@@ -188,7 +220,6 @@ namespace PrimeSolutions.Library
             _objSqlhelper.ExecuteSql(str);
         }
         
-
         public void UpdatePermanentDeleteTrue(string sColumnValue, string sColomnName, TableNames sTableName)
         {
             string str = "UPDATE " + sTableName + " SET PermanentDelete= 1 WHERE  (" + sColomnName + " = '" + sColumnValue + "') AND (PermanentDelete=0)";
@@ -201,6 +232,7 @@ namespace PrimeSolutions.Library
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }
+
         public DataTable getData()
         {
             string str = "SELECT * FROM  tbl_OpnenigLedger";
@@ -220,8 +252,7 @@ namespace PrimeSolutions.Library
             string str = "SELECT * " + ((sBillNoInitial == null && sBillNoInitial == null) ? "" : ", { fn CONCAT('" + sBillNoInitial + "-', CAST(" + sConcatColumn + " AS varchar)) } AS GeneratedBillNo ") + "  FROM " + sTableName + " where (PermanentDelete = 0) " + ((sColomnName == null) ? "" : " and (" + sColomnName + " = '" + sColumnValue + "') ") + " " + ((sCustomerType == null) ? "" : " and ( CustomerType = '" + sCustomerType + "')");
             return _objSqlhelper.GetDataTable(str);
         }
-
-
+        
         public void insertServerData( string user, string password)
         {
             string str = "Insert InTo ServerUpload (userId , password) Values ('" + user + "','" + password + "')";
@@ -246,6 +277,7 @@ namespace PrimeSolutions.Library
             _objsetvalue.PaymentForm = dt.Rows[0]["PaymentForm"].ToString();
             _objsetvalue.EstimatePayment = dt.Rows[0]["EstimatePayment"].ToString();
             _objsetvalue.Maintenance = dt.Rows[0]["Maintenance"].ToString();
+            //_objsetvalue.ReceiptCopy = dt.Rows[0]["ReceiptCopy"].ToString();
 
             return _objsetvalue;
         }
@@ -256,7 +288,6 @@ namespace PrimeSolutions.Library
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }
-        
         
         public DataTable DataGridView2DataTable(DataGridView dgv, String tblName, int minRow = 0)
         {
@@ -322,6 +353,7 @@ namespace PrimeSolutions.Library
             }
             catch { return null; }
         }
+
         public DataTable DataGridView2DataTableSelected(DataGridView dgv, String tblName, int minRow = 0)
         {
 
@@ -548,7 +580,6 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.ExecuteScalar(str);
         }
         
-
         public string NumberToWords(int number)
         {
             if (number == 0)
@@ -602,8 +633,6 @@ namespace PrimeSolutions.Library
 
             return words;
         }
-
         
-
     }
 }

@@ -52,6 +52,7 @@ namespace PrimeSolutions
         private void getBillDetails(string billNo)
         {
             txt_BillNo.Text = billNo.ToString(); 
+
             //CustomerDetsils
             DataTable Cust = _Sale.GetCustomerByBill(billNo);
             cmb_Name.Text = Cust.Rows[0]["CustomerName"].ToString();
@@ -75,7 +76,7 @@ namespace PrimeSolutions
             txt_BillAmt.Text= CustomerBill.Rows[0]["BillAmount"].ToString();
 
             //PaymentDetails
-            DataTable Payment = _a.getpaymentByBill(billno, "Sale");
+            DataTable Payment = _a.getpaymentByBill(billno, "Sale","0");
             cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
             txt_PaidAmt.Text = Payment.Rows[0]["Amt"].ToString();
 
@@ -115,7 +116,6 @@ namespace PrimeSolutions
             this.BringToFront();
             cmb_Category.DataSource = _a.FillCategory();
             cmb_SubCategory.DataSource = _a.FillSubCategory();
-            cmb_Name.DataSource = _Cust.GetCustomerDeatils();
             cmb_Name.Select();
             Clear();
             Masterclear();

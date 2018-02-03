@@ -30,6 +30,8 @@
         {
             this.pnl_Date = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_Qty = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.bttn_Reset = new System.Windows.Forms.Button();
             this.bttn_Delete = new System.Windows.Forms.Button();
             this.txt_GST = new System.Windows.Forms.TextBox();
@@ -44,6 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmb_SubCategory = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_Ref = new System.Windows.Forms.Label();
+            this.txt_Refrence = new System.Windows.Forms.Label();
             this.bttn_BillNoView = new System.Windows.Forms.Button();
             this.lbl_BillNo = new System.Windows.Forms.Label();
             this.lbl_Supplier = new System.Windows.Forms.Label();
@@ -52,8 +56,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.bttn_Print = new System.Windows.Forms.Button();
             this.dgv_BarcodeDetail = new System.Windows.Forms.DataGridView();
-            this.txt_Qty = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.Chk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +64,6 @@
             this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_Refrence = new System.Windows.Forms.Label();
-            this.lbl_Ref = new System.Windows.Forms.Label();
             this.pnl_Date.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,6 +105,25 @@
             this.groupBox2.TabIndex = 370;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New Barcode Entry";
+            // 
+            // txt_Qty
+            // 
+            this.txt_Qty.Location = new System.Drawing.Point(390, 66);
+            this.txt_Qty.Name = "txt_Qty";
+            this.txt_Qty.Size = new System.Drawing.Size(66, 20);
+            this.txt_Qty.TabIndex = 376;
+            this.txt_Qty.Text = " 1";
+            this.txt_Qty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Qty_KeyDown);
+            this.txt_Qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Qty_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(355, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 13);
+            this.label6.TabIndex = 375;
+            this.label6.Text = "Qty";
             // 
             // bttn_Reset
             // 
@@ -266,6 +285,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Old Bill";
             // 
+            // lbl_Ref
+            // 
+            this.lbl_Ref.AutoSize = true;
+            this.lbl_Ref.Location = new System.Drawing.Point(114, 67);
+            this.lbl_Ref.Name = "lbl_Ref";
+            this.lbl_Ref.Size = new System.Drawing.Size(68, 13);
+            this.lbl_Ref.TabIndex = 361;
+            this.lbl_Ref.Text = "Refrence No";
+            // 
+            // txt_Refrence
+            // 
+            this.txt_Refrence.AutoSize = true;
+            this.txt_Refrence.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Refrence.ForeColor = System.Drawing.Color.Red;
+            this.txt_Refrence.Location = new System.Drawing.Point(114, 90);
+            this.txt_Refrence.Name = "txt_Refrence";
+            this.txt_Refrence.Size = new System.Drawing.Size(15, 13);
+            this.txt_Refrence.TabIndex = 360;
+            this.txt_Refrence.Text = "--";
+            // 
             // bttn_BillNoView
             // 
             this.bttn_BillNoView.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -311,6 +350,8 @@
             // 
             // cmb_PBillNo
             // 
+            this.cmb_PBillNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_PBillNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_PBillNo.DisplayMember = "BillNo";
             this.cmb_PBillNo.FormattingEnabled = true;
             this.cmb_PBillNo.Location = new System.Drawing.Point(17, 86);
@@ -365,25 +406,6 @@
             this.dgv_BarcodeDetail.Size = new System.Drawing.Size(847, 300);
             this.dgv_BarcodeDetail.TabIndex = 1;
             this.dgv_BarcodeDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_BarcodeDetail_CellContentClick);
-            // 
-            // txt_Qty
-            // 
-            this.txt_Qty.Location = new System.Drawing.Point(390, 66);
-            this.txt_Qty.Name = "txt_Qty";
-            this.txt_Qty.Size = new System.Drawing.Size(66, 20);
-            this.txt_Qty.TabIndex = 376;
-            this.txt_Qty.Text = " 1";
-            this.txt_Qty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Qty_KeyDown);
-            this.txt_Qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Qty_KeyPress);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(355, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 13);
-            this.label6.TabIndex = 375;
-            this.label6.Text = "Qty";
             // 
             // Chk
             // 
@@ -441,26 +463,6 @@
             this.Qty.FillWeight = 85.27919F;
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
-            // 
-            // txt_Refrence
-            // 
-            this.txt_Refrence.AutoSize = true;
-            this.txt_Refrence.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Refrence.ForeColor = System.Drawing.Color.Red;
-            this.txt_Refrence.Location = new System.Drawing.Point(114, 90);
-            this.txt_Refrence.Name = "txt_Refrence";
-            this.txt_Refrence.Size = new System.Drawing.Size(15, 13);
-            this.txt_Refrence.TabIndex = 360;
-            this.txt_Refrence.Text = "--";
-            // 
-            // lbl_Ref
-            // 
-            this.lbl_Ref.AutoSize = true;
-            this.lbl_Ref.Location = new System.Drawing.Point(114, 67);
-            this.lbl_Ref.Name = "lbl_Ref";
-            this.lbl_Ref.Size = new System.Drawing.Size(68, 13);
-            this.lbl_Ref.TabIndex = 361;
-            this.lbl_Ref.Text = "Refrence No";
             // 
             // frm_BarcodePrint
             // 

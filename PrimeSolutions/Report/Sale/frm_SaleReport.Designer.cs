@@ -30,18 +30,26 @@
         {
             this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.dgv_CustomerItem = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bttn_generate = new System.Windows.Forms.Button();
             this.bttn_Excel = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
             this.dtp_ToDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_TotalSale = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_Physical = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txt_saleBal = new System.Windows.Forms.Label();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerItem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,56 +68,19 @@
             this.dgv_CustomerItem.BackgroundColor = System.Drawing.Color.Moccasin;
             this.dgv_CustomerItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_CustomerItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Date,
-            this.BillNo,
             this.Name,
+            this.Type,
+            this.BillNo,
+            this.Date,
             this.Item,
             this.Amount,
-            this.Discount});
+            this.Discount,
+            this.PaidAmt});
             this.dgv_CustomerItem.Location = new System.Drawing.Point(12, 82);
             this.dgv_CustomerItem.Name = "dgv_CustomerItem";
             this.dgv_CustomerItem.ReadOnly = true;
-            this.dgv_CustomerItem.Size = new System.Drawing.Size(733, 291);
+            this.dgv_CustomerItem.Size = new System.Drawing.Size(933, 291);
             this.dgv_CustomerItem.TabIndex = 1;
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // BillNo
-            // 
-            this.BillNo.HeaderText = "BillNo";
-            this.BillNo.Name = "BillNo";
-            this.BillNo.ReadOnly = true;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            this.Name.Width = 150;
-            // 
-            // Item
-            // 
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            this.Item.Width = 120;
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "Discount";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            this.Discount.Width = 120;
             // 
             // bttn_generate
             // 
@@ -173,12 +144,126 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "To";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 390);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 26);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Total \r\nSale";
+            // 
+            // txt_TotalSale
+            // 
+            this.txt_TotalSale.AutoSize = true;
+            this.txt_TotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TotalSale.Location = new System.Drawing.Point(59, 393);
+            this.txt_TotalSale.Name = "txt_TotalSale";
+            this.txt_TotalSale.Size = new System.Drawing.Size(19, 20);
+            this.txt_TotalSale.TabIndex = 9;
+            this.txt_TotalSale.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(367, 390);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 26);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Physical \r\nAmount";
+            // 
+            // txt_Physical
+            // 
+            this.txt_Physical.AutoSize = true;
+            this.txt_Physical.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Physical.Location = new System.Drawing.Point(426, 393);
+            this.txt_Physical.Name = "txt_Physical";
+            this.txt_Physical.Size = new System.Drawing.Size(19, 20);
+            this.txt_Physical.TabIndex = 11;
+            this.txt_Physical.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(698, 390);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 26);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Sale in \r\nBalance";
+            // 
+            // txt_saleBal
+            // 
+            this.txt_saleBal.AutoSize = true;
+            this.txt_saleBal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_saleBal.Location = new System.Drawing.Point(753, 393);
+            this.txt_saleBal.Name = "txt_saleBal";
+            this.txt_saleBal.Size = new System.Drawing.Size(19, 20);
+            this.txt_saleBal.TabIndex = 13;
+            this.txt_saleBal.Text = "0";
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            this.Name.ReadOnly = true;
+            this.Name.Width = 150;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            // 
+            // BillNo
+            // 
+            this.BillNo.HeaderText = "BillNo";
+            this.BillNo.Name = "BillNo";
+            this.BillNo.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // Item
+            // 
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 120;
+            // 
+            // Amount
+            // 
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            this.Discount.Width = 120;
+            // 
+            // PaidAmt
+            // 
+            this.PaidAmt.HeaderText = "Paid Amount";
+            this.PaidAmt.Name = "PaidAmt";
+            this.PaidAmt.ReadOnly = true;
+            // 
             // frm_SaleReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(761, 388);
+            this.ClientSize = new System.Drawing.Size(956, 433);
+            this.Controls.Add(this.txt_saleBal);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txt_Physical);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txt_TotalSale);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtp_ToDate);
@@ -206,11 +291,19 @@
         private System.Windows.Forms.DateTimePicker dtp_ToDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label txt_TotalSale;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txt_Physical;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label txt_saleBal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
     }
 }

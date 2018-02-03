@@ -46,7 +46,7 @@ namespace PrimeSolutions.Report.Customer
         {
             int index = cmb_supplier.SelectedIndex;
             string Custid = dtCustomer.Rows[index]["CustId"].ToString();
-            dtCustBill = _s.GetCustomerBill(Custid);
+            dtCustBill = _s.GetCustomerBill(Custid,"All");
             double Opening =  _s.GetOpening(dtCustomer.Rows[index]["CustId"].ToString());
             dgv_Bill.Rows.Clear();
             dgv_Payment.Rows.Clear();
@@ -85,6 +85,8 @@ namespace PrimeSolutions.Report.Customer
                     dgv_Payment.Rows[i].Cells["PayDate"].Value = dtpay.Rows[i]["Date"].ToString();
                     dgv_Payment.Rows[i].Cells["PaidAmt"].Value = dtpay.Rows[i]["Amt"].ToString();
                     dgv_Payment.Rows[i].Cells["PayType"].Value = dtpay.Rows[i]["Paymode"].ToString();
+                    dgv_Payment.Rows[i].Cells["ReceiptNo"].Value = dtpay.Rows[i]["BillNo"].ToString();
+
                 }
             }
                 

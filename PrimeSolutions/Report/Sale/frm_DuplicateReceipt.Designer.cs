@@ -1,6 +1,6 @@
 ﻿namespace PrimeSolutions.Report.Sale
 {
-    partial class frm_ChangeBill
+    partial class frm_DuplicateReceipt
     {
         /// <summary>
         /// Required designer variable.
@@ -36,10 +36,9 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_Bill = new System.Windows.Forms.Label();
             this.bttn_print = new System.Windows.Forms.Button();
+            this.bttn_view = new System.Windows.Forms.Button();
             this.bttn_close = new System.Windows.Forms.Button();
             this.bill = new System.Windows.Forms.Label();
-            this.txt_type = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,31 +107,41 @@
             this.lbl_Bill.AutoSize = true;
             this.lbl_Bill.Location = new System.Drawing.Point(19, 66);
             this.lbl_Bill.Name = "lbl_Bill";
-            this.lbl_Bill.Size = new System.Drawing.Size(37, 13);
+            this.lbl_Bill.Size = new System.Drawing.Size(61, 13);
             this.lbl_Bill.TabIndex = 3;
-            this.lbl_Bill.Text = "Bill No";
+            this.lbl_Bill.Text = "Receipt No";
             // 
             // bttn_print
             // 
-            this.bttn_print.ForeColor = System.Drawing.Color.Green;
-            this.bttn_print.Location = new System.Drawing.Point(55, 248);
+            this.bttn_print.Location = new System.Drawing.Point(139, 248);
             this.bttn_print.Name = "bttn_print";
             this.bttn_print.Size = new System.Drawing.Size(75, 23);
             this.bttn_print.TabIndex = 4;
-            this.bttn_print.Text = "CHANGE";
+            this.bttn_print.Text = "PRINT";
             this.bttn_print.UseVisualStyleBackColor = true;
             this.bttn_print.Click += new System.EventHandler(this.bttn_print_Click);
+            // 
+            // bttn_view
+            // 
+            this.bttn_view.ForeColor = System.Drawing.Color.Green;
+            this.bttn_view.Location = new System.Drawing.Point(16, 248);
+            this.bttn_view.Name = "bttn_view";
+            this.bttn_view.Size = new System.Drawing.Size(75, 23);
+            this.bttn_view.TabIndex = 5;
+            this.bttn_view.Text = "VIEW";
+            this.bttn_view.UseVisualStyleBackColor = true;
+            this.bttn_view.Click += new System.EventHandler(this.bttn_view_Click);
             // 
             // bttn_close
             // 
             this.bttn_close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_close.Location = new System.Drawing.Point(212, 248);
+            this.bttn_close.Location = new System.Drawing.Point(262, 248);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 6;
             this.bttn_close.Text = "CLOSE";
             this.bttn_close.UseVisualStyleBackColor = true;
-            this.bttn_close.Click += new System.EventHandler(this.bttn_Close_Click);
+            this.bttn_close.Click += new System.EventHandler(this.button2_Click);
             // 
             // bill
             // 
@@ -143,42 +152,22 @@
             this.bill.Size = new System.Drawing.Size(0, 13);
             this.bill.TabIndex = 7;
             // 
-            // txt_type
-            // 
-            this.txt_type.AutoSize = true;
-            this.txt_type.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.txt_type.Location = new System.Drawing.Point(259, 66);
-            this.txt_type.Name = "txt_type";
-            this.txt_type.Size = new System.Drawing.Size(0, 13);
-            this.txt_type.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(209, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Type";
-            // 
-            // frm_ChangeBill
+            // frm_DuplicateReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(349, 283);
-            this.Controls.Add(this.txt_type);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.bill);
             this.Controls.Add(this.bttn_close);
+            this.Controls.Add(this.bttn_view);
             this.Controls.Add(this.bttn_print);
             this.Controls.Add(this.lbl_Bill);
             this.Controls.Add(this.dgv_Bill);
             this.Controls.Add(this.lbl_customer);
             this.Controls.Add(this.cmb_customer);
-            this.Name = "frm_ChangeBill";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Change Sale Bill";
+            this.Name = "frm_DuplicateReceipt";
+            this.Text = "Duplicate Receipt";
             this.Load += new System.EventHandler(this.frm_DuplicateBill_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).EndInit();
             this.ResumeLayout(false);
@@ -196,9 +185,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.Label lbl_Bill;
         private System.Windows.Forms.Button bttn_print;
+        private System.Windows.Forms.Button bttn_view;
         private System.Windows.Forms.Button bttn_close;
         private System.Windows.Forms.Label bill;
-        private System.Windows.Forms.Label txt_type;
-        private System.Windows.Forms.Label label2;
     }
 }

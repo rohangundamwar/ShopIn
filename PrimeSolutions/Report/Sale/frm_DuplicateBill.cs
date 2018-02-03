@@ -72,7 +72,7 @@ namespace PrimeSolutions.Report.Sale
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = cmb_customer.SelectedIndex.ToString();
-            dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
+            dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString(),"All");
             dt2 = _s.GetCustomerQoutation(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
             dt1.Merge(dt2);
             dgv_Bill.Rows.Clear();
@@ -103,7 +103,7 @@ namespace PrimeSolutions.Report.Sale
                 _objfrm_ReportViewer.Show();
             }
 
-            if (txt_type.Text == "Qoutation")
+            else if (txt_type.Text == "Qoutation")
             {
                 CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
                 SendData _obj = new SendData(_objfrm_ReportViewer.Qoutation);
@@ -119,7 +119,7 @@ namespace PrimeSolutions.Report.Sale
                 _objfrm_ReportViewer.Show();
             }
 
-            if (txt_type.Text == "Service Invoice")
+            else if (txt_type.Text == "Service Invoice")
             {
                 CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
                 SendData _obj = new SendData(_objfrm_ReportViewer.ServiceInvoice);

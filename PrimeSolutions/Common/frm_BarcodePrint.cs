@@ -70,11 +70,11 @@ namespace PrimeSolutions.Common
             {
                 if (BarcodeCount == 1)
                 {
-                    _barcode.PrintBarcode1No(1);
+                    _barcode.PrintBarcode(1);
                 }
                 else if (BarcodeCount == 2)
                 {
-                    _barcode.PrintBarcode2No(1);
+                    _barcode.PrintBarcode(2);
                 }
             }
             

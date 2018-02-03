@@ -620,22 +620,22 @@ namespace PrimeSolutions
                     
                     if (dtsett.Barcode == "Yes")
                     {
+                        //insert Into Temp Table
                         _Common.InsertIntoTemp(txt_PurchaseRef.Text);
 
                         if (dtsett.BarcodeType == "Thermal")
                         {
                             if (dtsett.BarcodeCount == "1")
                             {
-                                _Barcode.PrintBarcode1No(1);
+                                _Barcode.PrintBarcode(1);
                             }
                             else if (dtsett.BarcodeCount == "2")
                             {
-                                _Barcode.PrintBarcode2No(1);
+                                _Barcode.PrintBarcode(2);
                             }
                         }
                         else if (dtsett.BarcodeType == "Laser")
-                        {
-                            //insert Into Temp Table
+                        {   
                             _Barcode.PrintBarcodeA4(p = 0);
                         }
                             
@@ -1055,7 +1055,8 @@ namespace PrimeSolutions
 
         private void txt_OtherCharges_TextChanged(object sender, EventArgs e)
         {
-            txt_TotalBill.Text = "₹" + txt_NetAmt.Text + "+" + "₹" + txt_OtherCharges.Text + '\n' + "₹" + Convert.ToString((Convert.ToInt32(txt_NetAmt.Text)) + (Convert.ToInt32(txt_OtherCharges.Text)));
+            int Total = Convert.ToInt32(Convert.ToDecimal(txt_NetAmt.Text) + Convert.ToDecimal(txt_OtherCharges.Text));
+            txt_TotalBill.Text = "₹" + txt_NetAmt.Text + "+" + "₹" + txt_OtherCharges.Text + '\n' + "₹" + Convert.ToString(Total);
         }
     }
 }

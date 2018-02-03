@@ -325,7 +325,7 @@ namespace PrimeSolutions.Library
 
                 case "E":
 
-                    SQL = "Select Max(Right(ItemCode,4))+1 As MaxID From ItemMaster Where Right(Left(ItemCode,1),1)= 'E'";
+                    SQL = "Select Max(Right(RefrenceNo,4))+1 As MaxID From Expenses Where Right(Left(RefrenceNo,1),1)= 'E'";
                     break;
 
                 case "F":
@@ -393,7 +393,7 @@ namespace PrimeSolutions.Library
 
                 case "R":
 
-                    SQL = "Select Max(Right(Refinery_ID,4))+1 As MaxID From Refinery_Items Where Right(Left(Refinery_ID,1),1)= 'R'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From Payment Where Right(Left(BillNo,1),1)= 'R'";
                     break;
 
                 case "S":
@@ -432,8 +432,9 @@ namespace PrimeSolutions.Library
 
                     break;
 
-                case "x":
-                    SQL = "Select Max(Right(RefineID,4))+1 As MaxID From RefinedMod Where Right(Left(RefineID,1),1)= 'x'";
+                case "X":
+
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From Payment Where Right(Left(BillNo,1),1)= 'X'";
                     break;
 
                 default:

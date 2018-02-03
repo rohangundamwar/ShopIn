@@ -6,22 +6,18 @@ using PrimeSolutions.Report.CrystalReport;
 
 namespace PrimeSolutions.Report.Sale
 {
-    public partial class frm_ChangeBill : Form
+    public partial class frm_DuplicateReceipt : Form
     {
-
-        SaleCommon _s = new SaleCommon();
-        DataTable dt;
-        DataTable dt1;
-        clsCommon _common = new clsCommon();
-        string Bill = "";
-
-        public frm_ChangeBill(string Type)
+        public frm_DuplicateReceipt()
         {
             InitializeComponent();
-            Bill = Type;
         }
 
-        
+        SaleCommon _s = new SaleCommon();
+        public delegate void SendData(string BillNO,string Type);
+        frm_ReportViewer _r = new frm_ReportViewer();
+        DataTable dt;
+        DataTable dt1,dt2;
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {
@@ -33,18 +29,9 @@ namespace PrimeSolutions.Report.Sale
         {
             try
             {
-                if (txt_type.Text == "GST")
-                {
-                    frm_SaleForm _form = new frm_SaleForm(bill.Text, txt_type.Text);
-                    _form.ShowDialog();
-                }
-
-                if (txt_type.Text == "Estimate")
-                {
-                    frm_SaleEstimate _form = new frm_SaleEstimate(bill.Text, txt_type.Text);
-                    _form.ShowDialog();
-                }
-
+                    CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                    SendData _obj = new SendData(_objfrm_ReportViewer.PaymentReceipt);
+                    _obj(bill.Text, "Customer");
             }
             catch (Exception ex)
             {
@@ -53,7 +40,7 @@ namespace PrimeSolutions.Report.Sale
             //_s.PrintBillThermal(cmb_BillNo.Text);
         }
 
-        private void bttn_Close_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -61,14 +48,14 @@ namespace PrimeSolutions.Report.Sale
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = cmb_customer.SelectedIndex.ToString();
-            dt1= _s.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString(),"All");
+            dt1= _s.GetCustomerPayment(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
             dgv_Bill.Rows.Clear();
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 dgv_Bill.Rows.Add();
                 dgv_Bill.Rows[i].Cells["Date"].Value = dt1.Rows[i]["Date"].ToString();
                 dgv_Bill.Rows[i].Cells["BillNo"].Value = dt1.Rows[i]["BillNo"].ToString();
-                dgv_Bill.Rows[i].Cells["Amount"].Value = dt1.Rows[i]["BillAmount"].ToString();
+                dgv_Bill.Rows[i].Cells["Amount"].Value = dt1.Rows[i]["Amt"].ToString();
             }
 
         }
@@ -76,9 +63,14 @@ namespace PrimeSolutions.Report.Sale
         private void dgv_Bill_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             bill.Text= dgv_Bill.Rows[e.RowIndex].Cells["BillNo"].Value.ToString();
-            txt_type.Text = dt1.Rows[e.RowIndex]["Type"].ToString();
-
         }
 
+        private void bttn_view_Click(object sender, EventArgs e)
+        {
+            CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+            SendData _obj = new SendData(_objfrm_ReportViewer.PaymentReceipt);
+            _obj(bill.Text, "Customer");
+            _objfrm_ReportViewer.Show();
+        }
     }
 }

@@ -184,6 +184,7 @@
             // 
             // dtp_Date
             // 
+            this.dtp_Date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_Date.Location = new System.Drawing.Point(948, 12);
             this.dtp_Date.Name = "dtp_Date";
             this.dtp_Date.Size = new System.Drawing.Size(125, 23);
@@ -205,7 +206,7 @@
             this.lbl_PRef.AutoSize = true;
             this.lbl_PRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PRef.ForeColor = System.Drawing.Color.White;
-            this.lbl_PRef.Location = new System.Drawing.Point(181, 16);
+            this.lbl_PRef.Location = new System.Drawing.Point(181, 15);
             this.lbl_PRef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PRef.Name = "lbl_PRef";
             this.lbl_PRef.Size = new System.Drawing.Size(64, 16);
@@ -238,7 +239,7 @@
             this.lbl_Purchase.AutoSize = true;
             this.lbl_Purchase.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_Purchase.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_Purchase.Location = new System.Drawing.Point(449, 13);
+            this.lbl_Purchase.Location = new System.Drawing.Point(449, 12);
             this.lbl_Purchase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Purchase.Name = "lbl_Purchase";
             this.lbl_Purchase.Size = new System.Drawing.Size(94, 23);
@@ -250,7 +251,7 @@
             this.lbl_AccNo.AutoSize = true;
             this.lbl_AccNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_AccNo.ForeColor = System.Drawing.Color.White;
-            this.lbl_AccNo.Location = new System.Drawing.Point(8, 16);
+            this.lbl_AccNo.Location = new System.Drawing.Point(8, 15);
             this.lbl_AccNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_AccNo.Name = "lbl_AccNo";
             this.lbl_AccNo.Size = new System.Drawing.Size(54, 16);
