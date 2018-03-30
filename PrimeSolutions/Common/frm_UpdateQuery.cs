@@ -120,6 +120,31 @@ namespace PrimeSolutions.Common
             string Q = "Add Payment Permanentdelete";
             string query17 = "ALTER TABLE Payment ADD [PermanentDelete] [bit] NOT NULL CONSTRAINT [DF_Payment_PermanentDelete]  DEFAULT ((0))";
             dgv_UpdateQuery.Rows.Add(false, Q, query17);
+
+            string R = "Add SrNo to Payment";
+            string query18 = "alter table payment add	[SrNo] [int] IDENTITY(1,1) NOT NULL";
+            dgv_UpdateQuery.Rows.Add(false, R, query18);
+
+            string S = "Coulmns For Discount Per Item";
+            string query19 = "Alter Table Billitem Add [FinalAmount] [nvarchar](max) NOT NULL CONSTRAINT [DF_BillItem_FinalAmount]  DEFAULT ((0)),[ActualPrice] [nvarchar](max) NOT NULL CONSTRAINT [DF_BillItem_TotalBase]  DEFAULT ((0)),[DiscPer] [nvarchar](max) NOT NULL CONSTRAINT [DF_BillItem_DiscPer]  DEFAULT ((0)),[DiscAmt] [nvarchar](max) NOT NULL CONSTRAINT [DF_BillItem_DiscAmt]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, S, query19);
+
+            string T = "Add SrNo to Payment";
+            string query20 = "alter table CustomerBill Add [CashDiscount] [nvarchar](max) NOT NULL CONSTRAINT [DF_BillItem_CashDiscount]  DEFAULT ((0))";
+            dgv_UpdateQuery.Rows.Add(false, T, query20);
+
+            string U = "update CrystalReport  for GST(Interstate)";
+            string query21 = "update CrystalReport set  Type='GST_Interstate' where Type='GST'";
+            dgv_UpdateQuery.Rows.Add(false, U, query21);
+
+            string V = "update CrystalReport  for GST(OtherState)";
+            string query22 = "Insert into CrystalReport values('BillA4LndScp(OtherState).rpt','7','GST_OtherState')";
+            dgv_UpdateQuery.Rows.Add(false, V, query22);
+
+            string W = "Add Bill Type";
+            string query23 = "ALTER TABLE setting Add [ExtraChargesInc] [nvarchar](max) NOT NULL CONSTRAINT [DF_Setting_ExtraCharges]  DEFAULT (('No'))";
+            dgv_UpdateQuery.Rows.Add(false, W, query23);
+
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)

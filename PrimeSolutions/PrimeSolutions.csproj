@@ -177,17 +177,76 @@
       <DependentUpon>BarcodeRPT.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\BillA4%28OtherState%29.cs">
+      <DependentUpon>BillA4%28OtherState%29.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\BillA4New1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillA4New.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\BillGSTA4LndScp%28OtherState%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillGSTA4LndScp%28OtherState%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_PurchaseGST%28A4%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_PurchaseGST%28A4%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_SaleGST%28A4%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crt_SaleGST%28A4%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\CRTReport\crt_SaleGST.cs">
+      <DependentUpon>crt_SaleGST.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="bin\Debug\JaiAmbeBillA4LndScp%28Interstate%29.cs">
+      <DependentUpon>JaiAmbeBillA4LndScp%28Interstate%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="bin\Debug\QoutationA5.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QoutationA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PurchaseLedger.cs">
+      <DependentUpon>PurchaseLedger.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\ThadaniA4GST.cs">
+      <DependentUpon>ThadaniA4GST.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="bin\Debug\SmartCoolA4.cs">
       <DependentUpon>SmartCoolA4.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="bin\Debug\BillA4.cs">
+    <Compile Include="bin\Debug\BillA4%28Interstate%29.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BillA4.rpt</DependentUpon>
-      <SubType>Component</SubType>
+      <DependentUpon>BillA4%28Interstate%29.rpt</DependentUpon>
     </Compile>
     <Compile Include="bin\Debug\BillA5.cs">
       <AutoGen>True</AutoGen>
@@ -212,12 +271,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>crt_MonthlySale.rpt</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="bin\Debug\CRTReport\crt_SaleGST.cs">
-      <DependentUpon>crt_SaleGST.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="bin\Debug\CRTReport\crt_PurchaseGST.cs">
       <AutoGen>True</AutoGen>
@@ -255,10 +308,10 @@
       <DependentUpon>crt_ServiceJobCard.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="bin\Debug\OutationA4 -.cs">
+    <Compile Include="bin\Debug\QuotationA4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OutationA4 -.rpt</DependentUpon>
+      <DependentUpon>QuotationA4.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\ReceiptA51.cs">
@@ -327,12 +380,6 @@
       <DependentUpon>PurchaseBillLedger.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="bin\Debug\PurchaseLedger.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PurchaseLedger.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="bin\Debug\SaleBillLedger.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -345,12 +392,18 @@
       <DependentUpon>SaleLedger.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\ThadaniGSTA4LndScp%28OtherState%29.cs">
+      <DependentUpon>JaiAmbeGSTA4LndScp%28OtherState%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Common\Cls_Enums.cs" />
-    <Compile Include="Common\Fix Rate.cs">
+    <Compile Include="Common\frm_RateChange.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\Fix Rate.Designer.cs">
-      <DependentUpon>Fix Rate.cs</DependentUpon>
+    <Compile Include="Common\frm_RateChange.Designer.cs">
+      <DependentUpon>frm_RateChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\frm_Activation.cs">
       <SubType>Form</SubType>
@@ -382,6 +435,12 @@
     <Compile Include="Common\Frm_DeveloperLogin.designer.cs">
       <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_ExecuteQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_ExecuteQuery.Designer.cs">
+      <DependentUpon>frm_ExecuteQuery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,6 +464,12 @@
     </Compile>
     <Compile Include="Common\frm_SubCategory.designer.cs">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\frm_UpdateInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_UpdateInfo.Designer.cs">
+      <DependentUpon>frm_UpdateInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\frm_UpdateQuery.cs">
       <SubType>Form</SubType>
@@ -770,13 +835,57 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeRPT.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillA4%28OtherState%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillA4%28OtherState%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillA4New.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillA4New1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\BillGSTA4LndScp%28OtherState%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BillGSTA4LndScp%28OtherState%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_PurchaseGST%28A4%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_PurchaseGST%28A4%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SaleGST%28A4%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_SaleGST%28A4%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SaleGST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crt_SaleGST.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\JaiAmbeBillA4LndScp%28Interstate%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JaiAmbeBillA4LndScp%28Interstate%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\JaiAmbeGSTA4LndScp%28OtherState%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThadaniGSTA4LndScp%28OtherState%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\QoutationA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QoutationA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PurchaseLedger.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\ThadaniA4GST.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThadaniA4GST.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\SmartCoolA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SmartCoolA4.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\BillA4.rpt">
+    <EmbeddedResource Include="bin\Debug\BillA4%28Interstate%29.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>BillA4.cs</LastGenOutput>
+      <LastGenOutput>BillA4%28Interstate%29.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\BillA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -793,10 +902,6 @@
     <EmbeddedResource Include="bin\Debug\CRTReport\crt_MonthlySale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crt_MonthlySale.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\CRTReport\crt_SaleGST.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crt_SaleGST.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\CRTReport\crt_PurchaseGST.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -822,9 +927,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crt_ServiceJobCard.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\OutationA4 -.rpt">
+    <EmbeddedResource Include="bin\Debug\QuotationA4.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>OutationA4 -.cs</LastGenOutput>
+      <LastGenOutput>QuotationA4.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\ReceiptA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -870,10 +975,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PurchaseBillLedger.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="bin\Debug\PurchaseLedger.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>PurchaseLedger.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\SaleBillLedger.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SaleBillLedger.cs</LastGenOutput>
@@ -882,8 +983,8 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SaleLedger.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Fix Rate.resx">
-      <DependentUpon>Fix Rate.cs</DependentUpon>
+    <EmbeddedResource Include="Common\frm_RateChange.resx">
+      <DependentUpon>frm_RateChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Activation.resx">
       <DependentUpon>frm_Activation.cs</DependentUpon>
@@ -900,6 +1001,9 @@
     <EmbeddedResource Include="Common\Frm_DeveloperLogin.resx">
       <DependentUpon>Frm_DeveloperLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_ExecuteQuery.resx">
+      <DependentUpon>frm_ExecuteQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Login.resx">
       <DependentUpon>frm_Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -911,6 +1015,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_SubCategory.resx">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_UpdateInfo.resx">
+      <DependentUpon>frm_UpdateInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_UpdateQuery.resx">
       <DependentUpon>frm_UpdateQuery.cs</DependentUpon>
@@ -1059,10 +1166,11 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="bin\Debug\Barcode.btw" />
+    <None Include="bin\Debug\Barcode1nos.btw" />
     <None Include="bin\Debug\Barcode2.btw" />
-    <None Include="bin\Debug\Barcode2Test.btw" />
-    <None Include="bin\Debug\BarcodeA4 - Test.btw" />
+    <None Include="bin\Debug\Barcode2nos.btw" />
     <None Include="bin\Debug\BarcodeA4.btw" />
+    <None Include="bin\Debug\BarcodeA465.btw" />
     <None Include="bin\Debug\PrimeSolutions.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />

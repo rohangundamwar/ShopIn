@@ -632,9 +632,8 @@ namespace PrimeSolutions
                     string size= Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string PBillNo = txt_BillNo.Text;
                     
-                    _Sale.AddItemDetails(category,subcategory, size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,"0", "0", "0", "0", "0", "0", TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
+                    _Sale.AddItemDetails(category,subcategory, size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,"0", "0", "0", "0", "0", "0", TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain,"0","0","0", "0", "0");
                     
-
                 }
             }
         
@@ -644,7 +643,7 @@ namespace PrimeSolutions
             }
             try
             {
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, "0", "0", "0" , txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,txt_Narration.Text);
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, "0", "0", "0" , txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,txt_Narration.Text,"0");
 
 
                 //payment
@@ -969,6 +968,35 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 bttn_Sale.Focus();
+            }
+        }
+
+        private void cmb_SalesPerson_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txt_maintain.Enabled == true)
+                {
+                    txt_maintain.Focus();
+                }
+                else
+                {
+                    Add();
+                }
+
+            }
+        }
+
+        private void txt_maintain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void txt_maintain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Add();
             }
         }
     }

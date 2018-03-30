@@ -610,7 +610,7 @@ namespace PrimeSolutions
                     string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string PBillNo = txt_BillNo.Text;
 
-                    _Sale.AddItemDetails(category, subcategory, size, txt_BillNo.Text, "Qoutation", dtp_Date.Value.ToString("dd/MM/yyyy"), price, Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, TotalAmount, BatchNo, HSN, TotalPrice, SalesPerson, Maintain);
+                    _Sale.AddItemDetails(category, subcategory, size, txt_BillNo.Text, "Qoutation", dtp_Date.Value.ToString("dd/MM/yyyy"), price, Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, TotalAmount, BatchNo, HSN, TotalPrice, SalesPerson, Maintain,"0","0","0","0","0");
 
 
                 }
@@ -622,7 +622,7 @@ namespace PrimeSolutions
             }
             try
             {
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Qoutation", txt_Extra.Text, txt_Narration.Text);
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Qoutation", txt_Extra.Text, txt_Narration.Text,"0");
 
 
             }

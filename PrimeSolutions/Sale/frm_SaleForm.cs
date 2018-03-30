@@ -106,6 +106,10 @@ namespace PrimeSolutions
             txt_ContactNo.ResetText();
             txt_NetAmt.Text = "0";
             txt_TotalAmt.Text = "0";
+            lbl_Total.Text = "0";
+            lbl_CGSTValue.Text = "0";
+            lbl_SGSTValue.Text = "0";
+            lbl_IGSTValue.Text = "0";
             dgv_ItemInfo.Rows.Clear();
             bttn_Sale.Enabled = false;
             cmb_Name.Enabled = true;
@@ -122,6 +126,7 @@ namespace PrimeSolutions
 
         private void Clear()
         {
+            
             txt_BarcodeNo.ResetText();
             cmb_size.ResetText();
             txt_HSN.ResetText();
@@ -133,6 +138,8 @@ namespace PrimeSolutions
             txt_IGSTper.Text = "0";
             lbl_BasePrice.Text = "0";
             txt_SellingAmt.Text = "0";
+            txt_DiscPer.Text = "0";
+            txt_DiscAmt.Text = "0";
         }
 
         public void getBillDetails(string billNo)
@@ -387,10 +394,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txt_CGSTper.Enabled == true)
-                    txt_CGSTper.Focus();
-                else
-                    txt_IGSTper.Focus();
+                txt_DiscPer.Focus();
             }
             
         }
@@ -504,15 +508,15 @@ namespace PrimeSolutions
 
         private void cmb_Category_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationCharOnly(e);
+            _objSimpal.ValidationCharDigitSpaceOnly(e);
         }
 
         private void cmb_SubCategory_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationCharDigitOnly(e);
+            _objSimpal.ValidationCharDigitSpaceOnly(e);
         }
 
-        private void txt_PurchaseAmt_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_Barcode_KeyPress(object sender, KeyPressEventArgs e)
         {
             _objSimpal.ValidationCharDigitOnly(e);
         }
@@ -555,11 +559,19 @@ namespace PrimeSolutions
             {
                 if (txt_SellingAmt.Text != "" || txt_SellingAmt.Text != string.Empty)
                     if (txt_Qty.Text != "" || txt_Qty.Text != string.Empty)
-                        txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text),2));
+                    {
+                        txt_Amt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)), 2));
+                        double DiscountPer = Convert.ToDouble(txt_DiscPer.Text) / 100;
+                        lbl_FinalAmt.Text = Convert.ToString(Math.Round(Convert.ToDouble(txt_SellingAmt.Text) - (Convert.ToDouble(txt_SellingAmt.Text) * DiscountPer),2));
+                        txt_Actual.Text = Convert.ToString(Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text));
+                        CalculateGST();
+                        CalculateBase();
+                        CalculateTotalBase();
+                    }
+                        
             }
             catch { }
-            CalculateGST();
-            CalculateTotalBase();
+            
         }
 
         private void txt_BarcodeNo_TextChanged(object sender, EventArgs e)
@@ -577,7 +589,8 @@ namespace PrimeSolutions
             try
             {
                 string sales = Convert.ToString(cmb_SalesPerson.Text[0]) ;
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text,txt_DiscPer.Text,txt_DiscAmt.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text,sales,txt_maintain.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text,txt_DiscPer.Text,txt_DiscAmt.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text, lbl_FinalAmt.Text, sales,txt_maintain.Text, txt_Actual.Text,txt_SellingAmt.Text);
+                DataTable test = _common.DataGridView2DataTable(dgv_ItemInfo,"Items");
                 Clear();
             }
             catch (Exception ex)
@@ -595,17 +608,17 @@ namespace PrimeSolutions
             if (lbl_CGSTAmt.Text != "" || lbl_CGSTAmt.Text != string.Empty)
             {
                 if(txt_CGSTper.Text != "" || txt_CGSTper.Text != string.Empty)
-                lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text) * 0.01) * (Convert.ToDouble(lbl_BasePrice.Text)* Convert.ToDouble(txt_Qty.Text)), 2));
+                lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Amt.Text)), 2));
 
                 if (lbl_SGSTAmt.Text != "" || lbl_SGSTAmt.Text != string.Empty )
                 {
                     if (txt_SGSTper.Text != "" || txt_SGSTper.Text != string.Empty)
-                    lbl_SGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SGSTper.Text) * 0.01) * (Convert.ToDouble(lbl_BasePrice.Text) * Convert.ToDouble(txt_Qty.Text)), 2));
+                    lbl_SGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Amt.Text)), 2));
 
                     if (lbl_IGSTAmt.Text != "" || lbl_IGSTAmt.Text != string.Empty)
                     {
                         if(txt_IGSTper.Text != "" || txt_IGSTper.Text != string.Empty)
-                        lbl_IGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_IGSTper.Text) * 0.01) * (Convert.ToDouble(lbl_BasePrice.Text) * Convert.ToDouble(txt_Qty.Text)), 2));
+                        lbl_IGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_IGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Amt.Text)), 2));
                     }
                 }
             }
@@ -635,8 +648,9 @@ namespace PrimeSolutions
         }
 
         private void CalculateBase()
+
         {
-            lbl_BasePrice.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) * 100) / (100 + Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)), 2)) ;
+            lbl_BasePrice.Text = Convert.ToString(Math.Round((Convert.ToDouble(lbl_FinalAmt.Text) * 100) / (100 + Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)), 2)) ;
          
         }
 
@@ -667,9 +681,13 @@ namespace PrimeSolutions
                 lbl_CGSTValue.Text = CGSTAmt.ToString();
                 lbl_SGSTValue.Text = SGSTAmt.ToString();
                 lbl_IGSTValue.Text = IGSTAmt.ToString();
-
-                txt_NetAmt.Text = txt_BillAmt.Text =Convert.ToString(_common.sumGridViewColumn(dgv_ItemInfo, "TotalPrice"));
-
+                
+       
+                txt_NetAmt.Text =Convert.ToString(_common.sumGridViewColumn(dgv_ItemInfo, "TotalPrice"));
+                txt_Discount.Text = Convert.ToString(_common.sumGridViewColumn(dgv_ItemInfo, "DiscAmt"));
+                txt_BillAmt.Text = Convert.ToString(_common.sumGridViewColumn(dgv_ItemInfo, "TotalPrice"));
+                double Selling = _common.sumGridViewColumn(dgv_ItemInfo, "FinalAmount");
+                lbl_Total.Text = Convert.ToString(Selling);
             }
             catch (Exception ex)
             {
@@ -679,10 +697,10 @@ namespace PrimeSolutions
 
         private void calculateDiscount()
         {
-            if ((txt_Discount.Text != "" || txt_Discount.Text != string.Empty) || txt_Discount.Text != " ")
+            if ((txt_CashDisc.Text != "" || txt_CashDisc.Text != string.Empty) || txt_CashDisc.Text != " ")
             {
                 double NetAmt = Convert.ToDouble(txt_NetAmt.Text);
-                double Discount = Convert.ToDouble(txt_Discount.Text);
+                double Discount = Convert.ToDouble(txt_CashDisc.Text);
                 double BillAmt = NetAmt - Discount;
                 txt_BillAmt.Text = Convert.ToString(BillAmt);
             }
@@ -710,8 +728,7 @@ namespace PrimeSolutions
             }
 
             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
-            
-            
+
             try
             {
 
@@ -720,26 +737,36 @@ namespace PrimeSolutions
                     string barcode = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value);
                     string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
                     string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                    string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
                     string HSN = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["HSN"].Value);
                     string BatchNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["BatchNo"].Value);
-                    string Qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+
                     string price = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Rate"].Value);
+                    string Qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                    string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
                     string CGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGSTper"].Value);
                     string CGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["CGST"].Value);
                     string SGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGSTper"].Value);
                     string SGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SGST"].Value);
                     string IGSTper = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGSTper"].Value);
                     string IGST = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["IGST"].Value);
-                    string TotalAmount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+
+                    string DiscPer=Convert.ToString(dgv_ItemInfo.Rows[i].Cells["DiscPer"].Value);
+                    string DiscAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["DiscAmt"].Value);
+
                     string TotalPrice = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalPrice"].Value);
-                    string Size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Size"].Value);
-                    string PBillNo = txt_BillNo.Text;
+                    string Price = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Price"].Value);
+                    string FinalAmt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["FinalAmount"].Value);
+                    string Actual = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["ActualPrice"].Value);
+
+                    string SaleBillNo = txt_BillNo.Text;
                     string SalesPerson = Convert.ToString(cmb_SalesPerson.SelectedIndex + 1);
                     string Maintain = dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString();
                     string MaintainDate = dtp_Date.Value.AddMonths(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value)).ToString("dd/MM/yyyy");
+                    
 
 
-                    _Sale.AddItemDetails(category,subcategory,Size,txt_BillNo.Text,"Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain);
+                    _Sale.AddItemDetails(category,subcategory,Size, txt_BillNo.Text, "Sale",dtp_Date.Value.ToString("dd/MM/yyyy"),price,Qty,CGSTper,CGST,SGSTper,SGST,IGSTper,IGST, TotalAmount, BatchNo, HSN, TotalPrice,SalesPerson,Maintain,FinalAmt,Actual,Price,DiscPer,DiscAmt);
                     
 
                     if (dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString() != "0")
@@ -757,7 +784,7 @@ namespace PrimeSolutions
             try
             {
                  
-            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text,txt_Discount.Text,"GST",txt_Extra.Text,txt_Narration.Text);
+            _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text,txt_BillAmt.Text, txt_Discount.Text, "GST",txt_Extra.Text,txt_Narration.Text,txt_CashDisc.Text);
 
 
                 // "txt_PaidAmt"
@@ -956,11 +983,21 @@ namespace PrimeSolutions
         private void txt_SellingAmt_TextChanged(object sender, EventArgs e)
         {
             //txt_Amt.Text = "";
-            if (lbl_BasePrice.Text!="" || txt_Qty.Text!="" || lbl_BasePrice.Text != string.Empty || txt_Qty.Text != string.Empty)
-                txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text),2));
-            CalculateBase();
-            CalculateGST();
-            CalculateTotalBase();
+            if (lbl_BasePrice.Text != "" || txt_Qty.Text != "" || lbl_BasePrice.Text != string.Empty || txt_Qty.Text != string.Empty)
+            {
+                if (txt_SellingAmt.Text != "" || txt_SellingAmt.Text != string.Empty)
+                {
+                    txt_Amt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)), 2));
+                    double DiscountPer = Convert.ToDouble(txt_DiscPer.Text) / 100;
+                    lbl_FinalAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) - (Convert.ToDouble(txt_SellingAmt.Text) * DiscountPer)), 2));
+                    txt_Actual.Text = Convert.ToString(Math.Round(Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
+                    CalculateGST();
+                    CalculateBase();
+                    CalculateTotalBase();
+                }
+                
+            }
+                
             //calculatetotal();
         }
         
@@ -1052,8 +1089,8 @@ namespace PrimeSolutions
             {
                 lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text)*0.01)*Convert.ToDouble(txt_Amt.Text),2));
             }
-            CalculateBase();
             CalculateGST();
+            CalculateBase();
             CalculateTotalBase();
         }
 
@@ -1064,8 +1101,9 @@ namespace PrimeSolutions
             {
                 lbl_SGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SGSTper.Text) * 0.01) * Convert.ToDouble(txt_Amt.Text),2));
             }
-            CalculateBase();
             CalculateGST();
+            CalculateBase();
+            
             CalculateTotalBase();
         }
 
@@ -1076,8 +1114,9 @@ namespace PrimeSolutions
             {
                 lbl_IGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_IGSTper.Text) * 0.01) * Convert.ToDouble(txt_Amt.Text),2));
             }
-            CalculateBase();
             CalculateGST();
+            CalculateBase();
+            
             CalculateTotalBase();
         }
 
@@ -1149,17 +1188,17 @@ namespace PrimeSolutions
 
         private void txt_CGSTper_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_Discount.Text);
+            _objSimpal.ValidationDigitWithPoint(e, txt_CGSTper.Text);
         }
 
         private void txt_SGSTper_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_Discount.Text);
+            _objSimpal.ValidationDigitWithPoint(e, txt_SGSTper.Text);
         }
 
         private void txt_IGSTper_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_Discount.Text);
+            _objSimpal.ValidationDigitWithPoint(e, txt_IGSTper.Text);
         }
 
         private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
@@ -1240,7 +1279,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Discount.Focus();
+                txt_CashDisc.Focus();
             }
         }
 
@@ -1263,6 +1302,8 @@ namespace PrimeSolutions
 
         private void txt_DiscPer_TextChanged(object sender, EventArgs e)
         {
+
+            double Qty =Convert.ToDouble(txt_Qty.Text);
             double DiscountPer = 0;
             double Selling = Convert.ToInt32(txt_SellingAmt.Text);
             if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
@@ -1271,9 +1312,14 @@ namespace PrimeSolutions
             }
             
             double discount = DiscountPer / 100;
-            double DiscAmt =Math.Round(Selling * (DiscountPer / 100),2) ;
-            txt_DiscAmt.Text = DiscAmt.ToString();
-            lbl_DiscAmt.Text = Convert.ToString(Selling - DiscAmt);
+            double DiscAmt =Math.Round((Convert.ToDouble(txt_Actual.Text) * discount), 2) ;
+            lbl_FinalAmt.Text = Convert.ToString(Math.Round((Selling - (Selling * discount)),2));
+            txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(lbl_FinalAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
+
+            CalculateGST();
+            CalculateBase();
+            CalculateTotalBase();
+            
         }
 
         private void txt_DiscAmt_TextChanged(object sender, EventArgs e)
@@ -1284,9 +1330,13 @@ namespace PrimeSolutions
             {
                 DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
             }
-            double DiscountPer = Math.Round((DiscountAmt / Selling) * 100, 2);
-            txt_DiscPer.Text = Convert.ToString(DiscountPer);
-            lbl_DiscAmt.Text = Convert.ToString(Selling - DiscountAmt);
+            double DiscountPer = Math.Round((DiscountAmt /Convert.ToDouble(txt_Actual.Text) * 100) , 2);
+            lbl_FinalAmt.Text = Convert.ToString(Selling - (DiscountAmt/Convert.ToDouble(txt_Qty.Text)));
+            txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(lbl_FinalAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
+            CalculateGST();
+            CalculateBase();
+            CalculateTotalBase();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1307,8 +1357,71 @@ namespace PrimeSolutions
                     txt_OldPaid.Text = "0";
                 }
 
-                txt_Diff.Text = Convert.ToString(Convert.ToInt32(txt_BillAmt.Text) - Convert.ToInt32(txt_PaidAmt.Text));
+                txt_Diff.Text = Convert.ToString(Convert.ToDouble(txt_BillAmt.Text) - Convert.ToDouble(txt_PaidAmt.Text));
             }
+        }
+
+        private void txt_DiscPer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_DiscAmt.Focus();
+                double discount = Convert.ToDouble(txt_DiscPer.Text) / 100;
+                double DiscAmt = Math.Round((Convert.ToDouble(txt_Actual.Text) * discount), 2);
+                txt_DiscAmt.Text = DiscAmt.ToString();
+            }
+
+        }
+
+        private void txt_DiscPer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitWithPoint(e, txt_DiscPer.Text);
+        }
+
+        private void txt_DiscAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txt_CGSTper.Enabled == false)
+                {
+                    txt_CGSTper.Focus();
+                }
+                else
+                {
+                    txt_IGSTper.Focus();
+                }
+                  
+                double DiscPer =Math.Round(((Convert.ToDouble(txt_DiscAmt.Text) / Convert.ToDouble(txt_Actual.Text)) * 100),2)  ;
+                txt_DiscPer.Text = DiscPer.ToString();
+            }
+            
+        }
+
+        private void txt_DiscAmt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitWithPoint(e, txt_DiscAmt.Text);
+        }
+
+        private void txt_CashDisc_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_CashDisc.Text != "" || txt_CashDisc.Text != null)
+            {
+                calculateDiscount();
+                
+            }
+        }
+
+        private void txt_CashDisc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_PaidAmt.Focus();
+            }
+        }
+
+        private void cmb_SalesPerson_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationCharDigitOnly(e);
         }
     }
 }

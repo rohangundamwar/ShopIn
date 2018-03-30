@@ -32,7 +32,8 @@ namespace PrimeSolutions.Common
 
             foreach (FileInfo fi in DirInfo.GetFiles("*.rpt"))
             {
-                cmb_SaleBill.Items.Add(fi.Name);
+                cmb_SaleBillInterState.Items.Add(fi.Name);
+                cmb_SaleBillOtherState.Items.Add(fi.Name);
                 cmb_estimate.Items.Add(fi.Name);
                 cmb_PurchaseBill.Items.Add(fi.Name);
                 cmb_ServiceInc.Items.Add(fi.Name);
@@ -57,7 +58,8 @@ namespace PrimeSolutions.Common
             cmb_maintain.Text = dt.Rows[0]["Maintenance"].ToString();
 
             //5 Set Crystal Report
-            cmb_SaleBill.Text = _a.GetSaleBillName().Rows[0]["SaleBill"].ToString();
+            cmb_SaleBillInterState.Text = _a.GetSaleBillName().Rows[0]["SaleBill"].ToString();
+            cmb_SaleBillOtherState.Text = _a.GetSaleBillName().Rows[6]["SaleBill"].ToString();
             cmb_estimate.Text = _a.GetSaleBillName().Rows[1]["SaleBill"].ToString();
             cmb_PurchaseBill.Text = _a.GetSaleBillName().Rows[2]["SaleBill"].ToString();
             cmb_ServiceInc.Text = _a.GetSaleBillName().Rows[3]["SaleBill"].ToString();
@@ -83,9 +85,9 @@ namespace PrimeSolutions.Common
             else
                 rbt_EstPayNo.Checked = true;
 
+            //9 Extra Charges Included
 
-
-
+            cmb_ExtraCharges.Text = dt.Rows[0]["ExtraChargesInc"].ToString();
 
         }
 
@@ -127,7 +129,7 @@ namespace PrimeSolutions.Common
             StartDate = dtp_start.Value.ToString("dd/MM/yyyy");
             EndDate = dtp_end.Value.ToString("dd/MM/yyyy");
 
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBill.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text,cmb_BillType.Text);
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBillInterState.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text,cmb_BillType.Text,cmb_SaleBillOtherState.Text,cmb_ExtraCharges.Text);
 
             MessageBox.Show("Setting Saved");
         }

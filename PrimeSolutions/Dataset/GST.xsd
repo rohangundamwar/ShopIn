@@ -12,7 +12,7 @@
   <xs:element name="GST" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="GST" msprop:Generator_UserDSName="GST">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GST" msprop:Generator_TableClassName="GSTDataTable" msprop:Generator_TableVarName="tableGST" msprop:Generator_RowChangedName="GSTRowChanged" msprop:Generator_TablePropName="_GST" msprop:Generator_RowDeletingName="GSTRowDeleting" msprop:Generator_RowChangingName="GSTRowChanging" msprop:Generator_RowEvHandlerName="GSTRowChangeEventHandler" msprop:Generator_RowDeletedName="GSTRowDeleted" msprop:Generator_RowClassName="GSTRow" msprop:Generator_UserTableName="GST" msprop:Generator_RowEvArgName="GSTRowChangeEvent">
+        <xs:element name="GST" msprop:Generator_TableClassName="GSTDataTable" msprop:Generator_TableVarName="tableGST" msprop:Generator_TablePropName="_GST" msprop:Generator_RowDeletingName="GSTRowDeleting" msprop:Generator_RowChangingName="GSTRowChanging" msprop:Generator_RowEvHandlerName="GSTRowChangeEventHandler" msprop:Generator_RowDeletedName="GSTRowDeleted" msprop:Generator_UserTableName="GST" msprop:Generator_RowChangedName="GSTRowChanged" msprop:Generator_RowEvArgName="GSTRowChangeEvent" msprop:Generator_RowClassName="GSTRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SrNo" msprop:Generator_ColumnVarNameInTable="columnSrNo" msprop:Generator_ColumnPropNameInRow="SrNo" msprop:Generator_ColumnPropNameInTable="SrNoColumn" msprop:Generator_UserColumnName="SrNo" type="xs:string" minOccurs="0" />
@@ -36,6 +36,7 @@
               <xs:element name="CGST28per" msprop:Generator_ColumnVarNameInTable="columnCGST28per" msprop:Generator_ColumnPropNameInRow="CGST28per" msprop:Generator_ColumnPropNameInTable="CGST28perColumn" msprop:Generator_UserColumnName="CGST28per" type="xs:string" minOccurs="0" />
               <xs:element name="IGST28per" msprop:Generator_ColumnVarNameInTable="columnIGST28per" msprop:Generator_ColumnPropNameInRow="IGST28per" msprop:Generator_ColumnPropNameInTable="IGST28perColumn" msprop:Generator_UserColumnName="IGST28per" type="xs:string" minOccurs="0" />
               <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="State" msprop:Generator_ColumnVarNameInTable="columnState" msprop:Generator_ColumnPropNameInRow="State" msprop:Generator_ColumnPropNameInTable="StateColumn" msprop:Generator_UserColumnName="State" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

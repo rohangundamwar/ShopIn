@@ -40,6 +40,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmb_BarcodeType = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmb_SaleBillOtherState = new System.Windows.Forms.ComboBox();
+            this.cmb_BillType = new System.Windows.Forms.ComboBox();
+            this.lbl_BillType = new System.Windows.Forms.Label();
             this.lbl_ServiceIncoice = new System.Windows.Forms.Label();
             this.cmb_ServiceInc = new System.Windows.Forms.ComboBox();
             this.lbl_Purchase = new System.Windows.Forms.Label();
@@ -47,7 +51,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cmb_estimate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmb_SaleBill = new System.Windows.Forms.ComboBox();
+            this.cmb_SaleBillInterState = new System.Windows.Forms.ComboBox();
             this.lbl_maintain = new System.Windows.Forms.Label();
             this.cmb_maintain = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -63,8 +67,8 @@
             this.rbt_EstPayYes = new System.Windows.Forms.RadioButton();
             this.lbl_EstimatePay = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl_BillType = new System.Windows.Forms.Label();
-            this.cmb_BillType = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmb_ExtraCharges = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -114,7 +118,7 @@
             // 
             // bttn_save
             // 
-            this.bttn_save.Location = new System.Drawing.Point(272, 319);
+            this.bttn_save.Location = new System.Drawing.Point(259, 403);
             this.bttn_save.Name = "bttn_save";
             this.bttn_save.Size = new System.Drawing.Size(75, 23);
             this.bttn_save.TabIndex = 8;
@@ -182,6 +186,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.cmb_SaleBillOtherState);
             this.groupBox2.Controls.Add(this.cmb_BillType);
             this.groupBox2.Controls.Add(this.lbl_BillType);
             this.groupBox2.Controls.Add(this.lbl_ServiceIncoice);
@@ -191,20 +197,59 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.cmb_estimate);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.cmb_SaleBill);
+            this.groupBox2.Controls.Add(this.cmb_SaleBillInterState);
             this.groupBox2.Controls.Add(this.lbl_print);
             this.groupBox2.Controls.Add(this.txt_print);
-            this.groupBox2.Location = new System.Drawing.Point(22, 178);
+            this.groupBox2.Location = new System.Drawing.Point(22, 217);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(574, 126);
+            this.groupBox2.Size = new System.Drawing.Size(574, 166);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bill Print";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 88);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 26);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "GST Bill\r\nOtherState";
+            // 
+            // cmb_SaleBillOtherState
+            // 
+            this.cmb_SaleBillOtherState.DisplayMember = "FilePath";
+            this.cmb_SaleBillOtherState.FormattingEnabled = true;
+            this.cmb_SaleBillOtherState.Location = new System.Drawing.Point(104, 91);
+            this.cmb_SaleBillOtherState.Name = "cmb_SaleBillOtherState";
+            this.cmb_SaleBillOtherState.Size = new System.Drawing.Size(155, 21);
+            this.cmb_SaleBillOtherState.TabIndex = 18;
+            this.cmb_SaleBillOtherState.ValueMember = "FilePath";
+            // 
+            // cmb_BillType
+            // 
+            this.cmb_BillType.FormattingEnabled = true;
+            this.cmb_BillType.Items.AddRange(new object[] {
+            "Laser",
+            "Thermal"});
+            this.cmb_BillType.Location = new System.Drawing.Point(379, 22);
+            this.cmb_BillType.Name = "cmb_BillType";
+            this.cmb_BillType.Size = new System.Drawing.Size(121, 21);
+            this.cmb_BillType.TabIndex = 17;
+            // 
+            // lbl_BillType
+            // 
+            this.lbl_BillType.AutoSize = true;
+            this.lbl_BillType.Location = new System.Drawing.Point(288, 26);
+            this.lbl_BillType.Name = "lbl_BillType";
+            this.lbl_BillType.Size = new System.Drawing.Size(47, 13);
+            this.lbl_BillType.TabIndex = 16;
+            this.lbl_BillType.Text = "Bill Type";
+            // 
             // lbl_ServiceIncoice
             // 
             this.lbl_ServiceIncoice.AutoSize = true;
-            this.lbl_ServiceIncoice.Location = new System.Drawing.Point(285, 93);
+            this.lbl_ServiceIncoice.Location = new System.Drawing.Point(285, 95);
             this.lbl_ServiceIncoice.Name = "lbl_ServiceIncoice";
             this.lbl_ServiceIncoice.Size = new System.Drawing.Size(81, 13);
             this.lbl_ServiceIncoice.TabIndex = 15;
@@ -214,7 +259,7 @@
             // 
             this.cmb_ServiceInc.DisplayMember = "FilePath";
             this.cmb_ServiceInc.FormattingEnabled = true;
-            this.cmb_ServiceInc.Location = new System.Drawing.Point(379, 89);
+            this.cmb_ServiceInc.Location = new System.Drawing.Point(379, 91);
             this.cmb_ServiceInc.Name = "cmb_ServiceInc";
             this.cmb_ServiceInc.Size = new System.Drawing.Size(155, 21);
             this.cmb_ServiceInc.TabIndex = 14;
@@ -223,7 +268,7 @@
             // lbl_Purchase
             // 
             this.lbl_Purchase.AutoSize = true;
-            this.lbl_Purchase.Location = new System.Drawing.Point(10, 93);
+            this.lbl_Purchase.Location = new System.Drawing.Point(10, 130);
             this.lbl_Purchase.Name = "lbl_Purchase";
             this.lbl_Purchase.Size = new System.Drawing.Size(68, 13);
             this.lbl_Purchase.TabIndex = 13;
@@ -233,7 +278,7 @@
             // 
             this.cmb_PurchaseBill.DisplayMember = "FilePath";
             this.cmb_PurchaseBill.FormattingEnabled = true;
-            this.cmb_PurchaseBill.Location = new System.Drawing.Point(104, 89);
+            this.cmb_PurchaseBill.Location = new System.Drawing.Point(104, 126);
             this.cmb_PurchaseBill.Name = "cmb_PurchaseBill";
             this.cmb_PurchaseBill.Size = new System.Drawing.Size(155, 21);
             this.cmb_PurchaseBill.TabIndex = 12;
@@ -261,26 +306,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 60);
+            this.label2.Location = new System.Drawing.Point(10, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(51, 26);
             this.label2.TabIndex = 9;
-            this.label2.Text = "GST Bill";
+            this.label2.Text = "GST Bill\r\nInterstate";
             // 
-            // cmb_SaleBill
+            // cmb_SaleBillInterState
             // 
-            this.cmb_SaleBill.DisplayMember = "FilePath";
-            this.cmb_SaleBill.FormattingEnabled = true;
-            this.cmb_SaleBill.Location = new System.Drawing.Point(104, 56);
-            this.cmb_SaleBill.Name = "cmb_SaleBill";
-            this.cmb_SaleBill.Size = new System.Drawing.Size(155, 21);
-            this.cmb_SaleBill.TabIndex = 8;
-            this.cmb_SaleBill.ValueMember = "FilePath";
+            this.cmb_SaleBillInterState.DisplayMember = "FilePath";
+            this.cmb_SaleBillInterState.FormattingEnabled = true;
+            this.cmb_SaleBillInterState.Location = new System.Drawing.Point(104, 56);
+            this.cmb_SaleBillInterState.Name = "cmb_SaleBillInterState";
+            this.cmb_SaleBillInterState.Size = new System.Drawing.Size(155, 21);
+            this.cmb_SaleBillInterState.TabIndex = 8;
+            this.cmb_SaleBillInterState.ValueMember = "FilePath";
             // 
             // lbl_maintain
             // 
             this.lbl_maintain.AutoSize = true;
-            this.lbl_maintain.Location = new System.Drawing.Point(32, 151);
+            this.lbl_maintain.Location = new System.Drawing.Point(31, 151);
             this.lbl_maintain.Name = "lbl_maintain";
             this.lbl_maintain.Size = new System.Drawing.Size(69, 13);
             this.lbl_maintain.TabIndex = 15;
@@ -434,31 +479,35 @@
             this.panel1.Size = new System.Drawing.Size(243, 25);
             this.panel1.TabIndex = 26;
             // 
-            // lbl_BillType
+            // label9
             // 
-            this.lbl_BillType.AutoSize = true;
-            this.lbl_BillType.Location = new System.Drawing.Point(288, 26);
-            this.lbl_BillType.Name = "lbl_BillType";
-            this.lbl_BillType.Size = new System.Drawing.Size(47, 13);
-            this.lbl_BillType.TabIndex = 16;
-            this.lbl_BillType.Text = "Bill Type";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(31, 179);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(95, 26);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Balance Including \r\nEatra Charges ";
             // 
-            // cmb_BillType
+            // cmb_ExtraCharges
             // 
-            this.cmb_BillType.FormattingEnabled = true;
-            this.cmb_BillType.Items.AddRange(new object[] {
-            "Laser",
-            "Thermal"});
-            this.cmb_BillType.Location = new System.Drawing.Point(379, 22);
-            this.cmb_BillType.Name = "cmb_BillType";
-            this.cmb_BillType.Size = new System.Drawing.Size(121, 21);
-            this.cmb_BillType.TabIndex = 17;
+            this.cmb_ExtraCharges.DisplayMember = "FilePath";
+            this.cmb_ExtraCharges.FormattingEnabled = true;
+            this.cmb_ExtraCharges.Items.AddRange(new object[] {
+            "Yes",
+            "No"});
+            this.cmb_ExtraCharges.Location = new System.Drawing.Point(126, 179);
+            this.cmb_ExtraCharges.Name = "cmb_ExtraCharges";
+            this.cmb_ExtraCharges.Size = new System.Drawing.Size(61, 21);
+            this.cmb_ExtraCharges.TabIndex = 27;
+            this.cmb_ExtraCharges.ValueMember = "FilePath";
             // 
             // frm_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 362);
+            this.ClientSize = new System.Drawing.Size(613, 447);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmb_ExtraCharges);
             this.Controls.Add(this.lbl_maintain);
             this.Controls.Add(this.cmb_maintain);
             this.Controls.Add(this.panel1);
@@ -497,7 +546,7 @@
         private System.Windows.Forms.ComboBox cmb_BarcodeType;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmb_SaleBill;
+        private System.Windows.Forms.ComboBox cmb_SaleBillInterState;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -521,5 +570,9 @@
         private System.Windows.Forms.ComboBox cmb_ServiceInc;
         private System.Windows.Forms.ComboBox cmb_BillType;
         private System.Windows.Forms.Label lbl_BillType;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmb_SaleBillOtherState;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmb_ExtraCharges;
     }
 }

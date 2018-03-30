@@ -30,7 +30,6 @@ namespace PrimeSolutions.Report.Customer
 
         private void frm_CustomerBalance_Load(object sender, EventArgs e)
         {
-            cmb_customer.SelectedIndex = -1;
             cust = _s.GetCustomer();
             cmb_customer.DataSource = cust;
             dgv_Balance.Rows.Clear();
@@ -41,6 +40,7 @@ namespace PrimeSolutions.Report.Customer
                 dgv_Balance.Rows[i].Cells["ContactNo"].Value = cust.Rows[i]["ContactNo"].ToString();
                 string CustId = cust.Rows[i]["CustId"].ToString();
                 dgv_Balance.Rows[i].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
+                dgv_Balance.Rows[i].Cells["TotalExtraChrg"].Value = _s.GetTotalExtraCharges(CustId, "Sale");
                 DataTable count = _s.GetCustomerBill(CustId,"All");
                 dgv_Balance.Rows[i].Cells["NoOfBill"].Value = count.Rows.Count;
                 dgv_Balance.Rows[i].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);
@@ -67,6 +67,7 @@ namespace PrimeSolutions.Report.Customer
             dgv_Balance.Rows[0].Cells["ContactNo"].Value = cust.Rows[cmb_customer.SelectedIndex]["ContactNo"].ToString();
             string CustId = cust.Rows[cmb_customer.SelectedIndex]["CustId"].ToString();
             dgv_Balance.Rows[0].Cells["TotalPurchase"].Value = _s.GetTotalPurchase(CustId,"Sale");
+            dgv_Balance.Rows[0].Cells["TotalExtraChrg"].Value = _s.GetTotalExtraCharges(CustId, "Sale");
             DataTable count = _s.GetCustomerBill(CustId,"All");
             dgv_Balance.Rows[0].Cells["NoOfBill"].Value = count.Rows.Count;
             dgv_Balance.Rows[0].Cells["TotalPaid"].Value = _s.GetTotalPaid(CustId);

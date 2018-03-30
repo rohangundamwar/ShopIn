@@ -196,6 +196,7 @@
             // 
             // dtp_from
             // 
+            this.dtp_from.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_from.Location = new System.Drawing.Point(73, 74);
             this.dtp_from.Name = "dtp_from";
             this.dtp_from.Size = new System.Drawing.Size(103, 20);
@@ -203,6 +204,7 @@
             // 
             // dtp_to
             // 
+            this.dtp_to.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_to.Location = new System.Drawing.Point(222, 74);
             this.dtp_to.Name = "dtp_to";
             this.dtp_to.Size = new System.Drawing.Size(103, 20);

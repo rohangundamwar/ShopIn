@@ -36,8 +36,8 @@
             this.wholeSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.barcodeEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barcodeEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.balanceSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,7 @@
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseBilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qoutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +91,8 @@
             this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.executeQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_ValidDays = new System.Windows.Forms.Label();
@@ -183,25 +186,25 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
-            // 
-            // barcodeEntryToolStripMenuItem
-            // 
-            this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
-            this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
-            this.barcodeEntryToolStripMenuItem.Text = "Barcode Entry";
-            this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // purchaseItemToolStripMenuItem
             // 
             this.purchaseItemToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("purchaseItemToolStripMenuItem.Image")));
             this.purchaseItemToolStripMenuItem.Name = "purchaseItemToolStripMenuItem";
-            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.purchaseItemToolStripMenuItem.Text = "Purchase Item";
             this.purchaseItemToolStripMenuItem.Click += new System.EventHandler(this.purchaseItemToolStripMenuItem_Click);
+            // 
+            // barcodeEntryToolStripMenuItem
+            // 
+            this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
+            this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
+            this.barcodeEntryToolStripMenuItem.Text = "Barcode Entry";
+            this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // accountingToolStripMenuItem
             // 
@@ -299,7 +302,8 @@
             // 
             this.updateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saleBillToolStripMenuItem,
-            this.purchaseBilToolStripMenuItem});
+            this.purchaseBilToolStripMenuItem,
+            this.rateToolStripMenuItem});
             this.updateToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.updateToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.check;
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
@@ -320,6 +324,13 @@
             this.purchaseBilToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.purchaseBilToolStripMenuItem.Text = "Purchase Bill";
             this.purchaseBilToolStripMenuItem.Click += new System.EventHandler(this.purchaseBilToolStripMenuItem_Click);
+            // 
+            // rateToolStripMenuItem
+            // 
+            this.rateToolStripMenuItem.Name = "rateToolStripMenuItem";
+            this.rateToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+            this.rateToolStripMenuItem.Text = "Rate";
+            this.rateToolStripMenuItem.Click += new System.EventHandler(this.rateToolStripMenuItem_Click);
             // 
             // qoutationToolStripMenuItem
             // 
@@ -593,7 +604,9 @@
             this.backUpDataToolStripMenuItem,
             this.errorReportToolStripMenuItem,
             this.updateDatabaseToolStripMenuItem,
-            this.deleteDataToolStripMenuItem});
+            this.deleteDataToolStripMenuItem,
+            this.updateInfoToolStripMenuItem,
+            this.executeQueryToolStripMenuItem});
             this.settingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Settings;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
@@ -635,6 +648,20 @@
             this.deleteDataToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.deleteDataToolStripMenuItem.Text = "Delete data";
             this.deleteDataToolStripMenuItem.Click += new System.EventHandler(this.deleteDataToolStripMenuItem_Click);
+            // 
+            // updateInfoToolStripMenuItem
+            // 
+            this.updateInfoToolStripMenuItem.Name = "updateInfoToolStripMenuItem";
+            this.updateInfoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.updateInfoToolStripMenuItem.Text = "Update Info";
+            this.updateInfoToolStripMenuItem.Click += new System.EventHandler(this.updateInfoToolStripMenuItem_Click);
+            // 
+            // executeQueryToolStripMenuItem
+            // 
+            this.executeQueryToolStripMenuItem.Name = "executeQueryToolStripMenuItem";
+            this.executeQueryToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.executeQueryToolStripMenuItem.Text = "Execute Query";
+            this.executeQueryToolStripMenuItem.Click += new System.EventHandler(this.executeQueryToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -679,7 +706,7 @@
             this.panel2.Controls.Add(this.pnl_ActivateMsg);
             this.panel2.Location = new System.Drawing.Point(6, 7);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(565, 359);
+            this.panel2.Size = new System.Drawing.Size(568, 359);
             this.panel2.TabIndex = 7;
             // 
             // bttn_Login
@@ -700,7 +727,7 @@
             this.pnl_ActivateMsg.Controls.Add(this.label1);
             this.pnl_ActivateMsg.Location = new System.Drawing.Point(146, 128);
             this.pnl_ActivateMsg.Name = "pnl_ActivateMsg";
-            this.pnl_ActivateMsg.Size = new System.Drawing.Size(284, 117);
+            this.pnl_ActivateMsg.Size = new System.Drawing.Size(287, 117);
             this.pnl_ActivateMsg.TabIndex = 0;
             this.pnl_ActivateMsg.Visible = false;
             // 
@@ -711,10 +738,10 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(21, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 60);
+            this.label1.Size = new System.Drawing.Size(252, 80);
             this.label1.TabIndex = 0;
-            this.label1.Text = "For Activation Please Contact \r\n         +91-9766918326\r\n         +91-8983151118\r" +
-    "\n";
+            this.label1.Text = "For Activation Please Contact \r\n         +91-7709885767\r\n         +91-9766918326\r" +
+    "\n         +91-8983151118\r\n";
             // 
             // panel3
             // 
@@ -853,6 +880,9 @@
         private System.Windows.Forms.ToolStripMenuItem dailyProfitLossToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentReceiptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dailyExpensesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem executeQueryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateToolStripMenuItem;
     }
 }
 

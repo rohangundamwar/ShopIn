@@ -14,8 +14,9 @@ namespace PrimeSolutions.Report.Purchase
     {
         AllClassFile _a = new AllClassFile();
         PurchaseCommon _p = new PurchaseCommon();
-        DataTable dtsupplier;
+        DataTable dtsupplier, dtsupplierBill, dtsupplierpay;
         clsCommon _c = new clsCommon();
+        public delegate void SendData(DataTable dtCustBill, DataTable dtpay, string sale, string paid, string bal);
 
         public frm_PurchaseLedger()
         {
@@ -37,7 +38,10 @@ namespace PrimeSolutions.Report.Purchase
         }
         private void print()
         {
-
+            CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+            SendData _obj = new SendData(_objfrm_ReportViewer.PurchaseLedger);
+            _obj(dtsupplierBill, dtsupplierpay, txt_Bill.Text, txt_payment.Text, txt_balance.Text);
+            _objfrm_ReportViewer.Show();
         }
 
 
@@ -45,7 +49,7 @@ namespace PrimeSolutions.Report.Purchase
         {
             int index = cmb_supplier.SelectedIndex;
             string supplierid = dtsupplier.Rows[index]["SupplierNo"].ToString();
-            DataTable dtsupplierBill = _p.GetSupplierFromAccNo(supplierid);
+            dtsupplierBill = _p.GetSupplierFromAccNo(supplierid);
             dgv_Bill.Rows.Clear();
             if (dtsupplier.Rows.Count>0)
                 for (int i = 0; i < dtsupplierBill.Rows.Count; i++)
@@ -56,7 +60,7 @@ namespace PrimeSolutions.Report.Purchase
                     dgv_Bill.Rows[i].Cells["BillNo"].Value = dtsupplierBill.Rows[i]["BillNo"].ToString();
                     dgv_Bill.Rows[i].Cells["Amount"].Value = dtsupplierBill.Rows[i]["GrandTotal"].ToString();
                 }
-            DataTable dtsupplierpay = _p.GetSupplierPaymentByAccNo(supplierid);
+            dtsupplierpay = _p.GetSupplierPaymentByAccNo(supplierid);
             dgv_Payment.Rows.Clear();
             if (dtsupplierpay.Rows.Count > 0)
                 for (int i = 0; i < dtsupplierpay.Rows.Count; i++)
@@ -67,8 +71,8 @@ namespace PrimeSolutions.Report.Purchase
                     dgv_Payment.Rows[i].Cells["PaidAmt"].Value = dtsupplierpay.Rows[i]["Amt"].ToString();
                     dgv_Payment.Rows[i].Cells["PayType"].Value = dtsupplierpay.Rows[i]["Paymode"].ToString();
                 }
-            string TotalBill =Convert.ToString(_c.sumGridViewColumn(dgv_Bill, "Amount"));
-            string TotalPaid = Convert.ToString(_c.sumGridViewColumn(dgv_Payment, "PaidAmt"));
+            string TotalBill =Convert.ToString(Math.Round(_c.sumGridViewColumn(dgv_Bill, "Amount"),2) );
+            string TotalPaid = Convert.ToString(Math.Round(_c.sumGridViewColumn(dgv_Payment, "PaidAmt"),2) );
             string Balance = Convert.ToString(Math.Round(Convert.ToDouble(TotalBill) - Convert.ToDouble(TotalPaid), 2)) ;
 
             txt_Bill.Text = TotalBill;

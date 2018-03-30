@@ -84,10 +84,10 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public string GetPassword(string ID)
+        public DataTable GetPassword(string ID)
         {
-            string str = "Select password from Login Where UserId='" + ID + "'";
-            return _objSqlhelper.ExecuteScalar(str);
+            string str = "Select * from Login Where UserId='" + ID + "'";
+            return _objSqlhelper.GetDataTable(str);
         }
 
         public void InsertIntoTemp(string BillNo)
@@ -201,7 +201,13 @@ namespace PrimeSolutions.Library
             string str = "select PrintQue from PrintQue where SrNo='2'";
             return _objSqlhelper.ExecuteScalar(str);
         }
-        
+
+        public string ChangeRate(string Category,string SubCategory,string Size,string Rate)
+        {
+            string str = "Update BillItem Set SellingPrice='"+Rate+"' where Category='"+Category+"' and SubCategory='"+SubCategory+"' and Size='"+Size+"'";
+            return _objSqlhelper.ExecuteScalar(str);
+        }
+
         public DataTable GetSalesPerson()
         {
             string sql = "select id+name as SalesPerson from SalesmanMaster";
@@ -277,6 +283,7 @@ namespace PrimeSolutions.Library
             _objsetvalue.PaymentForm = dt.Rows[0]["PaymentForm"].ToString();
             _objsetvalue.EstimatePayment = dt.Rows[0]["EstimatePayment"].ToString();
             _objsetvalue.Maintenance = dt.Rows[0]["Maintenance"].ToString();
+            _objsetvalue.ExtraChargesInc = dt.Rows[0]["ExtraChargesInc"].ToString();
             //_objsetvalue.ReceiptCopy = dt.Rows[0]["ReceiptCopy"].ToString();
 
             return _objsetvalue;

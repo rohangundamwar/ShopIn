@@ -30,13 +30,12 @@ namespace PrimeSolutions.Report.Purchase
 
         private void GetReport()
         {
-            int i=0;
-
-                DataTable Bill = _p.GetSupplierBill(dtp_from.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"));
+            int i = 0;
+            DataTable Bill = _p.GetSupplierGSTBill(dtp_from.Value.ToString("dd/MM/yyyy"), dtp_to.Value.ToString("dd/MM/yyyy"));
             dgv_SupplierBill.Rows.Clear();
-                dgv_SupplierBill.Rows.Add();
-                if (Bill.Rows.Count > 0)
-                {
+            dgv_SupplierBill.Rows.Add();
+            if (Bill.Rows.Count > 0)
+            {
                 for (i = 0; i < Bill.Rows.Count; i++)
                 {
                     dgv_SupplierBill.Rows[i].Cells["SrNo"].Value = Convert.ToString(i + 1);
@@ -53,21 +52,18 @@ namespace PrimeSolutions.Report.Purchase
                     dgv_SupplierBill.Rows[i].Cells["TotalAmt"].Value = Bill.Rows[i]["GrandTotal"].ToString();
                     dgv_SupplierBill.Rows.Add();
                 }
-                    
-                }
+
+            }
 
 
-                int j = i + 1;
-                dgv_SupplierBill.Rows.Add();
-                dgv_SupplierBill.Rows[j].Cells["HSNCode"].Value = "Total";
-                dgv_SupplierBill.Rows[j].Cells["BillAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "BillAmt");
-                dgv_SupplierBill.Rows[j].Cells["CGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "CGST");
-                dgv_SupplierBill.Rows[j].Cells["SGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "SGST");
-                dgv_SupplierBill.Rows[j].Cells["IGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "IGST");
-                dgv_SupplierBill.Rows[j].Cells["TotalAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "TotalAmt");
-            
-
-
+            int j = i + 1;
+            dgv_SupplierBill.Rows.Add();
+            dgv_SupplierBill.Rows[j].Cells["HSNCode"].Value = "Total";
+            dgv_SupplierBill.Rows[j].Cells["BillAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "BillAmt");
+            dgv_SupplierBill.Rows[j].Cells["CGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "CGST");
+            dgv_SupplierBill.Rows[j].Cells["SGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "SGST");
+            dgv_SupplierBill.Rows[j].Cells["IGST"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "IGST");
+            dgv_SupplierBill.Rows[j].Cells["TotalAmt"].Value = _common.sumGridViewColumn(dgv_SupplierBill, "TotalAmt");
         }
 
         private void bttn_excel_Click(object sender, EventArgs e)

@@ -1,3 +1,5 @@
+USe['Insert Database Name']
+
 TRUNCATE TABLE AccountLedger
 TRUNCATE TABLE BillItem
 TRUNCATE TABLE CategoryMaster
