@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
             this.txt_BillNo = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.lbl_Add = new System.Windows.Forms.Label();
             this.lbl_ContactNo = new System.Windows.Forms.Label();
             this.pnl_SupplierInfo = new System.Windows.Forms.Panel();
+            this.txt_Balance = new System.Windows.Forms.Label();
             this.lbl_State = new System.Windows.Forms.Label();
             this.cmb_State = new System.Windows.Forms.ComboBox();
             this.txt_GSTIN = new System.Windows.Forms.TextBox();
@@ -104,6 +105,12 @@
             this.Maintain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
             this.pnl_OldPay = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txt_OldPaid = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txt_Diff = new System.Windows.Forms.Label();
             this.lbl_Narration = new System.Windows.Forms.Label();
             this.txt_Narration = new System.Windows.Forms.TextBox();
             this.txt_Extra = new System.Windows.Forms.TextBox();
@@ -129,13 +136,6 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
-            this.txt_Balance = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txt_OldPaid = new System.Windows.Forms.Label();
-            this.txt_Diff = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -313,6 +313,16 @@
             this.pnl_SupplierInfo.Name = "pnl_SupplierInfo";
             this.pnl_SupplierInfo.Size = new System.Drawing.Size(984, 84);
             this.pnl_SupplierInfo.TabIndex = 7;
+            // 
+            // txt_Balance
+            // 
+            this.txt_Balance.AutoSize = true;
+            this.txt_Balance.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.txt_Balance.Location = new System.Drawing.Point(825, 55);
+            this.txt_Balance.Name = "txt_Balance";
+            this.txt_Balance.Size = new System.Drawing.Size(15, 16);
+            this.txt_Balance.TabIndex = 23;
+            this.txt_Balance.Text = "0";
             // 
             // lbl_State
             // 
@@ -580,6 +590,8 @@
             this.txt_maintain.TabIndex = 62;
             this.txt_maintain.Text = "0";
             this.txt_maintain.Visible = false;
+            this.txt_maintain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_maintain_KeyDown);
+            this.txt_maintain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_maintain_KeyPress);
             // 
             // lbl_maintain
             // 
@@ -617,6 +629,7 @@
             this.cmb_SalesPerson.TabIndex = 60;
             this.cmb_SalesPerson.Text = " ";
             this.cmb_SalesPerson.ValueMember = "SalesPerson";
+            this.cmb_SalesPerson.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SalesPerson_KeyDown);
             // 
             // label16
             // 
@@ -949,8 +962,8 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 8F);
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8F);
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -972,8 +985,8 @@
             this.dgv_ItemInfo.Location = new System.Drawing.Point(4, 288);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_ItemInfo.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv_ItemInfo.Size = new System.Drawing.Size(984, 190);
             this.dgv_ItemInfo.TabIndex = 0;
@@ -981,8 +994,8 @@
             // 
             // BarcodeNo
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarcodeNo.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarcodeNo.DefaultCellStyle = dataGridViewCellStyle8;
             this.BarcodeNo.FillWeight = 60F;
             this.BarcodeNo.HeaderText = "Barcode No";
             this.BarcodeNo.Name = "BarcodeNo";
@@ -1105,6 +1118,72 @@
             this.pnl_OldPay.Name = "pnl_OldPay";
             this.pnl_OldPay.Size = new System.Drawing.Size(340, 63);
             this.pnl_OldPay.TabIndex = 64;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label31.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label31.Location = new System.Drawing.Point(12, 13);
+            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(62, 30);
+            this.label31.TabIndex = 68;
+            this.label31.Text = "Old \r\nPayment";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial", 12F);
+            this.label30.Location = new System.Drawing.Point(223, 19);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(17, 18);
+            this.label30.TabIndex = 73;
+            this.label30.Text = "₹";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.label33.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label33.Location = new System.Drawing.Point(155, 21);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(65, 15);
+            this.label33.TabIndex = 71;
+            this.label33.Text = "Diffrence";
+            // 
+            // txt_OldPaid
+            // 
+            this.txt_OldPaid.AutoSize = true;
+            this.txt_OldPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.txt_OldPaid.ForeColor = System.Drawing.Color.Green;
+            this.txt_OldPaid.Location = new System.Drawing.Point(92, 20);
+            this.txt_OldPaid.Name = "txt_OldPaid";
+            this.txt_OldPaid.Size = new System.Drawing.Size(35, 17);
+            this.txt_OldPaid.TabIndex = 69;
+            this.txt_OldPaid.Text = "000";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial", 12F);
+            this.label29.Location = new System.Drawing.Point(77, 19);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(17, 18);
+            this.label29.TabIndex = 70;
+            this.label29.Text = "₹";
+            // 
+            // txt_Diff
+            // 
+            this.txt_Diff.AutoSize = true;
+            this.txt_Diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.txt_Diff.ForeColor = System.Drawing.Color.Red;
+            this.txt_Diff.Location = new System.Drawing.Point(240, 20);
+            this.txt_Diff.Name = "txt_Diff";
+            this.txt_Diff.Size = new System.Drawing.Size(35, 17);
+            this.txt_Diff.TabIndex = 72;
+            this.txt_Diff.Text = "000";
             // 
             // lbl_Narration
             // 
@@ -1396,82 +1475,6 @@
             this.bttn_Sale.Text = "Sale";
             this.bttn_Sale.UseVisualStyleBackColor = true;
             this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
-            // 
-            // txt_Balance
-            // 
-            this.txt_Balance.AutoSize = true;
-            this.txt_Balance.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txt_Balance.Location = new System.Drawing.Point(825, 55);
-            this.txt_Balance.Name = "txt_Balance";
-            this.txt_Balance.Size = new System.Drawing.Size(15, 16);
-            this.txt_Balance.TabIndex = 23;
-            this.txt_Balance.Text = "0";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label31.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label31.Location = new System.Drawing.Point(12, 13);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(62, 30);
-            this.label31.TabIndex = 68;
-            this.label31.Text = "Old \r\nPayment";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Arial", 12F);
-            this.label30.Location = new System.Drawing.Point(223, 19);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(17, 18);
-            this.label30.TabIndex = 73;
-            this.label30.Text = "₹";
-            // 
-            // txt_OldPaid
-            // 
-            this.txt_OldPaid.AutoSize = true;
-            this.txt_OldPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.txt_OldPaid.ForeColor = System.Drawing.Color.Green;
-            this.txt_OldPaid.Location = new System.Drawing.Point(92, 20);
-            this.txt_OldPaid.Name = "txt_OldPaid";
-            this.txt_OldPaid.Size = new System.Drawing.Size(35, 17);
-            this.txt_OldPaid.TabIndex = 69;
-            this.txt_OldPaid.Text = "000";
-            // 
-            // txt_Diff
-            // 
-            this.txt_Diff.AutoSize = true;
-            this.txt_Diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.txt_Diff.ForeColor = System.Drawing.Color.Red;
-            this.txt_Diff.Location = new System.Drawing.Point(240, 20);
-            this.txt_Diff.Name = "txt_Diff";
-            this.txt_Diff.Size = new System.Drawing.Size(35, 17);
-            this.txt_Diff.TabIndex = 72;
-            this.txt_Diff.Text = "000";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial", 12F);
-            this.label29.Location = new System.Drawing.Point(77, 19);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(17, 18);
-            this.label29.TabIndex = 70;
-            this.label29.Text = "₹";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label33.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label33.Location = new System.Drawing.Point(155, 21);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(65, 15);
-            this.label33.TabIndex = 71;
-            this.label33.Text = "Diffrence";
             // 
             // frm_SaleEstimate
             // 

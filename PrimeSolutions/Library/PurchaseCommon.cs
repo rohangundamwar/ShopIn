@@ -87,7 +87,7 @@ namespace PrimeSolutions.Library
 
         public DataTable GetSupplierDetail(string from,string to)
         {
-            string str = "SELECT distinct dbo.SupplierMaster.Name,dbo.SupplierMaster.GSTIN FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
+            string str = "SELECT distinct dbo.SupplierMaster.Name,dbo.SupplierMaster.GSTIN,dbo.SupplierMaster.state FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type = 'GST')";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -130,6 +130,14 @@ namespace PrimeSolutions.Library
         {
             DataTable dt;
             string str = " SELECT dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo,dbo.SupplierBill.BillNo, dbo.SupplierBill.Amount,dbo.SupplierBill.Date, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+ "', 103)) AND (dbo.SupplierBill.permanentdelete = 0) GROUP BY dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State,dbo.SupplierBill.BillNo,dbo.SupplierBill.Date";
+            dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetSupplierGSTBill(string from, string to)
+        {
+            DataTable dt;
+            string str = "SELECT dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo,dbo.SupplierBill.BillNo, dbo.SupplierBill.Amount,dbo.SupplierBill.Date, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State FROM dbo.SupplierMaster INNER JOIN dbo.SupplierBill ON dbo.SupplierMaster.SupplierNo = dbo.SupplierBill.SupplierNo WHERE(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.SupplierBill.permanentdelete = 0) AND (dbo.SupplierBill.Type= 'GST') GROUP BY dbo.SupplierMaster.Name, dbo.SupplierMaster.GSTIN, dbo.SupplierBill.RefrenceNo, dbo.SupplierBill.Amount, dbo.SupplierBill.CGST, dbo.SupplierBill.SGST, dbo.SupplierBill.IGST, dbo.SupplierBill.GrandTotal, dbo.SupplierBill.State,dbo.SupplierBill.BillNo,dbo.SupplierBill.Date";
             dt = _sql.GetDataTable(str);
             return dt;
         }

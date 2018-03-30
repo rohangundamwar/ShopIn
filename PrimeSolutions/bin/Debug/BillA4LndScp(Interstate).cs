@@ -16,14 +16,14 @@ namespace PrimeSolutions.bin.Debug {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class OutationA4__ : ReportClass {
+    public class BillA4LndScpInterstate : ReportClass {
         
-        public OutationA4__() {
+        public BillA4LndScpInterstate() {
         }
         
         public override string ResourceName {
             get {
-                return "OutationA4 -.rpt";
+                return "BillA4LndScp(Interstate).rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PrimeSolutions.bin.Debug {
         
         public override string FullResourceName {
             get {
-                return "PrimeSolutions.bin.Debug.OutationA4 -.rpt";
+                return "PrimeSolutions.bin.Debug.BillA4LndScp(Interstate).rpt";
             }
             set {
                 // Do nothing
@@ -114,9 +114,9 @@ namespace PrimeSolutions.bin.Debug {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedOutationA4__ : Component, ICachedReport {
+    public class CachedBillA4LndScpInterstate : Component, ICachedReport {
         
-        public CachedOutationA4__() {
+        public CachedBillA4LndScpInterstate() {
         }
         
         [Browsable(false)]
@@ -153,7 +153,7 @@ namespace PrimeSolutions.bin.Debug {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            OutationA4__ rpt = new OutationA4__();
+            BillA4LndScpInterstate rpt = new BillA4LndScpInterstate();
             rpt.Site = this.Site;
             return rpt;
         }

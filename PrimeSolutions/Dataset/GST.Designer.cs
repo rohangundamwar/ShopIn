@@ -321,6 +321,8 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnCustomerName;
             
+            private global::System.Data.DataColumn columnState;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GSTDataTable() {
@@ -524,6 +526,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StateColumn {
+                get {
+                    return this.columnState;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -580,7 +590,8 @@ namespace PrimeSolutions.Dataset {
                         string SGST28per, 
                         string CGST28per, 
                         string IGST28per, 
-                        string CustomerName) {
+                        string CustomerName, 
+                        string State) {
                 GSTRow rowGSTRow = ((GSTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SrNo,
@@ -603,7 +614,8 @@ namespace PrimeSolutions.Dataset {
                         SGST28per,
                         CGST28per,
                         IGST28per,
-                        CustomerName};
+                        CustomerName,
+                        State};
                 rowGSTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGSTRow);
                 return rowGSTRow;
@@ -647,6 +659,7 @@ namespace PrimeSolutions.Dataset {
                 this.columnCGST28per = base.Columns["CGST28per"];
                 this.columnIGST28per = base.Columns["IGST28per"];
                 this.columnCustomerName = base.Columns["CustomerName"];
+                this.columnState = base.Columns["State"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -694,6 +707,8 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnIGST28per);
                 this.columnCustomerName = new global::System.Data.DataColumn("CustomerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomerName);
+                this.columnState = new global::System.Data.DataColumn("State", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnState);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_GST");
                 this.ExtendedProperties.Add("Generator_UserTableName", "GST");
             }
@@ -1174,6 +1189,22 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string State {
+                get {
+                    try {
+                        return ((string)(this[this.tableGST.StateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'State\' in table \'GST\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGST.StateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSrNoNull() {
                 return this.IsNull(this.tableGST.SrNoColumn);
             }
@@ -1422,6 +1453,18 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCustomerNameNull() {
                 this[this.tableGST.CustomerNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsStateNull() {
+                return this.IsNull(this.tableGST.StateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetStateNull() {
+                this[this.tableGST.StateColumn] = global::System.Convert.DBNull;
             }
         }
         

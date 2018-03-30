@@ -32,9 +32,13 @@
             this.dtp_From = new System.Windows.Forms.DateTimePicker();
             this.bttn_Generate = new System.Windows.Forms.Button();
             this.dgv_GST = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bttn_Excel = new System.Windows.Forms.Button();
+            this.bttn_Print = new System.Windows.Forms.Button();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmountZero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amt5per = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SGST5per = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,29 +56,30 @@
             this.SGST28per = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CGST28per = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IGST28per = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bttn_Excel = new System.Windows.Forms.Button();
-            this.bttn_Print = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_GST)).BeginInit();
             this.SuspendLayout();
             // 
             // dtp_to
             // 
-            this.dtp_to.Location = new System.Drawing.Point(271, 46);
+            this.dtp_to.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_to.Location = new System.Drawing.Point(322, 46);
             this.dtp_to.Name = "dtp_to";
-            this.dtp_to.Size = new System.Drawing.Size(200, 20);
+            this.dtp_to.Size = new System.Drawing.Size(102, 20);
             this.dtp_to.TabIndex = 0;
             // 
             // dtp_From
             // 
-            this.dtp_From.Location = new System.Drawing.Point(45, 46);
+            this.dtp_From.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_From.Location = new System.Drawing.Point(96, 46);
             this.dtp_From.Name = "dtp_From";
-            this.dtp_From.Size = new System.Drawing.Size(200, 20);
+            this.dtp_From.Size = new System.Drawing.Size(102, 20);
             this.dtp_From.TabIndex = 0;
             // 
             // bttn_Generate
             // 
-            this.bttn_Generate.Location = new System.Drawing.Point(520, 47);
+            this.bttn_Generate.Location = new System.Drawing.Point(520, 45);
             this.bttn_Generate.Name = "bttn_Generate";
             this.bttn_Generate.Size = new System.Drawing.Size(75, 23);
             this.bttn_Generate.TabIndex = 1;
@@ -92,6 +97,7 @@
             this.SrNo,
             this.Name,
             this.GSTIN,
+            this.State,
             this.AmountZero,
             this.Amt5per,
             this.SGST5per,
@@ -114,6 +120,37 @@
             this.dgv_GST.ReadOnly = true;
             this.dgv_GST.Size = new System.Drawing.Size(1232, 392);
             this.dgv_GST.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1025, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(226, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "* For printing Legal size paper is recommended";
+            // 
+            // bttn_Excel
+            // 
+            this.bttn_Excel.ForeColor = System.Drawing.Color.Blue;
+            this.bttn_Excel.Location = new System.Drawing.Point(631, 45);
+            this.bttn_Excel.Name = "bttn_Excel";
+            this.bttn_Excel.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Excel.TabIndex = 4;
+            this.bttn_Excel.Text = "Excel";
+            this.bttn_Excel.UseVisualStyleBackColor = true;
+            this.bttn_Excel.Click += new System.EventHandler(this.bttn_Excel_Click);
+            // 
+            // bttn_Print
+            // 
+            this.bttn_Print.ForeColor = System.Drawing.Color.Crimson;
+            this.bttn_Print.Location = new System.Drawing.Point(737, 45);
+            this.bttn_Print.Name = "bttn_Print";
+            this.bttn_Print.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Print.TabIndex = 5;
+            this.bttn_Print.Text = "Print";
+            this.bttn_Print.UseVisualStyleBackColor = true;
+            this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
             // 
             // SrNo
             // 
@@ -138,6 +175,12 @@
             this.GSTIN.Name = "GSTIN";
             this.GSTIN.ReadOnly = true;
             this.GSTIN.Width = 150;
+            // 
+            // State
+            // 
+            this.State.HeaderText = "State";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
             // 
             // AmountZero
             // 
@@ -241,42 +284,31 @@
             this.IGST28per.Name = "IGST28per";
             this.IGST28per.ReadOnly = true;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1025, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "* For printing Legal size paper is recommended";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(24, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "From";
             // 
-            // bttn_Excel
+            // label3
             // 
-            this.bttn_Excel.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Excel.Location = new System.Drawing.Point(631, 47);
-            this.bttn_Excel.Name = "bttn_Excel";
-            this.bttn_Excel.Size = new System.Drawing.Size(75, 23);
-            this.bttn_Excel.TabIndex = 4;
-            this.bttn_Excel.Text = "Excel";
-            this.bttn_Excel.UseVisualStyleBackColor = true;
-            this.bttn_Excel.Click += new System.EventHandler(this.bttn_Excel_Click);
-            // 
-            // bttn_Print
-            // 
-            this.bttn_Print.ForeColor = System.Drawing.Color.Crimson;
-            this.bttn_Print.Location = new System.Drawing.Point(737, 47);
-            this.bttn_Print.Name = "bttn_Print";
-            this.bttn_Print.Size = new System.Drawing.Size(75, 23);
-            this.bttn_Print.TabIndex = 5;
-            this.bttn_Print.Text = "Print";
-            this.bttn_Print.UseVisualStyleBackColor = true;
-            this.bttn_Print.Click += new System.EventHandler(this.bttn_Print_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(263, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "To";
             // 
             // frm_TotalCustomerGST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 486);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.bttn_Print);
             this.Controls.Add(this.bttn_Excel);
             this.Controls.Add(this.label1);
@@ -303,6 +335,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn GSTIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountZero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amt5per;
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST5per;
@@ -320,5 +353,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SGST28per;
         private System.Windows.Forms.DataGridViewTextBoxColumn CGST28per;
         private System.Windows.Forms.DataGridViewTextBoxColumn IGST28per;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

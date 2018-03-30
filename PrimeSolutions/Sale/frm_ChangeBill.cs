@@ -13,6 +13,7 @@ namespace PrimeSolutions.Report.Sale
         DataTable dt;
         DataTable dt1;
         clsCommon _common = new clsCommon();
+        ErrorLog _error = new ErrorLog();
         string Bill = "";
 
         public frm_ChangeBill(string Type)
@@ -48,6 +49,7 @@ namespace PrimeSolutions.Report.Sale
             }
             catch (Exception ex)
             {
+                _error.AddException(ex,"ChangeBill");
                 MessageBox.Show(ex.Message);
             }
             //_s.PrintBillThermal(cmb_BillNo.Text);

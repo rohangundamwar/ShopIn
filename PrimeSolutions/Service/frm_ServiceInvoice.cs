@@ -508,7 +508,7 @@ namespace PrimeSolutions.Service
                     //string SalesPerson = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Sales"].Value);
                     string Maintain = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Maintain"].Value);
                     
-                    _Sale.AddItemDetails(category, subcategory, Size, cmb_ServiceId.Text, "Service Invoice", dtp_Date.Value.ToString("dd/MM/yyyy"), price, Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, TotalAmount, BatchNo, HSN, TotalPrice, "", Maintain);
+                    _Sale.AddItemDetails(category, subcategory, Size, cmb_ServiceId.Text, "Service Invoice", dtp_Date.Value.ToString("dd/MM/yyyy"), price, Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, TotalAmount, BatchNo, HSN, TotalPrice, "", Maintain,"0","0","0", "0", "0");
                     
 
                     if (dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString() != "0")
@@ -526,7 +526,7 @@ namespace PrimeSolutions.Service
             try
             {
 
-                _Sale.AddBillDetails(cmb_ServiceId.Text, lbl_CustID.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text,"", txt_BillAmt.Text, txt_Discount.Text, "Service Invoice",txt_Extra.Text, txt_Other.Text);
+                _Sale.AddBillDetails(cmb_ServiceId.Text, lbl_CustID.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text,"", txt_BillAmt.Text, txt_Discount.Text, "Service Invoice",txt_Extra.Text, txt_Other.Text,"0");
 
                 if (txt_PaidAmt.Text != "" || txt_PaidAmt.Text != "0" || txt_PaidAmt.Text == string.Empty)
                 {

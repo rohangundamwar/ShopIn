@@ -15,6 +15,7 @@ namespace PrimeSolutions.Common
     {
         clsCommon _common = new clsCommon();
         public bool result { get; set; }
+        public string type { get; set; }
 
         public frm_Login()
         {
@@ -47,16 +48,16 @@ namespace PrimeSolutions.Common
 
         private void bttn_login_Click(object sender, EventArgs e)
         {
-            string password = _common.GetPassword(txt_UserId.Text);
+            DataTable user = _common.GetPassword(txt_UserId.Text);
 
-            if (password == string.Empty)
+            if (user.Rows.Count==0)
             {
                 lbl_message.Text = "MSG: Invalid User ID";
                 lbl_message.Visible = true;
                 clear();
             }
-            else
-            if (password == txt_Password.Text)
+            else 
+            if (user.Rows[0]["Password"].ToString() == txt_Password.Text)
             {
                 result = true;
                 this.Close();
@@ -68,6 +69,7 @@ namespace PrimeSolutions.Common
                 clear();
                 result = false;
             }
+            type = user.Rows[0]["Type"].ToString();
         }
 
         private void frm_Login_Load(object sender, EventArgs e)

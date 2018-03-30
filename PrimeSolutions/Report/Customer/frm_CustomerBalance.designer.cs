@@ -39,6 +39,7 @@
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalExtraChrg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoOfBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,13 +56,14 @@
             this.Name,
             this.ContactNo,
             this.TotalPurchase,
+            this.TotalExtraChrg,
             this.NoOfBill,
             this.TotalPaid,
             this.TotalBalance});
             this.dgv_Balance.Location = new System.Drawing.Point(12, 68);
             this.dgv_Balance.Name = "dgv_Balance";
             this.dgv_Balance.ReadOnly = true;
-            this.dgv_Balance.Size = new System.Drawing.Size(743, 196);
+            this.dgv_Balance.Size = new System.Drawing.Size(843, 196);
             this.dgv_Balance.TabIndex = 0;
             // 
             // cmb_customer
@@ -79,7 +81,7 @@
             // bttn_Find
             // 
             this.bttn_Find.ForeColor = System.Drawing.Color.Green;
-            this.bttn_Find.Location = new System.Drawing.Point(396, 24);
+            this.bttn_Find.Location = new System.Drawing.Point(590, 24);
             this.bttn_Find.Name = "bttn_Find";
             this.bttn_Find.Size = new System.Drawing.Size(75, 23);
             this.bttn_Find.TabIndex = 2;
@@ -110,7 +112,7 @@
             // bttn_Excel
             // 
             this.bttn_Excel.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Excel.Location = new System.Drawing.Point(490, 24);
+            this.bttn_Excel.Location = new System.Drawing.Point(684, 24);
             this.bttn_Excel.Name = "bttn_Excel";
             this.bttn_Excel.Size = new System.Drawing.Size(75, 23);
             this.bttn_Excel.TabIndex = 5;
@@ -121,7 +123,7 @@
             // bttn_reset
             // 
             this.bttn_reset.ForeColor = System.Drawing.Color.Yellow;
-            this.bttn_reset.Location = new System.Drawing.Point(580, 25);
+            this.bttn_reset.Location = new System.Drawing.Point(774, 24);
             this.bttn_reset.Name = "bttn_reset";
             this.bttn_reset.Size = new System.Drawing.Size(75, 23);
             this.bttn_reset.TabIndex = 6;
@@ -160,6 +162,12 @@
             this.TotalPurchase.Name = "TotalPurchase";
             this.TotalPurchase.ReadOnly = true;
             // 
+            // TotalExtraChrg
+            // 
+            this.TotalExtraChrg.HeaderText = "TotalExtraChrg";
+            this.TotalExtraChrg.Name = "TotalExtraChrg";
+            this.TotalExtraChrg.ReadOnly = true;
+            // 
             // NoOfBill
             // 
             this.NoOfBill.HeaderText = "NoOfBill";
@@ -183,7 +191,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bttn_close;
-            this.ClientSize = new System.Drawing.Size(764, 315);
+            this.ClientSize = new System.Drawing.Size(866, 315);
             this.Controls.Add(this.bttn_Print);
             this.Controls.Add(this.bttn_reset);
             this.Controls.Add(this.bttn_Excel);
@@ -213,6 +221,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn ContactNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPurchase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalExtraChrg;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoOfBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPaid;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalBalance;

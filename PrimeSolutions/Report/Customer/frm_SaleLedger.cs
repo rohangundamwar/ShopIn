@@ -20,7 +20,8 @@ namespace PrimeSolutions.Report.Customer
         clsCommon _c = new clsCommon();
         DataTable dtCustBill;
         DataTable dtpay;
-        public delegate void SendData(DataTable dtCustBill, DataTable dtpay,string sale,string paid,string bal);
+        public delegate void SendData(DataTable dtCustBill, DataTable dtpay,string sale,string paid,string bal,string Extra);
+        public delegate void ViewData(string BillNo,string Type);
 
         public frm_SaleLedger()
         {
@@ -72,6 +73,7 @@ namespace PrimeSolutions.Report.Customer
                     dgv_Bill.Rows[i].Cells["Date"].Value = dtCustBill.Rows[i - 1]["Date"].ToString();
                     dgv_Bill.Rows[i].Cells["BillNo"].Value = dtCustBill.Rows[i - 1]["BillNo"].ToString();
                     dgv_Bill.Rows[i].Cells["Amount"].Value = dtCustBill.Rows[i - 1]["BillAmount"].ToString();
+                    dgv_Bill.Rows[i].Cells["ExtraCharges"].Value = dtCustBill.Rows[i - 1]["ExtraCharges"].ToString();
                 }
             }
             
@@ -92,9 +94,11 @@ namespace PrimeSolutions.Report.Customer
                 
             string TotalBill =Convert.ToString(_c.sumGridViewColumn(dgv_Bill, "Amount"));
             string TotalPaid = Convert.ToString(_c.sumGridViewColumn(dgv_Payment, "PaidAmt"));
-            string Balance = Convert.ToString(Convert.ToDouble(TotalBill) - (Convert.ToDouble(TotalPaid)));
+            string TotalExtra = Convert.ToString(_c.sumGridViewColumn(dgv_Bill, "ExtraCharges"));
+            string Balance = Convert.ToString( (Convert.ToDouble(TotalBill) + (Convert.ToDouble(TotalExtra))) - (Convert.ToDouble(TotalPaid)));
 
             txt_Bill.Text = TotalBill;
+            txt_Extra.Text = TotalExtra;
             txt_payment.Text = TotalPaid;
             txt_balance.Text = Balance;
             cmb_supplier.Focus();
@@ -118,9 +122,31 @@ namespace PrimeSolutions.Report.Customer
         {
             CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
             SendData _obj = new SendData(_objfrm_ReportViewer.SaleLedger);
-            _obj(dtCustBill, dtpay, txt_Bill.Text,txt_payment.Text,txt_balance.Text);
+            _obj(dtCustBill, dtpay, txt_Bill.Text,txt_payment.Text,txt_balance.Text,txt_Extra.Text);
             _objfrm_ReportViewer.Show();
         }
-            
+
+        private void dgv_Bill_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string BillNo = dgv_Bill.Rows[e.RowIndex].Cells["BillNo"].Value.ToString();
+            if (BillNo[0] == 'S')
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                ViewData _obj = new ViewData(_objfrm_ReportViewer.CustomerBill);
+                _obj(BillNo,"View");
+                _objfrm_ReportViewer.Show();
+            }
+
+            if (BillNo[0] == 'T')
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                ViewData _obj = new ViewData(_objfrm_ReportViewer.CustomerBillEst);
+                _obj(BillNo, "View");
+                _objfrm_ReportViewer.Show();
+            }
+
+
+
+        }
     }
 }

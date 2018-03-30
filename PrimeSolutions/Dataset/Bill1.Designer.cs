@@ -507,11 +507,15 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnState;
             
-            private global::System.Data.DataColumn columnDiscount;
+            private global::System.Data.DataColumn columnCashDiscount;
             
             private global::System.Data.DataColumn columnBillAmount;
             
             private global::System.Data.DataColumn columnNarration;
+            
+            private global::System.Data.DataColumn columnExtraCharges;
+            
+            private global::System.Data.DataColumn columnDiscount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -620,9 +624,9 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiscountColumn {
+            public global::System.Data.DataColumn CashDiscountColumn {
                 get {
-                    return this.columnDiscount;
+                    return this.columnCashDiscount;
                 }
             }
             
@@ -639,6 +643,22 @@ namespace PrimeSolutions.Dataset {
             public global::System.Data.DataColumn NarrationColumn {
                 get {
                     return this.columnNarration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExtraChargesColumn {
+                get {
+                    return this.columnExtraCharges;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DiscountColumn {
+                get {
+                    return this.columnDiscount;
                 }
             }
             
@@ -679,7 +699,7 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CustomerBillRow AddCustomerBillRow(string CustId, string BillNo, string Date, string Amount, string CGST, string SGST, string IGST, string GrandAmt, string State, string Discount, string BillAmount, string Narration) {
+            public CustomerBillRow AddCustomerBillRow(string CustId, string BillNo, string Date, string Amount, string CGST, string SGST, string IGST, string GrandAmt, string State, string CashDiscount, string BillAmount, string Narration, string ExtraCharges, string Discount) {
                 CustomerBillRow rowCustomerBillRow = ((CustomerBillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CustId,
@@ -691,9 +711,11 @@ namespace PrimeSolutions.Dataset {
                         IGST,
                         GrandAmt,
                         State,
-                        Discount,
+                        CashDiscount,
                         BillAmount,
-                        Narration};
+                        Narration,
+                        ExtraCharges,
+                        Discount};
                 rowCustomerBillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerBillRow);
                 return rowCustomerBillRow;
@@ -725,9 +747,11 @@ namespace PrimeSolutions.Dataset {
                 this.columnIGST = base.Columns["IGST"];
                 this.columnGrandAmt = base.Columns["GrandAmt"];
                 this.columnState = base.Columns["State"];
-                this.columnDiscount = base.Columns["Discount"];
+                this.columnCashDiscount = base.Columns["CashDiscount"];
                 this.columnBillAmount = base.Columns["BillAmount"];
                 this.columnNarration = base.Columns["Narration"];
+                this.columnExtraCharges = base.Columns["ExtraCharges"];
+                this.columnDiscount = base.Columns["Discount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -751,12 +775,16 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnGrandAmt);
                 this.columnState = new global::System.Data.DataColumn("State", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnState);
-                this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiscount);
+                this.columnCashDiscount = new global::System.Data.DataColumn("CashDiscount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCashDiscount);
                 this.columnBillAmount = new global::System.Data.DataColumn("BillAmount", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBillAmount);
                 this.columnNarration = new global::System.Data.DataColumn("Narration", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNarration);
+                this.columnExtraCharges = new global::System.Data.DataColumn("ExtraCharges", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExtraCharges);
+                this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiscount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -923,6 +951,14 @@ namespace PrimeSolutions.Dataset {
             private global::System.Data.DataColumn columnSellingPrice;
             
             private global::System.Data.DataColumn columnSize;
+            
+            private global::System.Data.DataColumn columnFinalAmount;
+            
+            private global::System.Data.DataColumn columnActualPrice;
+            
+            private global::System.Data.DataColumn columnDiscPer;
+            
+            private global::System.Data.DataColumn columnDiscAmt;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1095,6 +1131,38 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FinalAmountColumn {
+                get {
+                    return this.columnFinalAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ActualPriceColumn {
+                get {
+                    return this.columnActualPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DiscPerColumn {
+                get {
+                    return this.columnDiscPer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DiscAmtColumn {
+                get {
+                    return this.columnDiscAmt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1147,7 +1215,11 @@ namespace PrimeSolutions.Dataset {
                         string BatchNo, 
                         string TotalPrice, 
                         string SellingPrice, 
-                        string Size) {
+                        string Size, 
+                        string FinalAmount, 
+                        string ActualPrice, 
+                        string DiscPer, 
+                        string DiscAmt) {
                 BillItemRow rowBillItemRow = ((BillItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ItemType,
@@ -1166,7 +1238,11 @@ namespace PrimeSolutions.Dataset {
                         BatchNo,
                         TotalPrice,
                         SellingPrice,
-                        Size};
+                        Size,
+                        FinalAmount,
+                        ActualPrice,
+                        DiscPer,
+                        DiscAmt};
                 rowBillItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBillItemRow);
                 return rowBillItemRow;
@@ -1206,6 +1282,10 @@ namespace PrimeSolutions.Dataset {
                 this.columnTotalPrice = base.Columns["TotalPrice"];
                 this.columnSellingPrice = base.Columns["SellingPrice"];
                 this.columnSize = base.Columns["Size"];
+                this.columnFinalAmount = base.Columns["FinalAmount"];
+                this.columnActualPrice = base.Columns["ActualPrice"];
+                this.columnDiscPer = base.Columns["DiscPer"];
+                this.columnDiscAmt = base.Columns["DiscAmt"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1245,6 +1325,14 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnSellingPrice);
                 this.columnSize = new global::System.Data.DataColumn("Size", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSize);
+                this.columnFinalAmount = new global::System.Data.DataColumn("FinalAmount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFinalAmount);
+                this.columnActualPrice = new global::System.Data.DataColumn("ActualPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActualPrice);
+                this.columnDiscPer = new global::System.Data.DataColumn("DiscPer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiscPer);
+                this.columnDiscAmt = new global::System.Data.DataColumn("DiscAmt", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiscAmt);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1753,6 +1841,8 @@ namespace PrimeSolutions.Dataset {
             
             private global::System.Data.DataColumn columnCity;
             
+            private global::System.Data.DataColumn columnOpening;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CustomerDetailsDataTable() {
@@ -1852,6 +1942,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OpeningColumn {
+                get {
+                    return this.columnOpening;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1887,7 +1985,7 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CustomerDetailsRow AddCustomerDetailsRow(string CustomerName, string CustId, string Address, string ContactNo, string PanNo, string GSTIN, string State, string City) {
+            public CustomerDetailsRow AddCustomerDetailsRow(string CustomerName, string CustId, string Address, string ContactNo, string PanNo, string GSTIN, string State, string City, string Opening) {
                 CustomerDetailsRow rowCustomerDetailsRow = ((CustomerDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CustomerName,
@@ -1897,7 +1995,8 @@ namespace PrimeSolutions.Dataset {
                         PanNo,
                         GSTIN,
                         State,
-                        City};
+                        City,
+                        Opening};
                 rowCustomerDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerDetailsRow);
                 return rowCustomerDetailsRow;
@@ -1928,6 +2027,7 @@ namespace PrimeSolutions.Dataset {
                 this.columnGSTIN = base.Columns["GSTIN"];
                 this.columnState = base.Columns["State"];
                 this.columnCity = base.Columns["City"];
+                this.columnOpening = base.Columns["Opening"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1949,6 +2049,8 @@ namespace PrimeSolutions.Dataset {
                 base.Columns.Add(this.columnState);
                 this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCity);
+                this.columnOpening = new global::System.Data.DataColumn("Opening", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOpening);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3284,17 +3386,17 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Discount {
+            public string CashDiscount {
                 get {
                     try {
-                        return ((string)(this[this.tableCustomerBill.DiscountColumn]));
+                        return ((string)(this[this.tableCustomerBill.CashDiscountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Discount\' in table \'CustomerBill\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CashDiscount\' in table \'CustomerBill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCustomerBill.DiscountColumn] = value;
+                    this[this.tableCustomerBill.CashDiscountColumn] = value;
                 }
             }
             
@@ -3327,6 +3429,38 @@ namespace PrimeSolutions.Dataset {
                 }
                 set {
                     this[this.tableCustomerBill.NarrationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ExtraCharges {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomerBill.ExtraChargesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExtraCharges\' in table \'CustomerBill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomerBill.ExtraChargesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Discount {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomerBill.DiscountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Discount\' in table \'CustomerBill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomerBill.DiscountColumn] = value;
                 }
             }
             
@@ -3440,14 +3574,14 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDiscountNull() {
-                return this.IsNull(this.tableCustomerBill.DiscountColumn);
+            public bool IsCashDiscountNull() {
+                return this.IsNull(this.tableCustomerBill.CashDiscountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDiscountNull() {
-                this[this.tableCustomerBill.DiscountColumn] = global::System.Convert.DBNull;
+            public void SetCashDiscountNull() {
+                this[this.tableCustomerBill.CashDiscountColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3472,6 +3606,30 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNarrationNull() {
                 this[this.tableCustomerBill.NarrationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExtraChargesNull() {
+                return this.IsNull(this.tableCustomerBill.ExtraChargesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExtraChargesNull() {
+                this[this.tableCustomerBill.ExtraChargesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDiscountNull() {
+                return this.IsNull(this.tableCustomerBill.DiscountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDiscountNull() {
+                this[this.tableCustomerBill.DiscountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3763,6 +3921,70 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FinalAmount {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillItem.FinalAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FinalAmount\' in table \'BillItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillItem.FinalAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ActualPrice {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillItem.ActualPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ActualPrice\' in table \'BillItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillItem.ActualPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DiscPer {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillItem.DiscPerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiscPer\' in table \'BillItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillItem.DiscPerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DiscAmt {
+                get {
+                    try {
+                        return ((string)(this[this.tableBillItem.DiscAmtColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DiscAmt\' in table \'BillItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBillItem.DiscAmtColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsItemTypeNull() {
                 return this.IsNull(this.tableBillItem.ItemTypeColumn);
             }
@@ -3963,6 +4185,54 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSizeNull() {
                 this[this.tableBillItem.SizeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFinalAmountNull() {
+                return this.IsNull(this.tableBillItem.FinalAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFinalAmountNull() {
+                this[this.tableBillItem.FinalAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsActualPriceNull() {
+                return this.IsNull(this.tableBillItem.ActualPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetActualPriceNull() {
+                this[this.tableBillItem.ActualPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDiscPerNull() {
+                return this.IsNull(this.tableBillItem.DiscPerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDiscPerNull() {
+                this[this.tableBillItem.DiscPerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDiscAmtNull() {
+                return this.IsNull(this.tableBillItem.DiscAmtColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDiscAmtNull() {
+                this[this.tableBillItem.DiscAmtColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4377,6 +4647,22 @@ namespace PrimeSolutions.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Opening {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomerDetails.OpeningColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Opening\' in table \'CustomerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomerDetails.OpeningColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCustomerNameNull() {
                 return this.IsNull(this.tableCustomerDetails.CustomerNameColumn);
             }
@@ -4469,6 +4755,18 @@ namespace PrimeSolutions.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCityNull() {
                 this[this.tableCustomerDetails.CityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOpeningNull() {
+                return this.IsNull(this.tableCustomerDetails.OpeningColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOpeningNull() {
+                this[this.tableCustomerDetails.OpeningColumn] = global::System.Convert.DBNull;
             }
         }
         

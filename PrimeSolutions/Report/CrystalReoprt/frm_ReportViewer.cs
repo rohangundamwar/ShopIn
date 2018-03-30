@@ -49,19 +49,34 @@ namespace PrimeSolutions.Report.CrystalReport
 
         public void CustomerBill(string BillNo, string Type)
         {
-            string crname;
-            crname = "Select SaleBill from CrystalReport Where Type='GST'";
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+
+            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
+            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
+
+
+            string BillType;
+            if (dt_BillingDetails.Rows[0]["State"].ToString() == dt_CompanyInfo.Rows[0]["State"].ToString())
+            {
+                BillType = "GST_Interstate";
+            }
+            else
+            {
+                BillType = "GST_OtherState";
+            }
+
+            string crname = "Select SaleBill from CrystalReport Where Type='" + BillType+"'";
             string str_crname = _objsqlhelper.ExecuteScalar(crname);
             ReportDocument _objReport = new ReportDocument();
 
             _objReport.Load(Environment.CurrentDirectory + "\\" + str_crname);
 
-            string company = "SELECT * from CompanyMaster";
-            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            
+            
             _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
 
-            string BillingDetails = "Select * from CustomerBill Where BillNo='" + BillNo + "' and (PermanentDelete = 0 or PermanentDelete is Null) ";
-            DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
+            
             _objReport.Database.Tables["CustomerBill"].SetDataSource(dt_BillingDetails);
 
             DataTable dt_CustomerInfo = _sales.GetCustomerByBill(BillNo);
@@ -177,7 +192,7 @@ namespace PrimeSolutions.Report.CrystalReport
 
             try
             {
-                string Balance = Convert.ToString(_sales.GetBalance(dt_CustomerInfo.Rows[0]["CustomerName"].ToString(), "Sale"));
+                string Balance = Convert.ToString(_sales.GetBalance(dt_CustomerInfo.Rows[0]["CustId"].ToString(), "Sale"));
                 _objReport.SetParameterValue("Balance", Balance);
             }
             catch (Exception ex)
@@ -797,7 +812,7 @@ namespace PrimeSolutions.Report.CrystalReport
         }
 
 
-        public void SaleLedger(DataTable sale,DataTable pay,string Bill,string payment,string balance)
+        public void SaleLedger(DataTable sale,DataTable pay,string Bill,string payment,string balance,string Extra)
         {
             ReportDocument _objReport = new ReportDocument();
             _objReport.Load(Environment.CurrentDirectory + "\\SaleLedger.rpt" );
@@ -820,6 +835,38 @@ namespace PrimeSolutions.Report.CrystalReport
             _objReport.SetParameterValue("TotalSale", Bill);
             _objReport.SetParameterValue("TotalPay", payment);
             _objReport.SetParameterValue("Balance", balance);
+            _objReport.SetParameterValue("TotalExtra", Extra);
+
+
+            crReportViewer.ReportSource = _objReport;
+            crReportViewer.Show();
+        }
+
+        public void PurchaseLedger(DataTable sale, DataTable pay, string Bill, string payment, string balance)
+        {
+            ReportDocument _objReport = new ReportDocument();
+            _objReport.Load(Environment.CurrentDirectory + "\\PurchaseLedger.rpt");
+
+            string company = "SELECT * from CompanyMaster";
+            DataTable dt_CompanyInfo = _objsqlhelper.GetDataTable(company);
+            _objReport.Database.Tables["CompanyInfo"].SetDataSource(dt_CompanyInfo);
+
+            string Refrence = sale.Rows[0]["RefrenceNo"].ToString();
+            DataTable dt_Supplier = _sales.GetSupplierByBill(Refrence);
+            _objReport.Database.Tables["SupplierDetails"].SetDataSource(dt_Supplier);
+
+            //saleBillLedger
+            _objReport.Subreports["PurchaseBillLedger.rpt"].Database.Tables["Purchase"].SetDataSource(sale);
+
+            //PayLedger
+            _objReport.Subreports["PayLedger.rpt"].Database.Tables["Payment"].SetDataSource(pay);
+
+            //parameters
+            _objReport.SetParameterValue("TotalSale", Bill);
+            _objReport.SetParameterValue("TotalPay", payment);
+            _objReport.SetParameterValue("Balance", balance);
+            _objReport.SetParameterValue("TotalExtra", "0");
+
 
             crReportViewer.ReportSource = _objReport;
             crReportViewer.Show();

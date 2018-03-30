@@ -330,6 +330,12 @@ namespace PrimeSolutions
 
             menuStrip1.Visible = _form.result;
             bttn_Login.Visible = !_form.result;
+            if (_form.type == "user")
+            {
+                reportToolStripMenuItem.Enabled = false;
+            }
+            
+
 
             if (!_Act.CheckActivation())
             {
@@ -506,6 +512,29 @@ namespace PrimeSolutions
         private void dailyExpensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_Daily_Expenses _form = new frm_Daily_Expenses();
+            _form.ShowDialog();
+        }
+
+        private void updateInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_UpdateInfo _form = new frm_UpdateInfo();
+            _form.ShowDialog();
+        }
+
+        private void executeQueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DeveloperLogin _objAccess = new Frm_DeveloperLogin();
+            _objAccess.ShowDialog();
+            if (_objAccess.Developer_login_Result == true)
+            {
+                frm_ExecuteQuery _form = new frm_ExecuteQuery();
+                _form.ShowDialog();
+            }
+        }
+
+        private void rateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_RateChange _form = new frm_RateChange();
             _form.ShowDialog();
         }
     }

@@ -590,13 +590,16 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string SaleBill,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice,string BillType)
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string GSTInterstate,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice,string BillType,string GSTOtherState,string ExtraCharges)
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"',BillType='"+ BillType + "'";
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"',BillType='"+ BillType + "',ExtraChargesInc='"+ExtraCharges+"'";
             _objsqlhelper.ExecuteScalar(str);
 
-            string str2 = "Update CrystalReport set SaleBill= '" + SaleBill + "' where type='GST'";
+            string str2 = "Update CrystalReport set SaleBill= '" + GSTInterstate + "' where type='GST_Interstate'";
             _objsqlhelper.ExecuteScalar(str2);
+
+            string str7 = "Update CrystalReport set SaleBill= '" + GSTOtherState + "' where type='GST_Otherstate'";
+            _objsqlhelper.ExecuteScalar(str7);
 
             string str6 = "Update CrystalReport set SaleBill= '" + ServiceInvoice + "' where type='ServiceInvoice'";
             _objsqlhelper.ExecuteScalar(str6);
