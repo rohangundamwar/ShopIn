@@ -89,7 +89,7 @@ namespace PrimeSolutions
         }
 
         private void Masterclear()
-        {
+        {  
             txt_BillNo.Text = _objSQLHelper.GetMaxID("S", "0");
             txt_AccNo.Text = _objSQLHelper.GetMaxID("C", "0");
             cmb_Name.SelectedIndex = -1;
@@ -201,7 +201,7 @@ namespace PrimeSolutions
                 string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
                 string sales = BillItem.Rows[i]["SalesPerson"].ToString();
                 string maintain = BillItem.Rows[i]["Maintain"].ToString();
-                dgv_ItemInfo.Rows.Add(barcode, category, SubCategory, Size, HSN, BatchNo, Rate, qty, Total, CGST, CGSTAmt, SGST, SGSTAmt, IGST, IGSTAmt, Selling,sales,maintain);
+                dgv_ItemInfo.Rows.Add( barcode,  category,  SubCategory,  Size,  HSN, BatchNo, Rate, qty,  Total,  CGST,  CGSTAmt,  SGST,  SGSTAmt, IGST,  IGSTAmt,  Selling,sales, maintain);
                 
             }
             
@@ -286,15 +286,7 @@ namespace PrimeSolutions
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
                         txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
                         Double TotalGST = Convert.ToDouble(GST.Rows[0]["CGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["SGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["IGST"].ToString());
-                        if (cmb_State.Text == state)
-                        {
-                            txt_CGSTper.Text = Convert.ToString(TotalGST / 2);
-                            txt_SGSTper.Text = Convert.ToString(TotalGST / 2);
-                        }
-                        else
-                        {
-                            txt_IGSTper.Text = Convert.ToString(TotalGST);
-                        }
+                        txt_GSTper.Text = Convert.ToString(TotalGST);
                     }
                     catch { }
                     txt_Qty.Focus();
@@ -314,15 +306,7 @@ namespace PrimeSolutions
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
                         txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
                         Double TotalGST = Convert.ToDouble(GST.Rows[0]["CGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["SGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["IGST"].ToString());
-                        if (cmb_State.Text == state)
-                        {
-                            txt_CGSTper.Text = Convert.ToString(TotalGST / 2);
-                            txt_SGSTper.Text = Convert.ToString(TotalGST / 2);
-                        }
-                        else
-                        {
-                            txt_IGSTper.Text = Convert.ToString(TotalGST);
-                        }
+                        txt_GSTper.Text = Convert.ToString(TotalGST);
                     }
                     catch { }
 
@@ -650,7 +634,20 @@ namespace PrimeSolutions
         private void CalculateBase()
 
         {
-            lbl_BasePrice.Text = Convert.ToString(Math.Round((Convert.ToDouble(lbl_FinalAmt.Text) * 100) / (100 + Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)), 2)) ;
+            if (txt_CGSTper.Text != "" || txt_CGSTper.Text != string.Empty)
+            {
+                if (txt_SGSTper.Text != "" || txt_SGSTper.Text != string.Empty)
+                {
+                    if (txt_IGSTper.Text != "" || txt_IGSTper.Text != string.Empty)
+                    {
+                        lbl_BasePrice.Text = Convert.ToString(Math.Round((Convert.ToDouble(lbl_FinalAmt.Text) * 100) / (100 + Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)), 2));
+                    }
+                        
+                }
+
+                    
+            }
+            
          
         }
 
@@ -697,7 +694,7 @@ namespace PrimeSolutions
 
         private void calculateDiscount()
         {
-            if ((txt_CashDisc.Text != "" || txt_CashDisc.Text != string.Empty) || txt_CashDisc.Text != " ")
+            if ((txt_CashDisc.Text != "" || txt_CashDisc.Text != string.Empty) )
             {
                 double NetAmt = Convert.ToDouble(txt_NetAmt.Text);
                 double Discount = Convert.ToDouble(txt_CashDisc.Text);
@@ -981,11 +978,12 @@ namespace PrimeSolutions
         }
 
         private void txt_SellingAmt_TextChanged(object sender, EventArgs e)
+
         {
             //txt_Amt.Text = "";
-            if (lbl_BasePrice.Text != "" || txt_Qty.Text != "" || lbl_BasePrice.Text != string.Empty || txt_Qty.Text != string.Empty)
+            if ((lbl_BasePrice.Text != "" || txt_Qty.Text != "") || (lbl_BasePrice.Text != string.Empty || txt_Qty.Text != string.Empty))
             {
-                if (txt_SellingAmt.Text != "" || txt_SellingAmt.Text != string.Empty)
+                if (txt_SellingAmt.Text != "" || txt_SellingAmt.Text != string.Empty )
                 {
                     txt_Amt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)), 2));
                     double DiscountPer = Convert.ToDouble(txt_DiscPer.Text) / 100;
@@ -1023,7 +1021,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_BarcodeNo.Focus();
+                txt_Aadhar.Focus();
             }
         }
 
@@ -1062,29 +1060,29 @@ namespace PrimeSolutions
 
         private void cmb_State_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmb_State.Text == state)
-            {
-                txt_IGSTper.Enabled = false;
-                txt_CGSTper.Enabled = true;
-                txt_SGSTper.Enabled = true;
-            }
-            else
-            {
-                txt_IGSTper.Enabled = true;
-                txt_CGSTper.Enabled = false;
-                txt_SGSTper.Enabled = false;
+            //if (cmb_State.Text == state)
+            //{
+            //    txt_IGSTper.Enabled = false;
+            //    txt_CGSTper.Enabled = true;
+            //    txt_SGSTper.Enabled = true;
+            //}
+            //else
+            //{
+            //    txt_IGSTper.Enabled = true;
+            //    txt_CGSTper.Enabled = false;
+            //    txt_SGSTper.Enabled = false;
 
-            }
+            //}
         }
 
         private void cmb_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_SubCategory.DataSource = _a.GetSubCategoryByCategory(cmb_Category.Text);
+            //cmb_SubCategory.SelectedIndex = 1;
         }
 
         private void txt_CGSTper_TextChanged(object sender, EventArgs e)
         {
-            
             if (txt_CGSTper.Text != "")
             {
                 lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text)*0.01)*Convert.ToDouble(txt_Amt.Text),2));
@@ -1225,8 +1223,7 @@ namespace PrimeSolutions
 
         private void cmb_SubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = _a.GetSizeByCatAndSubCat(cmb_Category.Text, cmb_SubCategory.Text);
-            cmb_size.DataSource = dt;
+            cmb_size.DataSource = _a.GetSizeByCatAndSubCat(cmb_Category.Text, cmb_SubCategory.Text);
         }
 
         private void cmb_size_KeyDown(object sender, KeyEventArgs e)
@@ -1302,13 +1299,16 @@ namespace PrimeSolutions
 
         private void txt_DiscPer_TextChanged(object sender, EventArgs e)
         {
+            double DiscountPer=0, Selling = Convert.ToDouble(txt_SellingAmt.Text); ;
 
-            double Qty =Convert.ToDouble(txt_Qty.Text);
-            double DiscountPer = 0;
-            double Selling = Convert.ToInt32(txt_SellingAmt.Text);
-            if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
-            {   
-                DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+            if (txt_DiscAmt.Text != "" || txt_DiscAmt.Text != string.Empty)
+            {
+                double Qty = Convert.ToDouble(txt_Qty.Text);
+
+                if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
+                {
+                    DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+                }
             }
             
             double discount = DiscountPer / 100;
@@ -1326,10 +1326,14 @@ namespace PrimeSolutions
         {
             double DiscountAmt=0;
             double Selling = Convert.ToInt32(txt_SellingAmt.Text);
-            if (txt_DiscAmt.Text != "" && txt_DiscAmt.Text != null)
+            if (txt_DiscPer.Text != "" || txt_DiscPer.Text != string.Empty)
             {
-                DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
+                if (txt_DiscAmt.Text != "" && txt_DiscAmt.Text != null)
+                {
+                    DiscountAmt = Convert.ToDouble(txt_DiscAmt.Text);
+                }
             }
+                
             double DiscountPer = Math.Round((DiscountAmt /Convert.ToDouble(txt_Actual.Text) * 100) , 2);
             lbl_FinalAmt.Text = Convert.ToString(Selling - (DiscountAmt/Convert.ToDouble(txt_Qty.Text)));
             txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(lbl_FinalAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
@@ -1365,6 +1369,11 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (txt_DiscPer.Text == "" || txt_DiscPer.Text == string.Empty)
+                {
+                    txt_DiscPer.Text = "0";
+                }
+               
                 txt_DiscAmt.Focus();
                 double discount = Convert.ToDouble(txt_DiscPer.Text) / 100;
                 double DiscAmt = Math.Round((Convert.ToDouble(txt_Actual.Text) * discount), 2);
@@ -1382,14 +1391,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txt_CGSTper.Enabled == false)
-                {
-                    txt_CGSTper.Focus();
-                }
-                else
-                {
-                    txt_IGSTper.Focus();
-                }
+                txt_GSTper.Focus();
                   
                 double DiscPer =Math.Round(((Convert.ToDouble(txt_DiscAmt.Text) / Convert.ToDouble(txt_Actual.Text)) * 100),2)  ;
                 txt_DiscPer.Text = DiscPer.ToString();
@@ -1422,6 +1424,45 @@ namespace PrimeSolutions
         private void cmb_SalesPerson_KeyPress(object sender, KeyPressEventArgs e)
         {
             _objSimpal.ValidationCharDigitOnly(e);
+        }
+
+        private void txt_GSTper_TextChanged(object sender, EventArgs e)
+       {
+            if (txt_GSTper.Text != "" || txt_GSTper.Text != string.Empty)
+            {
+                double GST = Convert.ToDouble(txt_GSTper.Text);
+
+                txt_CGSTper.Text = Convert.ToString(GST / 2);
+
+                if (cmb_State.Text == state)
+                {
+                    txt_CGSTper.Text = Convert.ToString(GST / 2);
+                    txt_SGSTper.Text = Convert.ToString(GST / 2);
+                }
+                else
+                {
+                    txt_SGSTper.Text = Convert.ToString(GST);
+                }
+            }
+
+            lbl_GSTAmt.Text =Convert.ToString(Convert.ToDouble(lbl_CGSTAmt.Text) + Convert.ToDouble(lbl_SGSTAmt.Text) + Convert.ToDouble(lbl_IGSTAmt.Text));
+
+        }
+
+        private void txt_Aadhar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_BarcodeNo.Focus();
+            }
+        }
+
+        private void txt_GSTper_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmb_SalesPerson.Focus();
+            }
         }
     }
 }

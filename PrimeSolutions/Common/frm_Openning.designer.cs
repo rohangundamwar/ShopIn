@@ -49,6 +49,8 @@
             this.Bttn_Reset = new System.Windows.Forms.Button();
             this.txt_AccNo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txt_Aadhar = new System.Windows.Forms.TextBox();
+            this.lbl_Aadhar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_State
@@ -115,13 +117,12 @@
             // 
             // txt_GSTIN
             // 
-            this.txt_GSTIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_GSTIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_GSTIN.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_GSTIN.Location = new System.Drawing.Point(687, 65);
+            this.txt_GSTIN.Location = new System.Drawing.Point(64, 106);
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
-            this.txt_GSTIN.Size = new System.Drawing.Size(121, 16);
+            this.txt_GSTIN.Size = new System.Drawing.Size(144, 23);
             this.txt_GSTIN.TabIndex = 22;
             this.txt_GSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_GSTIN_KeyDown);
             // 
@@ -130,7 +131,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(625, 66);
+            this.label2.Location = new System.Drawing.Point(13, 110);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 15);
@@ -139,13 +140,12 @@
             // 
             // txt_PanNo
             // 
-            this.txt_PanNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PanNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_PanNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PanNo.Location = new System.Drawing.Point(490, 65);
+            this.txt_PanNo.Location = new System.Drawing.Point(593, 66);
             this.txt_PanNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PanNo.Name = "txt_PanNo";
-            this.txt_PanNo.Size = new System.Drawing.Size(121, 16);
+            this.txt_PanNo.Size = new System.Drawing.Size(213, 23);
             this.txt_PanNo.TabIndex = 21;
             this.txt_PanNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PanNo_KeyDown);
             // 
@@ -154,7 +154,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(422, 66);
+            this.label1.Location = new System.Drawing.Point(512, 70);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 15);
@@ -163,25 +163,23 @@
             // 
             // txt_ContactNo
             // 
-            this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_ContactNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_ContactNo.Location = new System.Drawing.Point(287, 65);
+            this.txt_ContactNo.Location = new System.Drawing.Point(326, 66);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
-            this.txt_ContactNo.Size = new System.Drawing.Size(121, 16);
+            this.txt_ContactNo.Size = new System.Drawing.Size(159, 23);
             this.txt_ContactNo.TabIndex = 20;
             this.txt_ContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ContactNo_KeyDown);
             // 
             // txt_City
             // 
-            this.txt_City.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_City.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_City.Location = new System.Drawing.Point(57, 65);
+            this.txt_City.Location = new System.Drawing.Point(70, 66);
             this.txt_City.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_City.Name = "txt_City";
-            this.txt_City.Size = new System.Drawing.Size(121, 16);
+            this.txt_City.Size = new System.Drawing.Size(121, 23);
             this.txt_City.TabIndex = 19;
             this.txt_City.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_City_KeyDown);
             // 
@@ -190,7 +188,7 @@
             this.lbl_City.AutoSize = true;
             this.lbl_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_City.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_City.Location = new System.Drawing.Point(13, 66);
+            this.lbl_City.Location = new System.Drawing.Point(13, 70);
             this.lbl_City.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_City.Name = "lbl_City";
             this.lbl_City.Size = new System.Drawing.Size(30, 15);
@@ -199,13 +197,12 @@
             // 
             // txt_Address
             // 
-            this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Address.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txt_Address.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Address.Location = new System.Drawing.Point(621, 26);
+            this.txt_Address.Location = new System.Drawing.Point(621, 23);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(186, 16);
+            this.txt_Address.Size = new System.Drawing.Size(186, 23);
             this.txt_Address.TabIndex = 18;
             this.txt_Address.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Address_KeyDown);
             // 
@@ -242,7 +239,7 @@
             this.lbl_ContactNo.AutoSize = true;
             this.lbl_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lbl_ContactNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_ContactNo.Location = new System.Drawing.Point(192, 66);
+            this.lbl_ContactNo.Location = new System.Drawing.Point(218, 70);
             this.lbl_ContactNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ContactNo.Name = "lbl_ContactNo";
             this.lbl_ContactNo.Size = new System.Drawing.Size(81, 15);
@@ -264,7 +261,7 @@
             // txt_Opening
             // 
             this.txt_Opening.ForeColor = System.Drawing.Color.Red;
-            this.txt_Opening.Location = new System.Drawing.Point(128, 107);
+            this.txt_Opening.Location = new System.Drawing.Point(505, 107);
             this.txt_Opening.Name = "txt_Opening";
             this.txt_Opening.Size = new System.Drawing.Size(137, 20);
             this.txt_Opening.TabIndex = 23;
@@ -276,7 +273,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(13, 110);
+            this.label4.Location = new System.Drawing.Point(413, 110);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 15);
@@ -319,7 +316,7 @@
             // txt_AccNo
             // 
             this.txt_AccNo.AutoSize = true;
-            this.txt_AccNo.Location = new System.Drawing.Point(690, 110);
+            this.txt_AccNo.Location = new System.Drawing.Point(726, 109);
             this.txt_AccNo.Name = "txt_AccNo";
             this.txt_AccNo.Size = new System.Drawing.Size(0, 13);
             this.txt_AccNo.TabIndex = 29;
@@ -329,18 +326,43 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label3.Location = new System.Drawing.Point(611, 108);
+            this.label3.Location = new System.Drawing.Point(649, 108);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 15);
             this.label3.TabIndex = 30;
             this.label3.Text = "Acc No :";
             // 
+            // txt_Aadhar
+            // 
+            this.txt_Aadhar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txt_Aadhar.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Aadhar.Location = new System.Drawing.Point(266, 106);
+            this.txt_Aadhar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Aadhar.Name = "txt_Aadhar";
+            this.txt_Aadhar.Size = new System.Drawing.Size(144, 23);
+            this.txt_Aadhar.TabIndex = 32;
+            // 
+            // lbl_Aadhar
+            // 
+            this.lbl_Aadhar.AutoSize = true;
+            this.lbl_Aadhar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lbl_Aadhar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_Aadhar.Location = new System.Drawing.Point(211, 110);
+            this.lbl_Aadhar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Aadhar.Name = "lbl_Aadhar";
+            this.lbl_Aadhar.Size = new System.Drawing.Size(52, 15);
+            this.lbl_Aadhar.TabIndex = 31;
+            this.lbl_Aadhar.Text = "Aadhar";
+            // 
             // frm_Openning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(830, 191);
+            this.Controls.Add(this.txt_Aadhar);
+            this.Controls.Add(this.lbl_Aadhar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_AccNo);
             this.Controls.Add(this.Bttn_Reset);
@@ -393,5 +415,7 @@
         private System.Windows.Forms.Button Bttn_Reset;
         private System.Windows.Forms.Label txt_AccNo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_Aadhar;
+        private System.Windows.Forms.Label lbl_Aadhar;
     }
 }

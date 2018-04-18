@@ -399,6 +399,12 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Common\Cls_Enums.cs" />
+    <Compile Include="Common\frm_Offer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_Offer.Designer.cs">
+      <DependentUpon>frm_Offer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_RateChange.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -982,6 +988,9 @@
     <EmbeddedResource Include="bin\Debug\SaleLedger.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SaleLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Offer.resx">
+      <DependentUpon>frm_Offer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_RateChange.resx">
       <DependentUpon>frm_RateChange.cs</DependentUpon>

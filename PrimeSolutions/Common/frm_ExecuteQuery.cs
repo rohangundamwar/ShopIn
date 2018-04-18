@@ -23,7 +23,6 @@ namespace PrimeSolutions.Common
         {
             DataTable dt = _sql.GetDataTable(txt_query.Text);
             DGV.DataSource = dt;
-            lbl_message.Text = _sql.msg;
         }
     }
 }
