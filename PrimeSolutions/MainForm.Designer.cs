@@ -103,6 +103,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.customerMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -566,9 +567,10 @@
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customerMasterToolStripMenuItem,
+            this.looseItemToolStripMenuItem,
             this.categoryToolStripMenuItem,
-            this.subCategoryToolStripMenuItem,
-            this.looseItemToolStripMenuItem});
+            this.subCategoryToolStripMenuItem});
             this.masterToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.masterToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Applications;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
@@ -579,21 +581,21 @@
             // categoryToolStripMenuItem
             // 
             this.categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
-            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.categoryToolStripMenuItem.Text = "Category";
             this.categoryToolStripMenuItem.Click += new System.EventHandler(this.categoryToolStripMenuItem_Click);
             // 
             // subCategoryToolStripMenuItem
             // 
             this.subCategoryToolStripMenuItem.Name = "subCategoryToolStripMenuItem";
-            this.subCategoryToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.subCategoryToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.subCategoryToolStripMenuItem.Text = "Sub Category";
             this.subCategoryToolStripMenuItem.Click += new System.EventHandler(this.subCategoryToolStripMenuItem_Click);
             // 
             // looseItemToolStripMenuItem
             // 
             this.looseItemToolStripMenuItem.Name = "looseItemToolStripMenuItem";
-            this.looseItemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.looseItemToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.looseItemToolStripMenuItem.Text = "Loose Item";
             this.looseItemToolStripMenuItem.Click += new System.EventHandler(this.looseItemToolStripMenuItem_Click);
             // 
@@ -774,6 +776,13 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // customerMasterToolStripMenuItem
+            // 
+            this.customerMasterToolStripMenuItem.Name = "customerMasterToolStripMenuItem";
+            this.customerMasterToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.customerMasterToolStripMenuItem.Text = "Customer Master";
+            this.customerMasterToolStripMenuItem.Click += new System.EventHandler(this.customerMasterToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -883,6 +892,7 @@
         private System.Windows.Forms.ToolStripMenuItem updateInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem executeQueryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerMasterToolStripMenuItem;
     }
 }
 

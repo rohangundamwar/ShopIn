@@ -198,8 +198,7 @@ namespace PrimeSolutions
 
         private void openingBalanceToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            frm_Openning _form = new frm_Openning();
-            _form.ShowDialog();
+            
         }
 
         private void customerBalanceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -535,6 +534,12 @@ namespace PrimeSolutions
         private void rateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frm_RateChange _form = new frm_RateChange();
+            _form.ShowDialog();
+        }
+
+        private void customerMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Openning _form = new frm_Openning();
             _form.ShowDialog();
         }
     }

@@ -12,7 +12,7 @@ namespace PrimeSolutions.Library
 
     public class SQLHelper
     {
-
+        string Msg;
         public SQLHelper()
         {
             ConStingfinder();
@@ -21,6 +21,7 @@ namespace PrimeSolutions.Library
         public static SqlConnection con;
         public static SqlCommand cmd;
         public static SqlDataAdapter da;
+        
 
 
 
@@ -135,7 +136,6 @@ namespace PrimeSolutions.Library
             da = new SqlDataAdapter(strsql, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
-
             da.Dispose();
             CloseConnection();
             DisposeConnection();
