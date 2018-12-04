@@ -21,8 +21,14 @@ namespace PrimeSolutions.Common
 
         AllClassFile _a = new AllClassFile();
         ClsFinancialYear _f = new ClsFinancialYear();
+        Simplevalidations _valid = new Simplevalidations();
 
         private void frm_Setting_Load(object sender, EventArgs e)
+        {
+            Refresh();
+        }
+
+        private void Refresh()
         {
             DataTable dt = _a.getallssetting();
 
@@ -89,6 +95,11 @@ namespace PrimeSolutions.Common
 
             cmb_ExtraCharges.Text = dt.Rows[0]["ExtraChargesInc"].ToString();
 
+            //10 GST Rate
+            if (dt.Rows[0]["GSTRate"].ToString() == "1")
+                rbt_GSTInc.Checked = true;
+            else
+                rbt_GSTExc.Checked = true;
         }
 
         private void bttn_save_Click(object sender, EventArgs e)
@@ -98,6 +109,7 @@ namespace PrimeSolutions.Common
             string StartDate;
             string EndDate;
             string Estpayment;
+            string GSTRate;
 
             if (rbt_yes1.Checked == true)
             {
@@ -125,13 +137,33 @@ namespace PrimeSolutions.Common
                 Estpayment = "0";
             }
 
+            if (rbt_GSTInc.Checked == true)
+            {
+                GSTRate = "1";
+            }
+            else 
+            {
+                GSTRate = "0";
+            }
             
             StartDate = dtp_start.Value.ToString("dd/MM/yyyy");
             EndDate = dtp_end.Value.ToString("dd/MM/yyyy");
 
-            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBillInterState.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text,cmb_BillType.Text,cmb_SaleBillOtherState.Text,cmb_ExtraCharges.Text);
+            _a.SetAllssetting(txt_barcode.Text, txt_print.Text,barcode,cmb_BarcodeType.Text,payment, Estpayment,cmb_SaleBillInterState.Text, cmb_PurchaseBill.Text,cmb_estimate.Text, StartDate, EndDate,cmb_maintain.Text,cmb_ServiceInc.Text,cmb_BillType.Text,cmb_SaleBillOtherState.Text,cmb_ExtraCharges.Text, GSTRate);
 
             MessageBox.Show("Setting Saved");
+            Refresh();
+
+        }
+
+        private void txt_print_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _valid.ValidationCharDigitOnly(e);
+        }
+
+        private void txt_barcode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _valid.ValidationCharDigitOnly(e);
         }
     }
 }

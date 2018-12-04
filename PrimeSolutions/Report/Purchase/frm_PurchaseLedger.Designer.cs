@@ -32,10 +32,11 @@
             this.bttn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_Bill = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_Payment = new System.Windows.Forms.DataGridView();
+            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReceiptNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,10 +44,10 @@
             this.txt_payment = new System.Windows.Forms.Label();
             this.txt_balance = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.PayDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReceiptNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaidAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PayType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefrenceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Payment)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +92,7 @@
             this.dgv_Bill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Bill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
+            this.RefrenceNo,
             this.BillNo,
             this.Amount});
             this.dgv_Bill.Location = new System.Drawing.Point(12, 77);
@@ -98,24 +100,8 @@
             this.dgv_Bill.ReadOnly = true;
             this.dgv_Bill.Size = new System.Drawing.Size(347, 332);
             this.dgv_Bill.TabIndex = 3;
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // BillNo
-            // 
-            this.BillNo.HeaderText = "BillNo";
-            this.BillNo.Name = "BillNo";
-            this.BillNo.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
+            this.dgv_Bill.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Bill_CellClick);
+            this.dgv_Bill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Bill_CellContentClick);
             // 
             // dgv_Payment
             // 
@@ -133,6 +119,30 @@
             this.dgv_Payment.ReadOnly = true;
             this.dgv_Payment.Size = new System.Drawing.Size(443, 332);
             this.dgv_Payment.TabIndex = 4;
+            // 
+            // PayDate
+            // 
+            this.PayDate.HeaderText = "PayDate";
+            this.PayDate.Name = "PayDate";
+            this.PayDate.ReadOnly = true;
+            // 
+            // ReceiptNo
+            // 
+            this.ReceiptNo.HeaderText = "Receipt No";
+            this.ReceiptNo.Name = "ReceiptNo";
+            this.ReceiptNo.ReadOnly = true;
+            // 
+            // PaidAmt
+            // 
+            this.PaidAmt.HeaderText = "PaidAmt";
+            this.PaidAmt.Name = "PaidAmt";
+            this.PaidAmt.ReadOnly = true;
+            // 
+            // PayType
+            // 
+            this.PayType.HeaderText = "PayType";
+            this.PayType.Name = "PayType";
+            this.PayType.ReadOnly = true;
             // 
             // label2
             // 
@@ -209,29 +219,30 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // PayDate
+            // Date
             // 
-            this.PayDate.HeaderText = "PayDate";
-            this.PayDate.Name = "PayDate";
-            this.PayDate.ReadOnly = true;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
             // 
-            // ReceiptNo
+            // RefrenceNo
             // 
-            this.ReceiptNo.HeaderText = "Receipt No";
-            this.ReceiptNo.Name = "ReceiptNo";
-            this.ReceiptNo.ReadOnly = true;
+            this.RefrenceNo.HeaderText = "RefrenceNo";
+            this.RefrenceNo.Name = "RefrenceNo";
+            this.RefrenceNo.ReadOnly = true;
+            this.RefrenceNo.Visible = false;
             // 
-            // PaidAmt
+            // BillNo
             // 
-            this.PaidAmt.HeaderText = "PaidAmt";
-            this.PaidAmt.Name = "PaidAmt";
-            this.PaidAmt.ReadOnly = true;
+            this.BillNo.HeaderText = "BillNo";
+            this.BillNo.Name = "BillNo";
+            this.BillNo.ReadOnly = true;
             // 
-            // PayType
+            // Amount
             // 
-            this.PayType.HeaderText = "PayType";
-            this.PayType.Name = "PayType";
-            this.PayType.ReadOnly = true;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
             // 
             // frm_PurchaseLedger
             // 
@@ -270,9 +281,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv_Bill;
         private System.Windows.Forms.DataGridView dgv_Payment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -284,5 +292,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn PayType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefrenceNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }

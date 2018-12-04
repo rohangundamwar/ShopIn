@@ -64,10 +64,14 @@ namespace PrimeSolutions.Library
                     }
 
                     wbook.SaveAs(Environment.CurrentDirectory + "/ExcelReport/" + Name +".xlsx");
+
+                    MessageBox.Show("Excelsheet saved");
                 }
                 catch (Exception ex)
-                { MessageBox.Show(ex.Message); }
-                MessageBox.Show("Excelsheet saved");
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
             }
             catch (Exception ex)
             {

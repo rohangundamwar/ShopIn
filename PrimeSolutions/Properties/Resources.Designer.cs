@@ -143,6 +143,16 @@ namespace PrimeSolutions.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cover_Photo {
+            get {
+                object obj = ResourceManager.GetObject("Cover Photo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delivery_cart {
             get {
                 object obj = ResourceManager.GetObject("delivery_cart", resourceCulture);

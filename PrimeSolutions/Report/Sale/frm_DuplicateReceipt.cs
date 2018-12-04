@@ -17,7 +17,7 @@ namespace PrimeSolutions.Report.Sale
         public delegate void SendData(string BillNO,string Type);
         frm_ReportViewer _r = new frm_ReportViewer();
         DataTable dt;
-        DataTable dt1,dt2;
+        DataTable dt1;
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {

@@ -198,7 +198,8 @@ namespace PrimeSolutions
 
         private void openingBalanceToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            
+            Common.frm_Openning _form = new frm_Openning();
+            _form.ShowDialog();
         }
 
         private void customerBalanceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -345,13 +346,13 @@ namespace PrimeSolutions
 
             if (Valid == "Valid")
             {
-                pnl_ActivateMsg.Visible = false;
+                label1.Visible = false;
             }
             else if (Valid == "Invalid")
             {
                 MessageBox.Show("Validity Expired \n Please Contact Service Provider\n +91-7709885767");
                 menuStrip1.Visible = false;
-                pnl_ActivateMsg.Visible = true;
+                label1.Visible = true;
             }
             else
             {
@@ -541,6 +542,26 @@ namespace PrimeSolutions
         {
             frm_Openning _form = new frm_Openning();
             _form.ShowDialog();
+        }
+
+        private void offerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Offer _form = new frm_Offer();
+            _form.ShowDialog();
+        }
+
+        private void stockCheckToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frm_Stock _form = new frm_Stock();
+            _form.Dock = DockStyle.Fill;
+            _form.ShowDialog();
+        }
+
+        private void stockLEdgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_StockLedger _form = new frm_StockLedger();
+            _form.ShowDialog();
+
         }
     }
 }

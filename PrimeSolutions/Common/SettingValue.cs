@@ -12,6 +12,8 @@ namespace PrimeSolutions.Common
         public string Maintenance { get; set; }
         public string ReceiptCopy { get; set; }
         public string ExtraChargesInc { get; set; }
+        public string GSTInc { get; set; }
+        public string BillType { get; set; }
 
     }
 }

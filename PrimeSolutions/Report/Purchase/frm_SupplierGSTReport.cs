@@ -68,7 +68,7 @@ namespace PrimeSolutions.Report.Purchase
 
         private void bttn_excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_SupplierBill, "SupplierGSTReport", dtp_to.Value.ToString("dd_MM_yyyy"));
+            _e.exporttoexcel(dgv_SupplierBill, "SupplierGSTReport", dtp_from.Value.ToString("dd_MM") + "TO" + dtp_to.Value.ToString("dd_MM"));
         }
 
         private void bttn_close_Click(object sender, EventArgs e)

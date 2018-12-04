@@ -52,6 +52,7 @@ namespace PrimeSolutions.Report.CrystalReport
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1081, 733);
             this.Controls.Add(this.crReportViewer);
+            this.KeyPreview = true;
             this.Name = "frm_ReportViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report View";

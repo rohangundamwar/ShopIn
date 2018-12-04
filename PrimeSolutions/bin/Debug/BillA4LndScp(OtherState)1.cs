@@ -16,9 +16,9 @@ namespace PrimeSolutions.bin.Debug {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class BillA4LndScpOtherState : ReportClass {
+    public class BillA4LndScpOtherState1 : ReportClass {
         
-        public BillA4LndScpOtherState() {
+        public BillA4LndScpOtherState1() {
         }
         
         public override string ResourceName {
@@ -114,9 +114,9 @@ namespace PrimeSolutions.bin.Debug {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBillA4LndScpOtherState : Component, ICachedReport {
+    public class CachedBillA4LndScpOtherState1 : Component, ICachedReport {
         
-        public CachedBillA4LndScpOtherState() {
+        public CachedBillA4LndScpOtherState1() {
         }
         
         [Browsable(false)]
@@ -153,7 +153,7 @@ namespace PrimeSolutions.bin.Debug {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            BillA4LndScpOtherState rpt = new BillA4LndScpOtherState();
+            BillA4LndScpOtherState rpt = new BillA4LndScpOtherState1();
             rpt.Site = this.Site;
             return rpt;
         }

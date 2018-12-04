@@ -202,10 +202,21 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.ExecuteScalar(str);
         }
 
-        public string ChangeRate(string Category,string SubCategory,string Size,string Rate)
+        public string ChangeRate(string Category,string SubCategory,string Size,string Rate,string GST,string State)
         {
-            string str = "Update BillItem Set SellingPrice='"+Rate+"' where Category='"+Category+"' and SubCategory='"+SubCategory+"' and Size='"+Size+"'";
-            return _objSqlhelper.ExecuteScalar(str);
+            double tax;
+
+            if (State == "same")
+            {
+                tax = Convert.ToDouble(GST) / 2;
+                string str = "Update BillItem Set SellingPrice='" + Rate + "',CGST='" + tax + "',SGST='" + tax + "' where Category='" + Category + "' and SubCategory='" + SubCategory + "' and Size='" + Size + "' and Type='Purchase' ";
+                return _objSqlhelper.ExecuteScalar(str);
+            }
+            else
+            {   
+                string str = "Update BillItem Set SellingPrice='" + Rate + "',IGST='" + GST + "'  where Category='" + Category + "' and SubCategory='"+SubCategory+"' and Size='" + Size + "' and Type='Purchase' ";
+                return _objSqlhelper.ExecuteScalar(str);
+            }
         }
 
         public DataTable GetSalesPerson()
@@ -284,6 +295,9 @@ namespace PrimeSolutions.Library
             _objsetvalue.EstimatePayment = dt.Rows[0]["EstimatePayment"].ToString();
             _objsetvalue.Maintenance = dt.Rows[0]["Maintenance"].ToString();
             _objsetvalue.ExtraChargesInc = dt.Rows[0]["ExtraChargesInc"].ToString();
+            _objsetvalue.GSTInc = dt.Rows[0]["GSTRate"].ToString();
+            _objsetvalue.BillType = dt.Rows[0]["BillType"].ToString();
+
             //_objsetvalue.ReceiptCopy = dt.Rows[0]["ReceiptCopy"].ToString();
 
             return _objsetvalue;

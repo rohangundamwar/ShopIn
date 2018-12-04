@@ -195,6 +195,7 @@
       <DependentUpon>BillGSTA4LndScp%28OtherState%29.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="bin\Debug\cls_ThermalBill.cs" />
     <Compile Include="bin\Debug\CRTReport\crt_PurchaseGST%28A4%29.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,6 +220,24 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="bin\Debug\JaiAmbeBillA4PortrtNew%28Interstate%29.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JaiAmbeBillA4PortrtNew%28Interstate%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\NewGSTSampleA5.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewGSTSampleA5.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="bin\Debug\PoojaDistibuter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoojaDistibuter.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="bin\Debug\QoutationA5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +249,12 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="bin\Debug\QutationA4.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QutationA4.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\ThadaniA4GST.cs">
       <DependentUpon>ThadaniA4GST.rpt</DependentUpon>
@@ -397,6 +422,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="bin\Debug\ThermalBill.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThermalBill.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\Cls_Enums.cs" />
     <Compile Include="Common\frm_Offer.cs">
@@ -659,6 +690,12 @@
     <Compile Include="Report\frm_MonthlyGSTReport.Designer.cs">
       <DependentUpon>frm_MonthlyGSTReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\frm_StockLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frm_StockLedger.Designer.cs">
+      <DependentUpon>frm_StockLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report\frm_Stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -773,6 +810,12 @@
     <Compile Include="Sale\frm_SaleEstimate.Designer.cs">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sale\frm_ViewGSTBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_ViewGSTBill.Designer.cs">
+      <DependentUpon>frm_ViewGSTBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sale\frm_UpdateEstimate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -869,9 +912,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>JaiAmbeBillA4LndScp%28Interstate%29.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\JaiAmbeBillA4PortrtNew%28Interstate%29.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JaiAmbeBillA4PortrtNew%28Interstate%29.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\JaiAmbeGSTA4LndScp%28OtherState%29.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ThadaniGSTA4LndScp%28OtherState%29.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\NewGSTSampleA5.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>NewGSTSampleA5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\PoojaDistibuter.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PoojaDistibuter.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\QoutationA5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -880,6 +935,10 @@
     <EmbeddedResource Include="bin\Debug\PurchaseLedger.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PurchaseLedger.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\QutationA4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QutationA4.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="bin\Debug\ThadaniA4GST.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -989,6 +1048,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SaleLedger.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\ThermalBill.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThermalBill.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Offer.resx">
       <DependentUpon>frm_Offer.cs</DependentUpon>
     </EmbeddedResource>
@@ -1095,6 +1158,9 @@
     <EmbeddedResource Include="Report\frm_MonthlyGSTReport.resx">
       <DependentUpon>frm_MonthlyGSTReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\frm_StockLedger.resx">
+      <DependentUpon>frm_StockLedger.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\frm_Stock.resx">
       <DependentUpon>frm_Stock.cs</DependentUpon>
     </EmbeddedResource>
@@ -1151,6 +1217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_SaleEstimate.resx">
       <DependentUpon>frm_SaleEstimate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_ViewGSTBill.resx">
+      <DependentUpon>frm_ViewGSTBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sale\frm_UpdateEstimate.resx">
       <DependentUpon>frm_UpdateEstimate.cs</DependentUpon>
@@ -1306,6 +1375,7 @@
     <None Include="Resources\login.png" />
     <None Include="Resources\Graphicloads-Flat-Finance-Unlock %281%29.ico" />
     <None Include="Resources\quotation.png" />
+    <None Include="Resources\Cover Photo.jpg" />
     <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />

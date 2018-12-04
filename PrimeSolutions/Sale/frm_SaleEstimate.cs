@@ -596,8 +596,8 @@ namespace PrimeSolutions
             string BillNo = txt_BillNo.Text;
             if (BillType == "Update")
             {
-                _Sale.DeleteBillDetails(BillNo);
-                _Sale.DeleteBillItem(BillNo);
+                _Sale.DeleteBillDetails(BillNo,"Sale");
+                _Sale.DeleteBillItem(BillNo,"Sale");
             }
 
             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
@@ -643,7 +643,7 @@ namespace PrimeSolutions
             }
             try
             {
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, "0", "0", "0" , txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,txt_Narration.Text,"0");
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), DateTime.Now.ToString("HH:mm:ss"), txt_TotalAmt.Text, "0", "0", "0" , txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text, "Estimate",txt_Extra.Text,txt_Narration.Text,"0");
 
 
                 //payment

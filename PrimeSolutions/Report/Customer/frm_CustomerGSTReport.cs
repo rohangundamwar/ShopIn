@@ -31,7 +31,12 @@ namespace PrimeSolutions.Report.Purchase
 
         private void bttn_excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_SupplierBill, "SupplierGSTReport", dtp_to.Value.ToString("dd_MM_yyyy"));
+            try
+            {
+                _e.exporttoexcel(dgv_SupplierBill, "CustomerGSTReport", dtp_from.Value.ToString("dd_MM") + "TO" + dtp_to.Value.ToString("dd_MM"));
+            }
+            catch { }
+            
         }
 
         private void bttn_close_Click(object sender, EventArgs e)
@@ -58,7 +63,7 @@ namespace PrimeSolutions.Report.Purchase
             int j = 0;
             try
             {
-                DataTable Bill = _sale.GetCustomerReport(dtp_from.Value.ToString(),dtp_to.Value.ToString(),"GST");
+                DataTable Bill = _sale.GetCustomerReport(dtp_from.Value.ToString("dd/MM/yyyy"),dtp_to.Value.ToString("dd/MM/yyyy"),"GST");
                 if (Bill.Rows.Count > 0)
                     for (j = 0; j < Bill.Rows.Count; j++)
                     {
@@ -67,7 +72,7 @@ namespace PrimeSolutions.Report.Purchase
                         {
                             dgv_SupplierBill.Rows.Add();
                             dgv_SupplierBill.Rows[j].Cells["SrNo"].Value = Convert.ToString(j + 1);
-                            //dgv_SupplierBill.Rows[j].Cells["BillNo"].Value = Supplier.Rows[0]["BillNo"].ToString();
+                            dgv_SupplierBill.Rows[j].Cells["BillNo"].Value = Bill.Rows[j]["BillNo"].ToString();
                             dgv_SupplierBill.Rows[j].Cells["Date"].Value = Bill.Rows[j]["Date"].ToString();
                             dgv_SupplierBill.Rows[j].Cells["SupplierName"].Value = Bill.Rows[j]["CustomerName"].ToString();
                             dgv_SupplierBill.Rows[j].Cells["GSTIN"].Value = Bill.Rows[j]["GSTIN"].ToString();
