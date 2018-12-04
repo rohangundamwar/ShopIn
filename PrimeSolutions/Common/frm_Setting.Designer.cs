@@ -69,10 +69,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.cmb_ExtraCharges = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.GSTrate = new System.Windows.Forms.Label();
+            this.rbt_GSTExc = new System.Windows.Forms.RadioButton();
+            this.rbt_GSTInc = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_barcode
@@ -108,6 +113,7 @@
             this.txt_barcode.Name = "txt_barcode";
             this.txt_barcode.Size = new System.Drawing.Size(65, 20);
             this.txt_barcode.TabIndex = 4;
+            this.txt_barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_barcode_KeyPress);
             // 
             // txt_print
             // 
@@ -115,6 +121,7 @@
             this.txt_print.Name = "txt_print";
             this.txt_print.Size = new System.Drawing.Size(65, 20);
             this.txt_print.TabIndex = 7;
+            this.txt_print.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_print_KeyPress);
             // 
             // bttn_save
             // 
@@ -486,7 +493,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(95, 26);
             this.label9.TabIndex = 28;
-            this.label9.Text = "Balance Including \r\nEatra Charges ";
+            this.label9.Text = "Balance Including \r\nExtra Charges ";
             // 
             // cmb_ExtraCharges
             // 
@@ -501,11 +508,53 @@
             this.cmb_ExtraCharges.TabIndex = 27;
             this.cmb_ExtraCharges.ValueMember = "FilePath";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.GSTrate);
+            this.panel2.Controls.Add(this.rbt_GSTExc);
+            this.panel2.Controls.Add(this.rbt_GSTInc);
+            this.panel2.Location = new System.Drawing.Point(309, 186);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(243, 25);
+            this.panel2.TabIndex = 27;
+            // 
+            // GSTrate
+            // 
+            this.GSTrate.AutoSize = true;
+            this.GSTrate.Location = new System.Drawing.Point(13, 6);
+            this.GSTrate.Name = "GSTrate";
+            this.GSTrate.Size = new System.Drawing.Size(55, 13);
+            this.GSTrate.TabIndex = 24;
+            this.GSTrate.Text = "GST Rate";
+            // 
+            // rbt_GSTExc
+            // 
+            this.rbt_GSTExc.AutoSize = true;
+            this.rbt_GSTExc.Location = new System.Drawing.Point(166, 4);
+            this.rbt_GSTExc.Name = "rbt_GSTExc";
+            this.rbt_GSTExc.Size = new System.Drawing.Size(71, 17);
+            this.rbt_GSTExc.TabIndex = 25;
+            this.rbt_GSTExc.TabStop = true;
+            this.rbt_GSTExc.Text = "Excluding";
+            this.rbt_GSTExc.UseVisualStyleBackColor = true;
+            // 
+            // rbt_GSTInc
+            // 
+            this.rbt_GSTInc.AutoSize = true;
+            this.rbt_GSTInc.Location = new System.Drawing.Point(93, 4);
+            this.rbt_GSTInc.Name = "rbt_GSTInc";
+            this.rbt_GSTInc.Size = new System.Drawing.Size(68, 17);
+            this.rbt_GSTInc.TabIndex = 23;
+            this.rbt_GSTInc.TabStop = true;
+            this.rbt_GSTInc.Text = "Including";
+            this.rbt_GSTInc.UseVisualStyleBackColor = true;
+            // 
             // frm_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 447);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmb_ExtraCharges);
             this.Controls.Add(this.lbl_maintain);
@@ -526,6 +575,8 @@
             this.groupBox3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -574,5 +625,9 @@
         private System.Windows.Forms.ComboBox cmb_SaleBillOtherState;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmb_ExtraCharges;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label GSTrate;
+        private System.Windows.Forms.RadioButton rbt_GSTExc;
+        private System.Windows.Forms.RadioButton rbt_GSTInc;
     }
 }

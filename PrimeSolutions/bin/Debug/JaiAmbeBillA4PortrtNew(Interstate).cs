@@ -16,14 +16,14 @@ namespace PrimeSolutions.bin.Debug {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class BillA4LndScpInterstate : ReportClass {
+    public class JaiAmbeBillA4PortrtNewInterstate : ReportClass {
         
-        public BillA4LndScpInterstate() {
+        public JaiAmbeBillA4PortrtNewInterstate() {
         }
         
         public override string ResourceName {
             get {
-                return "BillA4LndScp(Interstate).rpt";
+                return "JaiAmbeBillA4PortrtNew(Interstate).rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PrimeSolutions.bin.Debug {
         
         public override string FullResourceName {
             get {
-                return "PrimeSolutions.bin.Debug.BillA4LndScp(Interstate).rpt";
+                return "PrimeSolutions.bin.Debug.JaiAmbeBillA4PortrtNew(Interstate).rpt";
             }
             set {
                 // Do nothing
@@ -111,12 +111,20 @@ namespace PrimeSolutions.bin.Debug {
                 return this.DataDefinition.ParameterFields[2];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Type {
+            get {
+                return this.DataDefinition.ParameterFields[3];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedBillA4LndScpInterstate : Component, ICachedReport {
+    public class CachedJaiAmbeBillA4PortrtNewInterstate : Component, ICachedReport {
         
-        public CachedBillA4LndScpInterstate() {
+        public CachedJaiAmbeBillA4PortrtNewInterstate() {
         }
         
         [Browsable(false)]
@@ -153,7 +161,7 @@ namespace PrimeSolutions.bin.Debug {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            BillA4LndScpInterstate rpt = new BillA4LndScpInterstate();
+            JaiAmbeBillA4PortrtNewInterstate rpt = new JaiAmbeBillA4PortrtNewInterstate();
             rpt.Site = this.Site;
             return rpt;
         }

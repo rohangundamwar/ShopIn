@@ -493,9 +493,6 @@ namespace PrimeSolutions
         private void bttn_Purchase_Click(object sender, EventArgs e)
         {
             int p = 0;
-
-            int BarcodeCount = _objCustmor.getbarcode();
-
             if (checkData())
             {
                 //if (!_objCustmor.SupplierDetail(cmb_Name.Text))
@@ -575,24 +572,14 @@ namespace PrimeSolutions
                     if (dtsett.Barcode == "Yes")
                     {
                         _Common.InsertIntoTemp(txt_refrence.Text);
-
                         if (dtsett.BarcodeType == "Thermal")
                         {
-                            if (dtsett.BarcodeCount == "1")
-                            {
-                                _Barcode.PrintBarcode(1);
-                            }
-                            else if (dtsett.BarcodeCount == "2")
-                            {
-                                _Barcode.PrintBarcode(2);
-                            }
+                            _Barcode.PrintBarcode(Convert.ToInt32(dtsett.BarcodeCount));
                         }
                         else if (dtsett.BarcodeType == "Laser")
                         {
-                            //insert Into Temp Table
-                            _Barcode.PrintBarcodeA4(p = 0);
+                            _Barcode.PrintBarcodeA4(p = 0, Convert.ToInt32(dtsett.BarcodeCount));
                         }
-
                     }
 
                     _Common.DeleteTemp();

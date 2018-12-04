@@ -12,7 +12,6 @@ namespace PrimeSolutions.Library
 
     public class SQLHelper
     {
-        string Msg;
         public SQLHelper()
         {
             ConStingfinder();
@@ -82,7 +81,7 @@ namespace PrimeSolutions.Library
                 cmd = new SqlCommand();
                 cmd.Connection = con;
             }
-            catch (Exception ex)
+            catch 
             {
                 Application.Exit();
             }
@@ -198,7 +197,7 @@ namespace PrimeSolutions.Library
             {
                 intresult = (int)cmd.ExecuteScalar();
             }
-            catch (Exception ex)
+            catch 
             {
                 intresult = 0;
             }

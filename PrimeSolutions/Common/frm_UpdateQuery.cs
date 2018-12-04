@@ -33,7 +33,7 @@ namespace PrimeSolutions.Common
                         string query = dgv_UpdateQuery.Rows[i].Cells["Query"].Value.ToString();
                         _objSqlHelper.ExecuteSql(query);
                     }
-                    catch (Exception ex)
+                    catch
                     {
                     }
 
@@ -144,6 +144,14 @@ namespace PrimeSolutions.Common
             string W = "Add Bill Type";
             string query23 = "ALTER TABLE setting Add [ExtraChargesInc] [nvarchar](max) NOT NULL CONSTRAINT [DF_Setting_ExtraCharges]  DEFAULT (('No'))";
             dgv_UpdateQuery.Rows.Add(false, W, query23);
+
+            string X = "Offer Master";
+            string query24 = "CREATE TABLE [dbo].[OfferMaster]([SrNo][int] IDENTITY(1, 1) NOT NULL,[Category] [nvarchar](max) NULL,[SubCategory][nvarchar](max) NULL,[DiscPer][nvarchar](max) NULL,[MinQty][nvarchar](max) NULL,[Comment][nvarchar](max) NULL,[Size][nvarchar](max) NULL)";
+            dgv_UpdateQuery.Rows.Add(false, X, query24);
+
+            string Y = "GST Rate(Inc/Exc)";
+            string query25 = "ALTER TABLE setting Add [GSTRate] [nvarchar](max) NOT NULL CONSTRAINT [DF_Setting_GSTRate]  DEFAULT (('1'))";
+            dgv_UpdateQuery.Rows.Add(false, Y, query25);
 
         }
 

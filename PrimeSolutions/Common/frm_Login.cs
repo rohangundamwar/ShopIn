@@ -49,27 +49,40 @@ namespace PrimeSolutions.Common
         private void bttn_login_Click(object sender, EventArgs e)
         {
             DataTable user = _common.GetPassword(txt_UserId.Text);
-
-            if (user.Rows.Count==0)
+            try
             {
-                lbl_message.Text = "MSG: Invalid User ID";
-                lbl_message.Visible = true;
-                clear();
-            }
-            else 
+                if (user.Rows.Count == 0)
+                {
+                    lbl_message.Text = "MSG: Invalid User ID";
+                    lbl_message.Visible = true;
+                    clear();
+                }
+                else
             if (user.Rows[0]["Password"].ToString() == txt_Password.Text)
-            {
-                result = true;
-                this.Close();
+                {
+                    result = true;
+                    this.Close();
+                }
+
+                else
+                {
+                    lbl_message.Text = "Incorrect Password";
+                    lbl_message.Visible = true;
+                    clear();
+                }
+                if (user.Rows.Count > 0)
+                {
+                    type = user.Rows[0]["Type"].ToString();
+                }
+    
             }
 
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Incorrect Password \n      Please Try Again ");
-                clear();
-                result = false;
+                string X = ex.Message;
             }
-            type = user.Rows[0]["Type"].ToString();
+            
+            
         }
 
         private void frm_Login_Load(object sender, EventArgs e)

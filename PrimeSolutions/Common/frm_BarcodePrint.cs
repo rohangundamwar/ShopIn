@@ -23,7 +23,8 @@ namespace PrimeSolutions.Common
         AllClassFile _objCustmor = new AllClassFile();
         SQLHelper _sql = new SQLHelper();
         Simplevalidations _valid = new Simplevalidations();
-        DataTable Supplier; 
+        DataTable Supplier;
+        SettingValue dtsett;
 
         public frm_BarcodePrint()
         {
@@ -41,8 +42,6 @@ namespace PrimeSolutions.Common
         private void bttn_Print_Click(object sender, EventArgs e)
         {
             DataTable bar = new DataTable();
-            int BarcodeCount = _objBarcode.getbarcode();
-            DataTable dtsett = _objBarcode.getallssetting();
             bar.Columns.Add("Category");
             bar.Columns.Add("SubCategory");
             bar.Columns.Add("SellingAmt");
@@ -66,21 +65,14 @@ namespace PrimeSolutions.Common
             }
             _common.InsertIntoTemp(bar);
 
-            if (dtsett.Rows[0]["BarcodeType"].ToString() == "Thermal")
+            if (dtsett.BarcodeType == "Thermal")
             {
-                if (BarcodeCount == 1)
-                {
-                    _barcode.PrintBarcode(1);
-                }
-                else if (BarcodeCount == 2)
-                {
-                    _barcode.PrintBarcode(2);
-                }
+                _barcode.PrintBarcode(Convert.ToInt32(dtsett.BarcodeCount) );
             }
             
-            else if (dtsett.Rows[0]["BarcodeType"].ToString() == "Laser")
+            else if (dtsett.BarcodeType == "Laser")
             {
-                _barcode.PrintBarcodeA4(1);
+                _barcode.PrintBarcodeA4(1,Convert.ToInt32(dtsett.BarcodeCount));
             }
 
             _common.DeleteTemp();
@@ -111,15 +103,26 @@ namespace PrimeSolutions.Common
 
         private void Add()
         {
-            string Barcode = _sql.GetMaxID("B", "0");
+            string Barcode;
+
+            if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
+            {
+                Barcode = _sql.GetMaxID("B", "0");
+            }
+            else
+            {
+                Barcode = txt_Barcode.Text;
+            }
+            
             string gst = Convert.ToString(Convert.ToInt32(txt_GST.Text) / 2);
             _p.InsertItem(Barcode, cmb_category.Text, cmb_SubCategory.Text, cmb_Size.Text, "", "Barcode", "", gst, "", gst, "", "", "", "", "", "", txt_SellingPrice.Text, "", "", "", "");
             dgv_BarcodeDetail.Rows.Add(true, dgv_BarcodeDetail.Rows.Count + 1, "", cmb_category.Text, cmb_SubCategory.Text, txt_SellingPrice.Text, cmb_Size.Text, txt_Qty.Text);
-            cmb_category.Focus();
+            txt_Barcode.Focus();
         }
 
         private void frm_BarcodePrint_Load(object sender, EventArgs e)
         {
+            dtsett = _common.getSettingValue();
             Clear();
             
         }
@@ -272,6 +275,11 @@ namespace PrimeSolutions.Common
         {
             string Refrence = Bill.Rows[Convert.ToInt32(cmb_PBillNo.SelectedIndex)]["RefrenceNo"].ToString();
             txt_Refrence.Text = Refrence;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dgv_BarcodeDetail.Rows.Clear();
         }
     }
 

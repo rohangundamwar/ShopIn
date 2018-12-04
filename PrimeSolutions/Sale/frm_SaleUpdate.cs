@@ -634,8 +634,8 @@ namespace PrimeSolutions
 
             //Delete Old Item And Bill
 
-            _Sale.DeleteBillItem(txt_BillNo.Text);
-            _Sale.DeleteBillDetails(txt_BillNo.Text);
+            _Sale.DeleteBillItem(txt_BillNo.Text,"Sale");
+            _Sale.DeleteBillDetails(txt_BillNo.Text,"Sale");
 
             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
             
@@ -678,7 +678,7 @@ namespace PrimeSolutions
             try
             {
 
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text,"GST",txt_Extra.Text,txt_Narration.Text,"0");
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, dtp_Date.Value.ToString("dd/MM/yyyy"), DateTime.Now.ToString("HH:mm:ss"), txt_TotalAmt.Text, lbl_CGSTValue.Text, lbl_SGSTValue.Text, lbl_IGSTValue.Text, txt_NetAmt.Text, cmb_State.Text, txt_BillAmt.Text, txt_Discount.Text,"GST",txt_Extra.Text,txt_Narration.Text,"0");
             }
 
             catch (Exception ex)

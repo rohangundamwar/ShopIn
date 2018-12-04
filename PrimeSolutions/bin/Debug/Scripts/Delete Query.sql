@@ -1,4 +1,4 @@
-USe['Insert Database Name']
+USe['Gropure']
 
 TRUNCATE TABLE AccountLedger
 TRUNCATE TABLE BillItem
@@ -28,5 +28,10 @@ CREATE TABLE [dbo].[Activation](
 
 GO
 
+insert into [Activation] values(Convert(varchar,GETDATE(),103),'15','')
 
-insert into [Activation] values(Convert(varchar,GETDATE(),103),'15','') 
+
+INSERT [dbo].[CustomerMaster] ([SrNo], [CustId], [CustomerName], [Address], [ContactNo], [PanNo], [GSTIN], [State], [City], [Opening]) VALUES (1, N'C0000001', N'Counter', N'--', N'--', N'', N'', N'27-Maharashtra', N'nagpur', N'0')
+
+
+

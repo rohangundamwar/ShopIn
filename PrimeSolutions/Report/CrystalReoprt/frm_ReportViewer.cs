@@ -56,7 +56,7 @@ namespace PrimeSolutions.Report.CrystalReport
             DataTable dt_BillingDetails = _objsqlhelper.GetDataTable(BillingDetails);
 
 
-            string BillType;
+            string BillType, PayType;
             if (dt_BillingDetails.Rows[0]["State"].ToString() == dt_CompanyInfo.Rows[0]["State"].ToString())
             {
                 BillType = "GST_Interstate";
@@ -102,6 +102,21 @@ namespace PrimeSolutions.Report.CrystalReport
 
             try
             {
+                PayType = "Cash";
+                if(dt_Payment.Rows.Count>0)
+                if (dt_BillingDetails.Rows[0]["BillAmount"] == dt_Payment.Rows[0]["Amt"])
+                PayType="Cash";
+                else
+                PayType = "Credit";
+                _objReport.SetParameterValue("Type", PayType);
+            }
+            catch (Exception ex)
+            {
+                _error.AddException(ex, "ReportViewer");
+            }
+
+            try
+            {
                 double inword = Convert.ToDouble(dt_BillingDetails.Rows[0]["BillAmount"].ToString());
                 inword = Math.Round(inword);
                 int number = Convert.ToInt32(inword);
@@ -111,7 +126,6 @@ namespace PrimeSolutions.Report.CrystalReport
             catch (Exception ex)
             {
                 _error.AddException(ex, "ReportViewer");
-                MessageBox.Show(ex.ToString());
             }
 
             try
@@ -121,7 +135,6 @@ namespace PrimeSolutions.Report.CrystalReport
             catch (Exception ex)
             {
                 _error.AddException(ex, "ReportViewer");
-                MessageBox.Show(ex.ToString());
             }
 
             if (Type == "Print")

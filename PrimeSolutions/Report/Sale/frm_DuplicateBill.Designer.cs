@@ -41,6 +41,9 @@
             this.bill = new System.Windows.Forms.Label();
             this.txt_type = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmb_Search = new System.Windows.Forms.ComboBox();
+            this.bttn_Search = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Bill)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,7 +118,7 @@
             // 
             // bttn_print
             // 
-            this.bttn_print.Location = new System.Drawing.Point(139, 248);
+            this.bttn_print.Location = new System.Drawing.Point(179, 248);
             this.bttn_print.Name = "bttn_print";
             this.bttn_print.Size = new System.Drawing.Size(75, 23);
             this.bttn_print.TabIndex = 4;
@@ -126,7 +129,7 @@
             // bttn_view
             // 
             this.bttn_view.ForeColor = System.Drawing.Color.Green;
-            this.bttn_view.Location = new System.Drawing.Point(16, 248);
+            this.bttn_view.Location = new System.Drawing.Point(15, 248);
             this.bttn_view.Name = "bttn_view";
             this.bttn_view.Size = new System.Drawing.Size(75, 23);
             this.bttn_view.TabIndex = 5;
@@ -137,7 +140,7 @@
             // bttn_close
             // 
             this.bttn_close.ForeColor = System.Drawing.Color.Red;
-            this.bttn_close.Location = new System.Drawing.Point(262, 248);
+            this.bttn_close.Location = new System.Drawing.Point(261, 248);
             this.bttn_close.Name = "bttn_close";
             this.bttn_close.Size = new System.Drawing.Size(75, 23);
             this.bttn_close.TabIndex = 6;
@@ -172,12 +175,50 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Type";
             // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Green;
+            this.button1.Location = new System.Drawing.Point(97, 248);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Detail View";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmb_Search
+            // 
+            this.cmb_Search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_Search.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_Search.BackColor = System.Drawing.Color.Cornsilk;
+            this.cmb_Search.DisplayMember = "BillNo";
+            this.cmb_Search.FormattingEnabled = true;
+            this.cmb_Search.Location = new System.Drawing.Point(15, 284);
+            this.cmb_Search.Name = "cmb_Search";
+            this.cmb_Search.Size = new System.Drawing.Size(135, 21);
+            this.cmb_Search.TabIndex = 11;
+            this.cmb_Search.ValueMember = "BillNo";
+            // 
+            // bttn_Search
+            // 
+            this.bttn_Search.ForeColor = System.Drawing.Color.Blue;
+            this.bttn_Search.Location = new System.Drawing.Point(179, 284);
+            this.bttn_Search.Name = "bttn_Search";
+            this.bttn_Search.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Search.TabIndex = 12;
+            this.bttn_Search.Text = "SEARCH";
+            this.bttn_Search.UseVisualStyleBackColor = true;
+            this.bttn_Search.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // frm_DuplicateBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(349, 283);
+            this.ClientSize = new System.Drawing.Size(349, 319);
+            this.Controls.Add(this.bttn_Search);
+            this.Controls.Add(this.cmb_Search);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_type);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.bill);
@@ -212,5 +253,8 @@
         private System.Windows.Forms.Label bill;
         private System.Windows.Forms.Label txt_type;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmb_Search;
+        private System.Windows.Forms.Button bttn_Search;
     }
 }

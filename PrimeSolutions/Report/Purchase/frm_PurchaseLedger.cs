@@ -17,6 +17,7 @@ namespace PrimeSolutions.Report.Purchase
         DataTable dtsupplier, dtsupplierBill, dtsupplierpay;
         clsCommon _c = new clsCommon();
         public delegate void SendData(DataTable dtCustBill, DataTable dtpay, string sale, string paid, string bal);
+        public delegate void ViewData(string BillNo, string type);
 
         public frm_PurchaseLedger()
         {
@@ -59,6 +60,9 @@ namespace PrimeSolutions.Report.Purchase
                     dgv_Bill.Rows[i].Cells["Date"].Value = dtsupplierBill.Rows[i]["Date"].ToString();
                     dgv_Bill.Rows[i].Cells["BillNo"].Value = dtsupplierBill.Rows[i]["BillNo"].ToString();
                     dgv_Bill.Rows[i].Cells["Amount"].Value = dtsupplierBill.Rows[i]["GrandTotal"].ToString();
+                    //RefrenceNo
+                    dgv_Bill.Rows[i].Cells["RefrenceNo"].Value = dtsupplierBill.Rows[i]["RefrenceNo"].ToString();
+
                 }
             dtsupplierpay = _p.GetSupplierPaymentByAccNo(supplierid);
             dgv_Payment.Rows.Clear();
@@ -79,6 +83,35 @@ namespace PrimeSolutions.Report.Purchase
             txt_payment.Text = TotalPaid;
             txt_balance.Text = Balance;
             cmb_supplier.Focus();
+        }
+
+        private void dgv_Bill_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgv_Bill_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string BillNo = dgv_Bill.Rows[e.RowIndex].Cells["RefrenceNo"].Value.ToString();
+            {
+
+            }
+            if (BillNo[1] == 'R')
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                ViewData _obj = new ViewData(_objfrm_ReportViewer.SupplierBill);
+                _obj(BillNo, "View");
+                _objfrm_ReportViewer.Show();
+
+
+            }
+            else if (BillNo[1] == 'E')
+            {
+                CrystalReport.frm_ReportViewer _objfrm_ReportViewer = new CrystalReport.frm_ReportViewer();
+                ViewData _obj = new ViewData(_objfrm_ReportViewer.SupplierBillEst);
+                _obj(BillNo, "View");
+                _objfrm_ReportViewer.Show();
+            }
         }
 
         private void frm_PurchaseLedger_KeyDown(object sender, KeyEventArgs e)

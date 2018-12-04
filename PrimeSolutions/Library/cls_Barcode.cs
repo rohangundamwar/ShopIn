@@ -10,9 +10,8 @@ namespace PrimeSolutions.Library
     {
         SQLHelper _sql = new SQLHelper();
 
-        public void PrintBarcodeA4(int i)
+        public void PrintBarcodeA4(int i,int Count)
         {
-            string count = _sql.ExecuteScalar("Select BarcodeCount From Setting");
             BarTender.Application btApp;
             BarTender.Messages btMsgs;
             BarTender.Database btDb;
@@ -25,7 +24,7 @@ namespace PrimeSolutions.Library
             // Set the BarTender application visible
             btApp.Visible = true;
             // Open a BarTender document
-            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "BarcodeA4"+count+"");
+            btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\" + "BarcodeA4"+Count+"");
             btDb = btFormat.Databases.GetDatabase(1);
             // Select the query prompt
             //btQueryPrompt = btFormat.Databases.QueryPrompts.GetQueryPrompt("Item");

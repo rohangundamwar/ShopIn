@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dgv_BillItem = new System.Windows.Forms.DataGridView();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_BillNo = new System.Windows.Forms.ComboBox();
             this.lbl_BillNo = new System.Windows.Forms.Label();
             this.bttn_close = new System.Windows.Forms.Button();
@@ -36,10 +40,6 @@
             this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.lbl_PurchaseFrom = new System.Windows.Forms.Label();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BillItem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +57,32 @@
             this.dgv_BillItem.ReadOnly = true;
             this.dgv_BillItem.Size = new System.Drawing.Size(513, 288);
             this.dgv_BillItem.TabIndex = 0;
+            // 
+            // Category
+            // 
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            this.Category.Width = 150;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            this.SubCategory.Width = 120;
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            this.Size.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
             // 
             // cmb_BillNo
             // 
@@ -105,6 +131,7 @@
             // 
             // dtp_date
             // 
+            this.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_date.Location = new System.Drawing.Point(24, 12);
             this.dtp_date.Name = "dtp_date";
             this.dtp_date.Size = new System.Drawing.Size(120, 20);
@@ -137,32 +164,6 @@
             this.lbl_PurchaseFrom.Size = new System.Drawing.Size(104, 15);
             this.lbl_PurchaseFrom.TabIndex = 6;
             this.lbl_PurchaseFrom.Text = "Purchase From";
-            // 
-            // Category
-            // 
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            this.Category.Width = 150;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            this.SubCategory.Width = 120;
-            // 
-            // Size
-            // 
-            this.Size.HeaderText = "Size";
-            this.Size.Name = "Size";
-            this.Size.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
             // 
             // SupplierBill
             // 

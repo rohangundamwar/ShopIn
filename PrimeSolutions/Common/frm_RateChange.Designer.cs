@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_Rate = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,23 +41,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_OldRate = new System.Windows.Forms.Label();
+            this.txt_OldGST = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txt_NewGST = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(519, 13);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
-            this.dateTimePicker1.TabIndex = 20;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 102);
+            this.label4.Location = new System.Drawing.Point(526, 61);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 16);
@@ -67,11 +60,12 @@
             // 
             // txt_Rate
             // 
-            this.txt_Rate.Location = new System.Drawing.Point(561, 99);
+            this.txt_Rate.Location = new System.Drawing.Point(105, 95);
             this.txt_Rate.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Rate.Name = "txt_Rate";
             this.txt_Rate.Size = new System.Drawing.Size(85, 22);
             this.txt_Rate.TabIndex = 28;
+            this.txt_Rate.TextChanged += new System.EventHandler(this.txt_Rate_TextChanged);
             this.txt_Rate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Rate_KeyDown);
             // 
             // label5
@@ -79,7 +73,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Green;
-            this.label5.Location = new System.Drawing.Point(475, 102);
+            this.label5.Location = new System.Drawing.Point(19, 98);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 16);
@@ -88,14 +82,15 @@
             // 
             // btn_Change
             // 
+            this.btn_Change.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btn_Change.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Change.Location = new System.Drawing.Point(281, 144);
+            this.btn_Change.Location = new System.Drawing.Point(290, 139);
             this.btn_Change.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Change.Name = "btn_Change";
             this.btn_Change.Size = new System.Drawing.Size(95, 27);
             this.btn_Change.TabIndex = 29;
             this.btn_Change.Text = "Change";
-            this.btn_Change.UseVisualStyleBackColor = true;
+            this.btn_Change.UseVisualStyleBackColor = false;
             this.btn_Change.Click += new System.EventHandler(this.btn_Change_Click);
             // 
             // cmb_size
@@ -105,7 +100,7 @@
             this.cmb_size.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_size.DisplayMember = "Size";
             this.cmb_size.FormattingEnabled = true;
-            this.cmb_size.Location = new System.Drawing.Point(576, 53);
+            this.cmb_size.Location = new System.Drawing.Point(576, 15);
             this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_size.Name = "cmb_size";
             this.cmb_size.Size = new System.Drawing.Size(71, 24);
@@ -118,7 +113,7 @@
             this.lbl_Size.AutoSize = true;
             this.lbl_Size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Size.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Size.Location = new System.Drawing.Point(526, 57);
+            this.lbl_Size.Location = new System.Drawing.Point(526, 19);
             this.lbl_Size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Size.Name = "lbl_Size";
             this.lbl_Size.Size = new System.Drawing.Size(38, 16);
@@ -132,7 +127,7 @@
             this.cmb_SubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_SubCategory.DisplayMember = "subcategory";
             this.cmb_SubCategory.FormattingEnabled = true;
-            this.cmb_SubCategory.Location = new System.Drawing.Point(368, 53);
+            this.cmb_SubCategory.Location = new System.Drawing.Point(368, 15);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
             this.cmb_SubCategory.Size = new System.Drawing.Size(146, 24);
@@ -148,7 +143,7 @@
             this.cmb_Category.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
-            this.cmb_Category.Location = new System.Drawing.Point(100, 53);
+            this.cmb_Category.Location = new System.Drawing.Point(100, 15);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Category.Name = "cmb_Category";
             this.cmb_Category.Size = new System.Drawing.Size(146, 24);
@@ -162,7 +157,7 @@
             this.lbl_Category.AutoSize = true;
             this.lbl_Category.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Category.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Category.Location = new System.Drawing.Point(17, 57);
+            this.lbl_Category.Location = new System.Drawing.Point(17, 19);
             this.lbl_Category.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Category.Name = "lbl_Category";
             this.lbl_Category.Size = new System.Drawing.Size(71, 16);
@@ -174,7 +169,7 @@
             this.lbl_SubCategory.AutoSize = true;
             this.lbl_SubCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SubCategory.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SubCategory.Location = new System.Drawing.Point(259, 57);
+            this.lbl_SubCategory.Location = new System.Drawing.Point(259, 19);
             this.lbl_SubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SubCategory.Name = "lbl_SubCategory";
             this.lbl_SubCategory.Size = new System.Drawing.Size(98, 16);
@@ -185,7 +180,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(97, 102);
+            this.label1.Location = new System.Drawing.Point(606, 61);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 16);
@@ -197,7 +192,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(259, 102);
+            this.label2.Location = new System.Drawing.Point(19, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 16);
@@ -209,18 +204,69 @@
             this.lbl_OldRate.AutoSize = true;
             this.lbl_OldRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_OldRate.ForeColor = System.Drawing.Color.Black;
-            this.lbl_OldRate.Location = new System.Drawing.Point(335, 102);
+            this.lbl_OldRate.Location = new System.Drawing.Point(95, 61);
             this.lbl_OldRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_OldRate.Name = "lbl_OldRate";
             this.lbl_OldRate.Size = new System.Drawing.Size(18, 16);
             this.lbl_OldRate.TabIndex = 61;
             this.lbl_OldRate.Text = "--";
             // 
+            // txt_OldGST
+            // 
+            this.txt_OldGST.AutoSize = true;
+            this.txt_OldGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_OldGST.ForeColor = System.Drawing.Color.Black;
+            this.txt_OldGST.Location = new System.Drawing.Point(335, 61);
+            this.txt_OldGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txt_OldGST.Name = "txt_OldGST";
+            this.txt_OldGST.Size = new System.Drawing.Size(18, 16);
+            this.txt_OldGST.TabIndex = 63;
+            this.txt_OldGST.Text = "--";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(259, 61);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 16);
+            this.label6.TabIndex = 62;
+            this.label6.Text = "Old GST";
+            // 
+            // txt_NewGST
+            // 
+            this.txt_NewGST.Location = new System.Drawing.Point(339, 95);
+            this.txt_NewGST.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_NewGST.Name = "txt_NewGST";
+            this.txt_NewGST.Size = new System.Drawing.Size(85, 22);
+            this.txt_NewGST.TabIndex = 65;
+            this.txt_NewGST.TextChanged += new System.EventHandler(this.txt_NewGST_TextChanged);
+            this.txt_NewGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NewGST_KeyDown);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Green;
+            this.label7.Location = new System.Drawing.Point(259, 98);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 16);
+            this.label7.TabIndex = 64;
+            this.label7.Text = "New GST";
+            // 
             // frm_RateChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 203);
+            this.BackColor = System.Drawing.Color.PapayaWhip;
+            this.ClientSize = new System.Drawing.Size(663, 183);
+            this.Controls.Add(this.txt_NewGST);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txt_OldGST);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lbl_OldRate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -234,7 +280,6 @@
             this.Controls.Add(this.txt_Rate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_RateChange";
@@ -246,7 +291,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_Rate;
         private System.Windows.Forms.Label label5;
@@ -260,5 +304,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_OldRate;
+        private System.Windows.Forms.Label txt_OldGST;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txt_NewGST;
+        private System.Windows.Forms.Label label7;
     }
 }

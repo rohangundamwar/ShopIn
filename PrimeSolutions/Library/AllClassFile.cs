@@ -12,15 +12,7 @@ namespace PrimeSolutions.Library
         //BarTender.ApplicationClass btApp;
         //BarTender.Format btFormat;
         //BarTender.Messages btMsgs;
-
-        public DataTable getStock()
-        {
-            string str = "SELECT  Distinct   category FROM BillItem Where type = 'Purchase' ";
-            DataTable dt = _objsqlhelper.GetDataTable(str);
-          
-            return dt;
-        }
-
+        
         //public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt, string size, string total, int i)
         //{
         //    btApp = new BarTender.ApplicationClass();
@@ -111,12 +103,12 @@ namespace PrimeSolutions.Library
             return state;
         }
 
-        internal object GetSubCategoryStock(string  category)
+        internal object GetSubCategoryStock(string category)
         {
-            string str1 = "SELECT  sub_category FROM BillItem Where category = '"+category+"'AND type = 'Purchase' ";
+            string str1 = "SELECT  sub_category FROM BillItem Where category = '" + category + "'AND type = 'Purchase' ";
             DataTable dt1 = _objsqlhelper.GetDataTable(str1);
-            
-            return  dt1.Rows[0]["sub_category"];
+
+            return dt1.Rows[0]["sub_category"];
         }
 
         internal string getQty(string category, string subcategory)
@@ -131,12 +123,12 @@ namespace PrimeSolutions.Library
             {
                 double PurchaseQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
                 double SaleQty = Math.Round(Convert.ToDouble(QtyPurchase), 3);
-                Qty =Convert.ToString(PurchaseQty - SaleQty);
+                Qty = Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  Kg";
             }
             else
             {
-                double PurchaseQty =Convert.ToInt32 (QtyPurchase);
+                double PurchaseQty = Convert.ToInt32(QtyPurchase);
                 double SaleQty = Convert.ToInt32(QtyPurchase);
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
                 Qty = Qty + "  nos.";
@@ -144,9 +136,9 @@ namespace PrimeSolutions.Library
             return (Qty);
         }
 
-        internal string getQty(string category, string subcategory,string size)
+        internal string getQty(string category, string subcategory, string size)
         {
-            string purchase="", sale="";
+            string purchase = "", sale = "";
             decimal PurchaseQty, SaleQty;
             string Qty;
             if (GetalooseItem(category))
@@ -172,9 +164,9 @@ namespace PrimeSolutions.Library
 
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
 
-                
-                    Qty = Qty + " Kg";
-               
+
+                Qty = Qty + " Kg";
+
             }
 
             else
@@ -184,14 +176,13 @@ namespace PrimeSolutions.Library
 
                 string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
                 string QtySale = _objsqlhelper.ExecuteScalar(sale);
+                
 
-                PurchaseQty = Math.Round(Convert.ToDecimal(QtyPurchase), 2);
-
-                if (PurchaseQty == 0 || PurchaseQty == null)
+                if (QtyPurchase == "" || QtyPurchase == null)
                     PurchaseQty = 0;
 
                 else
-                    PurchaseQty = Convert.ToDecimal(PurchaseQty);
+                    PurchaseQty = Math.Round(Convert.ToDecimal(QtyPurchase), 2);
 
 
                 if (QtySale == "" || QtySale == null)
@@ -200,17 +191,68 @@ namespace PrimeSolutions.Library
                     SaleQty = Convert.ToDecimal(QtySale);
 
                 Qty = Convert.ToString(PurchaseQty - SaleQty);
-                    Qty = Qty + " nos";
+                Qty = Qty + " nos";
             }
 
             return (Qty);
         }
 
+
+        internal string g(string from, string To, string category, string subcategory, string size)
+        {
+            string purchase = "", sale = "";
+            decimal PurchaseQty, SaleQty;
+            string Qty;
+
+            purchase = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (Convert(datetime,PurchaseDate,103) > Convert(datetime,'" + from + "',103) and Convert(datetime,PurchaseDate,103) < Convert(datetime,'" + To + "',103)) and (PermanentDelete = 0 or PermanentDelete is Null)";
+            sale = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "' and (Convert(datetime,SaleDate,103) > Convert(datetime,'" + from + "',103) and Convert(datetime,SaleDate,103) < Convert(datetime,'" + To + "',103)) and (PermanentDelete = 0 or PermanentDelete is Null) ";
+
+            string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+            string QtySale = _objsqlhelper.ExecuteScalar(sale);
+
+            PurchaseQty = Math.Round(Convert.ToDecimal(QtyPurchase), 3);
+
+            if (PurchaseQty == 0 || PurchaseQty == null)
+                PurchaseQty = 0;
+
+            else
+                PurchaseQty = Convert.ToDecimal(PurchaseQty);
+
+            if (QtySale == "" || QtySale == null)
+                SaleQty = 0;
+            else
+                SaleQty = Convert.ToDecimal(QtySale);
+
+            Qty = Convert.ToString(PurchaseQty - SaleQty);
+
+
+            if (GetalooseItem(category))
+            {
+                Qty = Qty + " Kg";
+            }
+
+            else
+            {
+                Qty = Qty + " nos";
+            }
+
+            return (Qty);
+        }
+
+        private DataTable GetStockLedger(string from, string To)
+        {
+            string str= " select * from Billitem Where ";
+            DataTable stock=_objsqlhelper.GetDataTable(str);
+            return stock;
+        }
+
+
+
         internal int getQtySupplier(string category, string subcategory, string BillNo)
         {
             string str1 = "SELECT  Sum(Convert(Decimal,qty)) FROM BillItem Where category = '" + category + "' AND SubCategory = '" + subcategory + "' AND PurchaseBillNo='" + BillNo + "' ";
             string Qty = _objsqlhelper.ExecuteScalar(str1);
-            return Convert.ToInt32(Qty) ;
+            return Convert.ToInt32(Qty);
         }
 
         internal bool GetalooseItem(string looseItem)
@@ -231,8 +273,8 @@ namespace PrimeSolutions.Library
         {
             string str1 = "SELECT Sum(Convert(Decimal,qty)) FROM BillItem Where sub_category = '" + subcategory + "'AND type = 'Purchase' ";
             string Qty = _objsqlhelper.ExecuteScalar(str1);
-            
-            return  Convert.ToInt32(Qty) ;
+
+            return Convert.ToInt32(Qty);
         }
 
 
@@ -274,6 +316,32 @@ namespace PrimeSolutions.Library
             return sum;
         }
 
+        internal DataTable getOffer(string category, string SubCategory)
+        {
+            string str = "Select * from Offermaster where category='" + category + "' and SubCategory='" + SubCategory + "'";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        internal DataTable GetAllOffer()
+        {
+            DataTable dt = _objsqlhelper.GetDataTable("select * from OfferMaster");
+            return dt;
+        }
+
+        public void InsertOffer(string Category, string SubCategory, string Size, string DiscPer, string MinQty, string Comment)
+        {
+            string str = "Insert into OfferMaster values('" + Category + "','" + SubCategory + "','" + DiscPer + "','" + MinQty + "','" + Comment + "','" + Size + "')";
+            _objsqlhelper.ExecuteScalar(str);
+        }
+
+        public void DeleteOffer(string SrNo)
+        {
+            string str = "Delete OfferMaster where SrNo='"+SrNo+"'";
+            _objsqlhelper.ExecuteScalar(str);
+        }
+
+
         internal DataTable getStockByCategory(string category)
         {
             string str = "Select * From BillItem where category = '"+category+"' AND type= 'purchase' ";
@@ -283,7 +351,15 @@ namespace PrimeSolutions.Library
 
         internal DataTable GetSize(string Subcategory)
         {
-            string str1 = "SELECT distinct size FROM BillItem Where sub_category = '" + Subcategory + "'AND type = 'Purchase' ";
+            string str1 = "SELECT distinct size FROM BillItem Where subcategory = '" + Subcategory + "'AND type = 'Purchase' ";
+            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
+            return dt1;
+        }
+
+
+        internal DataTable GetSize()
+        {
+            string str1 = "SELECT distinct size FROM BillItem";
             DataTable dt1 = _objsqlhelper.GetDataTable(str1);
             return dt1;
         }
@@ -375,13 +451,15 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        // GEtStock
-        internal DataTable GetStockAll(string category)
+        // GetStock
+        public Tuple<DataTable, DataTable> GetStock(string from, string to)
         {
-            string str = "select * from BillItem where type='purchase'AND category = '" + category + "' ";
-            DataTable dt = _objsqlhelper.GetDataTable(str);
-            return dt;
+            string strSale = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.CustomerBill.BillNo, dbo.CustomerBill.Date, dbo.BillItem.SrNo FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleDate = dbo.CustomerBill.Date AND dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE(dbo.BillItem.Type = 'Sale') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.BillItem.PermanentDelete = 0)";
+            DataTable Sale = _objsqlhelper.GetDataTable(strSale);
 
+            string strPurchase = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.SupplierBill.BillNo, dbo.SupplierBill.Date, dbo.SupplierBill.RefrenceNo FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo AND dbo.BillItem.PurchaseBillNo = dbo.SupplierBill.BillNo WHERE(dbo.BillItem.Type = 'Purchase') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+ "',103))AND (dbo.BillItem.PermanentDelete = 0)";
+            DataTable Purchase = _objsqlhelper.GetDataTable(strPurchase);
+            return Tuple.Create<DataTable,DataTable>(Purchase,Sale);
         }
 
         internal DataTable GetStockAll(string category, string subcategory)
@@ -590,9 +668,9 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string GSTInterstate,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice,string BillType,string GSTOtherState,string ExtraCharges)
+        public void SetAllssetting(string bar,string print,string barcode,string BarcodeType,string payment,string EstPay,string GSTInterstate,string PurchaseBill,string Estimate,string start,string end,string maintain,string ServiceInvoice,string BillType,string GSTOtherState,string ExtraCharges,string GSTRate)
         {
-            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"',BillType='"+ BillType + "',ExtraChargesInc='"+ExtraCharges+"'";
+            string str = "Update Setting set BarcodeCount= '" + bar + "', BillCount='" + print + "', barcode='" + barcode + "',BarcodeType='" + BarcodeType + "',PaymentForm='" + payment + "',EstimatePayment='" + EstPay + "',Maintenance='" + maintain+"',BillType='"+ BillType + "',ExtraChargesInc='"+ExtraCharges+ "',GSTRate='" + GSTRate + "'";
             _objsqlhelper.ExecuteScalar(str);
 
             string str2 = "Update CrystalReport set SaleBill= '" + GSTInterstate + "' where type='GST_Interstate'";

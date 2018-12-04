@@ -64,6 +64,9 @@
             this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txt_Barcode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.pnl_Date.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -73,6 +76,7 @@
             // pnl_Date
             // 
             this.pnl_Date.BackColor = System.Drawing.Color.Moccasin;
+            this.pnl_Date.Controls.Add(this.button2);
             this.pnl_Date.Controls.Add(this.groupBox2);
             this.pnl_Date.Controls.Add(this.groupBox1);
             this.pnl_Date.Controls.Add(this.button1);
@@ -84,6 +88,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txt_Barcode);
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txt_Qty);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.bttn_Reset);
@@ -188,9 +194,9 @@
             this.cmb_category.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_category.DisplayMember = "Category";
             this.cmb_category.FormattingEnabled = true;
-            this.cmb_category.Location = new System.Drawing.Point(86, 29);
+            this.cmb_category.Location = new System.Drawing.Point(238, 29);
             this.cmb_category.Name = "cmb_category";
-            this.cmb_category.Size = new System.Drawing.Size(191, 21);
+            this.cmb_category.Size = new System.Drawing.Size(134, 21);
             this.cmb_category.TabIndex = 361;
             this.cmb_category.ValueMember = "Category";
             this.cmb_category.SelectedIndexChanged += new System.EventHandler(this.cmb_category_SelectedIndexChanged);
@@ -209,7 +215,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 33);
+            this.label1.Location = new System.Drawing.Point(186, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 362;
@@ -240,7 +246,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(295, 33);
+            this.label3.Location = new System.Drawing.Point(375, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 366;
@@ -261,9 +267,9 @@
             this.cmb_SubCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_SubCategory.DisplayMember = "SubCategory";
             this.cmb_SubCategory.FormattingEnabled = true;
-            this.cmb_SubCategory.Location = new System.Drawing.Point(389, 29);
+            this.cmb_SubCategory.Location = new System.Drawing.Point(446, 29);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
-            this.cmb_SubCategory.Size = new System.Drawing.Size(191, 21);
+            this.cmb_SubCategory.Size = new System.Drawing.Size(135, 21);
             this.cmb_SubCategory.TabIndex = 365;
             this.cmb_SubCategory.ValueMember = "SubCategory";
             this.cmb_SubCategory.SelectedIndexChanged += new System.EventHandler(this.cmb_SubCategory_SelectedIndexChanged);
@@ -365,7 +371,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(465, 475);
+            this.button1.Location = new System.Drawing.Point(522, 475);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 356;
@@ -377,7 +383,7 @@
             // 
             this.bttn_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bttn_Print.ForeColor = System.Drawing.Color.Green;
-            this.bttn_Print.Location = new System.Drawing.Point(302, 475);
+            this.bttn_Print.Location = new System.Drawing.Point(366, 475);
             this.bttn_Print.Name = "bttn_Print";
             this.bttn_Print.Size = new System.Drawing.Size(75, 25);
             this.bttn_Print.TabIndex = 355;
@@ -464,6 +470,35 @@
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(206, 471);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 29);
+            this.button2.TabIndex = 377;
+            this.button2.Text = "Reset";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txt_Barcode
+            // 
+            this.txt_Barcode.Location = new System.Drawing.Point(72, 29);
+            this.txt_Barcode.Name = "txt_Barcode";
+            this.txt_Barcode.Size = new System.Drawing.Size(111, 20);
+            this.txt_Barcode.TabIndex = 378;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(22, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 377;
+            this.label7.Text = "Barcode";
+            // 
             // frm_BarcodePrint
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -526,5 +561,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.Label lbl_Ref;
         private System.Windows.Forms.Label txt_Refrence;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txt_Barcode;
+        private System.Windows.Forms.Label label7;
     }
 }

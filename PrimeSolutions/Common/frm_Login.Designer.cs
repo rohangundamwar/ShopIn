@@ -127,6 +127,7 @@
             // lbl_message
             // 
             this.lbl_message.AutoSize = true;
+            this.lbl_message.ForeColor = System.Drawing.Color.Red;
             this.lbl_message.Location = new System.Drawing.Point(289, 192);
             this.lbl_message.Name = "lbl_message";
             this.lbl_message.Size = new System.Drawing.Size(40, 13);
