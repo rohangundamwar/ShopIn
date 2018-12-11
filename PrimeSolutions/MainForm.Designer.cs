@@ -33,7 +33,6 @@
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gSTSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estimateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wholeSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +61,7 @@
             this.customerBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerGSTReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletedBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,8 +138,7 @@
             // 
             this.saleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gSTSaleToolStripMenuItem,
-            this.estimateToolStripMenuItem,
-            this.wholeSaleToolStripMenuItem});
+            this.estimateToolStripMenuItem});
             this.saleToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.saleToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.cart_5;
             this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
@@ -161,14 +160,6 @@
             this.estimateToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.estimateToolStripMenuItem.Text = "Estimate";
             this.estimateToolStripMenuItem.Click += new System.EventHandler(this.estimateToolStripMenuItem_Click);
-            // 
-            // wholeSaleToolStripMenuItem
-            // 
-            this.wholeSaleToolStripMenuItem.Name = "wholeSaleToolStripMenuItem";
-            this.wholeSaleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
-            this.wholeSaleToolStripMenuItem.Text = "Whole sale";
-            this.wholeSaleToolStripMenuItem.Visible = false;
-            this.wholeSaleToolStripMenuItem.Click += new System.EventHandler(this.wholeSaleToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem
             // 
@@ -378,7 +369,8 @@
             this.customerDatatabseToolStripMenuItem,
             this.customerBalanceToolStripMenuItem,
             this.saleLedgerToolStripMenuItem,
-            this.customerGSTReportToolStripMenuItem});
+            this.customerGSTReportToolStripMenuItem,
+            this.deletedBillToolStripMenuItem});
             this.saleToolStripMenuItem1.Name = "saleToolStripMenuItem1";
             this.saleToolStripMenuItem1.Size = new System.Drawing.Size(197, 24);
             this.saleToolStripMenuItem1.Text = "Sale";
@@ -417,6 +409,13 @@
             this.customerGSTReportToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
             this.customerGSTReportToolStripMenuItem.Text = "Customer GST Report";
             this.customerGSTReportToolStripMenuItem.Click += new System.EventHandler(this.customerGSTReportToolStripMenuItem_Click);
+            // 
+            // deletedBillToolStripMenuItem
+            // 
+            this.deletedBillToolStripMenuItem.Name = "deletedBillToolStripMenuItem";
+            this.deletedBillToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+            this.deletedBillToolStripMenuItem.Text = "Deleted Bill";
+            this.deletedBillToolStripMenuItem.Click += new System.EventHandler(this.deletedBillToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem1
             // 
@@ -889,7 +888,6 @@
         private System.Windows.Forms.ToolStripMenuItem saleBillToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem updateDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wholeSaleToolStripMenuItem;
         private System.Windows.Forms.Label lbl_ValidDays;
         private System.Windows.Forms.ToolStripMenuItem customerPaymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteDataToolStripMenuItem;
@@ -919,6 +917,7 @@
         private System.Windows.Forms.ToolStripMenuItem stockCheckToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem stockLEdgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletedBillToolStripMenuItem;
     }
 }
 

@@ -15,8 +15,7 @@ namespace PrimeSolutions.Common
         AllClassFile _a = new AllClassFile();
         SaleCommon _Sale = new SaleCommon();
         clsCommon _common = new clsCommon();
-        string State;
-        
+        Simplevalidations _objSimpal = new Simplevalidations();
 
         public frm_RateChange()
         {
@@ -38,25 +37,18 @@ namespace PrimeSolutions.Common
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Rate.Focus();
+                txt_NewRate.Focus();
                 if (cmb_SubCategory.Text != "" || cmb_SubCategory.Text != string.Empty)
                 {
                     
-                    DataTable GST = _Sale.GetItemDetailsByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text);
-                    if (GST.Rows.Count > 0)
+                    DataTable Item = _Sale.GetItemRateByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text);
+                    if (Item.Rows.Count > 0)
                     {
-                        lbl_OldRate.Text = GST.Rows[0]["SellingPrice"].ToString();
-                        txt_OldGST.Text = Convert.ToString(Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"]));
-
-                        if (Convert.ToDouble(GST.Rows[0]["IGST"]) > 0)
-                            State = "other";
-                        else
-                            State = "same";
+                        lbl_OldRate.Text = Item.Rows[0]["SellingPrice"].ToString();
+                        lbl_OldGST.Text = Convert.ToString(Convert.ToDouble(Item.Rows[0]["GST"]));
+                        
                     }
-                    else
-                    {
-                        label1.Text = "No Stock Available to Change rates";
-                    }
+                   
 
                 }
             }
@@ -88,11 +80,11 @@ namespace PrimeSolutions.Common
 
         private void btn_Change_Click(object sender, EventArgs e)
         {
-            if (txt_Rate.Text != "" || txt_Rate.Text != string.Empty)
+            if (txt_NewRate.Text != "" || txt_NewRate.Text != string.Empty)
             {
                 if (txt_NewGST.Text != "" || txt_NewGST.Text != string.Empty)
                 {
-                    _common.ChangeRate(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text, txt_Rate.Text, txt_NewGST.Text, State);
+                    _common.ChangeRate(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text, txt_NewRate.Text, txt_NewGST.Text);
                     MessageBox.Show("Updated Succesfully");
                     clear();
                 }
@@ -110,7 +102,7 @@ namespace PrimeSolutions.Common
         private void clear()
         {
             lbl_OldRate.Text="0";
-            txt_Rate.Text = "0";
+            txt_NewRate.Text = "0";
             txt_NewGST.Text = "0";
             btn_Change.Enabled = false;
             cmb_size.ResetText();
@@ -140,6 +132,16 @@ namespace PrimeSolutions.Common
         private void txt_NewGST_TextChanged(object sender, EventArgs e)
         {
             btn_Change.Enabled = true;
+        }
+
+        private void txt_NewGST_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitWithPoint(e, txt_NewGST.Text);
+        }
+
+        private void txt_Rate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _objSimpal.ValidationDigitWithPoint(e, txt_NewRate.Text);
         }
     }
 }

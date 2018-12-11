@@ -55,15 +55,15 @@ namespace PrimeSolutions
             BillType = "New";
         }
 
-        public frm_SaleForm(string BillNo, string Type)
+        public frm_SaleForm(string BillNo, string Status)
         {
-            BillType = "Update";
+            BillType = Status;
             dtSett = new SettingValue();
             dtSett = _common.getSettingValue();
             InitializeComponent();
             VouchertypeID = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Invoice GST").Rows[0]["VoucherTypeID"].ToString();
             VouchertypeIDPayment = _common.getALLTableDetails(sTableName: TableNames.VoucherType, sColomnName: "VoucherTypeName", sColumnValue: "Sales Receipt Voucher").Rows[0]["VoucherTypeID"].ToString();
-            getBillDetails(BillNo);
+            getBillDetails(BillNo,Status);
 
         }
 
@@ -84,8 +84,12 @@ namespace PrimeSolutions
                 cmb_Name.DataSource = dt_cust;
                 cmb_SalesPerson.DataSource = _common.GetSalesPerson();
                 cmb_Name.Select();
-                Clear();
-                Masterclear();
+
+                if ( BillType != "Deleted")
+                {
+                    Clear(); Masterclear();
+                }
+               
             }
             
         }
@@ -93,6 +97,7 @@ namespace PrimeSolutions
         private void Masterclear()
         {
             dtp_Date.ResetText();
+            
             txt_BillNo.Text = _objSQLHelper.GetMaxID("S", "0");
             txt_AccNo.Text = _objSQLHelper.GetMaxID("C", "0");
             cmb_Name.SelectedIndex = -1;
@@ -150,84 +155,118 @@ namespace PrimeSolutions
             lbl_GSTAmt.Text = "0";
         }
 
-        public void getBillDetails(string billNo)
+        public void getBillDetails(string billNo,string status)
         {
-            txt_BillNo.Text = billNo.ToString();
+            txt_BillNo.Text = billNo;
 
-            //CustomerDetsils
-            DataTable Cust = _Sale.GetCustomerByBill(billNo);
+            if (status == "Update")
+            {
+                txt_BillNo.Text = billNo.ToString();
 
-            cmb_Name.Text = Cust.Rows[0]["CustomerName"].ToString();
-            cmb_Name.Enabled = false;
-            txt_AccNo.Text = Cust.Rows[0]["CustId"].ToString();
-            cmb_State.Text = Cust.Rows[0]["State"].ToString();
-            cmb_State.Enabled = false;
-            txt_PanNo.Text = Cust.Rows[0]["PanNo"].ToString();
-            txt_GSTIN.Text = Cust.Rows[0]["GSTIN"].ToString();
-            txt_ContactNo.Text = Cust.Rows[0]["ContactNo"].ToString();
-            txt_Address.Text = Cust.Rows[0]["Address"].ToString();
-            txt_City.Text = Cust.Rows[0]["City"].ToString();
+                //CustomerDetsils
+                DataTable Cust = _Sale.GetCustomerByBill(billNo);
+
+                cmb_Name.Text = Cust.Rows[0]["CustomerName"].ToString();
+               
+                cmb_Name.Enabled = false;
+                cmb_State.Enabled = false;
+              
+
+                txt_AccNo.Text = Cust.Rows[0]["CustId"].ToString();
+                cmb_State.Text = Cust.Rows[0]["State"].ToString();
+
+                txt_PanNo.Text = Cust.Rows[0]["PanNo"].ToString();
+                txt_GSTIN.Text = Cust.Rows[0]["GSTIN"].ToString();
+                txt_ContactNo.Text = Cust.Rows[0]["ContactNo"].ToString();
+                txt_Address.Text = Cust.Rows[0]["Address"].ToString();
+                txt_City.Text = Cust.Rows[0]["City"].ToString();
+
+                //PaymentDetails
+                Payment = _a.getpaymentByBill(billNo, "Sale", "0");
+                if (Payment.Rows.Count > 0)
+                {
+                    cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
+                    txt_OldPaid.Text = Payment.Rows[0]["Amt"].ToString();
+
+                }
+
+                //CustomerBill
+                CustomerBill = _Sale.GetBillDetails(billNo);
+                txt_TotalAmt.Text = CustomerBill.Rows[0]["Amount"].ToString();
+                lbl_CGSTValue.Text = CustomerBill.Rows[0]["CGST"].ToString();
+                lbl_SGSTValue.Text = CustomerBill.Rows[0]["SGST"].ToString();
+                lbl_IGSTValue.Text = CustomerBill.Rows[0]["IGST"].ToString();
+                txt_NetAmt.Text = CustomerBill.Rows[0]["GrandAmt"].ToString();
+                txt_Discount.Text = CustomerBill.Rows[0]["Discount"].ToString();
+                txt_BillAmt.Text = CustomerBill.Rows[0]["BillAmount"].ToString();
+                txt_Extra.Text = CustomerBill.Rows[0]["ExtraCharges"].ToString();
+                txt_CashDisc.Text = CustomerBill.Rows[0]["CashDiscount"].ToString();
+
+
+                //BillItem
+                DataTable BillItem = _Sale.GetBillItem(billNo, "Sale");
+                for (int i = 0; i < BillItem.Rows.Count; i++)
+                {
+                    /*1*/
+                    string barcode = BillItem.Rows[i]["Barcode"].ToString();
+                    /*2*/
+                    string category = BillItem.Rows[i]["Category"].ToString();
+                    /*3*/
+                    string SubCategory = BillItem.Rows[i]["SubCategory"].ToString();
+                    /*4*/
+                    string Size = BillItem.Rows[i]["Size"].ToString();
+                    /*5*/
+                    string HSN = BillItem.Rows[i]["HSN"].ToString();
+                    /*6*/
+                    string BatchNo = BillItem.Rows[i]["BatchNo"].ToString();
+                    /*7*/
+                    string Rate = BillItem.Rows[i]["Price"].ToString();
+                    /*8*/
+                    string qty = BillItem.Rows[i]["Qty"].ToString();
+                    /*9*/
+                    string Total = BillItem.Rows[i]["TotalAmount"].ToString();
+                    /*10*/
+                    string DiscPer = BillItem.Rows[i]["DiscPer"].ToString();
+                    /*11*/
+                    string DiscAmt = BillItem.Rows[i]["DiscAmt"].ToString();
+                    /*12*/
+                    string CGST = BillItem.Rows[i]["CGST"].ToString();
+                    /*13*/
+                    string CGSTAmt = BillItem.Rows[i]["CGSTAmt"].ToString();
+                    /*14*/
+                    string SGST = BillItem.Rows[i]["SGST"].ToString();
+                    /*15*/
+                    string SGSTAmt = BillItem.Rows[i]["SGSTAmt"].ToString();
+                    /*16*/
+                    string IGST = BillItem.Rows[i]["IGST"].ToString();
+                    /*17*/
+                    string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
+                    /*18*/
+                    string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
+                    /*19*/
+                    /*20*/
+                    string sales = BillItem.Rows[i]["SalesPerson"].ToString();
+                    /*21*/
+                    string maintain = BillItem.Rows[i]["Maintain"].ToString();
+                    /*22*/
+                    string ActualPrice = BillItem.Rows[i]["ActualPrice"].ToString();
+                    /*23*/
+                    string FinalAmount = BillItem.Rows[i]["FinalAmount"].ToString();
+
+                    dgv_ItemInfo.Rows.Add(barcode, category, SubCategory, Size, HSN, BatchNo, Rate, qty, Total, DiscPer, DiscAmt, CGST, CGSTAmt, SGST, SGSTAmt, IGST, IGSTAmt, Selling, "", sales, maintain, ActualPrice, FinalAmount);
+
+                }
+            }
+
             
-            //PaymentDetails
-            Payment = _a.getpaymentByBill(billNo, "Sale", "0");
-            if (Payment.Rows.Count > 0)
-            {
-                cmb_PayMode.Text = Payment.Rows[0]["Paymode"].ToString();
-                txt_OldPaid.Text = Payment.Rows[0]["Amt"].ToString();
-                
-            }
-
-            //CustomerBill
-            CustomerBill = _Sale.GetBillDetails(billNo);
-            txt_TotalAmt.Text = CustomerBill.Rows[0]["Amount"].ToString();
-            lbl_CGSTValue.Text = CustomerBill.Rows[0]["CGST"].ToString();
-            lbl_SGSTValue.Text = CustomerBill.Rows[0]["SGST"].ToString();
-            lbl_IGSTValue.Text = CustomerBill.Rows[0]["IGST"].ToString();
-            txt_NetAmt.Text = CustomerBill.Rows[0]["GrandAmt"].ToString();
-            txt_Discount.Text = CustomerBill.Rows[0]["Discount"].ToString();
-            txt_BillAmt.Text = CustomerBill.Rows[0]["BillAmount"].ToString();
-            txt_Extra.Text= CustomerBill.Rows[0]["ExtraCharges"].ToString();
-            txt_CashDisc.Text = CustomerBill.Rows[0]["CashDiscount"].ToString();
-
-
-            //BillItem
-            DataTable BillItem = _Sale.GetBillItem(billNo, "Sale");
-            for (int i = 0; i < BillItem.Rows.Count; i++)
-            {
-                /*1*/ string barcode = BillItem.Rows[i]["Barcode"].ToString();
-                /*2*/ string category = BillItem.Rows[i]["Category"].ToString();
-                /*3*/string SubCategory = BillItem.Rows[i]["SubCategory"].ToString();
-                /*4*/string Size = BillItem.Rows[i]["Size"].ToString();
-                /*5*/string HSN = BillItem.Rows[i]["HSN"].ToString();
-                /*6*/string BatchNo = BillItem.Rows[i]["BatchNo"].ToString();
-                /*7*/string Rate = BillItem.Rows[i]["Price"].ToString();
-                /*8*/string qty = BillItem.Rows[i]["Qty"].ToString();
-                /*9*/string Total = BillItem.Rows[i]["TotalAmount"].ToString();
-                /*10*/string DiscPer = BillItem.Rows[i]["DiscPer"].ToString();
-                /*11*/string DiscAmt = BillItem.Rows[i]["DiscAmt"].ToString();
-                /*12*/string CGST = BillItem.Rows[i]["CGST"].ToString();
-                /*13*/string CGSTAmt = BillItem.Rows[i]["CGSTAmt"].ToString();
-                /*14*/string SGST = BillItem.Rows[i]["SGST"].ToString();
-                /*15*/string SGSTAmt = BillItem.Rows[i]["SGSTAmt"].ToString();
-                /*16*/string IGST = BillItem.Rows[i]["IGST"].ToString();
-                /*17*/string IGSTAmt = BillItem.Rows[i]["IGSTAmt"].ToString();
-                /*18*/string Selling = BillItem.Rows[i]["SellingPrice"].ToString();
-                /*19*/
-                /*20*/string sales = BillItem.Rows[i]["SalesPerson"].ToString();
-                /*21*/string maintain = BillItem.Rows[i]["Maintain"].ToString();
-                /*22*/string ActualPrice = BillItem.Rows[i]["ActualPrice"].ToString();
-                /*23*/string FinalAmount = BillItem.Rows[i]["FinalAmount"].ToString();
-                
-                dgv_ItemInfo.Rows.Add( barcode, category,  SubCategory,  Size,  HSN, BatchNo, Rate, qty,Total,DiscPer,DiscAmt,CGST, CGSTAmt, SGST,  SGSTAmt, IGST,  IGSTAmt,  Selling,"",sales, maintain, ActualPrice,FinalAmount);
-                
-            }
+            
             
         }
 
         private void cmb_Name_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && cmb_Name.Text!=string.Empty)
             {
                 new CultureInfo("en-US", false).TextInfo.ToTitleCase(Regex.Replace(cmb_Name.Text, @"\s+", " ").Trim() as String);
 
@@ -246,6 +285,7 @@ namespace PrimeSolutions
                         txt_Balance.Text = "0";
                         txt_BalanceAmt.Text = "0";
                     }
+                    txt_BarcodeNo.Focus();
                 }
                 else
                 {
@@ -261,6 +301,7 @@ namespace PrimeSolutions
                     txt_ContactNo.Text = "";
                     txt_PanNo.Text = "";
                     txt_GSTIN.Text = "";
+                    cmb_State.Focus();
                 }
             }
             else if (e.KeyCode == Keys.F1)
@@ -306,6 +347,7 @@ namespace PrimeSolutions
             if (txt_BarcodeNo.Text != "" || txt_BarcodeNo.Text != string.Empty)
             {
                 DataTable GST = _Sale.GetItemDetailsByBarcode(txt_BarcodeNo.Text);
+                DataTable Rate = _Sale.GetItemRateByBarcode(txt_BarcodeNo.Text);
                 if (GST.Rows.Count > 0)
                 {
                     try
@@ -315,9 +357,16 @@ namespace PrimeSolutions
                         cmb_size.Text = GST.Rows[0]["size"].ToString();
                         txt_HSN.Text = GST.Rows[0]["HSN"].ToString();
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
-                        txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
-                        Double TotalGST = Convert.ToDouble(GST.Rows[0]["CGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["SGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["IGST"].ToString());
-                        txt_GSTper.Text = Convert.ToString(TotalGST);
+                        if (Rate.Rows.Count > 0)
+                        {
+                            txt_SellingAmt.Text = Rate.Rows[0]["SellingPrice"].ToString();
+                            txt_GSTper.Text = Rate.Rows[0]["GST"].ToString();
+                        }
+                        else
+                        {
+                            txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
+                            txt_GSTper.Text = Convert.ToString(Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"]));
+                        }
                     }
                     catch { }
                     txt_Qty.Focus();
@@ -327,6 +376,8 @@ namespace PrimeSolutions
             if (txt_BarcodeNo.Text == "" || txt_BarcodeNo.Text == string.Empty)
             {
                 DataTable GST = _Sale.GetItemDetailsByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text);
+                DataTable Rate = _Sale.GetItemRateByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text);
+
                 if (GST.Rows.Count > 0)
                 {
                     try
@@ -335,12 +386,21 @@ namespace PrimeSolutions
                         cmb_SubCategory.Text= GST.Rows[0]["SubCategory"].ToString();
                         txt_HSN.Text = GST.Rows[0]["HSN"].ToString();
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
-                        txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
-                        Double TotalGST = Convert.ToDouble(GST.Rows[0]["CGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["SGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["IGST"].ToString());
-                        txt_GSTper.Text = Convert.ToString(TotalGST);
+                        if (Rate.Rows.Count > 0)
+                        {
+                            txt_SellingAmt.Text = Rate.Rows[0]["SellingPrice"].ToString();
+                            txt_GSTper.Text = Rate.Rows[0]["GST"].ToString();
+                        }
+                        else
+                        {
+                            txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
+                            txt_GSTper.Text = Convert.ToString(Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"]));
+                        }
+                            
+
                     }
                     catch { }
-
+                    txt_Qty.Focus();
                 }
             }
             
@@ -603,13 +663,19 @@ namespace PrimeSolutions
             {
                 string sales = Convert.ToString(cmb_SalesPerson.Text[0]) ;
                 dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_BatchNo.Text, lbl_BasePrice.Text, txt_Qty.Text, lbl_TotalPrice.Text,txt_DiscPer.Text,txt_DiscAmt.Text, txt_CGSTper.Text, lbl_CGSTAmt.Text, txt_SGSTper.Text, lbl_SGSTAmt.Text, txt_IGSTper.Text, lbl_IGSTAmt.Text, txt_Amt.Text, lbl_FinalAmt.Text, sales,txt_maintain.Text, txt_Actual.Text,txt_SellingAmt.Text);
-                Clear();
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            if (!_a.CheckRateMaster(cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text))
+                _a.InsertRateMaster(txt_BarcodeNo.Text, cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text, txt_SellingAmt.Text, Convert.ToString(Convert.ToDouble(txt_CGSTper.Text) + Convert.ToDouble(txt_SGSTper.Text) + Convert.ToDouble(txt_IGSTper.Text)));
+
+            Clear();
             Calculate();
+            calculateDiscount();
             bttn_Sale.Enabled = true;
             txt_BarcodeNo.Focus();
         }
@@ -647,19 +713,19 @@ namespace PrimeSolutions
                 if (lbl_CGSTAmt.Text != "" || lbl_CGSTAmt.Text != string.Empty)
                 {
                     if (txt_CGSTper.Text != "" || txt_CGSTper.Text != string.Empty)
-                        lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text)), 1));
+                        lbl_CGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text) - Convert.ToDouble(txt_DiscAmt.Text)), 2));
                 }
 
                 if (lbl_SGSTAmt.Text != "" || lbl_SGSTAmt.Text != string.Empty)
                 {
                     if (txt_SGSTper.Text != "" || txt_SGSTper.Text != string.Empty)
-                        lbl_SGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_SGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text)), 1));
+                        lbl_SGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_CGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text) - Convert.ToDouble(txt_DiscAmt.Text)), 2));
                 }
 
                 if (lbl_IGSTAmt.Text != "" || lbl_IGSTAmt.Text != string.Empty)
                 {
                     if (txt_IGSTper.Text != "" || txt_IGSTper.Text != string.Empty)
-                        lbl_IGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_IGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text)), 1));
+                        lbl_IGSTAmt.Text = Convert.ToString(Math.Round((Convert.ToDouble(txt_IGSTper.Text) * 0.01) * (Convert.ToDouble(txt_Actual.Text) - Convert.ToDouble(txt_DiscAmt.Text)), 2));
                 }
 
                 lbl_GSTAmt.Text = Convert.ToString(Convert.ToDouble(lbl_CGSTAmt.Text) + Convert.ToDouble(lbl_SGSTAmt.Text) + Convert.ToDouble(lbl_IGSTAmt.Text));
@@ -691,6 +757,7 @@ namespace PrimeSolutions
         }
 
         private void CalculateBase()
+
         {
             if (dtSett.GSTInc == "1")
             {
@@ -716,7 +783,7 @@ namespace PrimeSolutions
                     {
                         if (txt_IGSTper.Text != "" || txt_IGSTper.Text != string.Empty)
                         {
-                            lbl_BasePrice.Text = txt_SellingAmt.Text;
+                            lbl_BasePrice.Text =Convert.ToString((Convert.ToDouble(txt_Actual.Text) - Convert.ToDouble(txt_DiscAmt.Text))/ Convert.ToDouble(txt_Qty.Text))  ;
                         }
                     }
                 }
@@ -858,6 +925,7 @@ namespace PrimeSolutions
 
                         _Sale.AddItemDetails(category, subcategory, Size, txt_BillNo.Text, "Sale", dtp_Date.Value.ToString("dd/MM/yyyy"), price, Qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, TotalAmount, BatchNo, HSN, TotalPrice, SalesPerson, Maintain, FinalAmt, Actual, Price, DiscPer, DiscAmt);
 
+                        
 
                         if (dgv_ItemInfo.Rows[i].Cells["Maintain"].Value.ToString() != "0")
                         {
@@ -977,7 +1045,7 @@ namespace PrimeSolutions
 
 
                 MessageBox.Show("Sale Successfully Done");
-                if (BillType == "Update")
+                if (BillType == "Update" || BillType=="Deleted")
                 {
                     this.Close();
                 }
@@ -1022,13 +1090,16 @@ namespace PrimeSolutions
                     cmb_size.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Size"].Value.ToString();
                     txt_HSN.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["HSN"].Value.ToString();
                     txt_BatchNo.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["BatchNo"].Value.ToString();
-                    txt_SellingAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Rate"].Value.ToString();
+                    txt_SellingAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["ActualPrice"].Value.ToString();
                     txt_Qty.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value.ToString();
 
-                    txt_DiscPer.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["DiscPer"].Value.ToString();
+                    
                     double GST = Convert.ToDouble(dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGSTper"].Value.ToString())+ Convert.ToDouble(dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGSTper"].Value.ToString()) + Convert.ToDouble(dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGSTper"].Value.ToString());
 
                     txt_GSTper.Text =Convert.ToString(GST);
+
+                    txt_DiscPer.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["DiscPer"].Value.ToString();
+                    txt_DiscAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["DiscAmt"].Value.ToString();
                 }
             }
             catch (System.Exception ex)
@@ -1042,7 +1113,7 @@ namespace PrimeSolutions
         {
             try
             {
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Barcode"].Value = txt_BarcodeNo.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["BarcodeNo"].Value = txt_BarcodeNo.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value = cmb_Category.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Size"].Value = cmb_size.Text;
@@ -1053,17 +1124,17 @@ namespace PrimeSolutions
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = lbl_TotalPrice.Text;
 
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGST%"].Value = txt_CGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGSTper"].Value = txt_CGSTper.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["CGST"].Value = lbl_CGSTAmt.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGST%"].Value = txt_SGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGSTper"].Value = txt_SGSTper.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SGST"].Value = lbl_SGSTAmt.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGST%"].Value = txt_IGSTper.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGSTper"].Value = txt_IGSTper.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["IGST"].Value = lbl_IGSTAmt.Text;
 
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["DiscPer"].Value = txt_DiscPer.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["DiscAmt"].Value = txt_DiscAmt.Text;
 
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SalesPerson"].Value = cmb_SalesPerson.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Sales"].Value = cmb_SalesPerson.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["MainTain"].Value = txt_maintain.Text;
 
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["FinalAmount"].Value = txt_Actual.Text;
@@ -1433,26 +1504,9 @@ namespace PrimeSolutions
         {   
             if (Convert.ToDouble(txt_DiscPer.Text) <= 100)
             {
-                double DiscountPer = 0, Selling = Convert.ToDouble(txt_SellingAmt.Text); ;
-
-                if (txt_DiscAmt.Text != "" || txt_DiscAmt.Text != string.Empty)
-                {
-                    double Qty = Convert.ToDouble(txt_Qty.Text);
-
-                    if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
-                    {
-                        DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
-                    }
-                }
-
-                double discount = DiscountPer / 100;
-                double DiscAmt = Math.Round((Convert.ToDouble(txt_Actual.Text) * discount), 2);
-                lbl_FinalAmt.Text = Convert.ToString(Math.Round((Selling - (Selling * discount)), 2));
-                txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(lbl_FinalAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
-
-                CalculateGST();
-                CalculateBase();
-                CalculateTotalBase();
+                double total = Math.Round(Convert.ToDouble(Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)), 2);
+                double disc = Convert.ToDouble(txt_DiscPer.Text) / 100;
+                txt_DiscAmt.Text = Convert.ToString(Math.Round(total*disc, 2)); 
             }
             else { MessageBox.Show("Percent Cannot Exceed 100%"); }
             
@@ -1510,11 +1564,29 @@ namespace PrimeSolutions
                 {
                     txt_DiscPer.Text = "0";
                 }
-               
-                txt_DiscAmt.Focus();
-                double discount = Convert.ToDouble(txt_DiscPer.Text) / 100;
+
+                double DiscountPer = 0;
+                double Selling = Convert.ToDouble(txt_SellingAmt.Text);
+                double Qty = Convert.ToDouble(txt_Qty.Text);
+
+                if (txt_DiscPer.Text != "" && txt_DiscPer.Text != null)
+                {
+                    DiscountPer = Convert.ToDouble(txt_DiscPer.Text);
+                }
+
+                double discount = DiscountPer / 100;
                 double DiscAmt = Math.Round((Convert.ToDouble(txt_Actual.Text) * discount), 2);
-                txt_DiscAmt.Text = DiscAmt.ToString();
+                lbl_FinalAmt.Text = Convert.ToString(Math.Round((Selling - (Selling * discount)), 2));
+                txt_Amt.Text = Convert.ToString(Math.Round(Convert.ToDouble(lbl_FinalAmt.Text) * Convert.ToDouble(txt_Qty.Text), 2));
+
+                CalculateGST();
+                CalculateBase();
+                CalculateTotalBase();
+
+                txt_DiscAmt.Focus();
+                //double discount1 = Convert.ToDouble(txt_DiscPer.Text) / 100;
+                //double DiscAmt1 = Math.Round((Convert.ToDouble(txt_Actual.Text) * discount1), 2);
+                //txt_DiscAmt.Text = DiscAmt1.ToString();
             }
 
         }

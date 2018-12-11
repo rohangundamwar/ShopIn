@@ -22,11 +22,11 @@ namespace PrimeSolutions.Report
         
         private void frm_Stock_Load(object sender, EventArgs e)
         {
-            DataTable dt3 = _objstock.GetCategory(); //Category
+            DataTable dt3 = _objstock.FillCategory(); //Category
             cmb_category.DataSource = dt3;
             cmb_category.SelectedIndex = -1;
 
-            DataTable dt2 = _objstock.GetSubCategory("");
+            DataTable dt2 = _objstock.FillSubCategory();
             cmb_SubCategory.DataSource = dt2;
             cmb_SubCategory.SelectedIndex = -1;
             
@@ -36,7 +36,7 @@ namespace PrimeSolutions.Report
 
         private void stock()
         {
-            DataTable dt3 = _objstock.GetCategory(); //Category
+            DataTable dt3 = _objstock.FillCategory(); //Category
             DataTable dt2 = _objstock.GetSubCategoryByCategory(cmb_category.Text);
             DataTable dt1 = new DataTable(); //SubCategory
             string a;

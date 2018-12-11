@@ -202,21 +202,10 @@ namespace PrimeSolutions.Library
             return _objSqlhelper.ExecuteScalar(str);
         }
 
-        public string ChangeRate(string Category,string SubCategory,string Size,string Rate,string GST,string State)
+        public string ChangeRate(string Category, string SubCategory, string Size, string Rate, string GST)
         {
-            double tax;
-
-            if (State == "same")
-            {
-                tax = Convert.ToDouble(GST) / 2;
-                string str = "Update BillItem Set SellingPrice='" + Rate + "',CGST='" + tax + "',SGST='" + tax + "' where Category='" + Category + "' and SubCategory='" + SubCategory + "' and Size='" + Size + "' and Type='Purchase' ";
-                return _objSqlhelper.ExecuteScalar(str);
-            }
-            else
-            {   
-                string str = "Update BillItem Set SellingPrice='" + Rate + "',IGST='" + GST + "'  where Category='" + Category + "' and SubCategory='"+SubCategory+"' and Size='" + Size + "' and Type='Purchase' ";
-                return _objSqlhelper.ExecuteScalar(str);
-            }
+            string str = "Update RateMaster Set SellingPrice='" + Rate + "',GST='" + GST + "' where Category='" + Category + "' and SubCategory='" + SubCategory + "' and Size='" + Size + "' ";
+            return _objSqlhelper.ExecuteScalar(str);
         }
 
         public DataTable GetSalesPerson()

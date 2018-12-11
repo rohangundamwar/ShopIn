@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
             this.txt_BillNo = new System.Windows.Forms.Label();
@@ -159,7 +159,7 @@
             // 
             // pnl_Top
             // 
-            this.pnl_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pnl_Top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.pnl_Top.Controls.Add(this.txt_BillNo);
             this.pnl_Top.Controls.Add(this.txt_AccNo);
             this.pnl_Top.Controls.Add(this.dtp_Date);
@@ -391,12 +391,12 @@
             // 
             // txt_GSTIN
             // 
-            this.txt_GSTIN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_GSTIN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_GSTIN.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_GSTIN.Location = new System.Drawing.Point(617, 54);
+            this.txt_GSTIN.Location = new System.Drawing.Point(617, 52);
             this.txt_GSTIN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_GSTIN.Name = "txt_GSTIN";
-            this.txt_GSTIN.Size = new System.Drawing.Size(121, 15);
+            this.txt_GSTIN.Size = new System.Drawing.Size(121, 22);
             this.txt_GSTIN.TabIndex = 7;
             this.txt_GSTIN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_GSTIN_KeyDown);
             // 
@@ -414,12 +414,12 @@
             // 
             // txt_PanNo
             // 
-            this.txt_PanNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_PanNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_PanNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PanNo.Location = new System.Drawing.Point(371, 54);
+            this.txt_PanNo.Location = new System.Drawing.Point(371, 52);
             this.txt_PanNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PanNo.Name = "txt_PanNo";
-            this.txt_PanNo.Size = new System.Drawing.Size(136, 15);
+            this.txt_PanNo.Size = new System.Drawing.Size(136, 22);
             this.txt_PanNo.TabIndex = 6;
             this.txt_PanNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PanNo_KeyDown);
             this.txt_PanNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PanNo_KeyPress);
@@ -450,24 +450,24 @@
             // 
             // txt_ContactNo
             // 
-            this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ContactNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_ContactNo.Location = new System.Drawing.Point(134, 54);
+            this.txt_ContactNo.Location = new System.Drawing.Point(134, 52);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
-            this.txt_ContactNo.Size = new System.Drawing.Size(136, 15);
+            this.txt_ContactNo.Size = new System.Drawing.Size(136, 22);
             this.txt_ContactNo.TabIndex = 5;
             this.txt_ContactNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_ContactNo_KeyDown);
             this.txt_ContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ContactNo_KeyPress);
             // 
             // txt_City
             // 
-            this.txt_City.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_City.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_City.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_City.Location = new System.Drawing.Point(855, 19);
+            this.txt_City.Location = new System.Drawing.Point(855, 17);
             this.txt_City.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_City.Name = "txt_City";
-            this.txt_City.Size = new System.Drawing.Size(110, 15);
+            this.txt_City.Size = new System.Drawing.Size(110, 22);
             this.txt_City.TabIndex = 4;
             this.txt_City.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_City_KeyDown);
             this.txt_City.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_City_KeyPress);
@@ -486,12 +486,12 @@
             // 
             // txt_Address
             // 
-            this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Address.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Address.Location = new System.Drawing.Point(683, 19);
+            this.txt_Address.Location = new System.Drawing.Point(683, 17);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Address.Name = "txt_Address";
-            this.txt_Address.Size = new System.Drawing.Size(121, 15);
+            this.txt_Address.Size = new System.Drawing.Size(121, 22);
             this.txt_Address.TabIndex = 3;
             this.txt_Address.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Address_KeyDown);
             this.txt_Address.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Address_KeyPress);
@@ -506,7 +506,7 @@
             this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.cmb_Name.FormattingEnabled = true;
             this.cmb_Name.IntegralHeight = false;
-            this.cmb_Name.Location = new System.Drawing.Point(134, 15);
+            this.cmb_Name.Location = new System.Drawing.Point(134, 16);
             this.cmb_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Name.Name = "cmb_Name";
             this.cmb_Name.Size = new System.Drawing.Size(261, 24);
@@ -518,7 +518,7 @@
             // 
             // pnl_ItemInfo
             // 
-            this.pnl_ItemInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_ItemInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(192)))));
             this.pnl_ItemInfo.Controls.Add(this.cmb_size);
             this.pnl_ItemInfo.Controls.Add(this.lbl_Size);
             this.pnl_ItemInfo.Controls.Add(this.txt_maintain);
@@ -581,12 +581,12 @@
             // 
             // txt_maintain
             // 
-            this.txt_maintain.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_maintain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_maintain.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_maintain.Location = new System.Drawing.Point(292, 80);
+            this.txt_maintain.Location = new System.Drawing.Point(927, 76);
             this.txt_maintain.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_maintain.Name = "txt_maintain";
-            this.txt_maintain.Size = new System.Drawing.Size(38, 15);
+            this.txt_maintain.Size = new System.Drawing.Size(38, 22);
             this.txt_maintain.TabIndex = 62;
             this.txt_maintain.Text = "0";
             this.txt_maintain.Visible = false;
@@ -598,7 +598,7 @@
             this.lbl_maintain.AutoSize = true;
             this.lbl_maintain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_maintain.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_maintain.Location = new System.Drawing.Point(222, 79);
+            this.lbl_maintain.Location = new System.Drawing.Point(857, 79);
             this.lbl_maintain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_maintain.Name = "lbl_maintain";
             this.lbl_maintain.Size = new System.Drawing.Size(66, 16);
@@ -623,7 +623,7 @@
             this.cmb_SalesPerson.DisplayMember = "SalesPerson";
             this.cmb_SalesPerson.FormattingEnabled = true;
             this.cmb_SalesPerson.ItemHeight = 16;
-            this.cmb_SalesPerson.Location = new System.Drawing.Point(108, 75);
+            this.cmb_SalesPerson.Location = new System.Drawing.Point(743, 75);
             this.cmb_SalesPerson.Name = "cmb_SalesPerson";
             this.cmb_SalesPerson.Size = new System.Drawing.Size(106, 24);
             this.cmb_SalesPerson.TabIndex = 60;
@@ -672,7 +672,7 @@
             this.txt_SalesPerson.AutoSize = true;
             this.txt_SalesPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_SalesPerson.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.txt_SalesPerson.Location = new System.Drawing.Point(9, 79);
+            this.txt_SalesPerson.Location = new System.Drawing.Point(644, 79);
             this.txt_SalesPerson.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txt_SalesPerson.Name = "txt_SalesPerson";
             this.txt_SalesPerson.Size = new System.Drawing.Size(97, 16);
@@ -693,12 +693,12 @@
             // 
             // txt_BatchNo
             // 
-            this.txt_BatchNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_BatchNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_BatchNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BatchNo.Location = new System.Drawing.Point(108, 46);
+            this.txt_BatchNo.Location = new System.Drawing.Point(108, 42);
             this.txt_BatchNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BatchNo.Name = "txt_BatchNo";
-            this.txt_BatchNo.Size = new System.Drawing.Size(140, 15);
+            this.txt_BatchNo.Size = new System.Drawing.Size(140, 22);
             this.txt_BatchNo.TabIndex = 12;
             this.txt_BatchNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BatchNo_KeyDown);
             // 
@@ -716,12 +716,12 @@
             // 
             // txt_HSN
             // 
-            this.txt_HSN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_HSN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_HSN.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_HSN.Location = new System.Drawing.Point(884, 14);
+            this.txt_HSN.Location = new System.Drawing.Point(884, 10);
             this.txt_HSN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_HSN.Name = "txt_HSN";
-            this.txt_HSN.Size = new System.Drawing.Size(81, 15);
+            this.txt_HSN.Size = new System.Drawing.Size(81, 22);
             this.txt_HSN.TabIndex = 11;
             this.txt_HSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_HSN_KeyDown);
             // 
@@ -739,7 +739,7 @@
             // 
             // pnl_Button
             // 
-            this.pnl_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.pnl_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(150)))));
             this.pnl_Button.Controls.Add(this.bttn_All);
             this.pnl_Button.Controls.Add(this.bttn_Delete);
             this.pnl_Button.Controls.Add(this.bttn_Reset);
@@ -826,12 +826,12 @@
             // 
             // txt_Qty
             // 
-            this.txt_Qty.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Qty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Qty.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Qty.Location = new System.Drawing.Point(556, 46);
+            this.txt_Qty.Location = new System.Drawing.Point(556, 42);
             this.txt_Qty.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Qty.Name = "txt_Qty";
-            this.txt_Qty.Size = new System.Drawing.Size(38, 15);
+            this.txt_Qty.Size = new System.Drawing.Size(38, 22);
             this.txt_Qty.TabIndex = 14;
             this.txt_Qty.Text = "1";
             this.txt_Qty.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
@@ -852,12 +852,12 @@
             // 
             // txt_SellingAmt
             // 
-            this.txt_SellingAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_SellingAmt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_SellingAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_SellingAmt.Location = new System.Drawing.Point(359, 46);
+            this.txt_SellingAmt.Location = new System.Drawing.Point(359, 42);
             this.txt_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SellingAmt.Name = "txt_SellingAmt";
-            this.txt_SellingAmt.Size = new System.Drawing.Size(100, 15);
+            this.txt_SellingAmt.Size = new System.Drawing.Size(100, 22);
             this.txt_SellingAmt.TabIndex = 13;
             this.txt_SellingAmt.TextChanged += new System.EventHandler(this.txt_SellingAmt_TextChanged);
             this.txt_SellingAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SellingAmt_KeyDown);
@@ -877,12 +877,12 @@
             // 
             // txt_BarcodeNo
             // 
-            this.txt_BarcodeNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_BarcodeNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_BarcodeNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BarcodeNo.Location = new System.Drawing.Point(108, 14);
+            this.txt_BarcodeNo.Location = new System.Drawing.Point(108, 10);
             this.txt_BarcodeNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BarcodeNo.Name = "txt_BarcodeNo";
-            this.txt_BarcodeNo.Size = new System.Drawing.Size(123, 15);
+            this.txt_BarcodeNo.Size = new System.Drawing.Size(123, 22);
             this.txt_BarcodeNo.TabIndex = 8;
             this.txt_BarcodeNo.TextChanged += new System.EventHandler(this.txt_BarcodeNo_TextChanged);
             this.txt_BarcodeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PurchaseAmt_KeyDown);
@@ -962,8 +962,8 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8F);
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8F);
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.AliceBlue;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -985,8 +985,8 @@
             this.dgv_ItemInfo.Location = new System.Drawing.Point(4, 288);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_ItemInfo.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv_ItemInfo.Size = new System.Drawing.Size(984, 190);
             this.dgv_ItemInfo.TabIndex = 0;
@@ -994,8 +994,8 @@
             // 
             // BarcodeNo
             // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BarcodeNo.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarcodeNo.DefaultCellStyle = dataGridViewCellStyle11;
             this.BarcodeNo.FillWeight = 60F;
             this.BarcodeNo.HeaderText = "Barcode No";
             this.BarcodeNo.Name = "BarcodeNo";
@@ -1078,7 +1078,7 @@
             // 
             // pnl_PaymentOpt
             // 
-            this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_PaymentOpt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(192)))));
             this.pnl_PaymentOpt.Controls.Add(this.pnl_OldPay);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_Narration);
             this.pnl_PaymentOpt.Controls.Add(this.txt_Narration);
@@ -1118,6 +1118,7 @@
             this.pnl_OldPay.Name = "pnl_OldPay";
             this.pnl_OldPay.Size = new System.Drawing.Size(340, 63);
             this.pnl_OldPay.TabIndex = 64;
+            this.pnl_OldPay.Visible = false;
             // 
             // label31
             // 
@@ -1207,12 +1208,12 @@
             // 
             // txt_Extra
             // 
-            this.txt_Extra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Extra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Extra.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Extra.Location = new System.Drawing.Point(124, 18);
+            this.txt_Extra.Location = new System.Drawing.Point(124, 13);
             this.txt_Extra.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Extra.Name = "txt_Extra";
-            this.txt_Extra.Size = new System.Drawing.Size(90, 15);
+            this.txt_Extra.Size = new System.Drawing.Size(90, 22);
             this.txt_Extra.TabIndex = 61;
             this.txt_Extra.Text = "0";
             this.txt_Extra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Extra_KeyDown);
@@ -1222,7 +1223,7 @@
             this.lbl_Extra.AutoSize = true;
             this.lbl_Extra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Extra.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Extra.Location = new System.Drawing.Point(9, 17);
+            this.lbl_Extra.Location = new System.Drawing.Point(9, 16);
             this.lbl_Extra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Extra.Name = "lbl_Extra";
             this.lbl_Extra.Size = new System.Drawing.Size(105, 16);
@@ -1242,7 +1243,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(831, 47);
+            this.label21.Location = new System.Drawing.Point(847, 47);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(18, 19);
             this.label21.TabIndex = 52;
@@ -1262,7 +1263,7 @@
             this.txt_BillAmt.AutoSize = true;
             this.txt_BillAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.txt_BillAmt.ForeColor = System.Drawing.Color.Green;
-            this.txt_BillAmt.Location = new System.Drawing.Point(855, 46);
+            this.txt_BillAmt.Location = new System.Drawing.Point(871, 46);
             this.txt_BillAmt.Name = "txt_BillAmt";
             this.txt_BillAmt.Size = new System.Drawing.Size(39, 20);
             this.txt_BillAmt.TabIndex = 22;
@@ -1273,7 +1274,7 @@
             this.lbl_BillAmt.AutoSize = true;
             this.lbl_BillAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BillAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_BillAmt.Location = new System.Drawing.Point(832, 18);
+            this.lbl_BillAmt.Location = new System.Drawing.Point(856, 16);
             this.lbl_BillAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_BillAmt.Name = "lbl_BillAmt";
             this.lbl_BillAmt.Size = new System.Drawing.Size(60, 16);
@@ -1282,12 +1283,12 @@
             // 
             // txt_Discount
             // 
-            this.txt_Discount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Discount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Discount.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Discount.Location = new System.Drawing.Point(294, 18);
+            this.txt_Discount.Location = new System.Drawing.Point(294, 13);
             this.txt_Discount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Discount.Name = "txt_Discount";
-            this.txt_Discount.Size = new System.Drawing.Size(90, 15);
+            this.txt_Discount.Size = new System.Drawing.Size(90, 22);
             this.txt_Discount.TabIndex = 20;
             this.txt_Discount.Text = "0";
             this.txt_Discount.TextChanged += new System.EventHandler(this.txt_Discount_TextChanged);
@@ -1299,7 +1300,7 @@
             this.lbl_Discount.AutoSize = true;
             this.lbl_Discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Discount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Discount.Location = new System.Drawing.Point(221, 17);
+            this.lbl_Discount.Location = new System.Drawing.Point(221, 16);
             this.lbl_Discount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Discount.Name = "lbl_Discount";
             this.lbl_Discount.Size = new System.Drawing.Size(68, 16);
@@ -1357,21 +1358,22 @@
             // 
             // txt_BalanceAmt
             // 
-            this.txt_BalanceAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_BalanceAmt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_BalanceAmt.Enabled = false;
             this.txt_BalanceAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BalanceAmt.Location = new System.Drawing.Point(671, 18);
+            this.txt_BalanceAmt.Location = new System.Drawing.Point(671, 13);
             this.txt_BalanceAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BalanceAmt.Name = "txt_BalanceAmt";
-            this.txt_BalanceAmt.Size = new System.Drawing.Size(90, 15);
+            this.txt_BalanceAmt.Size = new System.Drawing.Size(90, 22);
             this.txt_BalanceAmt.TabIndex = 0;
+            this.txt_BalanceAmt.Text = "0";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label6.Location = new System.Drawing.Point(566, 17);
+            this.label6.Location = new System.Drawing.Point(566, 16);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 16);
@@ -1380,13 +1382,14 @@
             // 
             // txt_PaidAmt
             // 
-            this.txt_PaidAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_PaidAmt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_PaidAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PaidAmt.Location = new System.Drawing.Point(470, 18);
+            this.txt_PaidAmt.Location = new System.Drawing.Point(470, 13);
             this.txt_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PaidAmt.Name = "txt_PaidAmt";
-            this.txt_PaidAmt.Size = new System.Drawing.Size(90, 15);
+            this.txt_PaidAmt.Size = new System.Drawing.Size(90, 22);
             this.txt_PaidAmt.TabIndex = 15;
+            this.txt_PaidAmt.Text = "0";
             this.txt_PaidAmt.TextChanged += new System.EventHandler(this.txt_PaidAmt_TextChanged);
             this.txt_PaidAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PaidAmt_KeyDown);
             this.txt_PaidAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PaidAmt_KeyPress);
@@ -1396,7 +1399,7 @@
             this.lbl_PaidAmt.AutoSize = true;
             this.lbl_PaidAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PaidAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_PaidAmt.Location = new System.Drawing.Point(390, 17);
+            this.lbl_PaidAmt.Location = new System.Drawing.Point(390, 16);
             this.lbl_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PaidAmt.Name = "lbl_PaidAmt";
             this.lbl_PaidAmt.Size = new System.Drawing.Size(74, 16);
@@ -1429,7 +1432,7 @@
             // 
             // pnl_Bottom
             // 
-            this.pnl_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.pnl_Bottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.pnl_Bottom.Controls.Add(this.bttn_Close);
             this.pnl_Bottom.Controls.Add(this.bttn_Clear);
             this.pnl_Bottom.Controls.Add(this.bttn_Sale);

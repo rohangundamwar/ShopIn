@@ -54,6 +54,13 @@ namespace PrimeSolutions.Library
             
         }
 
+        public DataTable GetDeletedBill()
+        {
+            string sql = "SELECT dbo.CustomerBill.SrNo, dbo.CustomerMaster.CustomerName, dbo.CustomerBill.BillNo, dbo.CustomerBill.Type, dbo.CustomerBill.Date, dbo.CustomerBill.Amount, dbo.CustomerBill.CGST, dbo.CustomerBill.SGST, dbo.CustomerBill.IGST, dbo.CustomerBill.GrandAmt, dbo.CustomerBill.BillAmount, dbo.CustomerMaster.GSTIN, dbo.Payment.Paymode, dbo.Payment.Amt AS PaidAmount, dbo.CustomerBill.permanentDelete FROM dbo.Payment INNER JOIN dbo.CustomerMaster ON dbo.Payment.Id = dbo.CustomerMaster.CustId INNER JOIN dbo.CustomerBill ON dbo.CustomerMaster.CustId = dbo.CustomerBill.CustId WHERE(dbo.CustomerBill.permanentDelete = 1)";
+            DataTable dt = _sql.GetDataTable(sql);
+            return dt;
+        }
+
         public void DeleteBillDetails(string BillNo,string Type)
         {
             string str="";
@@ -70,6 +77,13 @@ namespace PrimeSolutions.Library
             _sql.ExecuteSql(str);
         }
 
+        public void DeleteBillRecord(string SrNo,string BillNo)
+        {
+            string Bill = "delete from CustomerBill Where SrNo='"+ SrNo + "' ";
+            string Item = "delete from BillItem Where SaleBillNo='" + BillNo + "' ";
+            _sql.ExecuteSql(Bill);
+            _sql.ExecuteSql(Item);
+        }
 
         public DataTable getSalesMan()
         {
@@ -121,13 +135,7 @@ namespace PrimeSolutions.Library
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
-
-        public DataTable GetItemDetailsByBarcode(string Barcode)
-        {
-            string str = "Select * from BillItem where Barcode = '" + Barcode + "'";
-            DataTable dt = _sql.GetDataTable(str);
-            return dt;
-        }
+        
 
         public void insertcreditDebitWithPayment(string customerLedgerID, string VouchertypeID, string sbillno, string transactionLedgerID, string AmountPaid, string Narration, string Date, string name)
         {
@@ -196,9 +204,37 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        public DataTable GetItemRateByCategoySubCategory(string category, string subcategory)
+        {
+            string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='" + subcategory + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
         public DataTable GetItemDetailsByCategoySubCategorySize(string category, string subcategory,string size)
         {
             string str = "Select * from BillItem where Category = '" + category + "' and SubCategory='"+subcategory+ "' and Size = '" + size + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetItemRateByCategoySubCategorySize(string category, string subcategory, string size)
+        {
+            string str = "Select * from RateMaster where Category = '" + category + "' and SubCategory='" + subcategory + "' and Size = '" + size + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetItemDetailsByBarcode(string Barcode)
+        {
+            string str = "Select * from BillItem where Barcode = '" + Barcode + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetItemRateByBarcode(string Barcode)
+        {
+            string str = "Select * from RateMaster where Barcode = '" + Barcode + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }
@@ -367,6 +403,13 @@ namespace PrimeSolutions.Library
         public DataTable GetCustomerByContact(string Number)
         {
             string str = "Select * From CustomerMaster where ContactNo = '" + Number + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetAllSaleBill()
+        {
+            string str = "Select * From CustomerBill ";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }

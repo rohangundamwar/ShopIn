@@ -36,13 +36,13 @@ namespace PrimeSolutions.Report.Sale
             {
                 if (txt_type.Text == "GST")
                 {
-                    frm_SaleForm _form = new frm_SaleForm(bill.Text, txt_type.Text);
+                    frm_SaleForm _form = new frm_SaleForm(bill.Text,"Update");
                     _form.ShowDialog();
                 }
 
                 if (txt_type.Text == "Estimate")
                 {
-                    frm_SaleEstimate _form = new frm_SaleEstimate(bill.Text, txt_type.Text);
+                    frm_SaleEstimate _form = new frm_SaleEstimate(bill.Text, "Update");
                     _form.ShowDialog();
                 }
 

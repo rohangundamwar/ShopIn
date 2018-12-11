@@ -23,7 +23,7 @@ namespace PrimeSolutions.Report.Sale
 
         private void frm_DuplicateBill_Load(object sender, EventArgs e)
         {
-            dt = _a.GetAllSupplier();
+            dt = _a.getSupplierName();
             cmb_customer.DataSource = dt;
         }
 

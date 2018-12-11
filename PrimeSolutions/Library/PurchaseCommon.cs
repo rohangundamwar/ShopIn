@@ -68,6 +68,7 @@ namespace PrimeSolutions.Library
             string str = "INSERT INTO BillItem (Barcode,Category, SubCategory,size,PurchaseBillNo,Type,Qty,CGST, CGSTAmt, SGST,SGSTAmt,IGST,IGSTAmt,Price,TotalPrice,BatchNo,SellingPrice,HSN,PurchaseDate,BarcodePrint,PurchaseRef) VALUES ('" + barcode + "','" + category + "','" + subcategory + "','"+size+"','" + Pbill + "','"+type+"','"+Qty+"','" + CGST + "','" + CGSTAmt + "','" + SGST + "','" + SGSTAmt + "','"+IGST+"','" + IGSTAmt + "','" + purchaseamt + "','"+total+"','"+BatchNo+"','"+sellingamt+"','"+HSN+"','"+date+ "','"+BarcodePrint+"','"+ PurchaseRef + "')";
             _sql.ExecuteScalar(str);
         }
+        
 
         public DataTable GetSupplierBillNo()
         {
