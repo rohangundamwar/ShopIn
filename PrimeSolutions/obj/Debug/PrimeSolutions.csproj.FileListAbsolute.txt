@@ -17,8 +17,9 @@ F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\System.ServiceProcess.dll
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\CrystalDecisions.Web.dll
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ClosedXML.pdb
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ClosedXML.xml
-F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.exe
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.exe.config
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.exe
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.pdb
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ClosedXML.dll
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\CrystalDecisions.CrystalReports.Design.dll
 F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\DocumentFormat.OpenXml.dll
@@ -98,3 +99,4 @@ F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Service.frm_Ser
 F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.csproj.GenerateResource.Cache
 F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\ShopIn.exe
 F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\ShopIn.pdb
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.csprojResolveAssemblyReference.cache
