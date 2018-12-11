@@ -45,7 +45,9 @@
             // 
             // dgv_BillItem
             // 
+            this.dgv_BillItem.AllowUserToAddRows = false;
             this.dgv_BillItem.AllowUserToDeleteRows = false;
+            this.dgv_BillItem.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgv_BillItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_BillItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Category,
@@ -169,6 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(539, 413);
             this.Controls.Add(this.cmb_Name);
             this.Controls.Add(this.lbl_PurchaseFrom);

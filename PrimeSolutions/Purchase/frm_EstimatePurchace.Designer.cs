@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
             this.txt_refrence = new System.Windows.Forms.Label();
@@ -135,7 +135,7 @@
             // 
             // pnl_Top
             // 
-            this.pnl_Top.BackColor = System.Drawing.Color.DarkViolet;
+            this.pnl_Top.BackColor = System.Drawing.Color.Tomato;
             this.pnl_Top.Controls.Add(this.txt_refrence);
             this.pnl_Top.Controls.Add(this.lbl_PurcahseRef);
             this.pnl_Top.Controls.Add(this.lbl_AccNo1);
@@ -192,7 +192,7 @@
             this.dtp_Date.Size = new System.Drawing.Size(104, 22);
             this.dtp_Date.TabIndex = 0;
             this.dtp_Date.TabStop = false;
-            this.dtp_Date.Value = new System.DateTime(2018, 2, 2, 0, 0, 0, 0);
+            this.dtp_Date.Value = new System.DateTime(2018, 12, 11, 0, 0, 0, 0);
             // 
             // lbl_Date
             // 
@@ -300,7 +300,7 @@
             this.pnl_SupplierInfo.Location = new System.Drawing.Point(6, 51);
             this.pnl_SupplierInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pnl_SupplierInfo.Name = "pnl_SupplierInfo";
-            this.pnl_SupplierInfo.Size = new System.Drawing.Size(1074, 84);
+            this.pnl_SupplierInfo.Size = new System.Drawing.Size(1074, 87);
             this.pnl_SupplierInfo.TabIndex = 2;
             // 
             // lbl_Address
@@ -538,14 +538,14 @@
             // 
             this.cmb_size.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmb_size.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmb_size.DisplayMember = "SubCategory";
+            this.cmb_size.DisplayMember = "Size";
             this.cmb_size.FormattingEnabled = true;
             this.cmb_size.Location = new System.Drawing.Point(823, 21);
             this.cmb_size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_size.Name = "cmb_size";
             this.cmb_size.Size = new System.Drawing.Size(86, 24);
             this.cmb_size.TabIndex = 15;
-            this.cmb_size.ValueMember = "SubCategory";
+            this.cmb_size.ValueMember = "Size";
             this.cmb_size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_size_KeyDown);
             // 
             // lbl_size
@@ -1096,13 +1096,13 @@
             // 
             this.dgv_ItemInfo.AllowUserToAddRows = false;
             this.dgv_ItemInfo.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_ItemInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_ItemInfo.BackgroundColor = System.Drawing.Color.Cornsilk;
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_ItemInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgv_ItemInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ItemInfo.ColumnHeadersHeight = 25;
+            this.dgv_ItemInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv_ItemInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Chk,
             this.Barcode,
@@ -1119,11 +1119,10 @@
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.RowHeadersWidth = 30;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_ItemInfo.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(1074, 160);
-            this.dgv_ItemInfo.TabIndex = 25;
-            this.dgv_ItemInfo.TabStop = false;
+            this.dgv_ItemInfo.TabIndex = 0;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick_1);
             this.dgv_ItemInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_ItemInfo_KeyDown);
             // 

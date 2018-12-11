@@ -79,6 +79,7 @@
             // 
             // dgv_SupplierBill
             // 
+            this.dgv_SupplierBill.AllowUserToAddRows = false;
             this.dgv_SupplierBill.AllowUserToDeleteRows = false;
             this.dgv_SupplierBill.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_SupplierBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -227,6 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(1165, 418);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_to);

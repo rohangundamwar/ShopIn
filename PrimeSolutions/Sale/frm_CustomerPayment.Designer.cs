@@ -85,7 +85,7 @@
             // 
             // txt_Amount
             // 
-            this.txt_Amount.Location = new System.Drawing.Point(87, 113);
+            this.txt_Amount.Location = new System.Drawing.Point(87, 116);
             this.txt_Amount.Name = "txt_Amount";
             this.txt_Amount.Size = new System.Drawing.Size(100, 20);
             this.txt_Amount.TabIndex = 4;
@@ -156,6 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(354, 241);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmb_PaymentType);

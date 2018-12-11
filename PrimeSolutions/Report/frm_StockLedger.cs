@@ -121,8 +121,7 @@ namespace PrimeSolutions.Report
 
         private void cmb_category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable SubCat = _objstock.GetSubCategoryByCategory(cmb_category.Text);
-            cmb_SubCategory.DataSource = SubCat;
+            cmb_SubCategory.DataSource = _objstock.GetSubCategoryByCategory(cmb_category.Text);
             cmb_SubCategory.SelectedIndex = -1;
         }
 
