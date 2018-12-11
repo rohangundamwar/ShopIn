@@ -160,10 +160,9 @@
             // 
             // dtp_date
             // 
-            this.dtp_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_date.Location = new System.Drawing.Point(15, 280);
             this.dtp_date.Name = "dtp_date";
-            this.dtp_date.Size = new System.Drawing.Size(95, 20);
+            this.dtp_date.Size = new System.Drawing.Size(200, 20);
             this.dtp_date.TabIndex = 7;
             // 
             // bttn_Print

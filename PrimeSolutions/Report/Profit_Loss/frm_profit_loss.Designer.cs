@@ -98,7 +98,7 @@
             // btn_print
             // 
             this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btn_print.Location = new System.Drawing.Point(177, 425);
+            this.btn_print.Location = new System.Drawing.Point(16, 425);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(75, 23);
             this.btn_print.TabIndex = 6;
@@ -109,7 +109,7 @@
             // btn_exel
             // 
             this.btn_exel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btn_exel.Location = new System.Drawing.Point(327, 425);
+            this.btn_exel.Location = new System.Drawing.Point(165, 425);
             this.btn_exel.Name = "btn_exel";
             this.btn_exel.Size = new System.Drawing.Size(94, 23);
             this.btn_exel.TabIndex = 7;
@@ -120,7 +120,7 @@
             // btn_Close
             // 
             this.btn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btn_Close.Location = new System.Drawing.Point(496, 425);
+            this.btn_Close.Location = new System.Drawing.Point(336, 425);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(75, 23);
             this.btn_Close.TabIndex = 8;
@@ -132,7 +132,6 @@
             // 
             this.dgv_Expense.AllowUserToAddRows = false;
             this.dgv_Expense.AllowUserToDeleteRows = false;
-            this.dgv_Expense.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgv_Expense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Expense.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -166,7 +165,6 @@
             // 
             this.dgv_Income.AllowUserToAddRows = false;
             this.dgv_Income.AllowUserToDeleteRows = false;
-            this.dgv_Income.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgv_Income.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Income.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date_Income,

@@ -55,7 +55,6 @@ namespace PrimeSolutions
         {
             cmb_Category.DataSource = _objCustmor.FillCategory();
             cmb_SubCategory.DataSource = _objCustmor.FillSubCategory();
-            cmb_size.DataSource = _objCustmor.GetSize();
         }
 
         private void Masterclear()
@@ -446,19 +445,17 @@ namespace PrimeSolutions
                 try
                 {
                     dgv_ItemInfo.Rows.Add(chk, txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text,cmb_size.Text,txt_HSN.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_Amt.Text, txt_BatchNo.Text, txt_SellingAmt.Text, txt_CGST.Text, lbl_AmtCGST.Text, txt_SGST.Text, lbl_AmtSGST.Text, txt_IGST.Text, lbl_AmtIGST.Text);
+                    Clear();
                 }
                 catch (Exception ex)
                 {
                     _error.AddException(ex, "Purchase");
                 }
             }
-
             if (!_objCustmor.CheckRateMaster(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text))
                 _objCustmor.InsertRateMaster(txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text, txt_SellingAmt.Text, Convert.ToString(Convert.ToDouble(txt_CGST.Text) + Convert.ToDouble(txt_SGST.Text) + Convert.ToDouble(txt_IGST.Text)));
 
-            Clear();
             Calculate();
-            fillcomboox();
             txt_Barcode.Focus();
             bttn_Purchase.Enabled = true;
 
@@ -902,7 +899,6 @@ namespace PrimeSolutions
         {
             DataTable GST = new DataTable();
             DataTable Rate = new DataTable();
-
             bool i = false;
 
             if (txt_Barcode.Text != "" || txt_Barcode.Text != string.Empty)
@@ -1225,7 +1221,7 @@ namespace PrimeSolutions
 
         private void cmb_SubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            cmb_size.DataSource = _objCustmor.GetSize();
         }
     }
 }

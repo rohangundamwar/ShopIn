@@ -29,22 +29,20 @@
         private void InitializeComponent()
         {
             this.dgv_Customer = new System.Windows.Forms.DataGridView();
+            this.bttn_Excel = new System.Windows.Forms.Button();
+            this.bttn_Close = new System.Windows.Forms.Button();
+            this.dtp1 = new System.Windows.Forms.DateTimePicker();
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContactNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GSTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PANNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bttn_Excel = new System.Windows.Forms.Button();
-            this.bttn_Close = new System.Windows.Forms.Button();
-            this.dtp1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Customer)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_Customer
             // 
-            this.dgv_Customer.AllowUserToAddRows = false;
             this.dgv_Customer.AllowUserToDeleteRows = false;
-            this.dgv_Customer.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgv_Customer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Customer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomerName,
@@ -57,6 +55,36 @@
             this.dgv_Customer.ReadOnly = true;
             this.dgv_Customer.Size = new System.Drawing.Size(623, 326);
             this.dgv_Customer.TabIndex = 0;
+            // 
+            // bttn_Excel
+            // 
+            this.bttn_Excel.Location = new System.Drawing.Point(456, 39);
+            this.bttn_Excel.Name = "bttn_Excel";
+            this.bttn_Excel.Size = new System.Drawing.Size(92, 23);
+            this.bttn_Excel.TabIndex = 1;
+            this.bttn_Excel.Text = "Export to Excel";
+            this.bttn_Excel.UseVisualStyleBackColor = true;
+            this.bttn_Excel.Click += new System.EventHandler(this.bttn_Excel_Click);
+            // 
+            // bttn_Close
+            // 
+            this.bttn_Close.BackColor = System.Drawing.Color.LightCoral;
+            this.bttn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttn_Close.ForeColor = System.Drawing.Color.White;
+            this.bttn_Close.Location = new System.Drawing.Point(560, 39);
+            this.bttn_Close.Name = "bttn_Close";
+            this.bttn_Close.Size = new System.Drawing.Size(75, 23);
+            this.bttn_Close.TabIndex = 2;
+            this.bttn_Close.Text = "Close";
+            this.bttn_Close.UseVisualStyleBackColor = false;
+            this.bttn_Close.Click += new System.EventHandler(this.bttn_Print_Click);
+            // 
+            // dtp1
+            // 
+            this.dtp1.Location = new System.Drawing.Point(13, 39);
+            this.dtp1.Name = "dtp1";
+            this.dtp1.Size = new System.Drawing.Size(106, 20);
+            this.dtp1.TabIndex = 3;
             // 
             // CustomerName
             // 
@@ -89,42 +117,10 @@
             this.PANNo.Name = "PANNo";
             this.PANNo.ReadOnly = true;
             // 
-            // bttn_Excel
-            // 
-            this.bttn_Excel.Location = new System.Drawing.Point(456, 39);
-            this.bttn_Excel.Name = "bttn_Excel";
-            this.bttn_Excel.Size = new System.Drawing.Size(92, 23);
-            this.bttn_Excel.TabIndex = 1;
-            this.bttn_Excel.Text = "Export to Excel";
-            this.bttn_Excel.UseVisualStyleBackColor = true;
-            this.bttn_Excel.Click += new System.EventHandler(this.bttn_Excel_Click);
-            // 
-            // bttn_Close
-            // 
-            this.bttn_Close.BackColor = System.Drawing.Color.LightCoral;
-            this.bttn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttn_Close.ForeColor = System.Drawing.Color.White;
-            this.bttn_Close.Location = new System.Drawing.Point(560, 39);
-            this.bttn_Close.Name = "bttn_Close";
-            this.bttn_Close.Size = new System.Drawing.Size(75, 23);
-            this.bttn_Close.TabIndex = 2;
-            this.bttn_Close.Text = "Close";
-            this.bttn_Close.UseVisualStyleBackColor = false;
-            this.bttn_Close.Click += new System.EventHandler(this.bttn_Print_Click);
-            // 
-            // dtp1
-            // 
-            this.dtp1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp1.Location = new System.Drawing.Point(13, 39);
-            this.dtp1.Name = "dtp1";
-            this.dtp1.Size = new System.Drawing.Size(106, 20);
-            this.dtp1.TabIndex = 3;
-            // 
             // frm_CustomerContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Cornsilk;
             this.ClientSize = new System.Drawing.Size(648, 429);
             this.Controls.Add(this.dtp1);
             this.Controls.Add(this.bttn_Close);
