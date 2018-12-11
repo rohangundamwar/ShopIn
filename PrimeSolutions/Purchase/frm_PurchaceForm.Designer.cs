@@ -197,9 +197,9 @@
             this.txt_PurchaseRef.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.txt_PurchaseRef.Location = new System.Drawing.Point(256, 15);
             this.txt_PurchaseRef.Name = "txt_PurchaseRef";
-            this.txt_PurchaseRef.Size = new System.Drawing.Size(50, 16);
+            this.txt_PurchaseRef.Size = new System.Drawing.Size(18, 16);
             this.txt_PurchaseRef.TabIndex = 0;
-            this.txt_PurchaseRef.Text = "label1";
+            this.txt_PurchaseRef.Text = "--";
             // 
             // lbl_PRef
             // 
@@ -219,9 +219,9 @@
             this.lbl_AccNo1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbl_AccNo1.Location = new System.Drawing.Point(83, 15);
             this.lbl_AccNo1.Name = "lbl_AccNo1";
-            this.lbl_AccNo1.Size = new System.Drawing.Size(50, 16);
+            this.lbl_AccNo1.Size = new System.Drawing.Size(18, 16);
             this.lbl_AccNo1.TabIndex = 0;
-            this.lbl_AccNo1.Text = "label1";
+            this.lbl_AccNo1.Text = "--";
             // 
             // lbl_Date
             // 

@@ -22,11 +22,11 @@ namespace PrimeSolutions.Report
         
         private void frm_Stock_Load(object sender, EventArgs e)
         {
-            DataTable dt3 = _objstock.GetCategory(); //Category
+            DataTable dt3 = _objstock.FillCategory(); //Category
             cmb_category.DataSource = dt3;
             cmb_category.SelectedIndex = -1;
 
-            DataTable dt2 = _objstock.GetSubCategory("");
+            DataTable dt2 = _objstock.FillSubCategory();
             cmb_SubCategory.DataSource = dt2;
             cmb_SubCategory.SelectedIndex = -1;
 
@@ -37,7 +37,7 @@ namespace PrimeSolutions.Report
 
         private void stock()
         {
-            DataTable dt3 = _objstock.GetCategory(); //Category
+            DataTable dt3 = _objstock.FillCategory(); //Category
             DataTable dt2 = _objstock.GetSubCategoryByCategory(cmb_category.Text);
             DataTable dt1 = new DataTable(); //SubCategory
             string a;
@@ -53,7 +53,7 @@ namespace PrimeSolutions.Report
                     dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
                     dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
                     dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
-                    dgv_stock.Rows[gcount].Cells["Size"].Value = dt1.Rows[j]["Size"].ToString();
+                    dgv_stock.Rows[gcount].Cells["Size"].Value = dt1.Rows[j]["size"].ToString();
                     a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["Size"].ToString()));
                     if (Convert.ToDouble(a.Remove(a.Length - 4)) <= 5)
                     {
@@ -80,6 +80,7 @@ namespace PrimeSolutions.Report
 
         private void bttn_Sort_Click(object sender, EventArgs e)
         {
+            
             if (cmb_category.Text != "" || cmb_category.Text != string.Empty)
             {
                 DataTable SubCat = _objstock.GetSubCategoryByCategory(cmb_category.Text);

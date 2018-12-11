@@ -52,6 +52,7 @@ namespace PrimeSolutions
         {
             cmb_Category.DataSource = _objCustmor.FillCategory();
             cmb_SubCategory.DataSource = _objCustmor.FillSubCategory();
+            cmb_size.DataSource = _objCustmor.GetSize();
         }
 
         private void Masterclear()
@@ -164,7 +165,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_BillNo.Focus();
+                txt_PAN.Focus();
             }
         }
 
@@ -180,7 +181,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_PAN.Focus();
+                txt_Barcode.Focus();
             }
 
         }
@@ -370,18 +371,20 @@ namespace PrimeSolutions
 
         private void txt_Qty_TextChanged(object sender, EventArgs e)
         {
+            if(txt_Qty.Text!="" || txt_Qty.Text!=string.Empty)
             try
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) / Convert.ToDouble(txt_Qty.Text)).ToString();
             }
             catch { }
         }
 
         private void txt_PurchaseAmt_TextChanged(object sender, EventArgs e)
         {
+            if(txt_PurchaseAmt.Text!="" || txt_PurchaseAmt.Text!=string.Empty)
             try
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) / Convert.ToDouble(txt_Qty.Text)).ToString();
             }
             catch (Exception ex)
             {
@@ -398,16 +401,16 @@ namespace PrimeSolutions
         {
             bool chk;
             //Insert category
-            if (!_objCustmor.ItemCategory(cmb_Category.Text))
-            {
-                _objCustmor.InsertCategory(cmb_Category.Text);
-            }
+            //if (!_objCustmor.ItemCategory(cmb_Category.Text))
+            //{
+            //    _objCustmor.InsertCategory(cmb_Category.Text);
+            //}
 
-            //Insert SubCategory
-            if (!_objCustmor.ItemSubCategory(cmb_SubCategory.Text))
-            {
-                _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
-            }
+            ////Insert SubCategory
+            //if (!_objCustmor.ItemSubCategory(cmb_SubCategory.Text))
+            //{
+            //    _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
+            //}
 
             if (txt_Barcode.Text == "" || (txt_Barcode.Text == string.Empty || txt_Barcode.Text == null))
             {
@@ -640,9 +643,10 @@ namespace PrimeSolutions
         private void bttn_Update_Click(object sender, EventArgs e)
         {
             try {
-
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Barcode"].Value = txt_Barcode.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value = cmb_Category.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Size"].Value = cmb_size.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["HSN"].Value = txt_HSN.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["PurchaseAmt"].Value = txt_PurchaseAmt.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
@@ -747,7 +751,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Barcode.Focus();
+                txt_BillNo.Focus();
             }
             
         }
@@ -798,12 +802,16 @@ namespace PrimeSolutions
 
         private void bttn_All_Click(object sender, EventArgs e)
         {
-            dgv_ItemInfo.Rows.Clear();
+            DialogResult DGVClear = MessageBox.Show("Do you Want to Clear all Items", " Are You Sure ", MessageBoxButtons.YesNo);
+            if (DGVClear == DialogResult.Yes)
+            {
+                dgv_ItemInfo.Rows.Clear();
+            }
         }
 
         private void cmb_Category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmb_SubCategory.DataSource = _objCustmor.GetSubCategoryByCategoryNotStock(cmb_Category.Text);
+            
         }
 
         private void bttn_Clear_Click(object sender, EventArgs e)

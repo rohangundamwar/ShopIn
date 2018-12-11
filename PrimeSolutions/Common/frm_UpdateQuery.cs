@@ -153,6 +153,13 @@ namespace PrimeSolutions.Common
             string query25 = "ALTER TABLE setting Add [GSTRate] [nvarchar](max) NOT NULL CONSTRAINT [DF_Setting_GSTRate]  DEFAULT (('1'))";
             dgv_UpdateQuery.Rows.Add(false, Y, query25);
 
+            string Z = "Customer Bill Time";
+            string query26 = "ALTER TABLE CustomerBill Add [Time] [nvarchar](max)";
+            dgv_UpdateQuery.Rows.Add(false, Z, query26);
+
+            string A1 = "Rate Master";
+            string query27 = "CREATE TABLE [dbo].[RateMaster]([SrNo] [int] IDENTITY(1,1) NOT NULL,[Barcode] [nvarchar](max) NULL,[Category] [nvarchar](max) NULL,[SubCategory] [nvarchar](max) NULL,[Size] [nvarchar](max) NULL,[SellingPrice] [nvarchar](max) NULL,[GST] [nvarchar](max) NULL) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
+            dgv_UpdateQuery.Rows.Add(false, A1, query27);
         }
 
         private void chk_selectall_CheckedChanged(object sender, EventArgs e)

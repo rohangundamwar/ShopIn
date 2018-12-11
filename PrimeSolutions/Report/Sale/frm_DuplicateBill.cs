@@ -29,6 +29,8 @@ namespace PrimeSolutions.Report.Sale
             dt = _sale.GetCustomer();
             cmb_customer.DataSource = dt;
             dtSett = _common.getSettingValue();
+            dt2 = _sale.GetAllSaleBill();
+            cmb_Search.DataSource = dt2;
         }
 
         private void bttn_print_Click(object sender, EventArgs e)
@@ -88,10 +90,8 @@ namespace PrimeSolutions.Report.Sale
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = cmb_customer.SelectedIndex.ToString();
-            dt1= _sale.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString(),"All");
-            dt2 = _sale.GetCustomerQoutation(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString());
-            dt1.Merge(dt2);
-            cmb_Search.DataSource = dt1;
+            dt1 = _sale.GetCustomerBill(dt.Rows[Convert.ToInt32(id)]["CustId"].ToString(), "All");
+
             dgv_Bill.Rows.Clear();
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
@@ -118,8 +118,9 @@ namespace PrimeSolutions.Report.Sale
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            bill.Text = dt1.Rows[cmb_Search.SelectedIndex]["BillNo"].ToString();
-            txt_type.Text = dt1.Rows[cmb_Search.SelectedIndex]["Type"].ToString();
+            bill.Text = dt2.Rows[cmb_Search.SelectedIndex]["BillNo"].ToString();
+            txt_type.Text = dt2.Rows[cmb_Search.SelectedIndex]["Type"].ToString();
+            dgv_Bill.Rows.Clear();
         }
 
         private void bttn_view_Click(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace PrimeSolutions.Common
 
         private void frm_Offer_Load(object sender, EventArgs e)
         {
-            cmb_category.DataSource = _a.GetCategory();
+            cmb_category.DataSource = _a.FillCategory();
             RefreshGrid();
         }
 

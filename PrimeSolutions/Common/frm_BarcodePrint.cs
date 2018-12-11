@@ -29,7 +29,7 @@ namespace PrimeSolutions.Common
         public frm_BarcodePrint()
         {
             InitializeComponent();
-            Supplier = _objCustmor.GetAllSupplier();
+            Supplier = _objCustmor.getSupplierName();
         }
         
        
@@ -129,7 +129,7 @@ namespace PrimeSolutions.Common
 
         private void Reset()
         {
-            cmb_Supplier.DataSource = _objCustmor.GetAllSupplier();
+            cmb_Supplier.DataSource = _objCustmor.getSupplierName();
             cmb_category.DataSource = _objCustmor.FillCategory();
             txt_GST.ResetText();
             txt_SellingPrice.ResetText();
@@ -240,7 +240,7 @@ namespace PrimeSolutions.Common
 
         private void cmb_category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmb_SubCategory.DataSource = _objCustmor.GetSubCategoryByCategoryNotStock(cmb_category.Text);
+            cmb_SubCategory.DataSource = _objCustmor.GetSubCategoryByCategory(cmb_category.Text);
         }
 
         private void cmb_SubCategory_SelectedIndexChanged(object sender, EventArgs e)

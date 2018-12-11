@@ -414,16 +414,16 @@ namespace PrimeSolutions
         {
             bool chk;
             //Insert category
-            if (!_objCustmor.ItemCategory(cmb_Category.Text))
-            {
-                _objCustmor.InsertCategory(cmb_Category.Text);
-            }
+            //if (!_objCustmor.ItemCategory(cmb_Category.Text))
+            //{
+            //    _objCustmor.InsertCategory(cmb_Category.Text);
+            //}
 
-            //Insert SubCategory
-            if (!_objCustmor.ItemSubCategory(cmb_SubCategory.Text))
-            {
-                _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
-            }
+            ////Insert SubCategory
+            //if (!_objCustmor.ItemSubCategory(cmb_SubCategory.Text))
+            //{
+            //    _objCustmor.InsertSubCategory(cmb_SubCategory.Text);
+            //}
             
             if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
             {
@@ -436,9 +436,9 @@ namespace PrimeSolutions
 
             if (cmb_Category.Text == "" || cmb_SubCategory.Text == "")
             {
-                MessageBox.Show("Please Enter Item Details");
+                if (cmb_Category.Text == string.Empty || cmb_SubCategory.Text == string.Empty)
+                    MessageBox.Show("Please Enter Item Details");
             }
-            
 
             else
             {
@@ -452,6 +452,9 @@ namespace PrimeSolutions
                     _error.AddException(ex, "Purchase");
                 }
             }
+            if (!_objCustmor.CheckRateMaster(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text))
+                _objCustmor.InsertRateMaster(txt_Barcode.Text, cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text, txt_SellingAmt.Text, Convert.ToString(Convert.ToDouble(txt_CGST.Text) + Convert.ToDouble(txt_SGST.Text) + Convert.ToDouble(txt_IGST.Text)));
+
             Calculate();
             txt_Barcode.Focus();
             bttn_Purchase.Enabled = true;
@@ -524,7 +527,7 @@ namespace PrimeSolutions
         private void bttn_Purchase_Click(object sender, EventArgs e)
         {
             int p = 0;
-            int BarcodeCount = _objCustmor.getbarcode();
+            int BarcodeCount =Convert.ToInt32(dtsett.BarcodeCount);
             string TransactionLedgerID = null;
 
 
@@ -601,8 +604,7 @@ namespace PrimeSolutions
                             string BarcodePrint = dgv_ItemInfo.Rows[i].Cells["Chk"].Value.ToString();
                             string PBillNo = txt_BillNo.Text;
                             _purchase.InsertItem(barcode, category, subcategory, size, PBillNo, "Purchase", qty, CGSTper, CGST, SGSTper, SGST, IGSTper, IGST, purchaseamt, TotalAmt, BatchNo, SellingAmt, HSN, dtp_Date.Value.ToString("dd/MM/yyyy"), BarcodePrint,txt_PurchaseRef.Text);
-
-
+                            
                         }
                     }
                 }
@@ -876,7 +878,7 @@ namespace PrimeSolutions
             {
                 if (txt_Barcode.Text != "")
                 {
-                    if (fillitem() == 1)
+                    if (fillitem())
                     {
                         txt_Amt.Focus();
                     }
@@ -893,13 +895,17 @@ namespace PrimeSolutions
             }
         }
 
-        private int fillitem()
+        private bool fillitem()
         {
             DataTable GST = new DataTable();
-            int i = 0;
+            DataTable Rate = new DataTable();
+            bool i = false;
+
             if (txt_Barcode.Text != "" || txt_Barcode.Text != string.Empty)
             {
-               GST = _sale.GetItemDetailsByBarcode(txt_Barcode.Text);
+                GST = _sale.GetItemDetailsByBarcode(txt_Barcode.Text);
+                Rate = _sale.GetItemRateByBarcode(txt_Barcode.Text);
+
                 if (GST.Rows.Count > 0)
                 {
                     try
@@ -909,15 +915,96 @@ namespace PrimeSolutions
                         cmb_size.Text = GST.Rows[0]["size"].ToString();
                         txt_HSN.Text = GST.Rows[0]["HSN"].ToString();
                         txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
-                        txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
-                        Double TotalGST = Convert.ToDouble(GST.Rows[0]["CGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["SGST"].ToString()) + Convert.ToDouble(GST.Rows[0]["IGST"].ToString());
-                        txt_CGST.Text = Convert.ToString(TotalGST/2);
-                        txt_SGST.Text = Convert.ToString(TotalGST / 2);
-                        i = 1;
+
+                        if (Rate.Rows.Count > 0)
+                        {
+                            txt_SellingAmt.Text = Rate.Rows[0]["SellingPrice"].ToString();
+
+                            if (txt_IGST.Enabled == true)
+                            {
+                                txt_IGST.Text = Convert.ToString(Convert.ToDouble(Rate.Rows[0]["GST"]));
+                            }
+                            else
+                            {
+                                double CGST = Convert.ToDouble(Rate.Rows[0]["GST"]) / 2;
+                                txt_CGST.Text = CGST.ToString();
+                                double SGST = Convert.ToDouble(Rate.Rows[0]["GST"]) / 2;
+                                txt_SGST.Text = SGST.ToString();
+                            }
+
+                        }
+                        else
+                        {
+                            txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
+
+                            if (txt_IGST.Enabled == true)
+                            {
+                                txt_IGST.Text = Convert.ToString(Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"]));
+                            }
+                            else
+                            {
+                                double CGST = (Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"])) / 2;
+                                txt_SGST.Text = txt_CGST.Text = CGST.ToString();
+                                
+                            }
+                        }
+                       
+                       
                     }
                     catch { }
-                    txt_Amt.Focus();
+                    i = true;
+                }
+            }
 
+            if (txt_Barcode.Text == "" || txt_Barcode.Text == string.Empty)
+            {
+                GST = _sale.GetItemDetailsByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text);
+                Rate = _sale.GetItemRateByCategoySubCategorySize(cmb_Category.Text, cmb_SubCategory.Text, cmb_size.Text);
+
+                if (GST.Rows.Count > 0)
+                {
+                    try
+                    {
+                        cmb_Category.Text = GST.Rows[0]["Category"].ToString();
+                        cmb_SubCategory.Text = GST.Rows[0]["SubCategory"].ToString();
+                        txt_HSN.Text = GST.Rows[0]["HSN"].ToString();
+                        txt_BatchNo.Text = GST.Rows[0]["BatchNo"].ToString();
+
+                        if (Rate.Rows.Count > 0)
+                        {
+                            txt_SellingAmt.Text = Rate.Rows[0]["SellingPrice"].ToString();
+
+                            if (txt_IGST.Enabled == true)
+                            {
+                                txt_IGST.Text = Convert.ToString(Convert.ToDouble(Rate.Rows[0]["GST"]));
+                            }
+                            else
+                            {
+                                double CGST = Convert.ToDouble(Rate.Rows[0]["GST"]) / 2;
+                                txt_CGST.Text = CGST.ToString();
+                                double SGST = Convert.ToDouble(Rate.Rows[0]["GST"]) / 2;
+                                txt_SGST.Text = SGST.ToString();
+                            }
+
+                        }
+                        else
+                        {
+                            txt_SellingAmt.Text = GST.Rows[0]["SellingPrice"].ToString();
+
+                            if (txt_IGST.Enabled == true)
+                            {
+                                txt_IGST.Text = Convert.ToString(Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"]));
+                            }
+                            else
+                            {
+                                double CGST = (Convert.ToDouble(GST.Rows[0]["CGST"]) + Convert.ToDouble(GST.Rows[0]["SGST"]) + Convert.ToDouble(GST.Rows[0]["IGST"])) / 2;
+                                txt_SGST.Text = txt_CGST.Text = CGST.ToString();
+
+                            }
+                        }
+                    }
+                    catch { }
+                    i = true;
                 }
             }
             return i;
@@ -1031,7 +1118,11 @@ namespace PrimeSolutions
 
         private void bttn_All_Click(object sender, EventArgs e)
         {
-            dgv_ItemInfo.Rows.Clear();
+            DialogResult DGVClear = MessageBox.Show("Do you Want to Clear all Items", " Are You Sure ", MessageBoxButtons.YesNo);
+            if (DGVClear == DialogResult.Yes)
+            {
+                dgv_ItemInfo.Rows.Clear();
+            }
         }
 
         private void cmb_Category_SelectedIndexChanged(object sender, EventArgs e)
@@ -1049,7 +1140,15 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_HSN.Focus();
+                if (fillitem())
+                {
+                    txt_Amt.Focus();
+                }
+                else
+                {
+                    txt_HSN.Focus();
+                }
+                
             }
         }
 

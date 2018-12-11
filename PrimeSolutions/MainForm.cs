@@ -459,11 +459,7 @@ namespace PrimeSolutions
             frm_ServiceInvoice _from = new frm_ServiceInvoice();
             _from.ShowDialog();
         }
-
-        private void wholeSaleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -562,6 +558,12 @@ namespace PrimeSolutions
             frm_StockLedger _form = new frm_StockLedger();
             _form.ShowDialog();
 
+        }
+
+        private void deletedBillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_DeletedBill _frm = new frm_DeletedBill();
+            _frm.ShowDialog();
         }
     }
 }

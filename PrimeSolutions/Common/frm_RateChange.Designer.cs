@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_Rate = new System.Windows.Forms.TextBox();
+            this.txt_NewRate = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Change = new System.Windows.Forms.Button();
             this.cmb_size = new System.Windows.Forms.ComboBox();
@@ -41,10 +41,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_OldRate = new System.Windows.Forms.Label();
-            this.txt_OldGST = new System.Windows.Forms.Label();
+            this.lbl_OldGST = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_NewGST = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label4
@@ -54,19 +56,20 @@
             this.label4.Location = new System.Drawing.Point(526, 61);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 16);
+            this.label4.Size = new System.Drawing.Size(47, 16);
             this.label4.TabIndex = 25;
-            this.label4.Text = "Stocks";
+            this.label4.Text = "Stock";
             // 
-            // txt_Rate
+            // txt_NewRate
             // 
-            this.txt_Rate.Location = new System.Drawing.Point(105, 95);
-            this.txt_Rate.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_Rate.Name = "txt_Rate";
-            this.txt_Rate.Size = new System.Drawing.Size(85, 22);
-            this.txt_Rate.TabIndex = 28;
-            this.txt_Rate.TextChanged += new System.EventHandler(this.txt_Rate_TextChanged);
-            this.txt_Rate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Rate_KeyDown);
+            this.txt_NewRate.Location = new System.Drawing.Point(105, 95);
+            this.txt_NewRate.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_NewRate.Name = "txt_NewRate";
+            this.txt_NewRate.Size = new System.Drawing.Size(85, 22);
+            this.txt_NewRate.TabIndex = 28;
+            this.txt_NewRate.TextChanged += new System.EventHandler(this.txt_Rate_TextChanged);
+            this.txt_NewRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Rate_KeyDown);
+            this.txt_NewRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Rate_KeyPress);
             // 
             // label5
             // 
@@ -211,17 +214,17 @@
             this.lbl_OldRate.TabIndex = 61;
             this.lbl_OldRate.Text = "--";
             // 
-            // txt_OldGST
+            // lbl_OldGST
             // 
-            this.txt_OldGST.AutoSize = true;
-            this.txt_OldGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_OldGST.ForeColor = System.Drawing.Color.Black;
-            this.txt_OldGST.Location = new System.Drawing.Point(335, 61);
-            this.txt_OldGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txt_OldGST.Name = "txt_OldGST";
-            this.txt_OldGST.Size = new System.Drawing.Size(18, 16);
-            this.txt_OldGST.TabIndex = 63;
-            this.txt_OldGST.Text = "--";
+            this.lbl_OldGST.AutoSize = true;
+            this.lbl_OldGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_OldGST.ForeColor = System.Drawing.Color.Black;
+            this.lbl_OldGST.Location = new System.Drawing.Point(335, 61);
+            this.lbl_OldGST.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_OldGST.Name = "lbl_OldGST";
+            this.lbl_OldGST.Size = new System.Drawing.Size(18, 16);
+            this.lbl_OldGST.TabIndex = 63;
+            this.lbl_OldGST.Text = "--";
             // 
             // label6
             // 
@@ -244,6 +247,7 @@
             this.txt_NewGST.TabIndex = 65;
             this.txt_NewGST.TextChanged += new System.EventHandler(this.txt_NewGST_TextChanged);
             this.txt_NewGST.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_NewGST_KeyDown);
+            this.txt_NewGST.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_NewGST_KeyPress);
             // 
             // label7
             // 
@@ -257,15 +261,41 @@
             this.label7.TabIndex = 64;
             this.label7.Text = "New GST";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(198, 98);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 16);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "*";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(432, 98);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(14, 16);
+            this.label8.TabIndex = 67;
+            this.label8.Text = "*";
+            // 
             // frm_RateChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.ClientSize = new System.Drawing.Size(663, 183);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_NewGST);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txt_OldGST);
+            this.Controls.Add(this.lbl_OldGST);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lbl_OldRate);
             this.Controls.Add(this.label2);
@@ -277,7 +307,7 @@
             this.Controls.Add(this.lbl_Category);
             this.Controls.Add(this.lbl_SubCategory);
             this.Controls.Add(this.btn_Change);
-            this.Controls.Add(this.txt_Rate);
+            this.Controls.Add(this.txt_NewRate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -292,7 +322,7 @@
 
         #endregion
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_Rate;
+        private System.Windows.Forms.TextBox txt_NewRate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_Change;
         private System.Windows.Forms.ComboBox cmb_size;
@@ -304,9 +334,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_OldRate;
-        private System.Windows.Forms.Label txt_OldGST;
+        private System.Windows.Forms.Label lbl_OldGST;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txt_NewGST;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label8;
     }
 }

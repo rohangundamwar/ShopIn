@@ -470,6 +470,7 @@
             this.cmb_State.Size = new System.Drawing.Size(145, 24);
             this.cmb_State.TabIndex = 2;
             this.cmb_State.ValueMember = "26";
+            this.cmb_State.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_State_KeyDown);
             // 
             // txt_GSTIN
             // 
@@ -501,6 +502,7 @@
             this.txt_PanNo.Name = "txt_PanNo";
             this.txt_PanNo.Size = new System.Drawing.Size(165, 22);
             this.txt_PanNo.TabIndex = 6;
+            this.txt_PanNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PanNo_KeyDown);
             // 
             // label1
             // 

@@ -7,3 +7,94 @@ F:\Windows Desltop Application\Appsthentic projects\bridge\PrimeSolutions\PrimeS
 F:\Windows Desltop Application\Appsthentic projects\bridge\PrimeSolutions\PrimeSolutions\obj\Debug\PrimeSolutions.exe
 F:\Windows Desltop Application\Appsthentic projects\bridge\PrimeSolutions\PrimeSolutions\obj\Debug\PrimeSolutions.pdb
 F:\Windows Desltop Application\Appsthentic projects\bridge\PrimeSolutions\PrimeSolutions\bin\Debug\PrimeSolutions.exe.config
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ShopIn.exe.config
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ShopIn.exe
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ShopIn.pdb
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ClosedXML.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\CrystalDecisions.CrystalReports.Design.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\DocumentFormat.OpenXml.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\System.ServiceProcess.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\CrystalDecisions.Web.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ClosedXML.pdb
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\32 bit\ClosedXML.xml
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.exe
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ShopIn.exe.config
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ClosedXML.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\CrystalDecisions.CrystalReports.Design.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\DocumentFormat.OpenXml.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\System.ServiceProcess.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\CrystalDecisions.Web.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ClosedXML.pdb
+F:\Prime Solution\ShopIn\PrimeSolutions\bin\Debug\ClosedXML.xml
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\Interop.BarTender.dll
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.csproj.ResolveComReference.cache
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.frmAccountLedger.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.frmBalanceSheet.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.frmPaymentVoucher.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.frmReceiptVoucher.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.Frm_AccountLedgerReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Transaction.Frm_Credit_DebitEntry.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Accounting.frm_Daily_Expenses.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Offer.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_RateChange.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Activation.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_BarcodePrint.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Category.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_DeleteData.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.Frm_DeveloperLogin.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_ExecuteQuery.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Login.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_LooseItem.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Openning.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_SubCategory.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_UpdateInfo.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_UpdateQuery.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.Uc_MultiItem.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.PaymentOption.frm_PaymentOptionForPaymentVoucher.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.PaymentOption.frm_PaymentOptionForReceiptVoucher.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Account.Customer_Account.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Account.Form1.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_backup.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Error.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Common.frm_Setting.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.MainForm.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Properties.Resources.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Purchase.frm_SupplierPayment.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_EstimatePurchace.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_Qoutation.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.CrystalReport.frm_ReportViewer.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Customer.frm_CustomerBalance.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Customer.frm_CustomerContact.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Customer.frm_SaleLedger.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_CustomerGSTReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Customer.frm_TotalCustomerGST.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.frm_MonthlyGSTReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.frm_StockLedger.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.frm_Stock.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.PrinterSetting.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Profit_Loss.frm_profit_loss.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_SupplierBalance.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_PurchaseDuplicateBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_PurchaseLedger.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_SupplierGSTReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_SupplierBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.frm_TotalSupplierGST.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Purchase.PurchaseReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_DuplicateReceipt.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_DuplicateBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_SaleReport.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_Sales_Commission.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.SupplierBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Resources.Supplier_Item.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Report.Sale.frm_ChangeBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Sale.frm_CustomerPayment.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Sale.frm_DeletedBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_SaleEstimate.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_ViewGSTBill.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_SaleForm.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.frm_PurchaseForm.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Service.frm_JobCard.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.Service.frm_ServiceInvoice.resources
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\PrimeSolutions.csproj.GenerateResource.Cache
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\ShopIn.exe
+F:\Prime Solution\ShopIn\PrimeSolutions\obj\Debug\ShopIn.pdb
