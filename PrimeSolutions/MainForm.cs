@@ -565,5 +565,11 @@ namespace PrimeSolutions
             frm_DeletedBill _frm = new frm_DeletedBill();
             _frm.ShowDialog();
         }
+
+        private void rateMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_RateMaster _form = new frm_RateMaster();
+            _form.ShowDialog(); 
+        }
     }
 }

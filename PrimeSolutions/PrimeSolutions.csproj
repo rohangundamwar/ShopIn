@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PrimeSolutions</RootNamespace>
     <AssemblyName>ShopIn</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
@@ -272,6 +272,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BillA4%28Interstate%29.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="bin\Debug\BillA5.cs">
       <AutoGen>True</AutoGen>
@@ -501,6 +502,12 @@
     </Compile>
     <Compile Include="Common\frm_Openning.designer.cs">
       <DependentUpon>frm_Openning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\frm_RateMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_RateMaster.Designer.cs">
+      <DependentUpon>frm_RateMaster.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\frm_SubCategory.cs">
       <SubType>Form</SubType>
@@ -1082,6 +1089,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Openning.resx">
       <DependentUpon>frm_Openning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_RateMaster.resx">
+      <DependentUpon>frm_RateMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_SubCategory.resx">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
