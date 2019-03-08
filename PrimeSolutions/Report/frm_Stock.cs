@@ -22,6 +22,7 @@ namespace PrimeSolutions.Report
         
         private void frm_Stock_Load(object sender, EventArgs e)
         {
+
             DataTable dt3 = _objstock.FillCategory(); //Category
             cmb_category.DataSource = dt3;
             cmb_category.SelectedIndex = -1;
@@ -37,24 +38,24 @@ namespace PrimeSolutions.Report
 
         private void stock()
         {
-            DataTable dt3 = _objstock.FillCategory(); //Category
-            DataTable dt2 = _objstock.GetSubCategoryByCategory(cmb_category.Text);
-            DataTable dt1 = new DataTable(); //SubCategory
+            DataTable cat = _objstock.FillCategory(); //Category
+            //DataTable SubCat = _objstock.GetSubCategoryByCategory(cmb_category.Text);
+            DataTable SubCat = new DataTable(); //SubCategory
             string a;
             int x = 0, gcount = 0;
             dgv_stock.Rows.Clear();
-            for (int i = 0; i < dt3.Rows.Count; i++)
+            for (int i = 0; i < cat.Rows.Count; i++)
             {
-                dt1 = _objstock.GetSubCategoryByCategory(dt3.Rows[i]["category"].ToString());
-                for (int j = 0; j < dt1.Rows.Count; j++)
+                SubCat = _objstock.GetSubCategoryByCategory(cat.Rows[i]["category"].ToString());
+                for (int j = 0; j < SubCat.Rows.Count; j++)
                 {
                     dgv_stock.Rows.Add();
                     x = x + 1;
                     dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
-                    dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
-                    dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
-                    dgv_stock.Rows[gcount].Cells["Size"].Value = dt1.Rows[j]["size"].ToString();
-                    a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["Size"].ToString()));
+                    dgv_stock.Rows[gcount].Cells["Category"].Value = cat.Rows[i]["category"].ToString();
+                    dgv_stock.Rows[gcount].Cells["SubCategory"].Value = SubCat.Rows[j]["subcategory"].ToString();
+                    dgv_stock.Rows[gcount].Cells["Size"].Value = SubCat.Rows[j]["size"].ToString();
+                    a = Convert.ToString(_objstock.getQty(cat.Rows[i]["category"].ToString(), SubCat.Rows[j]["subcategory"].ToString(), SubCat.Rows[j]["Size"].ToString()));
                     if (Convert.ToDouble(a.Remove(a.Length - 4)) <= 5)
                     {
                         dgv_stock.Rows[gcount].DefaultCellStyle.BackColor = Color.LightCoral;

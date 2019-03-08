@@ -107,6 +107,7 @@
             this.lbl_developer = new System.Windows.Forms.Label();
             this.bttn_Login = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.rateMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -150,14 +151,14 @@
             // gSTSaleToolStripMenuItem
             // 
             this.gSTSaleToolStripMenuItem.Name = "gSTSaleToolStripMenuItem";
-            this.gSTSaleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.gSTSaleToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.gSTSaleToolStripMenuItem.Text = "GST Sale";
             this.gSTSaleToolStripMenuItem.Click += new System.EventHandler(this.gSTSaleToolStripMenuItem_Click);
             // 
             // estimateToolStripMenuItem
             // 
             this.estimateToolStripMenuItem.Name = "estimateToolStripMenuItem";
-            this.estimateToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.estimateToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
             this.estimateToolStripMenuItem.Text = "Estimate";
             this.estimateToolStripMenuItem.Click += new System.EventHandler(this.estimateToolStripMenuItem_Click);
             // 
@@ -179,7 +180,7 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -187,7 +188,7 @@
             // 
             this.purchaseItemToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("purchaseItemToolStripMenuItem.Image")));
             this.purchaseItemToolStripMenuItem.Name = "purchaseItemToolStripMenuItem";
-            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.purchaseItemToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.purchaseItemToolStripMenuItem.Text = "Purchase Item";
             this.purchaseItemToolStripMenuItem.Click += new System.EventHandler(this.purchaseItemToolStripMenuItem_Click);
             // 
@@ -195,7 +196,7 @@
             // 
             this.barcodeEntryToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.barcode;
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
-            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.barcodeEntryToolStripMenuItem.Text = "Barcode Entry";
             this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
@@ -594,7 +595,8 @@
             this.looseItemToolStripMenuItem,
             this.categoryToolStripMenuItem,
             this.subCategoryToolStripMenuItem,
-            this.offerToolStripMenuItem});
+            this.offerToolStripMenuItem,
+            this.rateMasterToolStripMenuItem});
             this.masterToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.masterToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Applications;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
@@ -808,6 +810,13 @@
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // rateMasterToolStripMenuItem
+            // 
+            this.rateMasterToolStripMenuItem.Name = "rateMasterToolStripMenuItem";
+            this.rateMasterToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.rateMasterToolStripMenuItem.Text = "Rate Master";
+            this.rateMasterToolStripMenuItem.Click += new System.EventHandler(this.rateMasterToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -918,6 +927,7 @@
         private System.Windows.Forms.ToolStripMenuItem stockLEdgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletedBillToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rateMasterToolStripMenuItem;
     }
 }
 

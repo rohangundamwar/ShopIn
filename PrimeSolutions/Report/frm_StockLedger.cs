@@ -33,39 +33,6 @@ namespace PrimeSolutions.Report
             dgv_stock.Rows.Clear();
 
         }
-
-        private void stock()
-        {
-            DataTable dt3 = _objstock.FillCategory(); //Category
-            DataTable dt2 = _objstock.GetSubCategoryByCategory(cmb_category.Text);
-            DataTable dt1 = new DataTable(); //SubCategory
-            string a;
-            int x = 0, gcount = 0;
-            dgv_stock.Rows.Clear();
-            for (int i = 0; i < dt3.Rows.Count; i++)
-            {
-                dt1 = _objstock.GetSubCategoryByCategory(dt3.Rows[i]["category"].ToString());
-                for (int j = 0; j < dt1.Rows.Count; j++)
-                {
-                    dgv_stock.Rows.Add();
-                    x = x + 1;
-                    dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
-                    dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
-                    dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["subcategory"].ToString();
-                    dgv_stock.Rows[gcount].Cells["Size"].Value = dt1.Rows[j]["Size"].ToString();
-                    a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["subcategory"].ToString(), dt1.Rows[j]["Size"].ToString()));
-                    if (Convert.ToDouble(a.Remove(a.Length - 4)) <= 5)
-                    {
-                        dgv_stock.Rows[gcount].DefaultCellStyle.BackColor = Color.LightCoral;
-                    }
-                        
-                    dgv_stock.Rows[gcount].Cells["Quantity"].Value = a.ToString();
-                    gcount = gcount + 1;
-                }
-
-            }
-        }
-           
        
         private void bttn_Close_Click(object sender, EventArgs e)
         {
@@ -79,7 +46,7 @@ namespace PrimeSolutions.Report
 
         private void bttn_Sort_Click(object sender, EventArgs e)
         {
-            int x=0,i;
+            int i;
             Tuple<DataTable,DataTable> Stock = _objstock.GetStock(dtp_from.Value.ToString("dd/MM/yyyy"),dtp_To.Value.ToString("dd/MM/yyyy"));
             
             DataTable Purchase = Stock.Item1;
@@ -87,18 +54,68 @@ namespace PrimeSolutions.Report
 
             dgv_stock.Rows.Clear();
 
+            ShowLedger(Purchase,Sale);
+        }
+
+        private void cmb_category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_SubCategory.DataSource = _objstock.GetSubCategoryByCategory(cmb_category.Text);
+            cmb_SubCategory.SelectedIndex = -1;
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            frm_Stock_Load(sender, e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataTable DtCategory = new DataTable();
+            DataTable DtSubCategory = new DataTable();
+
+            if (cmb_category.Text == string.Empty)
+            {
+                DtCategory = _objstock.GetOnlyCategoryBySubCategory(cmb_SubCategory.Text);
+
+                for (int x = 0; x < DtCategory.Rows.Count; x++)
+                {
+                    DtSubCategory = _objstock.GetSubCategoryByCategory(DtCategory.Rows[x][0].ToString());
+                }
+
+            }
+            else
+            {
+                DtCategory.Columns.Add("Category");
+                DtCategory.Rows.Add(cmb_category.Text);
+                DtSubCategory = _objstock.GetSubCategoryByCategory(cmb_category.Text);
+               
+            }
+            Tuple<DataTable, DataTable> Stock = _objstock.GetStock(DtCategory,DtSubCategory);
+            DataTable Purchase = Stock.Item1;
+            DataTable Sale = Stock.Item2;
+
+            dgv_stock.Rows.Clear();
+
+            ShowLedger(Purchase, Sale);
+        }
+
+        private void ShowLedger(DataTable Purchase,DataTable Sale)
+        {
+            int i = 0;
+            dgv_stock.Rows.Clear();
+
             //Purchase
             dgv_stock.Rows.Add("Purchase");
             for (i = 0; i < Purchase.Rows.Count; i++)
             {
                 dgv_stock.Rows.Add();
-                dgv_stock.Rows[i+1].Cells["SrNo"].Value = (i + 1).ToString();
-                dgv_stock.Rows[i+1].Cells["Category"].Value = Purchase.Rows[i]["Category"].ToString();
-                dgv_stock.Rows[i+1].Cells["SubCategory"].Value = Purchase.Rows[i]["SubCategory"].ToString();
-                dgv_stock.Rows[i+1].Cells["Size"].Value = Purchase.Rows[i]["Size"].ToString();
-                dgv_stock.Rows[i+1].Cells["Quantity"].Value= Purchase.Rows[i]["Qty"].ToString();
-                dgv_stock.Rows[i + 1].Cells["BillNo"].Value = Purchase.Rows[i]["BillNo"].ToString();
-                dgv_stock.Rows[i + 1].Cells["Date"].Value = Purchase.Rows[i]["Date"].ToString();
+                dgv_stock.Rows[i + 1].Cells["SrNo"].Value = (i + 1).ToString();
+                dgv_stock.Rows[i + 1].Cells["Category"].Value = Purchase.Rows[i]["Category"].ToString();
+                dgv_stock.Rows[i + 1].Cells["SubCategory"].Value = Purchase.Rows[i]["SubCategory"].ToString();
+                dgv_stock.Rows[i + 1].Cells["Size"].Value = Purchase.Rows[i]["Size"].ToString();
+                dgv_stock.Rows[i + 1].Cells["Quantity"].Value = Purchase.Rows[i]["Qty"].ToString();
+                dgv_stock.Rows[i + 1].Cells["BillNo"].Value = Purchase.Rows[i]["PurchaseBillNo"].ToString();
+                dgv_stock.Rows[i + 1].Cells["Date"].Value = Purchase.Rows[i]["PurchaseDate"].ToString();
             }
 
             //sale
@@ -112,22 +129,39 @@ namespace PrimeSolutions.Report
                 dgv_stock.Rows[j + i + 2].Cells["SubCategory"].Value = Sale.Rows[j]["SubCategory"].ToString();
                 dgv_stock.Rows[j + i + 2].Cells["Size"].Value = Sale.Rows[j]["Size"].ToString();
                 dgv_stock.Rows[j + i + 2].Cells["Quantity"].Value = Sale.Rows[j]["Qty"].ToString();
-                dgv_stock.Rows[j + i + 2].Cells["BillNo"].Value = Sale.Rows[j]["BillNo"].ToString();
-                dgv_stock.Rows[j + i + 2].Cells["Date"].Value = Sale.Rows[j]["Date"].ToString();
+                dgv_stock.Rows[j + i + 2].Cells["BillNo"].Value = Sale.Rows[j]["SaleBillNo"].ToString();
+                dgv_stock.Rows[j + i + 2].Cells["Date"].Value = Sale.Rows[j]["SaleDate"].ToString();
             }
 
-
         }
 
-        private void cmb_category_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmb_SubCategory.DataSource = _objstock.GetSubCategoryByCategory(cmb_category.Text);
-            cmb_SubCategory.SelectedIndex = -1;
-        }
 
-        private void btn_reset_Click(object sender, EventArgs e)
+        private void bttn_CrossSort_Click(object sender, EventArgs e)
         {
-            frm_Stock_Load(sender, e);
+            DataTable DtCategory = new DataTable();
+            DataTable DtSubCategory = new DataTable();
+
+            if (cmb_category.Text == string.Empty)
+            {
+                DtCategory = _objstock.GetOnlyCategoryBySubCategory(cmb_SubCategory.Text);
+
+                for (int x = 0; x < DtCategory.Rows.Count; x++)
+                {
+                    DtSubCategory = _objstock.GetSubCategoryByCategory(DtCategory.Rows[x][0].ToString());
+                }
+
+            }
+            else
+            {
+                DtCategory.Columns.Add("Category");
+                DtCategory.Rows.Add(cmb_category.Text);
+                DtSubCategory = _objstock.GetSubCategoryByCategory(cmb_category.Text);
+
+            }
+            Tuple<DataTable, DataTable> Stock = _objstock.GetStock(dtp_from.Value.ToString("dd/MM/yyyy"),dtp_To.Value.ToString("dd/MM/yyyy"),DtCategory, DtSubCategory);
+            DataTable Purchase = Stock.Item1;
+            DataTable Sale = Stock.Item2;
+            ShowLedger(Purchase,Sale);
         }
     }
 }

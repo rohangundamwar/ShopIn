@@ -17,7 +17,37 @@ namespace PrimeSolutions.Library
             string state = _objsqlhelper.ExecuteScalar(str);
             return state;
         }
-        
+
+
+        internal string GetPurchaseQty(string category, string subcategory, string size)
+        {
+            decimal PurchaseQty;
+
+            string purchase = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and Size='"+size+"' and (PermanentDelete = 0 or PermanentDelete is Null)";
+            string QtyPurchase = _objsqlhelper.ExecuteScalar(purchase);
+            
+            if (QtyPurchase == "" || QtyPurchase == null)
+                PurchaseQty = 0;
+            else
+                PurchaseQty = Convert.ToDecimal(QtyPurchase);
+
+            return PurchaseQty.ToString();
+        }
+
+        internal string GetSaleQty(string category, string subcategory, string size)
+        {
+            decimal SaleQty;
+
+            string sale = "SELECT Sum(Convert(Decimal(10,2),qty)) FROM BillItem Where type = 'Sale' AND category = '" + category + "' AND subcategory = '" + subcategory + "'and Size='"+size+"' and (PermanentDelete = 0 or PermanentDelete is Null)";
+            string QtySale = _objsqlhelper.ExecuteScalar(sale);
+
+            if (QtySale == "" || QtySale == null)
+                SaleQty = 0;
+            else
+                SaleQty = Convert.ToDecimal(QtySale);
+
+            return SaleQty.ToString();
+        }
 
         internal string getQty(string category, string subcategory, string size)
         {
@@ -187,7 +217,14 @@ namespace PrimeSolutions.Library
 
         internal DataTable GetCategoryBySubCategory(string SubCategory)
         {
-            string str = "select Distinct Category,Size from BillItem where SubCategory = '" + SubCategory + "' ";
+            string str = "select Distinct Category,size from RateMaster where SubCategory = '" + SubCategory + "' ";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        internal DataTable GetOnlyCategoryBySubCategory(string SubCategory)
+        {
+            string str = "select Distinct Category from RateMaster where SubCategory = '" + SubCategory + "' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -206,18 +243,80 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+
+
         // GetStock
         public Tuple<DataTable, DataTable> GetStock(string from, string to)
         {
-            string strSale = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.CustomerBill.BillNo, dbo.CustomerBill.Date, dbo.BillItem.SrNo FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleDate = dbo.CustomerBill.Date AND dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE(dbo.BillItem.Type = 'Sale') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.BillItem.PermanentDelete = 0)";
+            string strSale = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.CustomerBill.BillNo as SaleBillNo, dbo.CustomerBill.Date as SaleDate, dbo.BillItem.SrNo FROM dbo.BillItem INNER JOIN dbo.CustomerBill ON dbo.BillItem.SaleDate = dbo.CustomerBill.Date AND dbo.BillItem.SaleBillNo = dbo.CustomerBill.BillNo WHERE(dbo.BillItem.Type = 'Sale') AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.CustomerBill.Date, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND (dbo.BillItem.PermanentDelete = 0)";
             DataTable Sale = _objsqlhelper.GetDataTable(strSale);
 
-            string strPurchase = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.SupplierBill.BillNo, dbo.SupplierBill.Date, dbo.SupplierBill.RefrenceNo FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo AND dbo.BillItem.PurchaseBillNo = dbo.SupplierBill.BillNo WHERE(dbo.BillItem.Type = 'Purchase') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+ "',103))AND (dbo.BillItem.PermanentDelete = 0)";
+            string strPurchase = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty AS Qty, dbo.SupplierBill.BillNo as PurchaseBillNo, dbo.SupplierBill.Date as PurchaseDate, dbo.SupplierBill.RefrenceNo FROM dbo.BillItem INNER JOIN dbo.SupplierBill ON dbo.BillItem.PurchaseRef = dbo.SupplierBill.RefrenceNo AND dbo.BillItem.PurchaseBillNo = dbo.SupplierBill.BillNo WHERE(dbo.BillItem.Type = 'Purchase') AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) >= CONVERT(DateTime, '"+from+"', 103)) AND(CONVERT(DateTime, dbo.SupplierBill.Date, 103) <= CONVERT(DateTime, '"+to+ "',103))AND (dbo.BillItem.PermanentDelete = 0)";
             DataTable Purchase = _objsqlhelper.GetDataTable(strPurchase);
             return Tuple.Create<DataTable,DataTable>(Purchase,Sale);
         }
-        
-        
+
+        public Tuple<DataTable, DataTable> GetStock(string from, string to,DataTable cat,DataTable SubCat)
+        {
+            DataTable Sale,Purchase;
+            Sale = new DataTable();
+            Purchase = new DataTable();
+            for (int i = 0; i < cat.Rows.Count; i++)
+            {
+                string category = cat.Rows[i][0].ToString();
+                for(int j=0;j<SubCat.Rows.Count;j++)
+                {
+                    string SubCategory = SubCat.Rows[j][0].ToString();
+                    string Size = SubCat.Rows[j][1].ToString();
+
+                    string strPurchase = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty,dbo.BillItem.PurchaseBillNo,BillItem.PurchaseDate FROM dbo.BillItem WHERE (dbo.BillItem.Type = 'Purchase') AND(dbo.BillItem.PermanentDelete = 0) AND(CONVERT(DateTime, dbo.BillItem.PurchaseDate, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.BillItem.PurchaseDate, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND(dbo.BillItem.Category = '" + category + "') AND(dbo.BillItem.SubCategory = '" + SubCategory + "') AND(dbo.BillItem.size = '" + Size + "')";
+                    string strSale = "SELECT DISTINCT dbo.BillItem.Category, dbo.BillItem.SubCategory, dbo.BillItem.size, dbo.BillItem.Qty,dbo.BillItem.SaleBillNo,dbo.BillItem.SaleDate FROM dbo.BillItem WHERE (dbo.BillItem.Type = 'Sale') AND(dbo.BillItem.PermanentDelete = 0) AND(CONVERT(DateTime, dbo.BillItem.SaleDate, 103) >= CONVERT(DateTime, '" + from + "', 103)) AND(CONVERT(DateTime, dbo.BillItem.SaleDate, 103) <= CONVERT(DateTime, '" + to + "', 103)) AND(dbo.BillItem.Category = '" + category + "') AND(dbo.BillItem.SubCategory = '" + SubCategory + "') AND(dbo.BillItem.size = '" + Size + "')";
+                    
+                    DataTable dtPurchase = _objsqlhelper.GetDataTable(strPurchase);
+                    DataTable dtSale = _objsqlhelper.GetDataTable(strSale);
+
+                    Purchase.Merge(dtPurchase);
+                    Sale.Merge(dtSale);
+                }
+            }
+
+            return Tuple.Create<DataTable, DataTable>(Purchase, Sale);
+        }
+
+        public Tuple<DataTable, DataTable> GetStock(DataTable cat, DataTable SubCat)
+        {
+            DataTable Sale, Purchase;
+            Sale = new DataTable(); Sale.Columns.Add("Category"); Sale.Columns.Add("SubCategory"); Sale.Columns.Add("size"); Sale.Columns.Add("Qty"); Sale.Columns.Add("PurchaseBillNo"); Sale.Columns.Add("PurchaseDate");
+            
+            Purchase = new DataTable(); Purchase.Columns.Add("Category"); Purchase.Columns.Add("SubCategory"); Purchase.Columns.Add("size"); Purchase.Columns.Add("Qty"); Purchase.Columns.Add("SaleBillNo"); Purchase.Columns.Add("SaleDate");
+            
+
+            for (int i = 0; i < cat.Rows.Count; i++)
+            {
+                string category = cat.Rows[i][0].ToString();
+                for (int j = 0; j < SubCat.Rows.Count; j++)
+                {
+                    string SubCategory = SubCat.Rows[j][0].ToString();
+                    string Size = SubCat.Rows[j][1].ToString();
+
+                    string strPurchase = "SELECT DISTINCT Category, SubCategory, size, Qty,PurchaseBillNo,PurchaseDate FROM dbo.BillItem WHERE(Type = 'Purchase') AND(Category = '" + category+"') AND(SubCategory = '"+SubCategory+"') AND(size = '"+Size+"') AND(PermanentDelete = 0)";
+                    string strSale = "SELECT DISTINCT Category, SubCategory, size, Qty,SaleBillNo,SaleDate FROM dbo.BillItem WHERE (Type = 'Sale') AND(Category = '" + category+"') AND(SubCategory = '"+SubCategory+"') AND(size = '"+Size+"') AND(PermanentDelete = 0)";
+
+                    DataTable dtPurchase = _objsqlhelper.GetDataTable(strPurchase);
+                    DataTable dtSale = _objsqlhelper.GetDataTable(strSale);
+
+
+                    Purchase.Merge(dtPurchase);
+                    Sale.Merge(dtSale);
+                    
+
+                }
+            }
+
+            return Tuple.Create<DataTable, DataTable>(Purchase, Sale);
+        }
+
+
         //Expenses
         public void InsertExpenses(string date, string Expense, string Amount, string RefrenceNo)
         {
@@ -371,7 +470,16 @@ namespace PrimeSolutions.Library
             string str = "Insert Into RateMaster(Barcode,Category,SubCategory,Size,SellingPrice,GST) Values('" + Barcode + "','" + Category + "','" + subcategory + "','" + size + "','" + SellingPrice + "','" + GST + "')";
             _objsqlhelper.ExecuteScalar(str);
         }
-        
+
+
+        //get RateMaster
+
+        internal DataTable GetRateMaster()
+        {
+            string str = "Select * from RateMaster";
+            return (_objsqlhelper.GetDataTable(str));
+        } 
+
 
         public DataTable getallssetting()
         {
